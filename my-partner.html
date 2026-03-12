@@ -49,16 +49,14 @@
 
     @media (max-width:600px) {
       :root { --page-padding:18px; }
-      .r { flex-direction:column; gap:12px; }
-      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      /* Stack rows and kill all fixed heights */
+      .r { flex-direction:column !important; gap:12px !important; height:auto !important; }
+      .r > .g { width:100% !important; flex:none !important; height:auto !important; overflow:visible !important; }
+      /* Images: natural proportions, no cropping */
+      .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       .g3 { grid-template-columns:1fr 1fr; }
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
-      /* Fix fixed-height rows on mobile */
-      .r[style] { height:auto !important; }
-      .r[style] > .g,
-      .r[style] > div { height:auto !important; flex:none !important; width:100% !important; }
-      .r[style] > .g img { max-height:75vw; object-fit:cover !important; }
     }
   </style>
 </head>

@@ -54,13 +54,10 @@
       .g3 { grid-template-columns:1fr 1fr; }
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
-      /* Fix fixed-height rows */
+      /* Fix fixed-height Moon Series rows — show full images, no cropping */
       .r[style*="height"] { height:auto !important; }
-      .r[style*="height"] > .g { height:auto !important; flex:none !important; width:100% !important; }
-      .r[style*="height"] img { height:auto !important; object-fit:cover !important; max-height:70vw; }
-      /* Title image */
-      div[style*="apparel-title"] img,
-      div[style*="text-align:center"] img[src*="title"] { width:55% !important; }
+      .r[style*="height"] > .g { height:auto !important; flex:none !important; width:100% !important; overflow:visible !important; }
+      .r[style*="height"] > .g img { height:auto !important; object-fit:unset !important; }
     }
   </style>
 </head>
