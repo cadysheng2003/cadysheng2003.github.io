@@ -1,6 +1,15 @@
 (function () {
+  // Add footer responsive styles
+  var mobileStyle = document.createElement('style');
+  mobileStyle.textContent = [
+    '@media (max-width:600px) {',
+    '  #footer { padding:28px 18px 40px !important; flex-direction:column !important; gap:16px !important; }',
+    '  #footer > div:last-child { text-align:left !important; }',
+    '}'
+  ].join('');
+  document.head.appendChild(mobileStyle);
   var html = [
-    '<footer style="max-width:960px;margin:52px auto 0;padding:32px 40px 48px;border-top:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;" id="footer">',
+    '<footer style="max-width:960px;margin:52px auto 0;padding:32px 40px 48px;border-top:1px solid #e8e8e8;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:24px;" id="footer">',
     '  <div>',
     '    <p style="font-family:\'Lora\',serif;font-size:14px;line-height:2;color:#888">For commissions, collaborations, or general inquiries,</p>',
     '    <p style="font-family:\'Lora\',serif;font-size:14px;line-height:2;color:#888">please contact me at:</p>',

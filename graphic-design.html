@@ -56,6 +56,16 @@
       .g3 { grid-template-columns:1fr 1fr; }
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
+      /* Graphic design custom 3-col → single col */
+      .gd3col { flex-direction:column !important; }
+      .gd-l, .gd-m, .gd-r { flex:none !important; width:100% !important; }
+      /* The nested middle flex also stacks */
+      .gd3col > div[style] { flex-direction:column !important; flex:none !important; width:100% !important; }
+      .gd3col > div[style] > div[style] { flex-direction:row !important; }
+      .gd-m, .gd-r { flex:1 !important; }
+      .sec-label { padding-left:18px; }
+      /* Title image */
+      .page-header img { height:auto !important; width:75% !important; max-width:300px !important; }
     }
 
     .gd3col { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }

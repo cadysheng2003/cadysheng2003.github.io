@@ -64,6 +64,13 @@
   </div>
 
   <style>
+    @media (max-width:600px) {
+      .cb-row { flex-direction:column !important; gap:10px !important; }
+      .cb-img, .cb-img--small { flex:none !important; width:100% !important; }
+      .cb-text { padding-top:0 !important; font-size:15px !important; }
+      /* Title image */
+      div[style*="padding:40px 0 28px"] img { width:80% !important; max-width:none !important; }
+    }
     .cb-row {
       display: flex;
       align-items: flex-start;

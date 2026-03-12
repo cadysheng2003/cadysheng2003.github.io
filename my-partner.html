@@ -54,6 +54,11 @@
       .g3 { grid-template-columns:1fr 1fr; }
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
+      /* Fix fixed-height rows on mobile */
+      .r[style] { height:auto !important; }
+      .r[style] > .g,
+      .r[style] > div { height:auto !important; flex:none !important; width:100% !important; }
+      .r[style] > .g img { max-height:75vw; object-fit:cover !important; }
     }
   </style>
 </head>

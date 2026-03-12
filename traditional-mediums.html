@@ -56,6 +56,16 @@
       .g3 { grid-template-columns:1fr 1fr; }
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
+      /* Traditional mediums 3-col → single col */
+      .tm3col { flex-direction:column !important; }
+      .tm-l, .tm-m, .tm-r { flex:none !important; width:100% !important; }
+      /* Fix fixed-height rows */
+      .r[style] { height:auto !important; }
+      .r[style] > .g,
+      .r[style] > div { height:auto !important; flex:none !important; width:100% !important; }
+      .r[style] > .g img { max-height:75vw; object-fit:cover !important; }
+      /* Title image */
+      .page-header img { height:auto !important; width:75% !important; max-width:300px !important; }
     }
 
     .tm3col { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
