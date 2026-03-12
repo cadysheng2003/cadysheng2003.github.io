@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meditation — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:0; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align:center;padding:40px 0 20px">
+    <img src="meditation/meditation-title.png" alt="Meditation" style="width:36.8%;max-width:290px">
+  </div>
+
+  <div class="intro-text">
+    <p>Returning to consciousness through meditation is a daily practice in my life.</p>
+    <p>I initiated RISD Presence, a student-led mindfulness community where I organize group meditation sessions that invite people to slow down and reconnect.</p>
+  </div>
+
+  <div class="gallery">
+    <div class="r">
+      <div class="g" data-title="RISD Presence Meditation" style="flex:1">
+        <img src="meditation/M1 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation" loading="lazy">
+      </div>
+    </div>
+    <div class="r" style="gap:30px;margin-top:10px">
+      <div class="g" data-title="RISD Presence Hike" style="flex:357">
+        <img src="meditation/M2 (RISD Presence Hike).jpg" alt="RISD Presence Hike" loading="lazy">
+      </div>
+      <div class="g" data-title="RISD Presence Meditation II" style="flex:326">
+        <img src="meditation/M3 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation II" loading="lazy">
+      </div>
+    </div>
+    <div class="r" style="gap:12px;margin-top:10px">
+      <div class="g" data-title="RISD Presence Meditation III" style="flex:215">
+        <img src="meditation/M4 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation III" loading="lazy">
+      </div>
+      <div class="g" data-title="Mindfulness in Prisons Event" style="flex:457">
+        <img src="meditation/M5 (Mindfulness in Prisons Event).jpg" alt="Mindfulness in Prisons Event" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="jewelry.html" class="page-nav__name">&lsaquo;&ensp;Jewelry</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="apparel.html" class="page-nav__name">Apparel&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+  <div id="footer"></div>
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

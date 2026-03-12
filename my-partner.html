@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Partner — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); text-align:center; }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:24px; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align:center; padding:40px 0 12px">
+    <img src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:inline-block">
+  </div>
+
+  <div class="gallery">
+    <!-- Row 1: MP1 + MP4(My Partner 2), equal width, cover fill, ~350px tall -->
+    <div class="r" style="height:350px;gap:12px">
+      <div class="g" data-title="My Partner 1" style="flex:1;height:100%;overflow:hidden">
+        <img src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 4" style="flex:1;height:100%;overflow:hidden">
+        <img src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <!-- Row 2: MP3 + MP2(My Partner 4) + MP5, equal width, cover fill, ~270px tall -->
+    <div class="r" style="height:270px;gap:12px">
+      <div class="g" data-title="My Partner 3" style="flex:1;height:100%;overflow:hidden">
+        <img src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 2" style="flex:1;height:100%;overflow:hidden">
+        <img src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 5" style="flex:1;height:100%;overflow:hidden">
+        <img src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="stage-art-production.html" class="page-nav__name">&lsaquo;&ensp;Stage Art &amp; Production</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="childrens-book.html" class="page-nav__name">Children&#8217;s Book&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+  <div id="footer"></div>
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

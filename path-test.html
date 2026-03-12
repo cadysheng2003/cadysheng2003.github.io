@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Path Test — Cady Sheng</title>
+  <style>
+    body { font-family: monospace; padding: 30px; background: #f5f5f5; }
+    h1 { font-size: 18px; margin-bottom: 20px; }
+    .test { display:flex; align-items:center; gap:12px; margin:6px 0; padding:8px 12px; background:#fff; border-radius:4px; }
+    .thumb { width:40px; height:40px; object-fit:cover; background:#eee; flex-shrink:0; }
+    .status { font-size:12px; min-width:60px; }
+    .pass { color: green; font-weight:bold; }
+    .fail { color: red; font-weight:bold; }
+    .path { font-size:11px; color:#666; }
+  </style>
+</head>
+<body>
+  <h1>Image Path Test — open this from http://localhost:8000/path-test.html</h1>
+  <p style="font-size:12px;color:#888;margin-bottom:20px">Each row tests one image from each folder. Green = file found. Red = file missing or wrong path.</p>
+  <div id="results"></div>
+  <script>
+    var tests = [
+      ['homepage-covers-images/ICover.jpg',        'homepage-covers-images (cover images)'],
+      ['illustrations/I1 (Portal).jpg',             'illustrations/'],
+      ['stage-art-Production/SP2 (From the Mountains Series).jpg', 'stage-art-Production/ (capital P)'],
+      ['my-partner/MP1 (My Partner 1).jpg',         'my-partner/'],
+      ['childrens-Book/CB1 (Maybe We Will Find a Rainbow and Teach It to Fly-Cover).jpg', 'childrens-Book/ (capital B)'],
+      ['flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg', 'flow-and-spirituality/'],
+      ['traditional-mediums/TM1 (Untitled Watercolor 1).jpg', 'traditional-mediums/'],
+      ['graphic-design/GD1 (Meditation Poster I).jpg', 'graphic-design/'],
+      ['jewelry/J1 (Flask Chain).png',              'jewelry/'],
+      ['meditation/M1 (RISD Presence Meditation).jpg', 'meditation/'],
+      ['apparel/A1 (Photoshoot Look 1).jpg',        'apparel/'],
+    ];
+    var div = document.getElementById('results');
+    tests.forEach(function(t) {
+      var row = document.createElement('div');
+      row.className = 'test';
+      var img = document.createElement('img');
+      img.className = 'thumb';
+      img.src = t[0];
+      var status = document.createElement('span');
+      status.className = 'status';
+      var path = document.createElement('span');
+      path.className = 'path';
+      path.textContent = t[1] + '  →  ' + t[0];
+      img.onload = function() { status.textContent = '✓ FOUND'; status.classList.add('pass'); };
+      img.onerror = function() { status.textContent = '✗ MISSING'; status.classList.add('fail'); };
+      row.appendChild(img);
+      row.appendChild(status);
+      row.appendChild(path);
+      div.appendChild(row);
+    });
+  </script>
+</body>
+</html>

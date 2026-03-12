@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apparel — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:24px; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align:center;padding:40px 0 20px">
+    <img src="apparel/apparel-title.png" alt="Apparel" style="width:30.6%;max-width:241px">
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:0 40px 4px"><p style="font-family:'Lora',serif;font-size:15px;font-style:italic;color:#888">Achieved the Season&#8217;s Top Sales in Collaboration with Toread X</p></div>
+  <div class="gallery" style="--gap:12px">
+    <div class="r" style="align-items:flex-start">
+      <div class="c" style="flex:140">
+        <div class="g" data-title="Photoshoot Look 1">
+          <img src="apparel/A1 (Photoshoot Look 1).jpg" alt="Photoshoot Look 1" loading="lazy" style="width:100%;display:block">
+        </div>
+        <div class="g" data-title="Photoshoot Look 5">
+          <img src="apparel/A5 (Photoshoot Look 5).jpg" alt="Photoshoot Look 5" loading="lazy" style="width:100%;display:block">
+        </div>
+      </div>
+      <div class="c" style="flex:112">
+        <div class="g" data-title="Photoshoot Look 2">
+          <img src="apparel/A2 (Photoshoot Look 2).jpg" alt="Photoshoot Look 2" loading="lazy" style="width:100%;display:block">
+        </div>
+        <div class="g" data-title="Photoshoot Look 4">
+          <img src="apparel/A4 (Photoshoot Look 4).jpg" alt="Photoshoot Look 4" loading="lazy" style="width:100%;display:block">
+        </div>
+        <div class="g" data-title="Photoshoot Look 8">
+          <img src="apparel/A8 (Photoshoot Look 8).jpg" alt="Photoshoot Look 8" loading="lazy" style="width:100%;display:block">
+        </div>
+      </div>
+      <div class="c" style="flex:108">
+        <div class="g" data-title="Photoshoot Look 3">
+          <img src="apparel/A3 (Photoshoot Look 3).jpg" alt="Photoshoot Look 3" loading="lazy" style="width:100%;display:block">
+        </div>
+        <div class="g" data-title="Photoshoot Look 6">
+          <img src="apparel/A6 (Photoshoot Look 6).jpg" alt="Photoshoot Look 6" loading="lazy" style="width:100%;display:block">
+        </div>
+        <div class="g" data-title="Photoshoot Look 7">
+          <img src="apparel/A7 (Photoshoot Look 7).jpg" alt="Photoshoot Look 7" loading="lazy" style="width:100%;display:block">
+        </div>
+      </div>
+    </div>
+    <div class="r" style="height:300px;align-items:stretch">
+      <div class="g" data-title="Moon Series: Freeze" style="flex:1.8;height:100%;overflow:hidden">
+        <img src="apparel/A9 (Moon Series_ Freeze).jpg" alt="Moon Series: Freeze" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="Moon Series: Off Guard" style="flex:1;height:100%;overflow:hidden">
+        <img src="apparel/A10 (Moon Series_ Off Guard).jpg" alt="Moon Series: Off Guard" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <div class="r" style="height:300px;align-items:stretch">
+      <div class="g" data-title="Moon Series: Recover" style="flex:1;height:100%;overflow:hidden">
+        <img src="apparel/A11 (Moon Series_ Recover).jpg" alt="Moon Series: Recover" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="Moon Series: Drowning" style="flex:1.8;height:100%;overflow:hidden">
+        <img src="apparel/A12 (Moon Series_ Drowning).jpg" alt="Moon Series: Drowning" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Toread Physical Store Image" style="flex:1">
+        <img src="apparel/A13 (Toread Physical Store Image).jpg" alt="Toread Physical Store Image" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="meditation.html" class="page-nav__name">&lsaquo;&ensp;Meditation</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="illustrations.html" class="page-nav__name">Illustrations&ensp;&rsaquo;</a>
+    </div>
+  </nav><div id="footer"></div>
+
+  
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Illustrations — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              12px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .row  { display:flex; gap:var(--gap); align-items:flex-start; margin-bottom:var(--gap); }
+    .col  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g    { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g:hover img { opacity:0.88; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep { height:40px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 47px; padding:0 var(--page-padding); text-align:center; }
+    .page-title  { text-align:center; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .row { flex-direction:column; }
+      .row > .col, .row > .g { width:100% !important; flex:none !important; }
+      .grid3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="page-title">
+      <img src="illustrations/illustrations-title.png" alt="Illustrations" style="max-width:397px; width:51%; height:auto; display:inline-block">
+    </div>
+  </div>
+
+  <div class="gallery">
+
+    <!--
+    BLOCK A — confirmed from pixel analysis of design mockup:
+    LEFT  (38%): I1 · I3 · I4 · I8 · I15
+    RIGHT (62%): I2 (large)
+                 3×3 grid: I5 I6 I7 / I9 I10 I11 / I12 I13 I14
+                 I20 (wide swirl dancer, full right-col width)
+    -->
+    <div class="row">
+
+      <!-- LEFT: I1 · I3 · I4 · I8 · I15 -->
+      <div class="col" style="flex:0 0 38%">
+        <div class="g" data-title="Portal">
+          <img src="illustrations/I1 (Portal).jpg" alt="Portal" loading="lazy">
+        </div>
+        <div class="g" data-title="Maternal Bond">
+          <img src="illustrations/I3 (Maternal Bond).jpg" alt="Maternal Bond" loading="lazy">
+        </div>
+        <div class="g" data-title="From the Mountains: Don't Be Afraid I">
+          <img src="illustrations/I4.jpg" alt="From the Mountains: Don't Be Afraid I" loading="lazy">
+        </div>
+        <div class="g" data-title="From the Mountains: Don't Be Afraid II">
+          <img src="illustrations/I8.jpg" alt="From the Mountains: Don't Be Afraid II" loading="lazy">
+        </div>
+        <div class="g" data-title="Notes and Trees">
+          <img src="illustrations/I15 (Notes and Trees).jpg" alt="Notes and Trees" loading="lazy">
+        </div>
+      </div>
+
+      <!-- RIGHT: I2 · 3×3 grid · I20 wide -->
+      <div class="col" style="flex:1">
+        <div class="g" data-title="The Princess and the Pea">
+          <img src="illustrations/I2 (The Princess and the Pea).jpg" alt="The Princess and the Pea" loading="lazy">
+        </div>
+        <!-- 3×3 grid: row1 I5 I6 I7 -->
+        <div class="grid3">
+          <div class="g" data-title="Dialogue Between the Gods">
+            <img src="illustrations/I5 (Dialogue Between the Gods).jpg" alt="Dialogue Between the Gods" loading="lazy">
+          </div>
+          <div class="g" data-title="Bow">
+            <img src="illustrations/I6 (Bow).jpg" alt="Bow" loading="lazy">
+          </div>
+          <div class="g" data-title="Queen">
+            <img src="illustrations/I7 (Queen).jpg" alt="Queen" loading="lazy">
+          </div>
+        </div>
+        <!-- row2 I9 I10 I11 -->
+        <div class="grid3">
+          <div class="g" data-title="Giant">
+            <img src="illustrations/I9 (Giant).jpg" alt="Giant" loading="lazy">
+          </div>
+          <div class="g" data-title="Lamb">
+            <img src="illustrations/I10 (Lamb).jpg" alt="Lamb" loading="lazy">
+          </div>
+          <div class="g" data-title="Redfish and Fox">
+            <img src="illustrations/I11 (Redfish and Fox).jpg" alt="Redfish and Fox" loading="lazy">
+          </div>
+        </div>
+        <!-- row3 I12 I13 I14 -->
+        <div class="grid3">
+          <div class="g" data-title="Witch">
+            <img src="illustrations/I12 (Witch).jpg" alt="Witch" loading="lazy">
+          </div>
+          <div class="g" data-title="Ghosts">
+            <img src="illustrations/I13 (Ghosts).jpg" alt="Ghosts" loading="lazy">
+          </div>
+          <div class="g" data-title="Pond">
+            <img src="illustrations/I14 (Pond).jpg" alt="Pond" loading="lazy">
+          </div>
+        </div>
+        <!-- Wide image below grid: I16 swirl dancer -->
+        <div class="g" data-title="From the Mountains: The Dance Begins I">
+          <img src="illustrations/I16 (From the Mountains_ The Dance Begins I).jpg" alt="From the Mountains: The Dance Begins I" loading="lazy">
+        </div>
+      </div>
+
+    </div><!-- /BLOCK A -->
+
+    <div class="sep"></div>
+
+    <!--
+    BLOCK B — I17–I22 in two rows of 3
+    Row 1: I17 · I18 · I19
+    Row 2: I20 · I21 · I22
+    -->
+    <div class="row">
+      <div class="g" data-title="From the Mountains: The Dance Begins II" style="flex:1">
+        <img src="illustrations/I17 (From the Mountains_ The Dance Begins II).jpg" alt="From the Mountains: The Dance Begins II" loading="lazy">
+      </div>
+      <div class="g" data-title="From the Mountains: The Singing Duel I" style="flex:1">
+        <img src="illustrations/I18 (From the Mountains_ The Singing Duel I).jpg" alt="From the Mountains: The Singing Duel I" loading="lazy">
+      </div>
+      <div class="g" data-title="From the Mountains: Praise of Genghis Khan" style="flex:1">
+        <img src="illustrations/I19 (From the Mountains_ Praise of Genghis Khan).jpg" alt="From the Mountains: Praise of Genghis Khan" loading="lazy">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="g" data-title="From the Mountains: Lobsang Dongzhi" style="flex:1">
+        <img src="illustrations/I20 (From the Mountains_ Lobsang Dongzhi).jpg" alt="From the Mountains: Lobsang Dongzhi" loading="lazy">
+      </div>
+      <div class="g" data-title="From the Mountains: The Singing Duel II" style="flex:1">
+        <img src="illustrations/I21 (From the Mountains_ The Singing Duel II).jpg" alt="From the Mountains: The Singing Duel II" loading="lazy">
+      </div>
+      <div class="g" data-title="From the Mountains: Amala" style="flex:1">
+        <img src="illustrations/I22 (From the Mountains_ Amala).jpg" alt="From the Mountains: Amala" loading="lazy">
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <!--
+    BLOCK C — rabbit / play series
+    LEFT col (wider): I23 / I25 / I27 / I29  stacked
+    RIGHT col:        I24 / I26 / I28         stacked
+    Note: I27 filename on disk is "I27 (Untitled).jpg_" — needs rename.
+    We try both extensions.
+    -->
+    <div class="row">
+      <!-- LEFT: I23 / I25 / I27 / I29 -->
+      <div class="col" style="flex:1.3">
+        <div class="g" data-title="Rabbits">
+          <img src="illustrations/I23 (Rabbits).jpg" alt="Rabbits" loading="lazy">
+        </div>
+        <div class="g" data-title="Rabbits 1">
+          <img src="illustrations/I25 (Rabbits 1).jpg" alt="Rabbits 1" loading="lazy">
+        </div>
+        <div class="g" data-title="Untitled" id="i27-wrap">
+          <img src="illustrations/I27 (Untitled).jpg" alt="Untitled" loading="lazy"
+               onerror="this.src='illustrations/I27 (Untitled).jpg_'">
+        </div>
+        <div class="g" data-title="Rabbit Running Free">
+          <img src="illustrations/I29 (Rabbit Running Free).jpg" alt="Rabbit Running Free" loading="lazy">
+        </div>
+      </div>
+      <!-- RIGHT: I24 / I26 / I28 -->
+      <div class="col" style="flex:1; justify-content:space-between; align-self:stretch">
+        <div class="g" data-title="Play">
+          <img src="illustrations/I24 (Play).jpg" alt="Play" loading="lazy">
+        </div>
+        <div class="g" data-title="Play II">
+          <img src="illustrations/I26 (Play).jpg" alt="Play II" loading="lazy">
+        </div>
+        <div class="g" data-title="Untitled II" style="width:105px; align-self:flex-start">
+          <img src="illustrations/I28 (Untitled).jpg" alt="Untitled II" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <!--
+    BLOCK D — confirmed from design mockup pixel analysis:
+    Row 1: I30 (large, flex:1.3 left) | I31 (top right) / [I32+I33 side by side] + I34 below
+    Then: I35 · I36  two col equal
+    
+    Exact structure:
+    LEFT (flex:1.3): I30 tall image (woman in yellow field)
+    RIGHT (flex:1):  I31 (red lanterns, top)
+                     [I32 (neon) · I33 (dark purple)] side by side
+                     I34 (black figure photo, below I33)
+    Then full-width sep
+    I35 · I36  equal 2-col
+    -->
+    <div class="row">
+      <!-- LEFT: I30 large -->
+      <div class="g" data-title="Lobsang Dongzhi" style="flex:1.3">
+        <img src="illustrations/I30 (Lobsang Dongzhi).jpg" alt="Lobsang Dongzhi" loading="lazy">
+      </div>
+      <!-- RIGHT: I31 top / then I32(large left) + col[I33/I34] right -->
+      <div class="col" style="flex:1">
+        <div class="g" data-title="From the Mountains: The Drinking Song">
+          <img src="illustrations/I31 (From the Mountains_ The Drinking Song).jpg" alt="From the Mountains: The Drinking Song" loading="lazy">
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <div class="g" data-title="Rainbow Ponies" style="flex:1.2">
+            <img src="illustrations/I32 (Rainbow Ponies).jpg" alt="Rainbow Ponies" loading="lazy">
+          </div>
+          <div class="col" style="flex:1">
+            <div class="g" data-title="Time Doesn't Exist">
+              <img src="illustrations/I33 (Time Doesn%E2%80%99t Exist).jpg" alt="Time Doesn't Exist" loading="lazy">
+            </div>
+            <div class="g" data-title="Jinyiwei">
+              <img src="illustrations/I34 (Jinyiwei).jpg" alt="Jinyiwei" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="align-items:stretch">
+      <div class="g" data-title="Argument" style="flex:1.3; display:flex">
+        <img src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
+      </div>
+      <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1">
+        <img src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+
+  </div><!-- /gallery -->
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="apparel.html" class="page-nav__name">&lsaquo;&ensp;Apparel</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="stage-art-production.html" class="page-nav__name">Stage Art &amp; Production&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+  <div id="footer"></div>
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

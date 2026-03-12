@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jewelry — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:0; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align:center;padding:40px 0 20px">
+    <img src="jewelry/jewelry-title.png" alt="Jewelry" style="width:32%;max-width:252px">
+  </div>
+
+  <div class="intro-text">
+    <p>When the stones are taken away from the mountains and rivers of their homeland, can we still feel their souls? My work explores a sense of sacred balance through color, texture, form, and rhythm.</p>
+    <p>Turquoise, jade, Southern red agate, Alxa sugar-heart agate, moss agate, silver, raw stones, carving, and weaving become the language of this exploration.</p>
+    <p>Some of my pieces are inspired by Buddhist elements.</p>
+  </div>
+  <div class="gallery">
+    <div class="r" style="height:320px;align-items:stretch">
+      <div class="g" data-title="Flask Chain" style="flex:131;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J1 (Flask Chain).png" alt="Flask Chain" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Nanhong Agate and Turquoise Necklace" style="flex:109;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J2 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Sunflower Necklace" style="flex:116;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J3 (Sunflower Necklace).png" alt="Sunflower Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Agate and Silver Necklaces" style="flex:133;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J4 (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+    </div>
+    <div class="r" style="margin-top:28px;height:320px;align-items:stretch">
+      <div class="g" data-title="Agate and Silver Necklaces II" style="flex:90;height:100%;overflow:hidden">
+        <img src="jewelry/J5. (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces II" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="Alxa Candy-Heart Agate Raw Stone Necklace" style="flex:160;height:100%;overflow:hidden">
+        <img src="jewelry/J6. (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="flex:80;height:100%;overflow:hidden;line-height:0">
+        <video autoplay muted loop playsinline src="jewelry/J7 (Video of Necklaces).mov" style="width:100%;height:100%;object-fit:cover;display:block"></video>
+      </div>
+    </div>
+    <div class="r" style="margin-top:28px;height:320px;align-items:stretch">
+      <div class="g" data-title="Nanhong Agate and Turquoise Necklace II" style="flex:215;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J8 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Agate Necklace" style="flex:113;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J10. (Agate Necklace).png" alt="Agate Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Alxa Candy-Heart Agate Raw Stone Necklace II" style="flex:107;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J9 (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+      <div class="g" data-title="Agate Necklace II" style="flex:159;height:100%;overflow:hidden;background:#fff">
+        <img src="jewelry/J11 (Agate Necklace).png" alt="Agate Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+      </div>
+    </div>
+    <div class="r" style="margin-top:28px">
+      <div class="g" data-title="Plum Blossom Jade Necklace" style="flex:156">
+        <img src="jewelry/J13 (Plum Blossom Jade Necklace).png" alt="Plum Blossom Jade Necklace" loading="lazy">
+      </div>
+      <div class="g" data-title="Agate and Turquoise Necklace" style="flex:175">
+        <img src="jewelry/J12 (Agate and Turquoise Necklace).png" alt="Agate and Turquoise Necklace" loading="lazy">
+      </div>
+      <div class="g" data-title="My Cat with an Agate Bracelet" style="flex:162">
+        <img src="jewelry/J14 (My Cat with an Agate Bracelet).png" alt="My Cat with an Agate Bracelet" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="graphic-design.html" class="page-nav__name">&lsaquo;&ensp;Graphic Design</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="meditation.html" class="page-nav__name">Meditation&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+  <div id="footer"></div>
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

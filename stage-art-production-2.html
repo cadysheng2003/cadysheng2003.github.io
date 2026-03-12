@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage Art & Production — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              6px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; align-items:stretch; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:24px; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div style="text-align:center">
+      <img src="stage-art-Production/stage-title.png" alt="Stage Art &amp; Production" style="width:65%; max-width:640px; height:auto; display:inline-block">
+    </div>
+  </div>
+
+  <div class="gallery">
+    <div class="g" data-title="From the Mountains (video)">
+        <video id="sp-video" autoplay muted loop playsinline controls src="stage-art-Production/SP1 (From the Mountains video).mp4" style="width:100%;height:auto;display:block"></video>
+        <script>
+          var v = document.getElementById('sp-video');
+          v.addEventListener('loadedmetadata', function() { v.muted = false; });
+        </script>
+      </div>
+    <div class="sep-sm" style="height:8px"></div>
+
+    <!-- Text block 1: role description -->
+    <div style="margin:0 0 16px">
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">From the Mountains</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Stage Art &amp; Production Director</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:20px">Shanghai, China · June 2024</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Served as Art Director for the 2024 cultural heritage event supporting ethnic education initiatives.</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Independently designed and executed all stage paintings and lighting design.</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Developed visual concepts reflecting the identity of participating ethnic communities.</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Collaborated with directors and cultural educators to ensure authenticity.</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">Led and trained volunteer teams (ages 8–12).</p>
+      <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text)">Produced and edited event documentation video.</p>
+    </div>
+    <!-- Row 1: SP2 large left + SP3/SP4 stacked right -->
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="From the Mountains Series" style="flex:1.3">
+        <img src="stage-art-Production/SP2 (From the Mountains Series).jpg" alt="From the Mountains Series" loading="lazy" style="width:100%;height:auto;display:block">
+      </div>
+      <div class="c" style="flex:1">
+        <div class="g" data-title="From the Mountains Stage Design" style="flex:1">
+          <img src="stage-art-Production/SP3 (From the Mountains Stage Design).jpg" alt="From the Mountains Stage Design" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="g" data-title="From the Mountains Stage Design II" style="flex:1">
+          <img src="stage-art-Production/SP4 (From the Mountains Stage Design).jpg" alt="From the Mountains Stage Design II" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+    <!-- Row 2: SP5 group photo left + SP6 right, equal height -->
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="From the Mountains Group Photo" style="flex:1.3">
+        <img src="stage-art-Production/SP5 (From the Mountains Group Photo).jpg" alt="From the Mountains Group Photo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="From the Mountains Back Stage" style="flex:1">
+        <img src="stage-art-Production/SP6 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <!-- Row 3: SP7 large left + SP8/SP9 stacked right, equal height -->
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="From the Mountains Back Stage II" style="flex:1.3">
+        <img src="stage-art-Production/SP7 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage II" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="c" style="flex:1">
+        <div class="g" data-title="From the Mountains Back Stage III" style="flex:1">
+          <img src="stage-art-Production/SP8 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage III" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="g" data-title="From the Mountains Back Stage IV" style="flex:1">
+          <img src="stage-art-Production/SP9 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage IV" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+    <!-- Row 4: SP10 large left + right col [SP11 + SP12/SP13 grid] -->
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="From the Mountains Back Stage V" style="flex:1.3">
+        <img src="stage-art-Production/SP10 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage V" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="c" style="flex:1">
+        <div class="g" data-title="From the Mountains Back Stage VI" style="flex:1">
+          <img src="stage-art-Production/SP11 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage VI" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div class="g2" style="flex:1">
+          <div class="g" data-title="From the Mountains Back Stage VII">
+            <img src="stage-art-Production/SP12 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage VII" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <div class="g" data-title="From the Mountains Back Stage VIII">
+            <img src="stage-art-Production/SP13 (From the Mountains Back Stage).jpg" alt="From the Mountains Back Stage VIII" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journal text block -->
+  <div style="max-width:var(--page-max-width);margin:48px auto 0;padding:0 var(--page-padding)">
+    <p style="font-family:var(--font-display);font-size:18px;font-weight:400;color:var(--color-text);margin-bottom:20px">"From the Mountains" Journal</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">Before coming, I had no idea what I would be doing. After arriving, I barely slept more than five hours a day. Working on stage design meant going day and night, often until around three in the morning. I had never slept so little or worked continuously for so long in my life. I had a fever, menstrual pain, heart pain, stomach pain, and a sore throat—haha.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">But the overflowing love carried me through everything and gave me more than enough strength to do my work beautifully.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">Every day during the daytime, I saw the smiles of the children, the teachers, and the volunteers—their soft little hands and cheeks. One heartfelt conversation after another moved the deepest parts of my soul. I found myself crying several times a day, whether from being touched by such pure hearts or from tears of happiness. Somehow my body no longer felt tired, and my energy was overflowing.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">One time, while passing through the hotel hallway, I heard all of you loudly calling my name again and again from inside the rooms 😂 It felt like I had become the Monkey King.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">All I wanted was to be good to you, to see you smile every day—to lift you up, spin you around, kiss your little cheeks, and give you delicious things to eat. After I hugged and kissed one of you, the rest would rush over, all competing: "Me too, me too! I want one too!"</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px">That day in the dressing room before the stage performance, you all excitedly took colorful hair clips and pinned them into my hair as gifts. On the final day of camp, you ran after each other smearing cake cream on each other's faces—and mine ended up covered with it too.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:4px">Shengkai jiejie loves you all.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:4px">I will miss you so much. I want to see you grow up surrounded by love and warmth.</p>
+    <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text)">And this is not really a goodbye—I am always here. ❤️</p>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="illustrations.html" class="page-nav__name">&lsaquo;&ensp;Illustrations</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="my-partner.html" class="page-nav__name">My Partner&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+  <div id="footer"></div>
+
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

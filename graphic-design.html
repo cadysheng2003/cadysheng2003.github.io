@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphic Design — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:24px; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+
+    .gd3col { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
+    .gd-l { flex:165 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .gd-m { flex:108 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .gd-r { flex:114 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .sec-label { font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; font-weight:400; color:#888; letter-spacing:1px; margin:32px 0 12px; padding-left:40px; max-width:960px; margin-left:auto; margin-right:auto; }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <img src="graphic-design/graphic-design-title.png" alt="Graphic Design" style="height:130px;width:auto;display:block;margin:0 auto;">
+  </div>
+
+  <div class="gallery">
+    <div class="gd3col">
+      <div class="gd-l">
+        <div class="g" data-title="Meditation Poster I">
+        <img src="graphic-design/GD1 (Meditation Poster I).jpg" alt="Meditation Poster I" loading="lazy">
+      </div>
+        <div class="g" data-title="Meditation Poster IV">
+        <img src="graphic-design/GD6 (Meditation Poster IV).jpg" alt="Meditation Poster IV" loading="lazy">
+      </div>
+        <div class="g" data-title="Poster: Stolen Banana">
+        <img src="graphic-design/GD9 (Poster-Stolen Banana).jpg" alt="Poster: Stolen Banana" loading="lazy">
+      </div>
+      </div>
+      <div style="flex:222 0 0; display:flex; flex-direction:column; gap:8px; min-width:0;">
+        <div style="display:flex; gap:8px;">
+          <div class="gd-m" style="flex:108 0 0;">
+            <div class="g" data-title="Meditation Poster II">
+              <img src="graphic-design/GD2 (Meditation Poster II).jpg" alt="Meditation Poster II" loading="lazy">
+            </div>
+            <div class="g" data-title="Meditation Poster III">
+              <img src="graphic-design/GD5 (Meditation Poster III).jpg" alt="Meditation Poster III" loading="lazy">
+            </div>
+            <div class="g" data-title="Mindfulness Poster">
+              <img src="graphic-design/GD7 (Mindfulness Poster).jpg" alt="Mindfulness Poster" loading="lazy">
+            </div>
+          </div>
+          <div class="gd-r" style="flex:114 0 0;">
+            <div class="g" data-title="Instagram Profile for RISD Presence">
+              <img src="graphic-design/GD3 (Instagram Profile for RISD Presence).jpg" alt="Instagram Profile for RISD Presence" loading="lazy">
+            </div>
+            <div class="g" data-title="Poster: Res Hall">
+              <img src="graphic-design/GD4 (Poster-Res Hall).jpg" alt="Poster: Res Hall" loading="lazy">
+            </div>
+            <div class="g" data-title="Birthday Poster">
+              <img src="graphic-design/GD8 (Birthday Poster).jpg" alt="Birthday Poster" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="g" data-title="Album Cover Design" style="width:100%">
+          <img src="graphic-design/GD10 (Album Cover Design).jpg" alt="Album Cover Design" loading="lazy" style="width:100%;display:block;">
+        </div>
+        <div class="g" data-title="Stamp" style="width:100%">
+          <img src="graphic-design/GD11 (Stamp).jpg" alt="Stamp" loading="lazy" style="width:100%;display:block;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="sec-label">Bakery</p>
+  <div class="gallery">
+    <div class="r">
+      <div class="c" style="flex:1">
+        <div class="g" data-title="Graphic Design for Bakery">
+        <img src="graphic-design/GD16 (Graphic Design for Bakery).png" alt="Graphic Design for Bakery" loading="lazy">
+      </div>
+        <div class="g" data-title="Graphic Design for Bakery II">
+        <img src="graphic-design/GD17 (Graphic Design for Bakery).png" alt="Graphic Design for Bakery II" loading="lazy">
+      </div>
+      </div>
+      <div class="g" data-title="Graphic Design for Bakery III" style="flex:1">
+        <img src="graphic-design/GD18 (Graphic Design for Bakery).png" alt="Graphic Design for Bakery III" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <p class="sec-label">Typeface Design &amp; Business Card</p>
+  <div class="gallery">
+    <div class="r">
+      <div class="g" data-title="Typeface Design and Business Card I" style="flex:1">
+        <img src="graphic-design/GD19 (Typeface Design and Business card I).jpeg" alt="Typeface Design and Business Card I" loading="lazy">
+      </div>
+      <div class="g" data-title="Typeface Design and Business Card II" style="flex:1">
+        <img src="graphic-design/GD20(Typeface Design and Business card II).jpg" alt="Typeface Design and Business Card II" loading="lazy">
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Typeface Design and Business Card III" style="flex:1">
+        <img src="graphic-design/GD21(Typeface Design and Business card III) copy.jpg" alt="Typeface Design and Business Card III" loading="lazy">
+      </div>
+      <div class="g" data-title="Typeface Design and Business Card IV" style="flex:1">
+        <img src="graphic-design/GD22(Typeface Design and Business card IV).jpg" alt="Typeface Design and Business Card IV" loading="lazy">
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Bifrost Logo" style="flex:1">
+        <img src="graphic-design/GD23 (Bifrost Logo).jpg" alt="Bifrost Logo" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="traditional-mediums.html" class="page-nav__name">&lsaquo;&ensp;Traditional Mediums</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="jewelry.html" class="page-nav__name">Jewelry&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+
+
+  <div id="footer"></div>
+
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traditional Mediums — Cady Sheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+      --gap:              8px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
+    .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
+    .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g video { display:block; width:100%; height:auto; }
+    .g:hover img { opacity:0.88; }
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
+    .sep    { height:40px; }
+    .sep-sm { height:20px; }
+
+    .page-header { max-width:var(--page-max-width); margin:40px auto 32px; padding:0 var(--page-padding); }
+    .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
+
+    .intro-text { max-width:var(--page-max-width); margin:0 auto 36px; padding:0 var(--page-padding); }
+    .intro-text p { font-family:var(--font-body); font-size:14px; line-height:1.8; color:var(--color-text-light); margin-bottom:10px; padding-left:24px; }
+
+    .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
+    .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
+    .page-nav__side--right { align-items:flex-end; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
+    .page-nav__name:hover { color:var(--color-text); }
+    .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
+    .page-nav__home:hover { opacity:0.6; }
+
+
+
+    @media (max-width:600px) {
+      :root { --page-padding:18px; }
+      .r { flex-direction:column; gap:12px; }
+      .r > .c, .r > .g { width:100% !important; flex:none !important; }
+      .g3 { grid-template-columns:1fr 1fr; }
+      .page-nav { flex-direction:column; gap:24px; align-items:center; }
+      .page-nav__side, .page-nav__side--right { align-items:center; }
+    }
+
+    .tm3col { display:flex; gap:8px; margin-bottom:8px; align-items:flex-start; }
+    .tm-l { flex:1.744 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .tm-m { flex:1.317 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .tm-r { flex:1.000 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <img src="traditional-mediums/traditional-mediums-title.png" alt="Traditional Mediums" style="height:92px;width:auto;display:block;margin:0 auto;">
+  </div>
+
+  <div class="gallery">
+    <div class="tm3col">
+      <div class="tm-l">
+        <div class="g" data-title="Untitled Watercolor 1">
+        <img src="traditional-mediums/TM1 (Untitled Watercolor 1).jpg" alt="Untitled Watercolor 1" loading="lazy">
+      </div>
+        <div class="g" data-title="Pastel Figure Drawing">
+        <img src="traditional-mediums/TM6 (Pastel Figure Drawing).jpg" alt="Pastel Figure Drawing" loading="lazy">
+      </div>
+      </div>
+      <div class="tm-m">
+        <div class="g" data-title="Untitled Watercolor 2">
+        <img src="traditional-mediums/TM2 (Untitled Watercolor 2).jpg" alt="Untitled Watercolor 2" loading="lazy">
+      </div>
+        <div class="g" data-title="Untitled Oil Painting 1">
+        <img src="traditional-mediums/TM4 (Untitled Oil Painting 1).jpg" alt="Untitled Oil Painting 1" loading="lazy">
+      </div>
+        <div class="g" data-title="Watercolors and Sculptures">
+        <img src="traditional-mediums/TM7 (Watercolors and Sculptures).jpg" alt="Watercolors and Sculptures" loading="lazy">
+      </div>
+      </div>
+      <div class="tm-r">
+        <div class="g" data-title="Untitled Watercolor 3">
+        <img src="traditional-mediums/TM3 (Untitled Watercolor 3).jpg" alt="Untitled Watercolor 3" loading="lazy">
+      </div>
+        <div class="g" data-title="Untitled Oil Painting 2">
+        <img src="traditional-mediums/TM5 (Untitled Oil Painting 2).jpg" alt="Untitled Oil Painting 2" loading="lazy">
+      </div>
+        <div class="g" data-title="Untitled Oil Painting 3">
+        <img src="traditional-mediums/TM8 (Untitled Oil Painting 3).jpg" alt="Untitled Oil Painting 3" loading="lazy">
+      </div>
+      </div>
+    </div>
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="Cat Memes" style="flex:1">
+        <img src="traditional-mediums/TM9 (Cat Memes).jpg" alt="Cat Memes" loading="lazy" style="width:100%;display:block;">
+      </div>
+      <div class="g" data-title="Portrait of My Grandmother When She Was Young" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM9 (Cat Memes).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <video autoplay muted loop playsinline src="traditional-mediums/TM10 (Portrait of My Grandmother When She Was Young).mp4" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+      </div>
+    </div>
+    <div class="sep-sm"></div>
+    <div class="r">
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM11 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM12 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM13 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM14 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM15 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM16 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+    </div>
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="Untitled" style="flex:1">
+        <img src="traditional-mediums/TM17 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;display:block;">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM17 (Untitled).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM18 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="Crocodiles in My Dreams" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM19 (Crocodiles in My Dreams).jpg" alt="Crocodiles in My Dreams" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM20 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-title="A Friend's Grandma" style="flex:1">
+        <img src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="A Friend's Grandma" loading="lazy" style="width:100%;display:block;">
+      </div>
+    </div>
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM24 (My Sister).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM22 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-title="Animal Death" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM24 (My Sister).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM23 (Animal Death).jpg" alt="Animal Death" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-title="My Sister" style="flex:1">
+        <img src="traditional-mediums/TM24 (My Sister).jpg" alt="My Sister" loading="lazy" style="width:100%;display:block;">
+      </div>
+    </div>
+    <div class="r" style="align-items:stretch">
+      <div class="g" data-title="See No Evil, Hear No Evil, Speak No Evil" style="flex:1">
+        <img src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" alt="See No Evil, Hear No Evil, Speak No Evil" loading="lazy" style="width:100%;display:block;">
+      </div>
+      <div class="g" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
+        <img src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
+        <img src="traditional-mediums/TM26 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Almost Electrified" style="flex:1">
+        <img src="traditional-mediums/TM27 (Almost Electrified).jpg" alt="Almost Electrified" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <div class="page-nav__side">
+      <span class="page-nav__label">Previous</span>
+      <a href="flow-and-spirituality.html" class="page-nav__name">&lsaquo;&ensp;Flow &amp; Spirituality</a>
+    </div>
+    <a href="index.html" class="page-nav__home">Home</a>
+    <div class="page-nav__side page-nav__side--right">
+      <span class="page-nav__label">Next</span>
+      <a href="graphic-design.html" class="page-nav__name">Graphic Design&ensp;&rsaquo;</a>
+    </div>
+  </nav>
+
+
+
+  <div id="footer"></div>
+
+  <script src="lightbox.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>
