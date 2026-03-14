@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cady Sheng — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --color-text:#2a2a2a; --color-text-light:#888; --page-max-width:960px; --page-padding:40px; }
+    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --font-ui:'Jost',sans-serif; --color-text:#2a2a2a; --color-text-light:#888; --page-max-width:960px; --page-padding:40px; }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{-webkit-font-smoothing:antialiased;}
     body{background:#fff;color:var(--color-text);}
@@ -15,20 +15,46 @@
     .logo-image{display:block;width:min(620px,90vw);height:auto;margin:0 auto;}
     .tagline{font-family:var(--font-body);font-size:13.5px;font-style:italic;text-align:right;color:var(--color-text-light);margin-top:10px;letter-spacing:0.3px;}
     .collage{max-width:var(--page-max-width);margin:25px auto 0;padding:0 var(--page-padding);}
-    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:12px;}
-    .hero-tile img{display:block;width:100%;height:auto;transition:opacity 0.35s ease,transform 0.45s ease;}
-    .hero-tile:hover img{opacity:0.88;transform:scale(1.02);}
-    .hero-tile .tile__label{display:block;font-family:var(--font-display);font-size:15px;font-weight:400;text-align:center;padding:7px 0 0;letter-spacing:0.3px;transition:opacity 0.3s;}
-    .hero-tile:hover .tile__label{opacity:0.6;}
-    .collage-columns{display:flex;gap:12px;align-items:flex-start;}
-    .col-left{flex:0 0 36%;display:flex;flex-direction:column;gap:8px;}
-    .col-middle{flex:0 0 32.5%;display:flex;flex-direction:column;gap:8px;}
-    .col-right{flex:1;display:flex;flex-direction:column;gap:8px;}
-    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;}
-    .tile img{display:block;width:100%;height:auto;transition:opacity 0.35s ease,transform 0.45s ease;}
-    .tile:hover img{opacity:0.88;transform:scale(1.03);}
-    .tile__label{display:block;font-family:var(--font-display);font-size:15px;font-weight:400;text-align:center;padding:7px 0 0;letter-spacing:0.3px;transition:opacity 0.3s;}
-    .tile:hover .tile__label{opacity:0.6;}
+    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:32px;position:relative;}
+    .hero-tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
+    .hero-tile:hover img{opacity:1;transform:scale(1.04);}
+    .hero-tile .tile__label{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0);color:#fff;
+      font-family:var(--font-ui);font-size:18px;font-weight:500;letter-spacing:3px;text-align:center;text-transform:uppercase;
+      opacity:0;transition:background 0.25s ease,opacity 0.25s ease;
+      padding:16px;
+    }
+    .hero-tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
+    .hero-tile::after{
+      content:'↗';position:absolute;bottom:14px;right:16px;
+      font-size:13px;color:rgba(255,255,255,0.75);
+      font-family:var(--font-body);letter-spacing:0;
+      transition:opacity 0.25s ease;pointer-events:none;
+    }
+    .hero-tile:hover::after{opacity:0;}
+    .collage-columns{display:flex;gap:16px;align-items:flex-start;}
+    .col-left{flex:0 0 36%;display:flex;flex-direction:column;gap:12px;}
+    .col-middle{flex:0 0 32.5%;display:flex;flex-direction:column;gap:12px;}
+    .col-right{flex:1;display:flex;flex-direction:column;gap:12px;}
+    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;position:relative;}
+    .tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
+    .tile:hover img{opacity:1;transform:scale(1.04);}
+    .tile__label{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0);color:#fff;
+      font-family:var(--font-ui);font-size:15px;font-weight:500;letter-spacing:3px;text-align:center;text-transform:uppercase;
+      opacity:0;transition:background 0.25s ease,opacity 0.25s ease;
+      padding:12px;
+    }
+    .tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
+    .tile::after{
+      content:'↗';position:absolute;bottom:10px;right:12px;
+      font-size:11px;color:rgba(255,255,255,0.75);
+      font-family:var(--font-body);letter-spacing:0;
+      transition:opacity 0.25s ease;pointer-events:none;
+    }
+    .tile:hover::after{opacity:0;}
     .connect-section{max-width:var(--page-max-width);margin:60px auto 0;padding:0 var(--page-padding);text-align:right;}
     .connect-btn{display:inline-block;font-family:var(--font-display);font-size:17px;font-weight:400;color:var(--color-text);text-decoration:none;letter-spacing:0.5px;background:#f7f5f3;padding:14px 32px;}
     .site-footer{max-width:var(--page-max-width);margin:52px auto 0;padding:32px var(--page-padding) 48px;border-top:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;}
@@ -39,9 +65,13 @@
     .fade-in{opacity:0;transform:translateY(12px);animation:fadeUp 0.7s ease forwards;}
     .delay-1{animation-delay:0.15s;}.delay-2{animation-delay:0.3s;}.delay-3{animation-delay:0.45s;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-    @media(max-width:768px){.collage-columns{flex-wrap:wrap;gap:10px;}.col-left,.col-middle{flex:0 0 48%;}.col-right{flex:0 0 100%;flex-direction:row;}.col-right .tile{flex:1;}.site-footer{flex-direction:column;gap:20px;}.footer-copyright{text-align:left;}}
+    @media(max-width:767px){.collage-columns{flex-wrap:wrap;gap:10px;}.col-left,.col-middle{flex:0 0 48%;}.col-right{flex:0 0 100%;flex-direction:row;}.col-right .tile{flex:1;}.site-footer{flex-direction:column;gap:20px;}.footer-copyright{text-align:left;}}
     @media(max-width:480px){:root{--page-padding:18px;}.logo-image{width:90vw !important;}.tagline{text-align:center;margin-top:8px;}.collage-columns{flex-direction:column;}.col-left,.col-middle,.col-right{flex:0 0 100% !important;flex-direction:column !important;}.col-right{flex-direction:column !important;}.col-right .tile{flex:none !important;width:100% !important;}.connect-section{text-align:center;}}
+
+    /* ── Side nav styles now live in nav.js ── */
+
   </style>
+  <script src="nav.js"></script>
 </head>
 <body>
 
@@ -100,10 +130,6 @@
         </a>
       </div>
     </div>
-  </section>
-
-  <section class="connect-section fade-in delay-3">
-    <a href="#footer" class="connect-btn">Let&#8217;s Connect</a>
   </section>
 
   <div id="footer"></div>
