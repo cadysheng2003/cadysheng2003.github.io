@@ -7,7 +7,7 @@
   style.textContent = [
 
     /* Overlay */
-    '#lb-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,0.93);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:crosshair;}',
+    '#lb-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(255,255,255,0.93);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:crosshair;}',
     '#lb-overlay.active{display:flex;flex-direction:row;}',
 
     /* Left: image area — pointer-events:none so clicks pass through to overlay backdrop */
@@ -94,7 +94,7 @@
   var btnNext   = el('button', {className:'lb-btn', id:'lb-next',      textContent:'Next'});
   append(nav, btnPrev, navSep, btnNext);
 
-  var btnAbout  = el('button', {className:'lb-btn', id:'lb-about-btn', textContent:'About This Work'});
+  var btnAbout  = el('button', {className:'lb-btn', id:'lb-about-btn', textContent:'Hide Info'});
   var btnBack   = el('button', {className:'lb-btn', id:'lb-back-btn',  textContent:'Back to Thumbnails'});
   append(controls, nav, btnAbout, btnBack);
 
@@ -152,8 +152,9 @@
 
   function openLightbox(index) {
     scrollY = window.scrollY;
-    aboutPanel.classList.remove('open');
-    btnAbout.textContent = 'About This Work';
+    // About panel open by default
+    aboutPanel.classList.add('open');
+    btnAbout.textContent = 'Hide Info';
     goTo(index);
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -196,7 +197,7 @@
   btnAbout.addEventListener('click', function () {
     var opening = !aboutPanel.classList.contains('open');
     aboutPanel.classList.toggle('open', opening);
-    btnAbout.textContent = opening ? 'Hide Info' : 'About This Work';
+    btnAbout.textContent = opening ? 'Hide Info' : 'Show Info';
   });
 
   btnBack.addEventListener('click', function () {
