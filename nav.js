@@ -23,7 +23,11 @@
       'body{padding-left:240px;}',
       '.side-nav{',
         'display:flex;flex-direction:column;',
-        'position:fixed;top:50%;left:20px;',
+        'position:fixed;top:50%;',
+        /* nav left = content_left − nav_width(160) − gap(20)
+           content_left = max(40px, (100vw − 960px)/2 + 40px)
+           → nav_left = max(12px, (100vw − 960px)/2 + 40px − 180px) */
+        'left:max(12px, calc((100vw - 960px) / 2 + 40px - 180px));',
         'width:160px;transform:translateY(-50%);',
         'z-index:200;gap:0;',
       '}',
