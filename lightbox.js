@@ -17,30 +17,30 @@
     '#lb-close:hover{color:#1a1a1a;}',
 
     /* Hero: image + nav bar, exactly fills the viewport so desc peeks below */
-    '#lb-hero{flex-shrink:0;height:calc(100vh - 40px);display:flex;flex-direction:column;box-sizing:border-box;}',
+    '#lb-hero{flex-shrink:0;height:calc(85vh - 40px);display:flex;flex-direction:column;box-sizing:border-box;}',
 
     /* Image area fills remaining hero height */
     '#lb-image-col{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 48px 0;box-sizing:border-box;min-height:0;cursor:crosshair;}',
     '#lb-img{display:block;object-fit:contain;max-width:100%;}',
-    '#lb-img.is-landscape{max-height:74vh;width:auto;height:auto;}',
-    '#lb-img.is-portrait{max-height:80vh;width:auto;height:auto;}',
+    '#lb-img.is-landscape{max-height:64vh;width:auto;height:auto;}',
+    '#lb-img.is-portrait{max-height:72vh;width:auto;height:auto;}',
 
     /* Nav bar at bottom of hero */
     '#lb-bottom{flex-shrink:0;padding:14px 48px 20px;box-sizing:border-box;}',
-    '#lb-navrow{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:0;}',
+    '#lb-navrow{display:flex;align-items:center;justify-content:space-between;gap:16px;}',
     '.lb-navbtn{font-family:"Inter",system-ui,sans-serif;font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:#aaa;background:none;border:none;cursor:pointer;padding:0;line-height:1;transition:color 0.18s ease;display:flex;align-items:center;gap:5px;min-width:80px;}',
     '.lb-navbtn:hover{color:#1a1a1a;}',
     '.lb-navbtn:disabled{color:#ddd;cursor:default;}',
     '#lb-prev-btn{justify-content:flex-start;}',
     '#lb-next-btn{justify-content:flex-end;}',
     '#lb-center{text-align:center;flex:1;min-width:0;}',
-    '#lb-title{font-family:"Cormorant Garamond",Georgia,serif;font-size:16px;color:#555;letter-spacing:1px;font-weight:400;display:block;}',
-    '#lb-counter{font-family:"Inter",system-ui,sans-serif;font-size:10px;letter-spacing:1.4px;color:#bbb;display:block;margin-top:4px;}',
+    '#lb-title{font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:400;color:#555;letter-spacing:0.8px;display:block;}',
+    '#lb-nav-counter{font-family:"Inter",system-ui,sans-serif;font-size:10px;letter-spacing:1.4px;color:#ccc;display:block;margin-top:4px;text-align:center;}',
 
-    /* Description section — sits below the hero, naturally peeks */
-    '#lb-desc-section{flex-shrink:0;padding:32px 48px 64px;box-sizing:border-box;max-width:600px;margin:0 auto;width:100%;text-align:center;}',
-    '#lb-desc{font-family:"Lora",Georgia,serif;font-size:13.5px;font-style:italic;color:#999;line-height:1.9;margin-bottom:28px;}',
-    '#lb-back-btn{display:inline-block;font-family:"Inter",system-ui,sans-serif;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#ccc;background:none;border:none;cursor:pointer;padding:0;transition:color 0.18s ease;}',
+    /* Description section */
+    '#lb-desc-section{flex-shrink:0;padding:20px 48px 72px;box-sizing:border-box;max-width:620px;margin:0 auto;width:100%;text-align:center;}',
+    '#lb-desc{font-family:"Lora",Georgia,serif;font-size:14.5px;font-style:italic;color:#888;line-height:1.8;letter-spacing:0;margin-bottom:32px;white-space:pre-line;}',
+    '#lb-back-btn{display:inline-block;font-family:"Inter",system-ui,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#ccc;background:none;border:none;cursor:pointer;padding:0;transition:color 0.2s ease;}',
     '#lb-back-btn:hover{color:#555;}',
 
     /* Mobile */
@@ -50,9 +50,9 @@
     '#lb-image-col{padding:6px 20px 0;}',
     '#lb-img.is-landscape{max-height:58vh;}',
     '#lb-img.is-portrait{max-height:68vh;}',
-    '#lb-bottom{padding:12px 20px 16px;}',
+    '#lb-bottom{padding:12px 20px 14px;}',
     '.lb-navbtn{min-width:56px;}',
-    '#lb-desc-section{padding:24px 24px 48px;}',
+    '#lb-desc-section{padding:20px 24px 48px;}',
     '}'
 
   ].join('');
@@ -87,17 +87,17 @@
   var navrow  = el('div', {id:'lb-navrow'});
   var btnPrev = el('button', {className:'lb-navbtn', id:'lb-prev-btn'});
   btnPrev.innerHTML = '&#8592;&ensp;Prev';
-  var center    = el('div',  {id:'lb-center'});
-  var titleEl   = el('span', {id:'lb-title'});
-  var counterEl = el('span', {id:'lb-counter'});
-  append(center, titleEl, counterEl);
+  var center     = el('div',  {id:'lb-center'});
+  var titleEl    = el('span', {id:'lb-title'});
+  var navCounter = el('span', {id:'lb-nav-counter'});
+  append(center, titleEl, navCounter);
   var btnNext = el('button', {className:'lb-navbtn', id:'lb-next-btn'});
   btnNext.innerHTML = 'Next&ensp;&#8594;';
   append(navrow, btnPrev, center, btnNext);
   append(bottom, navrow);
   append(hero, imageCol, bottom);
 
-  /* Description section — below hero, scrolled into view */
+  /* Description section — desc text + back */
   var descSection = el('div', {id:'lb-desc-section'});
   var descEl      = el('p',   {id:'lb-desc'});
   var btnBack     = el('button', {id:'lb-back-btn'});
@@ -117,7 +117,14 @@
      ABOUT DATA — add descriptions here, e.g.:
        "Portal": { description: "Digital illustration, 2024." }
   ───────────────────────────────────────────── */
-  var aboutData = {};
+  var aboutData = {
+    'Portal': {
+      description: 'At the threshold between worlds, a great bird returns from another realm.\nAround her, all beings gather, living in harmony.'
+    },
+    'Maternal Bond': {
+      description: 'An exploration of my feelings toward motherhood.'
+    }
+  };
 
   /* ─────────────────────────────────────────────
      CATEGORY — derive name + href from page <title>
@@ -150,7 +157,7 @@
   function updateNav() {
     btnPrev.disabled = current <= 0;
     btnNext.disabled = current >= images.length - 1;
-    counterEl.textContent = images.length > 1 ? (current + 1) + ' / ' + images.length : '';
+    navCounter.textContent = images.length > 1 ? (current + 1) + ' / ' + images.length : '';
   }
 
   function goTo(index) {
@@ -187,9 +194,9 @@
     overlay.classList.remove('active');
     img.src = '';
     img.classList.remove('is-landscape', 'is-portrait');
-    titleEl.textContent   = '';
-    counterEl.textContent = '';
-    descEl.textContent    = '';
+    titleEl.textContent    = '';
+    navCounter.textContent = '';
+    descEl.textContent     = '';
     document.body.style.overflow = '';
     window.scrollTo(0, scrollY);
   }
