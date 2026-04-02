@@ -50,8 +50,10 @@
     '#lb-image-col{padding:6px 20px 0;}',
     '#lb-img.is-landscape{max-height:58vh;}',
     '#lb-img.is-portrait{max-height:68vh;}',
-    '#lb-bottom{padding:12px 20px 14px;}',
-    '.lb-navbtn{min-width:56px;}',
+    '#lb-bottom{padding:10px 20px 12px;}',
+    /* Hide Prev/Next on mobile — swipe gesture replaces them */
+    '#lb-prev-btn,#lb-next-btn{display:none;}',
+    '#lb-center{text-align:center;}',
     '#lb-desc-section{padding:20px 24px 48px;}',
     '}'
 
@@ -232,6 +234,24 @@
     if (e.key === 'ArrowLeft'  && current > 0)                 goTo(current - 1);
     if (e.key === 'ArrowRight' && current < images.length - 1) goTo(current + 1);
   });
+
+  /* ── Touch swipe for mobile ── */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  overlay.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  overlay.addEventListener('touchend', function (e) {
+    if (!overlay.classList.contains('active')) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    /* Only trigger if horizontal swipe is dominant and long enough */
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0 && current < images.length - 1) goTo(current + 1); /* swipe left → next */
+      if (dx > 0 && current > 0)                 goTo(current - 1); /* swipe right → prev */
+    }
+  }, { passive: true });
 
   /* ─────────────────────────────────────────────
      INIT
