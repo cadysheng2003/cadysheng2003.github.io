@@ -67,10 +67,9 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
     @media(max-width:480px){
 
-      /* ── Reset ── */
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
-      /* ── Header ── */
+      /* Header */
       .site-header{ padding:18px 20px 0; text-align:center; }
       .logo-image{ width:min(340px,80vw) !important; min-width:0 !important; margin:0 auto; }
       .tagline{
@@ -78,25 +77,28 @@
         color:#aaa; margin-top:8px; text-transform:none; font-style:italic;
       }
 
-      /* ── Collage ── */
+      /* Collage */
       .collage{ padding:0; margin-top:14px; }
 
-      /* ── Hero: Illustrations — full width, natural ratio ── */
+      /* Hero */
       .hero-tile{ margin-bottom:3px; position:relative; display:block; overflow:hidden; }
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
+      /* Hero label: override desktop opacity:0 */
       .hero-tile .tile__label{
-        opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 62%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:18px 14px; font-size:13px; font-weight:400;
-        letter-spacing:1px; text-transform:uppercase;
+        opacity:1 !important;
+        background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 55%) !important;
+        align-items:flex-end !important;
+        justify-content:flex-start !important;
+        padding:20px 14px;
+        font-size:13px;
+        font-weight:500;
+        letter-spacing:1.5px;
+        text-transform:uppercase;
+        transition:none !important;
       }
       .hero-tile::after{ display:none; }
 
-      /* ── 2-column layout: col-middle on LEFT, col-left on RIGHT ──
-         This matches image 2: My Partner(L) | Stage Art(R), Flow(L) | GD(R), etc.
-         col-right (Children's Book, Jewelry) appended after col-left in right column.
-      ── */
+      /* 2-col layout: col-middle LEFT, col-left RIGHT */
       .collage-columns{
         display:flex;
         flex-direction:row;
@@ -104,45 +106,23 @@
         margin-top:0;
         align-items:flex-start;
       }
-
-      /* col-middle becomes LEFT column */
       .col-middle{
-        flex:1;
-        display:flex !important;
-        flex-direction:column;
-        gap:3px;
-        min-width:0;
-        order:1;
+        flex:1; display:flex !important; flex-direction:column;
+        gap:3px; min-width:0; order:1;
       }
-
-      /* col-left becomes RIGHT column */
       .col-left{
-        flex:1;
-        display:flex !important;
-        flex-direction:column;
-        gap:3px;
-        min-width:0;
-        order:2;
+        flex:1; display:flex !important; flex-direction:column;
+        gap:3px; min-width:0; order:2;
       }
+      .col-right{ display:none !important; }
 
-      /* col-right: hide wrapper, its tiles go after col-left tiles visually
-         by appending directly into col-left column using CSS */
-      .col-right{
-        display:none !important;
-      }
-
-      /* ── Base tile: natural height, no forced crop ── */
+      /* Base tile */
       .tile{ display:block; position:relative; overflow:hidden; width:100%; }
-      .tile::after{ display:none; }
+      .tile::after{ display:none !important; }
       .tile img{
-        width:100%;
-        height:auto;
-        min-height:30vw;
-        object-fit:cover;
-        object-position:center;
-        display:block;
-        transition:none;
-        background:transparent;
+        width:100%; height:auto; min-height:30vw;
+        object-fit:cover; object-position:center;
+        display:block; transition:none; background:transparent;
       }
 
       /* Per-image adjustments */
@@ -150,28 +130,32 @@
       a[href="stage-art-production.html"].tile img{ object-position:center center; min-height:36vw; }
       a[href="flow-and-spirituality.html"].tile img{ object-position:center center; min-height:38vw; }
       a[href="graphic-design.html"].tile img{ object-position:center top; min-height:34vw; }
-      a[href="traditional-mediums.html"].tile img{ object-position:center center; }
       a[href="apparel.html"].tile img{ object-position:center top; min-height:34vw; }
-      a[href="meditation.html"].tile img{ object-position:center center; min-height:30vw; }
-      a[href="jewelry.html"].tile img{ object-fit:contain; background:transparent; min-height:28vw; }
+      a[href="childrens-book.html"].tile img{ object-position:center top; min-height:36vw; }
+      a[href="jewelry.html"].tile img{
+        object-fit:contain; background:transparent; min-height:28vw;
+      }
 
-      /* ── Labels: all left-bottom, clear and consistent ── */
-      .tile__label{
-        opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 62%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:13px 10px;
+      /* ── KEY FIX: override desktop opacity:0 on all tile labels ── */
+      .tile .tile__label{
+        opacity:1 !important;
+        transition:none !important;
+        background:linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%) !important;
+        align-items:flex-end !important;
+        justify-content:flex-start !important;
+        padding:13px 11px;
         font-size:12px;
-        font-weight:400;
-        letter-spacing:0.8px;
+        font-weight:500;
+        letter-spacing:1px;
         text-transform:uppercase;
         color:#fff;
-        transition:none;
       }
-      .tile--small .tile__label{ font-size:11px; padding:11px 9px; }
+      .tile--small .tile__label{
+        font-size:11px;
+        padding:11px 10px;
+      }
 
-      /* ── Footer ── */
+      /* Footer */
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
       .footer-copyright{ text-align:left; }
 
@@ -195,8 +179,7 @@
       <span class="tile__label">Illustrations</span>
     </a>
     <div class="collage-columns">
-      <!-- Desktop col-left (36%): Stage Art, Graphic Design, Apparel, Flow & Spirituality -->
-      <!-- Mobile: becomes left masonry column -->
+      <!-- col-left: Stage Art, Graphic Design, Apparel, Flow & Spirituality, Children's Book -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
@@ -214,9 +197,12 @@
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
+        <a href="childrens-book.html" class="tile tile--large">
+          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
+          <span class="tile__label">Children&#8217;s Book</span>
+        </a>
       </div>
-      <!-- Desktop col-middle (32.5%): My Partner, Traditional Mediums, Meditation -->
-      <!-- Mobile: becomes right masonry column -->
+      <!-- col-middle: My Partner, Traditional Mediums, Meditation, Jewelry -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
@@ -230,19 +216,13 @@
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
           <span class="tile__label">Meditation</span>
         </a>
-      </div>
-      <!-- Desktop col-right (remaining): Children's Book, Jewelry -->
-      <!-- Mobile: hidden — tiles moved into col-left/col-middle via CSS clone below -->
-      <div class="col-right">
-        <a href="childrens-book.html" class="tile tile--large">
-          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
-          <span class="tile__label">Children&#8217;s Book</span>
-        </a>
         <a href="jewelry.html" class="tile tile--small">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy">
           <span class="tile__label">Jewelry</span>
         </a>
       </div>
+      <!-- col-right: empty (desktop shows as remaining flex space) -->
+      <div class="col-right"></div>
     </div>    </div>
   </section>
 
