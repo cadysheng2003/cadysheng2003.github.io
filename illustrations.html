@@ -41,24 +41,7 @@
     .page-nav__name:hover { color:var(--color-text); }
     .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
     .page-nav__home:hover { opacity:0.6; }
-      .row { flex-direction:column; }
-      .row > .col, .row > .g { width:100% !important; flex:none !important; }
-      .grid2 { grid-template-columns:1fr 1fr; }
-      .grid3 { grid-template-columns:1fr 1fr; }
-      .row > .col > .g[style*="width:105px"] { width:50% !important; }
-      .row .row { flex-direction:column; }
-      .row .row > .g,
-      .row .row > .col { width:100% !important; flex:none !important; }
-      .page-nav { flex-direction:column; gap:24px; align-items:center; }
-      .page-nav__side, .page-nav__side--right { align-items:center; }
-      /* Fix object-fit:cover images — show full image */
-      .row[style*="stretch"] { height:auto !important; }
-      .row[style*="stretch"] > .g { height:auto !important; flex:none !important; width:100% !important; }
-      .row[style*="stretch"] > .g img { height:auto !important; object-fit:unset !important; }
-      /* Title image */
-      .page-header img { width:75% !important; max-width:300px !important; }
-    }
-  
+
     /* ── MOBILE (≤ 767px) ── */
     @media(max-width:767px){
       body{padding-left:0 !important;}
@@ -75,42 +58,36 @@
         width:100% !important;flex:none !important;
         height:auto !important;overflow:visible !important;
       }
-      .r > .g img, .row > .g img{
+      .r > .g img, .r > .g video,
+      .row > .g img, .row > .g video{
         height:auto !important;object-fit:unset !important;max-height:none !important;
+        width:100% !important;
       }
-      /* Nested columns also flatten */
       .c,.col{width:100% !important;flex:none !important;}
       .g2{grid-template-columns:1fr 1fr;}
       .g3{grid-template-columns:1fr 1fr;}
-
-      /* 3-column custom layouts */
       .gd3col,.tm3col{flex-direction:column !important;}
       .gd-l,.gd-m,.gd-r,.tm-l,.tm-m,.tm-r{flex:none !important;width:100% !important;}
-
-      /* sep spacing */
       .sep{height:24px;}
       .sep-sm{height:12px;}
-
-      /* Page nav */
-      .page-nav{flex-direction:column;gap:20px;align-items:center;margin:40px auto 36px;padding:0 20px;}
-      .page-nav__side,.page-nav__side--right{align-items:center;}
-
-      /* Remove ↗ arrows */
-      .g::after,.tile::after{display:none !important;}
-
-      /* Children's book layout */
       .cb-row{flex-direction:column !important;gap:12px !important;padding:0 16px !important;}
       .cb-img,.cb-img--small{flex:none !important;width:100% !important;}
       .cb-text{padding-top:0 !important;font-size:15px !important;}
-
-      /* Title images */
-      div[style*="padding:40px 0"] img,
-      div[style*="padding:40px 0 20px"] img,
-      div[style*="padding:40px 0 28px"] img{
-        width:60% !important;max-width:220px !important;height:auto !important;
+      .r[style*="height"]{height:auto !important;}
+      .r[style*="height"] > .g{height:auto !important;flex:none !important;width:100% !important;overflow:visible !important;}
+      .r[style*="height"] > .g img{height:auto !important;object-fit:contain !important;}
+      .r[style*="height"] > div video{height:auto !important;width:100% !important;}
+      div[style*="display:flex"][style*="gap:12px"]{flex-direction:column !important;}
+      div[style*="padding:40px"] img[style*="width"],
+      div[style*="text-align:center"] img[style*="width"]{
+        width:55% !important;max-width:220px !important;height:auto !important;
       }
+      .g::after,.tile::after,.hero-tile::after{display:none !important;}
+      .page-nav{flex-direction:column;gap:20px;align-items:center;margin:40px auto 36px;padding:0 20px;}
+      .page-nav__side,.page-nav__side--right{align-items:center;}
+      .page-nav__home{font-size:24px;}
+      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
-
   </style>
 </head>
 <body>

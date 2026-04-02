@@ -73,78 +73,116 @@
         padding-bottom:env(safe-area-inset-bottom, 20px);
       }
 
-      /* ── Header ── */
+      /* ── [I] Header: logo larger, tagline lighter ── */
       .site-header{
-        padding:20px 20px 0;
+        padding:18px 20px 0;
         text-align:center;
       }
       .logo-image{
-        width:min(272px,68vw) !important;
+        width:min(340px,80vw) !important;
         min-width:0 !important;
         margin:0 auto;
       }
       .tagline{
         text-align:center;
-        font-size:9.5px;
-        letter-spacing:1.8px;
-        color:#b8b4af;
-        margin-top:8px;
-        text-transform:uppercase;
-        font-style:normal;
+        font-size:9px;
+        letter-spacing:0.8px;
+        color:#b0aca8;
+        margin-top:6px;
+        text-transform:none;
+        font-style:italic;
       }
 
       /* ── Collage ── */
-      .collage{ padding:0; margin-top:16px; }
+      .collage{ padding:0; margin-top:12px; }
 
       /* ── Hero: Illustrations only — full width, no crop ── */
-      .hero-tile{ margin-bottom:4px; position:relative; display:block; overflow:hidden; }
-      .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
+      .hero-tile{
+        margin-bottom:4px;
+        position:relative;
+        display:block;
+        overflow:hidden;
+      }
+      .hero-tile img{
+        width:100%;
+        height:auto;
+        object-fit:unset;
+        display:block;
+        transition:none;
+      }
       .hero-tile .tile__label{
         opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 55%);
+        background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 52%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:18px 14px;
+        padding:16px 14px;
         font-size:10px;
-        letter-spacing:2px;
+        letter-spacing:1.8px;
         text-transform:uppercase;
       }
       .hero-tile::after{ display:none; }
 
-      /* ── Grid: 2-col, all tiles stay inside grid ── */
+      /* ── [II] Masonry-style grid ──
+         All 3 desktop cols dissolve into a 2-column CSS grid.
+         align-items:start = columns are independent height → natural masonry flow.
+         No forced row alignment, tiles fill vertically in their column.
+      ── */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
         gap:4px;
         margin-top:0;
-        align-items:start;
+        align-items:start;    /* KEY: independent column heights */
       }
-      .col-left,.col-middle,.col-right{ display:contents; }
+      /* Dissolve all 3 desktop cols into flat grid children */
+      .col-left,.col-middle,.col-right{
+        display:contents;
+      }
 
       /* ── Base tile ── */
-      .tile{ display:block; position:relative; overflow:hidden; }
-      .tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
+      .tile{
+        display:block;
+        position:relative;
+        overflow:hidden;
+        width:100%;
+      }
+      .tile img{
+        width:100%;
+        height:auto;
+        object-fit:unset;
+        display:block;
+        transition:none;
+      }
       .tile::after{ display:none; }
 
-      /* ── Tier classes ── */
+      /* ── [III] Tier classes: aspect-ratio for natural proportions ── */
 
       /* tile--large: Stage Art, My Partner, Flow & Spirituality, Children's Book */
       .tile--large img{
-        min-height:48vw;
+        aspect-ratio:3/4;
         object-fit:cover;
+        object-position:center top;
       }
 
       /* tile--medium: Graphic Design, Traditional Mediums */
       .tile--medium img{
-        min-height:40vw;
+        aspect-ratio:4/5;
         object-fit:cover;
+        object-position:center;
       }
 
       /* tile--small: Meditation, Apparel, Jewelry */
       .tile--small img{
-        min-height:28vw;
-        max-height:34vw;
+        aspect-ratio:1/1;
         object-fit:cover;
+        object-position:center;
+      }
+
+      /* [IV] Jewelry: full image, no cropping */
+      a[href="jewelry.html"] img{
+        object-fit:contain !important;
+        aspect-ratio:unset !important;
+        background:#f8f7f5;
       }
 
       /* ── Labels ── */
@@ -155,26 +193,26 @@
         transition:none;
       }
       .tile--large .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 60%);
+        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 58%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:14px 11px;
-        font-size:9.5px;
-        letter-spacing:1.8px;
-      }
-      .tile--medium .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 58%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:12px 10px;
+        padding:13px 10px;
         font-size:9px;
         letter-spacing:1.5px;
       }
-      .tile--small .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0) 52%);
+      .tile--medium .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0) 56%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:10px 9px;
+        padding:11px 10px;
+        font-size:8.5px;
+        letter-spacing:1.4px;
+      }
+      .tile--small .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 50%);
+        align-items:flex-end;
+        justify-content:flex-start;
+        padding:9px 9px;
         font-size:8px;
         letter-spacing:1.2px;
       }
@@ -207,6 +245,8 @@
       <span class="tile__label">Illustrations</span>
     </a>
     <div class="collage-columns">
+      <!-- Desktop col-left (36%): Stage Art, Graphic Design, Apparel, Flow & Spirituality -->
+      <!-- Mobile: becomes left masonry column -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
@@ -225,6 +265,8 @@
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
       </div>
+      <!-- Desktop col-middle (32.5%): My Partner, Traditional Mediums, Meditation -->
+      <!-- Mobile: becomes right masonry column -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
@@ -239,6 +281,8 @@
           <span class="tile__label">Meditation</span>
         </a>
       </div>
+      <!-- Desktop col-right (remaining): Children's Book, Jewelry -->
+      <!-- Mobile: hidden — tiles moved into col-left/col-middle via CSS clone below -->
       <div class="col-right">
         <a href="childrens-book.html" class="tile tile--large">
           <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
@@ -249,7 +293,7 @@
           <span class="tile__label">Jewelry</span>
         </a>
       </div>
-    </div>
+    </div>    </div>
   </section>
 
   <div id="footer"></div>
