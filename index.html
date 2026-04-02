@@ -82,78 +82,10 @@
       .tile__label{display:none !important;}
     }
 
-    /* ── SIDE NAV (desktop only) ── */
-    .side-nav {
-      display: none;
-    }
-    @media (min-width: 1200px) {
-      .side-nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 50%;
-        left: 32px;
-        transform: translateY(-50%);
-        z-index: 200;
-        gap: 0;
-      }
-      .side-nav a {
-        font-family: var(--font-display);
-        font-size: 13px;
-        font-weight: 400;
-        color: #c0b8b0;
-        text-decoration: none;
-        letter-spacing: 0.6px;
-        padding: 5px 0;
-        line-height: 1.2;
-        white-space: nowrap;
-        transition: color 0.2s ease;
-      }
-      .side-nav a:hover {
-        color: #2a2a2a;
-      }
-      .side-nav .nav-home {
-        font-family: var(--font-body);
-        font-size: 10px;
-        letter-spacing: 1.6px;
-        text-transform: uppercase;
-        color: #ccc;
-        margin-bottom: 8px;
-      }
-      .side-nav .nav-home:hover {
-        color: #888;
-      }
-      .side-nav .nav-divider {
-        width: 20px;
-        height: 1px;
-        background: #e4e0db;
-        margin: 8px 0;
-      }
-      .side-nav .nav-contact {
-        margin-top: 0;
-      }
-    }
   </style>
+  <script src="nav.js"></script>
 </head>
 <body>
-
-  <!-- Side Nav: desktop only, fixed position, does not affect main layout -->
-  <nav class="side-nav">
-    <a href="index.html" class="nav-home">Home</a>
-    <div class="nav-divider"></div>
-    <a href="illustrations.html">Illustrations</a>
-    <a href="stage-art-production.html">Stage Art &amp; Production</a>
-    <a href="my-partner.html">My Partner</a>
-    <a href="childrens-book.html">Children&#8217;s Book</a>
-    <a href="flow-and-spirituality.html">Flow &amp; Spirituality</a>
-    <a href="traditional-mediums.html">Traditional Mediums</a>
-    <a href="graphic-design.html">Graphic Design</a>
-    <a href="jewelry.html">Jewelry</a>
-    <a href="meditation.html">Meditation</a>
-    <a href="apparel.html">Apparel</a>
-    <div class="nav-divider"></div>
-    <a href="#footer" class="nav-contact">Contact</a>
-  </nav>
 
   <header class="site-header fade-in">
     <img src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image">
