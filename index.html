@@ -88,10 +88,15 @@
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       .hero-tile .tile__label{
         opacity:1 !important;
-        background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 55%) !important;
-        align-items:flex-end !important; justify-content:flex-start !important;
-        padding:20px 14px; font-size:13px; font-weight:500;
-        letter-spacing:1.5px; text-transform:uppercase; transition:none !important;
+        transition:none !important;
+        /* bottom-left: flex-end = bottom, flex-start = left */
+        align-items:flex-end !important;
+        justify-content:flex-start !important;
+        text-align:left !important;
+        background:linear-gradient(to top, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 58%) !important;
+        padding:16px 14px;
+        font-size:13px; font-weight:500;
+        letter-spacing:1.5px; text-transform:uppercase;
       }
       .hero-tile::after{ display:none; }
 
@@ -146,15 +151,27 @@
       a[href="childrens-book.html"].tile img{ object-position:center top; min-height:36vw; }
       a[href="jewelry.html"].tile img{ object-fit:contain; background:transparent; min-height:28vw; }
 
-      /* ── Labels: override desktop opacity:0 ── */
-      .tile .tile__label{
-        opacity:1 !important; transition:none !important;
-        background:linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%) !important;
-        align-items:flex-end !important; justify-content:flex-start !important;
-        padding:13px 11px; font-size:12px; font-weight:500;
-        letter-spacing:1px; text-transform:uppercase; color:#fff;
+      /* ── Labels: all bottom-left, unified system ── */
+      .tile .tile__label,
+      .tile--large .tile__label,
+      .tile--medium .tile__label,
+      .tile--small .tile__label{
+        opacity:1 !important;
+        transition:none !important;
+        /* Unified bottom-left positioning */
+        align-items:flex-end !important;
+        justify-content:flex-start !important;
+        text-align:left !important;
+        /* Subtle gradient: dark at bottom, fades up — readable but not heavy */
+        background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 58%) !important;
+        /* Consistent 14px padding matches page margin system */
+        padding:14px 14px;
+        font-size:11px;
+        font-weight:500;
+        letter-spacing:1px;
+        text-transform:uppercase;
+        color:#fff;
       }
-      .tile--small .tile__label{ font-size:11px; padding:11px 10px; }
 
       /* ── Footer ── */
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
