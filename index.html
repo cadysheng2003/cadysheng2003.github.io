@@ -67,20 +67,19 @@
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
     @media(max-width:767px){
 
-      /* ─── Reset ─── */
+      /* ── Reset ── */
       body{
         padding-left:0 !important;
         padding-bottom:env(safe-area-inset-bottom, 20px);
       }
 
-      /* ─── Header ─── */
-      /* [2] Tighter top, logo slightly larger, tagline less loose */
+      /* ── Header ── */
       .site-header{
         padding:20px 20px 0;
         text-align:center;
       }
       .logo-image{
-        width:min(252px,65vw) !important;
+        width:min(272px,68vw) !important;
         min-width:0 !important;
         margin:0 auto;
       }
@@ -94,30 +93,15 @@
         font-style:normal;
       }
 
-      /* ─── Collage wrapper ─── */
-      .collage{
-        padding:0;
-        margin-top:16px;
-      }
+      /* ── Collage ── */
+      .collage{ padding:0; margin-top:16px; }
 
-      /* ─── [1] Hero: full image, no cropping ─── */
-      .hero-tile{
-        margin-bottom:4px;
-        position:relative;
-        display:block;
-        overflow:hidden;
-      }
-      .hero-tile img{
-        width:100%;
-        height:auto;        /* natural ratio, no crop */
-        object-fit:unset;
-        display:block;
-        transition:none;
-      }
-      /* [4] Hero label: bottom-left, exhibition style */
+      /* ── Hero: Illustrations only — full width, no crop ── */
+      .hero-tile{ margin-bottom:4px; position:relative; display:block; overflow:hidden; }
+      .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       .hero-tile .tile__label{
         opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 60%);
+        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 55%);
         align-items:flex-end;
         justify-content:flex-start;
         padding:18px 14px;
@@ -125,116 +109,69 @@
         letter-spacing:2px;
         text-transform:uppercase;
       }
-      .hero-tile::after{display:none;}
+      .hero-tile::after{ display:none; }
 
-      /* ─── [3][6] Category tiles: tiered hierarchy ─── */
-      /*
-        Grid children order (after display:contents flattens cols):
-        1: Stage Art & Production  → tier 1 (large)
-        2: Graphic Design          → tier 2 (medium)
-        3: Apparel                 → tier 3 (small)
-        4: Flow & Spirituality     → tier 1 (large)
-        5: My Partner              → tier 1 (large)
-        6: Traditional Mediums     → tier 2 (medium)
-        7: Meditation              → tier 3 (small)
-        8: Children's Book         → tier 2 (medium)
-        9: Jewelry                 → tier 3 (small)
-      */
+      /* ── Grid: 2-col, all tiles stay inside grid ── */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
-        grid-template-rows:auto;
         gap:4px;
         margin-top:0;
         align-items:start;
       }
-      .col-left,.col-middle,.col-right{
-        display:contents;
-      }
+      .col-left,.col-middle,.col-right{ display:contents; }
 
-      .tile{
-        display:block;
-        position:relative;
-        overflow:hidden;
-      }
-      .tile img{
-        width:100%;
-        height:auto;
-        object-fit:unset;
-        display:block;
-        transition:none;
-      }
+      /* ── Base tile ── */
+      .tile{ display:block; position:relative; overflow:hidden; }
+      .tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
+      .tile::after{ display:none; }
 
-      /* ── Tier 1: full-width, image in natural ratio ── */
-      /* Stage Art (1), Flow & Spirituality (4), My Partner (5) */
-      .collage-columns .tile:nth-child(1),
-      .collage-columns .tile:nth-child(4),
-      .collage-columns .tile:nth-child(5){
-        grid-column: 1 / -1;   /* span full width */
-      }
+      /* ── Tier classes ── */
 
-      /* ── Tier 2: slightly taller via min-height ── */
-      /* Graphic Design (2), Traditional Mediums (6), Children's Book (8) */
-      .collage-columns .tile:nth-child(2) img,
-      .collage-columns .tile:nth-child(6) img,
-      .collage-columns .tile:nth-child(8) img{
-        min-height:42vw;
+      /* tile--large: Stage Art, My Partner, Flow & Spirituality, Children's Book */
+      .tile--large img{
+        min-height:48vw;
         object-fit:cover;
       }
 
-      /* ── Tier 3: shorter, two-up, compact ── */
-      /* Apparel (3), Meditation (7), Jewelry (9) */
-      .collage-columns .tile:nth-child(3) img,
-      .collage-columns .tile:nth-child(7) img,
-      .collage-columns .tile:nth-child(9) img{
-        max-height:36vw;
+      /* tile--medium: Graphic Design, Traditional Mediums */
+      .tile--medium img{
+        min-height:40vw;
         object-fit:cover;
       }
 
-      /* ── "Offset" rhythm: tier-3 tiles get slight visual de-emphasis ── */
-      .collage-columns .tile:nth-child(3),
-      .collage-columns .tile:nth-child(7),
-      .collage-columns .tile:nth-child(9){
-        opacity:0.92;
+      /* tile--small: Meditation, Apparel, Jewelry */
+      .tile--small img{
+        min-height:28vw;
+        max-height:34vw;
+        object-fit:cover;
       }
 
       /* ── Labels ── */
       .tile__label{
         opacity:1;
-        font-size:9px;
-        letter-spacing:1.5px;
         text-transform:uppercase;
         color:#fff;
         transition:none;
       }
-      /* Tier 1 labels: centered bottom, slightly larger */
-      .collage-columns .tile:nth-child(1) .tile__label,
-      .collage-columns .tile:nth-child(4) .tile__label,
-      .collage-columns .tile:nth-child(5) .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 50%);
-        align-items:flex-end;
-        justify-content:center;
-        text-align:center;
-        padding:16px;
-        font-size:10.5px;
-        letter-spacing:2px;
-      }
-      /* Tier 2 labels: bottom-left */
-      .collage-columns .tile:nth-child(2) .tile__label,
-      .collage-columns .tile:nth-child(6) .tile__label,
-      .collage-columns .tile:nth-child(8) .tile__label{
+      .tile--large .tile__label{
         background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 60%);
+        align-items:flex-end;
+        justify-content:flex-start;
+        padding:14px 11px;
+        font-size:9.5px;
+        letter-spacing:1.8px;
+      }
+      .tile--medium .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 58%);
         align-items:flex-end;
         justify-content:flex-start;
         padding:12px 10px;
         font-size:9px;
         letter-spacing:1.5px;
       }
-      /* Tier 3 labels: bottom-left, quieter */
-      .collage-columns .tile:nth-child(3) .tile__label,
-      .collage-columns .tile:nth-child(7) .tile__label,
-      .collage-columns .tile:nth-child(9) .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 55%);
+      .tile--small .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0) 52%);
         align-items:flex-end;
         justify-content:flex-start;
         padding:10px 9px;
@@ -242,18 +179,15 @@
         letter-spacing:1.2px;
       }
 
-      .tile::after{display:none;}
-
-      /* ─── [7] Footer safe area ─── */
+      /* ── Footer ── */
       .site-footer{
         flex-direction:column;
         gap:20px;
         padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px));
       }
-      .footer-copyright{text-align:left;}
+      .footer-copyright{ text-align:left; }
 
     }
-
     /* ── Side nav styles now live in nav.js ── */
 
   </style>
@@ -274,43 +208,43 @@
     </a>
     <div class="collage-columns">
       <div class="col-left">
-        <a href="stage-art-production.html" class="tile">
+        <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
           <span class="tile__label">Stage Art &amp; Production</span>
         </a>
-        <a href="graphic-design.html" class="tile">
+        <a href="graphic-design.html" class="tile tile--medium">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy">
           <span class="tile__label">Graphic Design</span>
         </a>
-        <a href="apparel.html" class="tile">
+        <a href="apparel.html" class="tile tile--small">
           <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy">
           <span class="tile__label">Apparel</span>
         </a>
-        <a href="flow-and-spirituality.html" class="tile">
+        <a href="flow-and-spirituality.html" class="tile tile--large">
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
       </div>
       <div class="col-middle">
-        <a href="my-partner.html" class="tile">
+        <a href="my-partner.html" class="tile tile--large">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
           <span class="tile__label">My Partner</span>
         </a>
-        <a href="traditional-mediums.html" class="tile">
+        <a href="traditional-mediums.html" class="tile tile--medium">
           <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy">
           <span class="tile__label">Traditional Mediums</span>
         </a>
-        <a href="meditation.html" class="tile">
+        <a href="meditation.html" class="tile tile--small">
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
           <span class="tile__label">Meditation</span>
         </a>
       </div>
       <div class="col-right">
-        <a href="childrens-book.html" class="tile">
+        <a href="childrens-book.html" class="tile tile--large">
           <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
           <span class="tile__label">Children&#8217;s Book</span>
         </a>
-        <a href="jewelry.html" class="tile">
+        <a href="jewelry.html" class="tile tile--small">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy">
           <span class="tile__label">Jewelry</span>
         </a>
