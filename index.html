@@ -69,7 +69,7 @@
 
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
-      /* Header */
+      /* ── Header ── */
       .site-header{ padding:16px 16px 0; text-align:center; }
       .logo-image{ width:min(340px,80vw) !important; min-width:0 !important; margin:0 auto; }
       .tagline{
@@ -77,60 +77,58 @@
         color:#aaa; margin-top:10px; text-transform:none; font-style:italic;
       }
 
-      /* Collage */
-      .collage{ padding:0; margin-top:16px; }
+      /* ── Collage wrapper ── */
+      .collage{ padding:0 16px; margin-top:16px; }
 
-      /* Hero */
-      .hero-tile{ margin-bottom:12px; margin-left:16px; margin-right:16px; position:relative; display:block; overflow:hidden; border-radius:2px; }
+      /* ── Hero: 16px side margin via collage padding, 12px below ── */
+      .hero-tile{
+        margin-bottom:12px;
+        position:relative; display:block; overflow:hidden; border-radius:2px;
+      }
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
-      /* Hero label: override desktop opacity:0 */
       .hero-tile .tile__label{
         opacity:1 !important;
         background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 55%) !important;
-        align-items:flex-end !important;
-        justify-content:flex-start !important;
-        padding:20px 14px;
-        font-size:13px;
-        font-weight:500;
-        letter-spacing:1.5px;
-        text-transform:uppercase;
-        transition:none !important;
+        align-items:flex-end !important; justify-content:flex-start !important;
+        padding:20px 14px; font-size:13px; font-weight:500;
+        letter-spacing:1.5px; text-transform:uppercase; transition:none !important;
       }
       .hero-tile::after{ display:none; }
 
-      /* 2-col layout: col-middle LEFT, col-left RIGHT */
+      /* ── 2-col grid: col-middle LEFT, col-left RIGHT ──
+         Using CSS grid (not flex) avoids all the wrap/calc issues.
+         col-right tiles shown via a separate row below.
+      ── */
       .collage-columns{
-        display:flex;
-        flex-direction:row;
-        gap:10px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:auto;
+        column-gap:10px;
+        row-gap:0;
         margin-top:0;
-        padding:0 16px;
-        align-items:flex-start;
-        flex-wrap:wrap;
-      }
-      .col-middle{
-        flex:0 0 calc(50% - 5px); display:flex !important; flex-direction:column;
-        gap:16px; min-width:0; order:1;
-      }
-      .col-left{
-        flex:0 0 calc(50% - 5px); display:flex !important; flex-direction:column;
-        gap:16px; min-width:0; order:2;
-      }
-      /* col-right: show as full-width strip below main 2-col grid */
-      .col-right{
-        order:3;
-        display:flex !important;
-        flex-direction:row;
-        gap:10px;
-        width:100%;
-        flex:0 0 100%;
-        margin-top:16px;
-      }
-      .col-right .tile{
-        flex:1;
+        align-items:start;
       }
 
-      /* Base tile */
+      /* Each col is a grid cell containing its own flex column */
+      .col-middle{
+        grid-column:1; grid-row:1;
+        display:flex !important; flex-direction:column;
+        gap:16px; min-width:0;
+      }
+      .col-left{
+        grid-column:2; grid-row:1;
+        display:flex !important; flex-direction:column;
+        gap:16px; min-width:0;
+      }
+      /* col-right spans both columns as a 2-tile row below */
+      .col-right{
+        grid-column:1 / -1; grid-row:2;
+        display:flex !important; flex-direction:row;
+        gap:10px; margin-top:16px;
+      }
+      .col-right .tile{ flex:1; }
+
+      /* ── Base tile ── */
       .tile{ display:block; position:relative; overflow:hidden; width:100%; }
       .tile::after{ display:none !important; }
       .tile img{
@@ -139,37 +137,26 @@
         display:block; transition:none; background:transparent;
       }
 
-      /* Per-image adjustments */
+      /* Per-image position tuning */
       a[href="my-partner.html"].tile img{ object-position:center top; min-height:38vw; }
       a[href="stage-art-production.html"].tile img{ object-position:center center; min-height:36vw; }
       a[href="flow-and-spirituality.html"].tile img{ object-position:center center; min-height:38vw; }
       a[href="graphic-design.html"].tile img{ object-position:center top; min-height:34vw; }
       a[href="apparel.html"].tile img{ object-position:center top; min-height:34vw; }
       a[href="childrens-book.html"].tile img{ object-position:center top; min-height:36vw; }
-      a[href="jewelry.html"].tile img{
-        object-fit:contain; background:transparent; min-height:28vw;
-      }
+      a[href="jewelry.html"].tile img{ object-fit:contain; background:transparent; min-height:28vw; }
 
-      /* ── KEY FIX: override desktop opacity:0 on all tile labels ── */
+      /* ── Labels: override desktop opacity:0 ── */
       .tile .tile__label{
-        opacity:1 !important;
-        transition:none !important;
+        opacity:1 !important; transition:none !important;
         background:linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%) !important;
-        align-items:flex-end !important;
-        justify-content:flex-start !important;
-        padding:13px 11px;
-        font-size:12px;
-        font-weight:500;
-        letter-spacing:1px;
-        text-transform:uppercase;
-        color:#fff;
+        align-items:flex-end !important; justify-content:flex-start !important;
+        padding:13px 11px; font-size:12px; font-weight:500;
+        letter-spacing:1px; text-transform:uppercase; color:#fff;
       }
-      .tile--small .tile__label{
-        font-size:11px;
-        padding:11px 10px;
-      }
+      .tile--small .tile__label{ font-size:11px; padding:11px 10px; }
 
-      /* Footer */
+      /* ── Footer ── */
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
       .footer-copyright{ text-align:left; }
 
