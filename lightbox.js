@@ -44,7 +44,7 @@
     '#lb-back-btn:hover{color:#555;}',
 
     /* Mobile */
-    '@media(max-width:767px){',
+    '@media(max-width:480px){',
     '#lb-topbar{padding:14px 20px 0;}',
     '#lb-hero{height:calc(100vh - 32px);}',
     '#lb-image-col{padding:6px 20px 0;}',

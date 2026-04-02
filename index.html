@@ -42,17 +42,23 @@
     @media(max-width:768px){.site-footer{flex-direction:column;gap:20px;}.footer-copyright{text-align:left;}}
     @media(max-width:480px){
       :root{--page-padding:14px;}
-      /* Logo: bigger, tagline smaller */
       .logo-image{width:88vw !important;}
       .tagline{font-size:11px;text-align:center;margin-top:6px;}
       .site-header{padding:28px var(--page-padding) 0;}
       .collage{margin:16px auto 0;padding:0 var(--page-padding);}
-      /* Hide hero tile label on mobile */
-      .hero-tile .tile__label{display:none;}
-      /* Hero tile: full width, image natural ratio */
-      .hero-tile{margin-bottom:10px;}
+      /* Hero tile */
+      .hero-tile{margin-bottom:10px;position:relative;}
       .hero-tile img{width:100%;height:auto;transform:none !important;}
-      /* True masonry: 2-column CSS columns, image-first */
+      .hero-tile .tile__label{
+        display:block !important;
+        position:absolute;bottom:0;left:0;right:0;
+        background:rgba(0,0,0,0.32);color:#fff;
+        font-family:'Cormorant Garamond',Georgia,serif;
+        font-size:13px;font-weight:400;letter-spacing:0.8px;
+        text-align:center;padding:8px 6px;
+        opacity:1 !important;
+      }
+      /* True 2-col masonry */
       .collage-columns{
         display:block !important;
         column-count:2;
@@ -69,8 +75,8 @@
         margin-bottom:8px;
         break-inside:avoid;
         overflow:hidden;
+        position:relative;
       }
-      /* Images: full width, natural ratio, NO cropping */
       .tile img{
         width:100% !important;
         height:auto !important;
@@ -78,8 +84,16 @@
         display:block;
         transform:none !important;
       }
-      /* Hide tile labels on mobile */
-      .tile__label{display:none !important;}
+      /* Tile labels: always visible as bottom overlay on mobile */
+      .tile__label{
+        display:block !important;
+        position:absolute;bottom:0;left:0;right:0;
+        background:rgba(0,0,0,0.32);color:#fff !important;
+        font-family:'Cormorant Garamond',Georgia,serif !important;
+        font-size:12px !important;font-weight:400;letter-spacing:0.8px;
+        text-align:center;padding:7px 4px;
+        opacity:1 !important;
+      }
     }
 
   </style>
@@ -100,6 +114,28 @@
     </a>
     <div class="collage-columns">
       <div class="col-left">
+        <a href="my-partner.html" class="tile">
+          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
+          <span class="tile__label">My Partner</span>
+        </a>
+        <a href="flow-and-spirituality.html" class="tile">
+          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
+          <span class="tile__label">Flow &amp; Spirituality</span>
+        </a>
+        <a href="apparel.html" class="tile">
+          <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy">
+          <span class="tile__label">Apparel</span>
+        </a>
+        <a href="meditation.html" class="tile">
+          <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
+          <span class="tile__label">Meditation</span>
+        </a>
+      </div>
+      <div class="col-middle">
+        <a href="traditional-mediums.html" class="tile">
+          <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy">
+          <span class="tile__label">Traditional Mediums</span>
+        </a>
         <a href="stage-art-production.html" class="tile">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
           <span class="tile__label">Stage Art &amp; Production</span>
@@ -107,28 +143,6 @@
         <a href="graphic-design.html" class="tile">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy">
           <span class="tile__label">Graphic Design</span>
-        </a>
-        <a href="apparel.html" class="tile">
-          <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy">
-          <span class="tile__label">Apparel</span>
-        </a>
-        <a href="flow-and-spirituality.html" class="tile">
-          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
-          <span class="tile__label">Flow &amp; Spirituality</span>
-        </a>
-      </div>
-      <div class="col-middle">
-        <a href="my-partner.html" class="tile">
-          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
-          <span class="tile__label">My Partner</span>
-        </a>
-        <a href="traditional-mediums.html" class="tile">
-          <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy">
-          <span class="tile__label">Traditional Mediums</span>
-        </a>
-        <a href="meditation.html" class="tile">
-          <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
-          <span class="tile__label">Meditation</span>
         </a>
       </div>
       <div class="col-right">
@@ -142,10 +156,6 @@
         </a>
       </div>
     </div>
-  </section>
-
-  <section class="connect-section fade-in delay-3">
-    <a href="#footer" class="connect-btn">Let&#8217;s Connect</a>
   </section>
 
   <div id="footer"></div>
