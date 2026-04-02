@@ -115,7 +115,19 @@
         flex:1; display:flex !important; flex-direction:column;
         gap:22px; min-width:0; order:2;
       }
-      .col-right{ display:none !important; }
+      /* col-right: show as full-width strip below main 2-col grid */
+      .col-right{
+        order:3;
+        display:flex !important;
+        flex-direction:row;
+        gap:12px;
+        width:100%;
+        flex:0 0 100%;
+        margin-top:20px;
+      }
+      .col-right .tile{
+        flex:1;
+      }
 
       /* Base tile */
       .tile{ display:block; position:relative; overflow:hidden; width:100%; }
@@ -180,7 +192,6 @@
       <span class="tile__label">Illustrations</span>
     </a>
     <div class="collage-columns">
-      <!-- col-left: Stage Art, Graphic Design, Apparel, Flow & Spirituality, Children's Book -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
@@ -198,12 +209,7 @@
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
-        <a href="childrens-book.html" class="tile tile--large">
-          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
-          <span class="tile__label">Children&#8217;s Book</span>
-        </a>
       </div>
-      <!-- col-middle: My Partner, Traditional Mediums, Meditation, Jewelry -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
@@ -217,18 +223,21 @@
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
           <span class="tile__label">Meditation</span>
         </a>
+      </div>
+      <div class="col-right">
+        <a href="childrens-book.html" class="tile tile--large">
+          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
+          <span class="tile__label">Children&#8217;s Book</span>
+        </a>
         <a href="jewelry.html" class="tile tile--small">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy">
           <span class="tile__label">Jewelry</span>
         </a>
       </div>
-      <!-- col-right: empty (desktop shows as remaining flex space) -->
-      <div class="col-right"></div>
-    </div>    </div>
+    </div>
   </section>
 
   <div id="footer"></div>
 
   <script src="footer.js"></script>
 </body>
-</html>
