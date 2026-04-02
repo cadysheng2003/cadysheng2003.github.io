@@ -66,93 +66,142 @@
     .delay-1{animation-delay:0.15s;}.delay-2{animation-delay:0.3s;}.delay-3{animation-delay:0.45s;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
     @media(max-width:767px){
-      /* ── Reset body ── */
-      body{padding-left:0 !important;}
 
-      /* ── Header: centered logo + tagline ── */
+      /* ─── Reset ─── */
+      body{
+        padding-left:0 !important;
+        padding-bottom:env(safe-area-inset-bottom, 20px);
+      }
+
+      /* ─── Header ─── */
+      /* [2] Tighter top, logo slightly larger, tagline less loose */
       .site-header{
-        padding:28px 24px 0;
+        padding:20px 20px 0;
         text-align:center;
       }
       .logo-image{
-        width:min(220px,58vw) !important;
+        width:min(252px,65vw) !important;
         min-width:0 !important;
         margin:0 auto;
       }
       .tagline{
         text-align:center;
-        font-size:10px;
-        letter-spacing:3.5px;
-        color:#c0bcb8;
-        margin-top:12px;
+        font-size:9.5px;
+        letter-spacing:1.8px;
+        color:#b8b4af;
+        margin-top:8px;
         text-transform:uppercase;
         font-style:normal;
       }
 
-      /* ── Hero tile: full-width, 4:5 portrait ratio ── */
-      .collage{padding:0;margin-top:24px;}
-      .hero-tile{margin-bottom:3px;position:relative;}
+      /* ─── Collage wrapper ─── */
+      .collage{
+        padding:0;
+        margin-top:16px;
+      }
+
+      /* ─── [1] Hero: full image, no cropping ─── */
+      .hero-tile{
+        margin-bottom:4px;
+        position:relative;
+        display:block;
+        overflow:hidden;
+      }
       .hero-tile img{
         width:100%;
-        height:80vw;
-        object-fit:cover;
+        height:auto;        /* natural ratio, no crop */
+        object-fit:unset;
         display:block;
+        transition:none;
       }
-      /* Label always visible on mobile, anchored bottom-left */
+      /* [4] Hero label: bottom-left, exhibition style */
       .hero-tile .tile__label{
         opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0) 100%);
+        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 60%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:20px 16px;
-        font-size:12px;
-        letter-spacing:3px;
+        padding:18px 14px;
+        font-size:10px;
+        letter-spacing:2px;
+        text-transform:uppercase;
       }
-      /* Remove desktop arrow */
       .hero-tile::after{display:none;}
 
-      /* ── Category grid: 2 columns, tiles with image + label ── */
+      /* ─── [3][6] Category tiles: rhythmic grid ─── */
+      /* Flatten columns, use 2-col CSS grid with rhythm via span */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
-        gap:3px;
+        gap:4px;
         margin-top:0;
       }
-      .col-left,.col-middle,.col-right{display:contents;}
+      /* Dissolve col wrappers into grid flow */
+      .col-left,.col-middle,.col-right{
+        display:contents;
+      }
 
       .tile{
         display:block;
         position:relative;
         overflow:hidden;
       }
+
+      /* [1] Tiles: full image, no cropping */
       .tile img{
         width:100%;
-        height:48vw;
-        object-fit:cover;
+        height:auto;
+        object-fit:unset;
         display:block;
         transition:none;
       }
-      /* Label: always visible, gradient bottom, left-aligned */
+
+      /* [3] Rhythm: 3rd tile spans full width (every 3 creates: 2col | full | 2col | full...) */
+      .collage-columns .tile:nth-child(3),
+      .collage-columns .tile:nth-child(7),
+      .collage-columns .tile:nth-child(11){
+        grid-column:1 / -1;   /* span full width */
+      }
+
+      /* [4] Labels: base style */
       .tile__label{
         opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0) 80%);
+        font-size:9px;
+        letter-spacing:1.5px;
+        text-transform:uppercase;
+        color:#fff;
+        transition:none;
+      }
+
+      /* [4] Default label: bottom-left with gradient */
+      .tile .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0) 60%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:14px 12px;
-        font-size:9px;
-        letter-spacing:2px;
-        text-align:left;
+        padding:12px 10px;
       }
-      /* Remove desktop arrow */
+      /* [4] Full-width tiles: center label */
+      .collage-columns .tile:nth-child(3) .tile__label,
+      .collage-columns .tile:nth-child(7) .tile__label,
+      .collage-columns .tile:nth-child(11) .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 50%);
+        align-items:flex-end;
+        justify-content:center;
+        text-align:center;
+        padding:16px;
+        font-size:10px;
+        letter-spacing:2px;
+      }
+
       .tile::after{display:none;}
 
-      /* ── Footer ── */
+      /* ─── [7] Footer safe area ─── */
       .site-footer{
         flex-direction:column;
         gap:20px;
-        padding:32px 24px 48px;
+        padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px));
       }
       .footer-copyright{text-align:left;}
+
     }
 
     /* ── Side nav styles now live in nav.js ── */
