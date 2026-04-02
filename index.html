@@ -106,13 +106,14 @@
         margin-top:0;
         padding:0 16px;
         align-items:flex-start;
+        flex-wrap:wrap;
       }
       .col-middle{
-        flex:1; display:flex !important; flex-direction:column;
+        flex:0 0 calc(50% - 5px); display:flex !important; flex-direction:column;
         gap:16px; min-width:0; order:1;
       }
       .col-left{
-        flex:1; display:flex !important; flex-direction:column;
+        flex:0 0 calc(50% - 5px); display:flex !important; flex-direction:column;
         gap:16px; min-width:0; order:2;
       }
       /* col-right: show as full-width strip below main 2-col grid */
