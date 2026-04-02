@@ -139,23 +139,34 @@
         min-height:28vw;
       }
 
-      /* ── Labels ── */
-      .tile__label{ opacity:1; text-transform:uppercase; color:#fff; transition:none; }
-      .tile--large .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 58%);
+      /* ── Labels & overlay — only changes here ── */
+      /* Hero label */
+      .hero-tile .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%);
         align-items:flex-end; justify-content:flex-start;
-        padding:13px 10px; font-size:9px; letter-spacing:1.5px;
+        padding:20px 14px; font-size:13px; font-weight:400; letter-spacing:1.2px;
+        text-transform:uppercase;
       }
-      .tile--medium .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0) 56%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:11px 10px; font-size:8.5px; letter-spacing:1.4px;
+
+      /* All category tile labels: unified left-bottom, stronger overlay */
+      .tile__label{
+        opacity:1;
+        background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 62%);
+        align-items:flex-end;
+        justify-content:flex-start;
+        padding:14px 11px;
+        font-size:12px;
+        font-weight:400;
+        letter-spacing:0.8px;
+        text-transform:uppercase;
+        color:#fff;
+        transition:none;
       }
-      .tile--small .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 50%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:9px 9px; font-size:8px; letter-spacing:1.2px;
-      }
+
+      /* Tier sizes only affect label padding slightly, not font */
+      .tile--large .tile__label{ padding:14px 11px; }
+      .tile--medium .tile__label{ padding:12px 10px; }
+      .tile--small .tile__label{ padding:11px 10px; font-size:11px; }
 
       /* ── Footer ── */
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
