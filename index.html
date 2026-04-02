@@ -68,93 +68,100 @@
     @media(max-width:480px){
 
       /* ── Reset ── */
-      body{
-        padding-left:0 !important;
-        padding-bottom:env(safe-area-inset-bottom, 20px);
-      }
+      body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
       /* ── Header ── */
       .site-header{ padding:18px 20px 0; text-align:center; }
-      .logo-image{ width:min(380px,82vw) !important; min-width:0 !important; margin:0 auto; }
+      .logo-image{ width:min(340px,80vw) !important; min-width:0 !important; margin:0 auto; }
       .tagline{
-        text-align:center; font-size:9px; letter-spacing:0.8px;
-        color:#b0aca8; margin-top:6px; text-transform:none; font-style:italic;
+        text-align:center; font-size:10px; letter-spacing:0.5px;
+        color:#aaa; margin-top:8px; text-transform:none; font-style:italic;
       }
 
       /* ── Collage ── */
       .collage{ padding:0; margin-top:14px; }
 
-      /* ── Hero: Illustrations — full natural image ── */
+      /* ── Hero: Illustrations — full width, natural ratio ── */
       .hero-tile{ margin-bottom:3px; position:relative; display:block; overflow:hidden; }
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       .hero-tile .tile__label{
         opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 52%);
+        background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 62%);
         align-items:flex-end; justify-content:flex-start;
-        padding:16px 14px; font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
+        padding:18px 14px; font-size:13px; font-weight:400;
+        letter-spacing:1px; text-transform:uppercase;
       }
       .hero-tile::after{ display:none; }
 
-      /* ── Grid: 2-col masonry ── */
+      /* ── 2-column layout: col-middle on LEFT, col-left on RIGHT ──
+         This matches image 2: My Partner(L) | Stage Art(R), Flow(L) | GD(R), etc.
+         col-right (Children's Book, Jewelry) appended after col-left in right column.
+      ── */
       .collage-columns{
-        display:grid;
-        grid-template-columns:1fr 1fr;
+        display:flex;
+        flex-direction:row;
         gap:3px;
         margin-top:0;
-        align-items:start;
+        align-items:flex-start;
       }
-      .col-left,.col-middle,.col-right{ display:contents; }
 
-      /* ── Base tile ── */
-      .tile{ display:block; position:relative; overflow:hidden; }
+      /* col-middle becomes LEFT column */
+      .col-middle{
+        flex:1;
+        display:flex !important;
+        flex-direction:column;
+        gap:3px;
+        min-width:0;
+        order:1;
+      }
+
+      /* col-left becomes RIGHT column */
+      .col-left{
+        flex:1;
+        display:flex !important;
+        flex-direction:column;
+        gap:3px;
+        min-width:0;
+        order:2;
+      }
+
+      /* col-right: hide wrapper, its tiles go after col-left tiles visually
+         by appending directly into col-left column using CSS */
+      .col-right{
+        display:none !important;
+      }
+
+      /* ── Base tile: natural height, no forced crop ── */
+      .tile{ display:block; position:relative; overflow:hidden; width:100%; }
       .tile::after{ display:none; }
-
-      /* All tiles: natural height, no grey boxes, no forced aspect ratio
-         Using a modest min-height so tiles aren't too flat,
-         but NO background fill = no grey empty space */
       .tile img{
         width:100%;
         height:auto;
-        min-height:28vw;
+        min-height:30vw;
         object-fit:cover;
-        object-position:center top;
+        object-position:center;
         display:block;
         transition:none;
         background:transparent;
       }
 
-      /* Per-image position tuning to protect main subjects */
-      a[href="stage-art-production.html"].tile img{ object-position:center center; }
-      a[href="my-partner.html"].tile img{ object-position:center top; min-height:36vw; }
-      a[href="flow-and-spirituality.html"].tile img{ object-position:center center; }
-      a[href="childrens-book.html"].tile img{ object-position:center top; }
-      a[href="graphic-design.html"].tile img{ object-position:center top; min-height:36vw; }
+      /* Per-image adjustments */
+      a[href="my-partner.html"].tile img{ object-position:center top; min-height:38vw; }
+      a[href="stage-art-production.html"].tile img{ object-position:center center; min-height:36vw; }
+      a[href="flow-and-spirituality.html"].tile img{ object-position:center center; min-height:38vw; }
+      a[href="graphic-design.html"].tile img{ object-position:center top; min-height:34vw; }
       a[href="traditional-mediums.html"].tile img{ object-position:center center; }
-      a[href="meditation.html"].tile img{ object-position:center center; min-height:32vw; }
-      a[href="apparel.html"].tile img{ object-position:center top; min-height:32vw; }
-      /* Jewelry: natural display, no crop */
-      a[href="jewelry.html"].tile img{
-        object-fit:contain;
-        background:transparent;
-        min-height:28vw;
-      }
+      a[href="apparel.html"].tile img{ object-position:center top; min-height:34vw; }
+      a[href="meditation.html"].tile img{ object-position:center center; min-height:30vw; }
+      a[href="jewelry.html"].tile img{ object-fit:contain; background:transparent; min-height:28vw; }
 
-      /* ── Labels & overlay — only changes here ── */
-      /* Hero label */
-      .hero-tile .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:20px 14px; font-size:13px; font-weight:400; letter-spacing:1.2px;
-        text-transform:uppercase;
-      }
-
-      /* All category tile labels: unified left-bottom, stronger overlay */
+      /* ── Labels: all left-bottom, clear and consistent ── */
       .tile__label{
         opacity:1;
         background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 62%);
         align-items:flex-end;
         justify-content:flex-start;
-        padding:14px 11px;
+        padding:13px 10px;
         font-size:12px;
         font-weight:400;
         letter-spacing:0.8px;
@@ -162,14 +169,10 @@
         color:#fff;
         transition:none;
       }
-
-      /* Tier sizes only affect label padding slightly, not font */
-      .tile--large .tile__label{ padding:14px 11px; }
-      .tile--medium .tile__label{ padding:12px 10px; }
-      .tile--small .tile__label{ padding:11px 10px; font-size:11px; }
+      .tile--small .tile__label{ font-size:11px; padding:11px 9px; }
 
       /* ── Footer ── */
-      .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
+      .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
       .footer-copyright{ text-align:left; }
 
     }
