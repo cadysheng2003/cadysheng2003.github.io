@@ -7,7 +7,7 @@
   style.textContent = [
 
     /* Overlay — scrollable column */
-    '#lb-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(255,255,255,0.91);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);flex-direction:column;overflow-y:auto;}',
+    '#lb-overlay{display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(255,255,255,0.91);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);flex-direction:column;overflow:hidden;}',
     '#lb-overlay.active{display:flex;}',
     '@media(min-width:768px){#lb-overlay{left:240px;width:calc(100vw - 240px);}}',
 
@@ -17,13 +17,13 @@
     '#lb-close:hover{color:#1a1a1a;}',
 
     /* Hero: image + nav bar, exactly fills the viewport so desc peeks below */
-    '#lb-hero{flex-shrink:0;height:calc(85vh - 40px);display:flex;flex-direction:column;box-sizing:border-box;}',
+    '#lb-hero{flex-shrink:0;height:calc(88vh - 40px);display:flex;flex-direction:column;box-sizing:border-box;overflow:hidden;}',
 
     /* Image area fills remaining hero height */
-    '#lb-image-col{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 48px 0;box-sizing:border-box;min-height:0;cursor:crosshair;}',
+    '#lb-image-col{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 48px 0;box-sizing:border-box;min-height:0;overflow:hidden;cursor:crosshair;}',
     '#lb-img{display:block;object-fit:contain;max-width:100%;}',
-    '#lb-img.is-landscape{max-height:64vh;width:auto;height:auto;}',
-    '#lb-img.is-portrait{max-height:72vh;width:auto;height:auto;}',
+    '#lb-img.is-landscape{max-height:100%;max-width:100%;width:auto;height:auto;}',
+    '#lb-img.is-portrait{max-height:100%;max-width:100%;width:auto;height:auto;}',
 
     /* Nav bar at bottom of hero */
     '#lb-bottom{flex-shrink:0;padding:14px 48px 20px;box-sizing:border-box;}',
@@ -44,11 +44,11 @@
     '#lb-back-btn:hover{color:#555;}',
 
     /* Mobile */
-    '@media(max-width:480px){',
+    '@media(max-width:480px){','#lb-overlay{overflow-y:auto;}',
     '#lb-topbar{padding:14px 20px 0;}',
     '#lb-hero{height:calc(100vh - 32px);}',
     '#lb-image-col{padding:6px 20px 0;}',
-    '#lb-img.is-landscape{max-height:58vh;}',
+    '#lb-img.is-landscape{max-height:55vh;}',
     '#lb-img.is-portrait{max-height:68vh;}',
     '#lb-bottom{padding:10px 20px 12px;}',
     /* Hide Prev/Next on mobile — swipe gesture replaces them */
