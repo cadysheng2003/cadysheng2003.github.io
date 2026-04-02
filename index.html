@@ -70,7 +70,7 @@
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
       /* Header */
-      .site-header{ padding:18px 20px 0; text-align:center; }
+      .site-header{ padding:18px 18px 0; text-align:center; }
       .logo-image{ width:min(340px,80vw) !important; min-width:0 !important; margin:0 auto; }
       .tagline{
         text-align:center; font-size:10px; letter-spacing:0.5px;
@@ -81,7 +81,7 @@
       .collage{ padding:0; margin-top:20px; }
 
       /* Hero */
-      .hero-tile{ margin-bottom:8px; position:relative; display:block; overflow:hidden; }
+      .hero-tile{ margin-bottom:32px; position:relative; display:block; overflow:hidden; }
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       /* Hero label: override desktop opacity:0 */
       .hero-tile .tile__label{
@@ -102,17 +102,18 @@
       .collage-columns{
         display:flex;
         flex-direction:row;
-        gap:4px;
+        gap:14px;
         margin-top:0;
+        padding:0 18px;
         align-items:flex-start;
       }
       .col-middle{
         flex:1; display:flex !important; flex-direction:column;
-        gap:4px; min-width:0; order:1;
+        gap:24px; min-width:0; order:1;
       }
       .col-left{
         flex:1; display:flex !important; flex-direction:column;
-        gap:3px; min-width:0; order:2;
+        gap:28px; min-width:0; order:2;
       }
       .col-right{ display:none !important; }
 
