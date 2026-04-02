@@ -74,19 +74,12 @@
       }
 
       /* ── Header ── */
-      .site-header{
-        padding:18px 20px 0;
-        text-align:center;
-      }
-
-      /* [三] Logo larger: was 340px, now 78vw / 380px max */
+      .site-header{ padding:18px 20px 0; text-align:center; }
       .logo-image{
         width:min(380px,82vw) !important;
         min-width:0 !important;
         margin:0 auto;
       }
-
-      /* Tagline: quiet, stays subordinate */
       .tagline{
         text-align:center;
         font-size:9px;
@@ -100,114 +93,125 @@
       /* ── Collage ── */
       .collage{ padding:0; margin-top:14px; }
 
-      /* ── Hero (Illustrations): full width, NO crop ── */
-      .hero-tile{
-        margin-bottom:4px;
-        position:relative;
-        display:block;
-        overflow:hidden;
-      }
-      .hero-tile img{
-        width:100%;
-        height:auto;        /* natural ratio, zero cropping */
-        object-fit:unset;
-        display:block;
-        transition:none;
-      }
+      /* ── Hero (Illustrations): full natural image, no crop ── */
+      .hero-tile{ margin-bottom:3px; position:relative; display:block; overflow:hidden; }
+      .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       .hero-tile .tile__label{
         opacity:1;
         background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 52%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:16px 14px;
-        font-size:10px;
-        letter-spacing:1.8px;
-        text-transform:uppercase;
+        align-items:flex-end; justify-content:flex-start;
+        padding:16px 14px; font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
       }
       .hero-tile::after{ display:none; }
 
-      /* ── [二] Masonry grid ──────────────────────────────
-         Strategy: CSS grid with align-items:start.
-         Each cell is independently sized by its image.
-         No forced row heights → tiles in each column
-         stack flush, shorter tiles leave no gap below them.
-         Left col and right col heights are naturally unequal.
-         Result: masonry-like flow without JS.
-      ─────────────────────────────────────────────────── */
+      /* ── Grid: 2-col masonry ── */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
         gap:3px;
         margin-top:0;
-        align-items:start;   /* CRITICAL: rows are NOT stretched to equal heights */
+        align-items:start;
       }
+      .col-left,.col-middle,.col-right{ display:contents; }
 
-      /* Dissolve the 3 desktop columns into a flat sequence of grid items */
-      .col-left,.col-middle,.col-right{
-        display:contents;
-      }
-
-      /* ── Base tile: let images breathe ── */
-      .tile{
-        display:block;
-        position:relative;
-        overflow:hidden;
-        break-inside:avoid;
-      }
-
-      /* [一] NO forced cropping on any tile.
-         Images display at their natural proportions.
-         This is the key fix for "over-cropping". */
-      .tile img{
-        width:100%;
-        height:auto;         /* natural ratio */
-        object-fit:unset;    /* NO cover */
-        display:block;
-        transition:none;
-      }
+      /* ── Base tile ── */
+      .tile{ display:block; position:relative; overflow:hidden; }
       .tile::after{ display:none; }
 
-      /* Tier classes now only control label style,
-         NOT image dimensions — no more aspect-ratio */
+      /* ──────────────────────────────────────────────────────
+         TILE IMAGE STRATEGY:
+         - Tile container gets a portrait aspect-ratio (3:4 or 4:5)
+           so there's enough height to show the composition.
+         - object-fit:cover fills that space.
+         - object-position is tuned PER IMAGE to protect the main subject.
+         This prevents both:
+           (a) images being too flat/thin (height:auto on landscape covers)
+           (b) subjects being cut off (centered crop on off-center subjects)
+      ────────────────────────────────────────────────────── */
 
-      /* Labels: always visible, gradient bottom */
-      .tile__label{
-        opacity:1;
-        text-transform:uppercase;
-        color:#fff;
+      /* Default: all tiles get a portrait container, subject centered */
+      .tile img{
+        width:100%;
+        aspect-ratio:3/4;
+        object-fit:cover;
+        object-position:center center;
+        display:block;
         transition:none;
       }
+
+      /* Stage Art & Production: center-top to keep stage visible */
+      a[href="stage-art-production.html"].tile img{
+        object-position:center top;
+      }
+
+      /* My Partner: center to keep faces/subjects */
+      a[href="my-partner.html"].tile img{
+        aspect-ratio:4/5;
+        object-position:center center;
+      }
+
+      /* Flow & Spirituality: center */
+      a[href="flow-and-spirituality.html"].tile img{
+        object-position:center center;
+      }
+
+      /* Children's Book: center-top, keep cover art */
+      a[href="childrens-book.html"].tile img{
+        object-position:center top;
+      }
+
+      /* Graphic Design: center */
+      a[href="graphic-design.html"].tile img{
+        aspect-ratio:4/5;
+        object-position:center center;
+      }
+
+      /* Traditional Mediums: center */
+      a[href="traditional-mediums.html"].tile img{
+        aspect-ratio:4/5;
+        object-position:center center;
+      }
+
+      /* Meditation: looser crop, subject protection */
+      a[href="meditation.html"].tile img{
+        aspect-ratio:1/1;
+        object-position:center center;
+      }
+
+      /* Apparel: center, keep full look */
+      a[href="apparel.html"].tile img{
+        aspect-ratio:1/1;
+        object-position:center top;
+      }
+
+      /* Jewelry: contain — show full piece, no cropping at all */
+      a[href="jewelry.html"].tile img{
+        aspect-ratio:1/1;
+        object-fit:contain;
+        object-position:center center;
+        background:#f8f7f5;
+      }
+
+      /* ── Labels ── */
+      .tile__label{ opacity:1; text-transform:uppercase; color:#fff; transition:none; }
       .tile--large .tile__label{
         background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 58%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:13px 10px;
-        font-size:9px;
-        letter-spacing:1.5px;
+        align-items:flex-end; justify-content:flex-start;
+        padding:13px 10px; font-size:9px; letter-spacing:1.5px;
       }
       .tile--medium .tile__label{
         background:linear-gradient(to top, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0) 56%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:11px 10px;
-        font-size:8.5px;
-        letter-spacing:1.4px;
+        align-items:flex-end; justify-content:flex-start;
+        padding:11px 10px; font-size:8.5px; letter-spacing:1.4px;
       }
       .tile--small .tile__label{
         background:linear-gradient(to top, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 50%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:9px 9px;
-        font-size:8px;
-        letter-spacing:1.2px;
+        align-items:flex-end; justify-content:flex-start;
+        padding:9px 9px; font-size:8px; letter-spacing:1.2px;
       }
 
       /* ── Footer ── */
-      .site-footer{
-        flex-direction:column;
-        gap:20px;
-        padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px));
-      }
+      .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
       .footer-copyright{ text-align:left; }
 
     }
