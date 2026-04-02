@@ -127,15 +127,27 @@
       }
       .hero-tile::after{display:none;}
 
-      /* ─── [3][6] Category tiles: rhythmic grid ─── */
-      /* Flatten columns, use 2-col CSS grid with rhythm via span */
+      /* ─── [3][6] Category tiles: tiered hierarchy ─── */
+      /*
+        Grid children order (after display:contents flattens cols):
+        1: Stage Art & Production  → tier 1 (large)
+        2: Graphic Design          → tier 2 (medium)
+        3: Apparel                 → tier 3 (small)
+        4: Flow & Spirituality     → tier 1 (large)
+        5: My Partner              → tier 1 (large)
+        6: Traditional Mediums     → tier 2 (medium)
+        7: Meditation              → tier 3 (small)
+        8: Children's Book         → tier 2 (medium)
+        9: Jewelry                 → tier 3 (small)
+      */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
+        grid-template-rows:auto;
         gap:4px;
         margin-top:0;
+        align-items:start;
       }
-      /* Dissolve col wrappers into grid flow */
       .col-left,.col-middle,.col-right{
         display:contents;
       }
@@ -145,8 +157,6 @@
         position:relative;
         overflow:hidden;
       }
-
-      /* [1] Tiles: full image, no cropping */
       .tile img{
         width:100%;
         height:auto;
@@ -155,14 +165,40 @@
         transition:none;
       }
 
-      /* [3] Rhythm: 3rd tile spans full width (every 3 creates: 2col | full | 2col | full...) */
-      .collage-columns .tile:nth-child(3),
-      .collage-columns .tile:nth-child(7),
-      .collage-columns .tile:nth-child(11){
-        grid-column:1 / -1;   /* span full width */
+      /* ── Tier 1: full-width, image in natural ratio ── */
+      /* Stage Art (1), Flow & Spirituality (4), My Partner (5) */
+      .collage-columns .tile:nth-child(1),
+      .collage-columns .tile:nth-child(4),
+      .collage-columns .tile:nth-child(5){
+        grid-column: 1 / -1;   /* span full width */
       }
 
-      /* [4] Labels: base style */
+      /* ── Tier 2: slightly taller via min-height ── */
+      /* Graphic Design (2), Traditional Mediums (6), Children's Book (8) */
+      .collage-columns .tile:nth-child(2) img,
+      .collage-columns .tile:nth-child(6) img,
+      .collage-columns .tile:nth-child(8) img{
+        min-height:42vw;
+        object-fit:cover;
+      }
+
+      /* ── Tier 3: shorter, two-up, compact ── */
+      /* Apparel (3), Meditation (7), Jewelry (9) */
+      .collage-columns .tile:nth-child(3) img,
+      .collage-columns .tile:nth-child(7) img,
+      .collage-columns .tile:nth-child(9) img{
+        max-height:36vw;
+        object-fit:cover;
+      }
+
+      /* ── "Offset" rhythm: tier-3 tiles get slight visual de-emphasis ── */
+      .collage-columns .tile:nth-child(3),
+      .collage-columns .tile:nth-child(7),
+      .collage-columns .tile:nth-child(9){
+        opacity:0.92;
+      }
+
+      /* ── Labels ── */
       .tile__label{
         opacity:1;
         font-size:9px;
@@ -171,25 +207,39 @@
         color:#fff;
         transition:none;
       }
-
-      /* [4] Default label: bottom-left with gradient */
-      .tile .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0) 60%);
-        align-items:flex-end;
-        justify-content:flex-start;
-        padding:12px 10px;
-      }
-      /* [4] Full-width tiles: center label */
-      .collage-columns .tile:nth-child(3) .tile__label,
-      .collage-columns .tile:nth-child(7) .tile__label,
-      .collage-columns .tile:nth-child(11) .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 50%);
+      /* Tier 1 labels: centered bottom, slightly larger */
+      .collage-columns .tile:nth-child(1) .tile__label,
+      .collage-columns .tile:nth-child(4) .tile__label,
+      .collage-columns .tile:nth-child(5) .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 50%);
         align-items:flex-end;
         justify-content:center;
         text-align:center;
         padding:16px;
-        font-size:10px;
+        font-size:10.5px;
         letter-spacing:2px;
+      }
+      /* Tier 2 labels: bottom-left */
+      .collage-columns .tile:nth-child(2) .tile__label,
+      .collage-columns .tile:nth-child(6) .tile__label,
+      .collage-columns .tile:nth-child(8) .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0) 60%);
+        align-items:flex-end;
+        justify-content:flex-start;
+        padding:12px 10px;
+        font-size:9px;
+        letter-spacing:1.5px;
+      }
+      /* Tier 3 labels: bottom-left, quieter */
+      .collage-columns .tile:nth-child(3) .tile__label,
+      .collage-columns .tile:nth-child(7) .tile__label,
+      .collage-columns .tile:nth-child(9) .tile__label{
+        background:linear-gradient(to top, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 55%);
+        align-items:flex-end;
+        justify-content:flex-start;
+        padding:10px 9px;
+        font-size:8px;
+        letter-spacing:1.2px;
       }
 
       .tile::after{display:none;}
