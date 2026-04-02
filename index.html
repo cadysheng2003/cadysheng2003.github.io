@@ -73,16 +73,20 @@
         padding-bottom:env(safe-area-inset-bottom, 20px);
       }
 
-      /* ── [I] Header: logo larger, tagline lighter ── */
+      /* ── Header ── */
       .site-header{
         padding:18px 20px 0;
         text-align:center;
       }
+
+      /* [三] Logo larger: was 340px, now 78vw / 380px max */
       .logo-image{
-        width:min(340px,80vw) !important;
+        width:min(380px,82vw) !important;
         min-width:0 !important;
         margin:0 auto;
       }
+
+      /* Tagline: quiet, stays subordinate */
       .tagline{
         text-align:center;
         font-size:9px;
@@ -94,9 +98,9 @@
       }
 
       /* ── Collage ── */
-      .collage{ padding:0; margin-top:12px; }
+      .collage{ padding:0; margin-top:14px; }
 
-      /* ── Hero: Illustrations only — full width, no crop ── */
+      /* ── Hero (Illustrations): full width, NO crop ── */
       .hero-tile{
         margin-bottom:4px;
         position:relative;
@@ -105,7 +109,7 @@
       }
       .hero-tile img{
         width:100%;
-        height:auto;
+        height:auto;        /* natural ratio, zero cropping */
         object-fit:unset;
         display:block;
         transition:none;
@@ -122,70 +126,51 @@
       }
       .hero-tile::after{ display:none; }
 
-      /* ── [II] Masonry-style grid ──
-         All 3 desktop cols dissolve into a 2-column CSS grid.
-         align-items:start = columns are independent height → natural masonry flow.
-         No forced row alignment, tiles fill vertically in their column.
-      ── */
+      /* ── [二] Masonry grid ──────────────────────────────
+         Strategy: CSS grid with align-items:start.
+         Each cell is independently sized by its image.
+         No forced row heights → tiles in each column
+         stack flush, shorter tiles leave no gap below them.
+         Left col and right col heights are naturally unequal.
+         Result: masonry-like flow without JS.
+      ─────────────────────────────────────────────────── */
       .collage-columns{
         display:grid;
         grid-template-columns:1fr 1fr;
-        gap:4px;
+        gap:3px;
         margin-top:0;
-        align-items:start;    /* KEY: independent column heights */
+        align-items:start;   /* CRITICAL: rows are NOT stretched to equal heights */
       }
-      /* Dissolve all 3 desktop cols into flat grid children */
+
+      /* Dissolve the 3 desktop columns into a flat sequence of grid items */
       .col-left,.col-middle,.col-right{
         display:contents;
       }
 
-      /* ── Base tile ── */
+      /* ── Base tile: let images breathe ── */
       .tile{
         display:block;
         position:relative;
         overflow:hidden;
-        width:100%;
+        break-inside:avoid;
       }
+
+      /* [一] NO forced cropping on any tile.
+         Images display at their natural proportions.
+         This is the key fix for "over-cropping". */
       .tile img{
         width:100%;
-        height:auto;
-        object-fit:unset;
+        height:auto;         /* natural ratio */
+        object-fit:unset;    /* NO cover */
         display:block;
         transition:none;
       }
       .tile::after{ display:none; }
 
-      /* ── [III] Tier classes: aspect-ratio for natural proportions ── */
+      /* Tier classes now only control label style,
+         NOT image dimensions — no more aspect-ratio */
 
-      /* tile--large: Stage Art, My Partner, Flow & Spirituality, Children's Book */
-      .tile--large img{
-        aspect-ratio:3/4;
-        object-fit:cover;
-        object-position:center top;
-      }
-
-      /* tile--medium: Graphic Design, Traditional Mediums */
-      .tile--medium img{
-        aspect-ratio:4/5;
-        object-fit:cover;
-        object-position:center;
-      }
-
-      /* tile--small: Meditation, Apparel, Jewelry */
-      .tile--small img{
-        aspect-ratio:1/1;
-        object-fit:cover;
-        object-position:center;
-      }
-
-      /* [IV] Jewelry: full image, no cropping */
-      a[href="jewelry.html"] img{
-        object-fit:contain !important;
-        aspect-ratio:unset !important;
-        background:#f8f7f5;
-      }
-
-      /* ── Labels ── */
+      /* Labels: always visible, gradient bottom */
       .tile__label{
         opacity:1;
         text-transform:uppercase;
