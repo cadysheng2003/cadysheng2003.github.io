@@ -5,56 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cady Sheng — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
-    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --font-ui:'Jost',sans-serif; --color-text:#2a2a2a; --color-text-light:#888; --page-max-width:960px; --page-padding:40px; }
+    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --color-text:#2a2a2a; --color-text-light:#888; --page-max-width:960px; --page-padding:40px; }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{-webkit-font-smoothing:antialiased;}
     body{background:#fff;color:var(--color-text);}
     .site-header{max-width:var(--page-max-width);margin:0 auto;padding:40px var(--page-padding) 0;}
-    .logo-image{display:block;width:min(744px,90vw);height:auto;margin:0 auto;}
+    .logo-image{display:block;width:min(620px,90vw);height:auto;margin:0 auto;}
     .tagline{font-family:var(--font-body);font-size:13.5px;font-style:italic;text-align:right;color:var(--color-text-light);margin-top:10px;letter-spacing:0.3px;}
-    .collage{max-width:var(--page-max-width);margin:14px auto 0;padding:0 var(--page-padding);}
-    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:32px;position:relative;}
-    .hero-tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
-    .hero-tile:hover img{opacity:1;transform:scale(1.04);}
-    .hero-tile .tile__label{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,0);color:#fff;
-      font-family:var(--font-ui);font-size:18px;font-weight:500;letter-spacing:3px;text-align:center;text-transform:uppercase;
-      opacity:0;transition:background 0.25s ease,opacity 0.25s ease;
-      padding:16px;
-    }
-    .hero-tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
-    .hero-tile::after{
-      content:'↗';position:absolute;bottom:14px;right:16px;
-      font-size:13px;color:rgba(255,255,255,0.75);
-      font-family:var(--font-body);letter-spacing:0;
-      transition:opacity 0.25s ease;pointer-events:none;
-    }
-    .hero-tile:hover::after{opacity:0;}
-    .collage-columns{display:flex;gap:16px;align-items:flex-start;}
-    .col-left{flex:0 0 36%;display:flex;flex-direction:column;gap:18px;}
-    .col-middle{flex:0 0 32.5%;display:flex;flex-direction:column;gap:18px;}
-    .col-right{flex:1;display:flex;flex-direction:column;gap:18px;}
-    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;position:relative;}
-    .tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
-    .tile:hover img{opacity:1;transform:scale(1.04);}
-    .tile__label{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,0);color:#fff;
-      font-family:var(--font-ui);font-size:15px;font-weight:500;letter-spacing:3px;text-align:center;text-transform:uppercase;
-      opacity:0;transition:background 0.25s ease,opacity 0.25s ease;
-      padding:12px;
-    }
-    .tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
-    .tile::after{
-      content:'↗';position:absolute;bottom:10px;right:12px;
-      font-size:11px;color:rgba(255,255,255,0.75);
-      font-family:var(--font-body);letter-spacing:0;
-      transition:opacity 0.25s ease;pointer-events:none;
-    }
-    .tile:hover::after{opacity:0;}
+    .collage{max-width:var(--page-max-width);margin:25px auto 0;padding:0 var(--page-padding);}
+    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:12px;}
+    .hero-tile img{display:block;width:100%;height:auto;transition:opacity 0.35s ease,transform 0.45s ease;}
+    .hero-tile:hover img{opacity:0.88;transform:scale(1.02);}
+    .hero-tile .tile__label{display:block;font-family:var(--font-display);font-size:15px;font-weight:400;text-align:center;padding:7px 0 0;letter-spacing:0.3px;transition:opacity 0.3s;}
+    .hero-tile:hover .tile__label{opacity:0.6;}
+    .collage-columns{display:flex;gap:12px;align-items:flex-start;}
+    .col-left{flex:0 0 36%;display:flex;flex-direction:column;gap:8px;}
+    .col-middle{flex:0 0 32.5%;display:flex;flex-direction:column;gap:8px;}
+    .col-right{flex:1;display:flex;flex-direction:column;gap:8px;}
+    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;}
+    .tile img{display:block;width:100%;height:auto;transition:opacity 0.35s ease,transform 0.45s ease;}
+    .tile:hover img{opacity:0.88;transform:scale(1.03);}
+    .tile__label{display:block;font-family:var(--font-display);font-size:15px;font-weight:400;text-align:center;padding:7px 0 0;letter-spacing:0.3px;transition:opacity 0.3s;}
+    .tile:hover .tile__label{opacity:0.6;}
     .connect-section{max-width:var(--page-max-width);margin:60px auto 0;padding:0 var(--page-padding);text-align:right;}
     .connect-btn{display:inline-block;font-family:var(--font-display);font-size:17px;font-weight:400;color:var(--color-text);text-decoration:none;letter-spacing:0.5px;background:#f7f5f3;padding:14px 32px;}
     .site-footer{max-width:var(--page-max-width);margin:52px auto 0;padding:32px var(--page-padding) 48px;border-top:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;}
@@ -65,162 +39,121 @@
     .fade-in{opacity:0;transform:translateY(12px);animation:fadeUp 0.7s ease forwards;}
     .delay-1{animation-delay:0.15s;}.delay-2{animation-delay:0.3s;}.delay-3{animation-delay:0.45s;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-    @media(max-width:767px){
-
-      /* ── Reset ── */
-      body{
-        padding-left:0 !important;
-        padding-bottom:env(safe-area-inset-bottom, 20px);
-      }
-
-      /* ── Header ── */
-      .site-header{ padding:18px 20px 0; text-align:center; }
-      .logo-image{
-        width:min(380px,82vw) !important;
-        min-width:0 !important;
-        margin:0 auto;
-      }
-      .tagline{
-        text-align:center;
-        font-size:9px;
-        letter-spacing:0.8px;
-        color:#b0aca8;
-        margin-top:6px;
-        text-transform:none;
-        font-style:italic;
-      }
-
-      /* ── Collage ── */
-      .collage{ padding:0; margin-top:14px; }
-
-      /* ── Hero (Illustrations): full natural image, no crop ── */
-      .hero-tile{ margin-bottom:3px; position:relative; display:block; overflow:hidden; }
-      .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
-      .hero-tile .tile__label{
-        opacity:1;
-        background:linear-gradient(to top, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 52%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:16px 14px; font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
-      }
-      .hero-tile::after{ display:none; }
-
-      /* ── Grid: 2-col masonry ── */
+    @media(max-width:768px){.site-footer{flex-direction:column;gap:20px;}.footer-copyright{text-align:left;}}
+    @media(max-width:480px){
+      :root{--page-padding:14px;}
+      /* Logo: bigger, tagline smaller */
+      .logo-image{width:88vw !important;}
+      .tagline{font-size:11px;text-align:center;margin-top:6px;}
+      .site-header{padding:28px var(--page-padding) 0;}
+      .collage{margin:16px auto 0;padding:0 var(--page-padding);}
+      /* Hide hero tile label on mobile */
+      .hero-tile .tile__label{display:none;}
+      /* Hero tile: full width, image natural ratio */
+      .hero-tile{margin-bottom:10px;}
+      .hero-tile img{width:100%;height:auto;transform:none !important;}
+      /* True masonry: 2-column CSS columns, image-first */
       .collage-columns{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:3px;
-        margin-top:0;
-        align-items:start;
+        display:block !important;
+        column-count:2;
+        column-gap:8px;
       }
-      .col-left,.col-middle,.col-right{ display:contents; }
-
-      /* ── Base tile ── */
-      .tile{ display:block; position:relative; overflow:hidden; }
-      .tile::after{ display:none; }
-
-      /* ──────────────────────────────────────────────────────
-         TILE IMAGE STRATEGY:
-         - Tile container gets a portrait aspect-ratio (3:4 or 4:5)
-           so there's enough height to show the composition.
-         - object-fit:cover fills that space.
-         - object-position is tuned PER IMAGE to protect the main subject.
-         This prevents both:
-           (a) images being too flat/thin (height:auto on landscape covers)
-           (b) subjects being cut off (centered crop on off-center subjects)
-      ────────────────────────────────────────────────────── */
-
-      /* Default: all tiles get a portrait container, subject centered */
+      .col-left,.col-middle,.col-right{
+        display:contents !important;
+        flex:none !important;
+        width:auto !important;
+      }
+      .tile{
+        display:inline-block !important;
+        width:100% !important;
+        margin-bottom:8px;
+        break-inside:avoid;
+        overflow:hidden;
+      }
+      /* Images: full width, natural ratio, NO cropping */
       .tile img{
-        width:100%;
-        aspect-ratio:3/4;
-        object-fit:cover;
-        object-position:center center;
+        width:100% !important;
+        height:auto !important;
+        object-fit:unset !important;
         display:block;
-        transition:none;
+        transform:none !important;
       }
-
-      /* Stage Art & Production: center-top to keep stage visible */
-      a[href="stage-art-production.html"].tile img{
-        object-position:center top;
-      }
-
-      /* My Partner: center to keep faces/subjects */
-      a[href="my-partner.html"].tile img{
-        aspect-ratio:4/5;
-        object-position:center center;
-      }
-
-      /* Flow & Spirituality: center */
-      a[href="flow-and-spirituality.html"].tile img{
-        object-position:center center;
-      }
-
-      /* Children's Book: center-top, keep cover art */
-      a[href="childrens-book.html"].tile img{
-        object-position:center top;
-      }
-
-      /* Graphic Design: center */
-      a[href="graphic-design.html"].tile img{
-        aspect-ratio:4/5;
-        object-position:center center;
-      }
-
-      /* Traditional Mediums: center */
-      a[href="traditional-mediums.html"].tile img{
-        aspect-ratio:4/5;
-        object-position:center center;
-      }
-
-      /* Meditation: looser crop, subject protection */
-      a[href="meditation.html"].tile img{
-        aspect-ratio:1/1;
-        object-position:center center;
-      }
-
-      /* Apparel: center, keep full look */
-      a[href="apparel.html"].tile img{
-        aspect-ratio:1/1;
-        object-position:center top;
-      }
-
-      /* Jewelry: contain — show full piece, no cropping at all */
-      a[href="jewelry.html"].tile img{
-        aspect-ratio:1/1;
-        object-fit:contain;
-        object-position:center center;
-        background:#f8f7f5;
-      }
-
-      /* ── Labels ── */
-      .tile__label{ opacity:1; text-transform:uppercase; color:#fff; transition:none; }
-      .tile--large .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 58%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:13px 10px; font-size:9px; letter-spacing:1.5px;
-      }
-      .tile--medium .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0) 56%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:11px 10px; font-size:8.5px; letter-spacing:1.4px;
-      }
-      .tile--small .tile__label{
-        background:linear-gradient(to top, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 50%);
-        align-items:flex-end; justify-content:flex-start;
-        padding:9px 9px; font-size:8px; letter-spacing:1.2px;
-      }
-
-      /* ── Footer ── */
-      .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
-      .footer-copyright{ text-align:left; }
-
+      /* Hide tile labels on mobile */
+      .tile__label{display:none !important;}
     }
-    /* ── Side nav styles now live in nav.js ── */
 
+    /* ── SIDE NAV (desktop only) ── */
+    .side-nav {
+      display: none;
+    }
+    @media (min-width: 1200px) {
+      .side-nav {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 32px;
+        transform: translateY(-50%);
+        z-index: 200;
+        gap: 0;
+      }
+      .side-nav a {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 400;
+        color: #c0b8b0;
+        text-decoration: none;
+        letter-spacing: 0.6px;
+        padding: 5px 0;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .side-nav a:hover {
+        color: #2a2a2a;
+      }
+      .side-nav .nav-home {
+        font-family: var(--font-body);
+        font-size: 10px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: #ccc;
+        margin-bottom: 8px;
+      }
+      .side-nav .nav-home:hover {
+        color: #888;
+      }
+      .side-nav .nav-divider {
+        width: 20px;
+        height: 1px;
+        background: #e4e0db;
+        margin: 8px 0;
+      }
+      .side-nav .nav-contact {
+        margin-top: 0;
+      }
+    }
   </style>
-  <script src="nav.js"></script>
 </head>
 <body>
+
+  <!-- Side Nav: desktop only, fixed position, does not affect main layout -->
+  <nav class="side-nav">
+    <a href="index.html" class="nav-home">Home</a>
+    <div class="nav-divider"></div>
+    <a href="illustrations.html">Illustrations</a>
+    <a href="stage-art-production.html">Stage Art &amp; Production</a>
+    <a href="my-partner.html">My Partner</a>
+    <a href="childrens-book.html">Children&#8217;s Book</a>
+    <a href="flow-and-spirituality.html">Flow &amp; Spirituality</a>
+    <a href="traditional-mediums.html">Traditional Mediums</a>
+    <a href="graphic-design.html">Graphic Design</a>
+    <a href="jewelry.html">Jewelry</a>
+    <a href="meditation.html">Meditation</a>
+    <a href="apparel.html">Apparel</a>
+    <div class="nav-divider"></div>
+    <a href="#footer" class="nav-contact">Contact</a>
+  </nav>
 
   <header class="site-header fade-in">
     <img src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image">
@@ -234,55 +167,53 @@
       <span class="tile__label">Illustrations</span>
     </a>
     <div class="collage-columns">
-      <!-- Desktop col-left (36%): Stage Art, Graphic Design, Apparel, Flow & Spirituality -->
-      <!-- Mobile: becomes left masonry column -->
       <div class="col-left">
-        <a href="stage-art-production.html" class="tile tile--large">
+        <a href="stage-art-production.html" class="tile">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
           <span class="tile__label">Stage Art &amp; Production</span>
         </a>
-        <a href="graphic-design.html" class="tile tile--medium">
+        <a href="graphic-design.html" class="tile">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy">
           <span class="tile__label">Graphic Design</span>
         </a>
-        <a href="apparel.html" class="tile tile--small">
+        <a href="apparel.html" class="tile">
           <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy">
           <span class="tile__label">Apparel</span>
         </a>
-        <a href="flow-and-spirituality.html" class="tile tile--large">
+        <a href="flow-and-spirituality.html" class="tile">
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
       </div>
-      <!-- Desktop col-middle (32.5%): My Partner, Traditional Mediums, Meditation -->
-      <!-- Mobile: becomes right masonry column -->
       <div class="col-middle">
-        <a href="my-partner.html" class="tile tile--large">
+        <a href="my-partner.html" class="tile">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
           <span class="tile__label">My Partner</span>
         </a>
-        <a href="traditional-mediums.html" class="tile tile--medium">
+        <a href="traditional-mediums.html" class="tile">
           <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy">
           <span class="tile__label">Traditional Mediums</span>
         </a>
-        <a href="meditation.html" class="tile tile--small">
+        <a href="meditation.html" class="tile">
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
           <span class="tile__label">Meditation</span>
         </a>
       </div>
-      <!-- Desktop col-right (remaining): Children's Book, Jewelry -->
-      <!-- Mobile: hidden — tiles moved into col-left/col-middle via CSS clone below -->
       <div class="col-right">
-        <a href="childrens-book.html" class="tile tile--large">
+        <a href="childrens-book.html" class="tile">
           <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
           <span class="tile__label">Children&#8217;s Book</span>
         </a>
-        <a href="jewelry.html" class="tile tile--small">
+        <a href="jewelry.html" class="tile">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy">
           <span class="tile__label">Jewelry</span>
         </a>
       </div>
-    </div>    </div>
+    </div>
+  </section>
+
+  <section class="connect-section fade-in delay-3">
+    <a href="#footer" class="connect-btn">Let&#8217;s Connect</a>
   </section>
 
   <div id="footer"></div>
