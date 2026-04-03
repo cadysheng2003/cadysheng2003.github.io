@@ -47,8 +47,6 @@
     .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
     .page-nav__home:hover { opacity:0.6; }
 
-
-
     @media(max-width:480px){
       body{padding-left:0 !important;}
 
@@ -90,49 +88,58 @@
       }
       .g::after,.tile::after,.hero-tile::after{display:none !important;}
       .page-nav{
-        /* Strictly contained within screen */
         width:100%;
-        max-width:100%;
         box-sizing:border-box;
         padding:0 16px;
         margin:24px 0 20px;
-        /* Horizontal row */
         display:flex;
         flex-direction:row;
-        justify-content:space-between;
         align-items:center;
-        gap:8px;
-        overflow:hidden;
+        gap:0;
       }
+      /* Each side takes exactly 40% width */
       .page-nav__side,
       .page-nav__side--right{
-        flex:1;
-        min-width:0;          /* allows shrinking below content width */
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
         display:flex;
         flex-direction:column;
         gap:2px;
+        box-sizing:border-box;
       }
-      .page-nav__side{ align-items:flex-start; }
-      .page-nav__side--right{ align-items:flex-end; }
-      /* Hide PREVIOUS / NEXT labels — save vertical space */
-      .page-nav__label{ display:none; }
-      /* Truncate long category names with ellipsis */
-      .page-nav__name{
-        font-size:12px;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        max-width:100%;
-        display:block;
+      .page-nav__side{
+        align-items:flex-start;
+        padding-right:8px;
       }
-      /* Home stays centered, fixed width so sides get equal space */
+      .page-nav__side--right{
+        align-items:flex-end;
+        padding-left:8px;
+      }
+      /* Home takes the middle 20% */
       .page-nav__home{
-        font-size:20px;
-        flex-shrink:0;
-        padding:0 8px;
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        hyphens:auto;
+        display:block;
+        max-width:100%;
       }
       footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
+
+    /* ── Side nav styles now live in nav.js ── */
+
   </style>
 </head>
 <body>
