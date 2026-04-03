@@ -125,36 +125,54 @@
       '#mob-menu{',
         'display:block !important;',
         'position:fixed;top:0;left:0;right:0;bottom:0;',
-        'background:rgba(255,255,255,0.98);',
+        'background:#fff;',                              /* solid white, no bleed-through */
         'z-index:800;',
         'transform:translateY(-100%);',
         'transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);',
         'overflow-y:auto;',
-        'padding:80px 40px 60px;',
+        'padding:68px 32px 40px;',
         'box-sizing:border-box;',
       '}',
       '#mob-menu.open{transform:translateY(0);}',
+
+      /* All links: Cormorant, 17px, no per-item border */
       '#mob-menu a{',
         'display:block;',
         'font-family:"Cormorant Garamond",Georgia,serif;',
-        'font-size:20px;font-weight:400;',
+        'font-size:17px;font-weight:400;',
         'color:#2a2a2a;text-decoration:none;',
-        'letter-spacing:0.3px;',
-        'padding:8px 0;',
-        'border-bottom:1px solid #f0f0f0;',
-        'transition:color 0.2s ease;',
+        'letter-spacing:0.15px;',
+        'line-height:1.35;',
+        'padding:5px 0;',
+        'border:none !important;',                       /* no dividers on items */
+        'transition:color 0.18s ease;',
       '}',
-      '#mob-menu a:last-child{border-bottom:none;}',
-      '#mob-menu a:active{color:#888;}',
+      '#mob-menu a:active{color:#aaa;}',
+
+      /* Group labels: small, faint, with a single thin line above each group */
       '#mob-menu .mob-menu__label{',
         'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:10px;letter-spacing:2.5px;text-transform:uppercase;',
-        'color:#bbb;margin:28px 0 8px;display:block;',
+        'font-size:10px;letter-spacing:1.8px;',
+        'text-transform:uppercase;',
+        'color:#2a2a2a;opacity:0.3;',
+        'display:block;',
+        'padding-top:16px;',
+        'margin:16px 0 4px;',
+        'border-top:1px solid rgba(0,0,0,0.08);',
       '}',
+      /* First label: no top line, sits right below the bar */
+      '#mob-menu .mob-menu__label:first-child{',
+        'border-top:none;padding-top:0;margin-top:0;',
+      '}',
+
+      /* Connect links: same Cormorant style, softer, sentence case not uppercase */
       '#mob-menu .mob-menu__contact{',
-        'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:13px;letter-spacing:1.5px;text-transform:uppercase;',
-        'color:#888;font-size:14px;',
+        'font-family:"Cormorant Garamond",Georgia,serif !important;',
+        'font-size:17px !important;font-weight:400;',
+        'letter-spacing:0.15px;line-height:1.35;',
+        'color:#aaa !important;',
+        'text-transform:none !important;',               /* sentence case */
+        'border:none !important;',
       '}',
 
       /* Push body down so content isn't under fixed bar */
