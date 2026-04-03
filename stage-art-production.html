@@ -89,25 +89,47 @@
       }
       .g::after,.tile::after,.hero-tile::after{display:none !important;}
       .page-nav{
+        /* Strictly contained within screen */
+        width:100%;
+        max-width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+        /* Horizontal row */
+        display:flex;
         flex-direction:row;
         justify-content:space-between;
         align-items:center;
-        margin:28px auto 24px;
-        padding:0 20px;
-        gap:0;
+        gap:8px;
+        overflow:hidden;
       }
-      /* Each side: label above link, compact */
-      .page-nav__side,.page-nav__side--right{
-        align-items:center;
-        gap:3px;
+      .page-nav__side,
+      .page-nav__side--right{
         flex:1;
+        min-width:0;          /* allows shrinking below content width */
+        display:flex;
+        flex-direction:column;
+        gap:2px;
       }
       .page-nav__side{ align-items:flex-start; }
       .page-nav__side--right{ align-items:flex-end; }
-      /* Hide PREVIOUS/NEXT labels on mobile to save space */
+      /* Hide PREVIOUS / NEXT labels — save vertical space */
       .page-nav__label{ display:none; }
-      .page-nav__name{ font-size:13px; }
-      .page-nav__home{ font-size:22px; }
+      /* Truncate long category names with ellipsis */
+      .page-nav__name{
+        font-size:12px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        max-width:100%;
+        display:block;
+      }
+      /* Home stays centered, fixed width so sides get equal space */
+      .page-nav__home{
+        font-size:20px;
+        flex-shrink:0;
+        padding:0 8px;
+      }
       footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
   </style>
