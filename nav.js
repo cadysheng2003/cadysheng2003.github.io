@@ -81,7 +81,7 @@
     '}',
 
     /* ── Mobile nav (< 768px) ── */
-    '@media screen and (max-width:480px) and (pointer:coarse){',
+    '@media(max-width:480px){',
       /* Hide desktop side nav entirely */
       '.side-nav{display:none !important;}',
 
