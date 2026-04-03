@@ -123,17 +123,18 @@
 
       /* Full-screen slide-in menu */
       '#mob-menu{',
-        'display:block !important;',
+        'display:block;',
         'position:fixed;top:0;left:0;right:0;bottom:0;',
-        'background:#fff;',                              /* solid white, no bleed-through */
+        'background:#fff;',
         'z-index:800;',
         'transform:translateY(-100%);',
-        'transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);',
+        'visibility:hidden;',                            /* hides from layout AND tab order */
+        'transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.38s;',
         'overflow-y:auto;',
         'padding:68px 32px 40px;',
         'box-sizing:border-box;',
       '}',
-      '#mob-menu.open{transform:translateY(0);}',
+      '#mob-menu.open{transform:translateY(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;}',
 
       /* All links: Cormorant, 17px, no per-item border */
       '#mob-menu a{',
