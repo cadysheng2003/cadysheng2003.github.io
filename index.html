@@ -96,65 +96,30 @@
       }
       .hero-tile::after{ display:none; }
 
-      /* ── CSS Grid: 2 columns ── */
+      /* ── Mobile 2-col: collage-columns becomes a flex row wrapper ──
+         JS (mobile-grid.js inline) renders two independent column divs.
+         Original col-left/middle/right are hidden; JS columns take over.
+      ── */
       .collage-columns{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        column-gap:10px;
-        row-gap:0;
-        align-items:start;
-        grid-auto-flow:dense;
+        display:flex !important;
+        flex-direction:row !important;
+        gap:10px !important;
+        align-items:flex-start !important;
+        margin-top:0;
       }
+      /* Hide original col wrappers — JS will rebuild layout */
+      .col-left, .col-middle, .col-right{ display:none !important; }
 
-      /* ── Dissolve all col wrappers ──
-         Tiles become direct grid children.
-         grid-column = visual column (1=LEFT, 2=RIGHT)
-         order = sequence within that column
-      ── */
-      .col-left, .col-middle, .col-right{ display:contents !important; }
-
-      /* ── LEFT column (grid-column:1) ──
-         My Partner(1) → Traditional Mediums(2) → Children's Book(3) → Meditation(4)
-      ── */
-      .col-middle a[href="my-partner.html"]{
-        grid-column:1; order:1;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
+      /* JS-created independent columns */
+      .mob-col{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+        min-width:0;
       }
-      .col-middle a[href="traditional-mediums.html"]{
-        grid-column:1; order:3;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-right a[href="childrens-book.html"]{
-        grid-column:1; order:2;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-middle a[href="meditation.html"]{
-        grid-column:1; order:4;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-
-      /* ── RIGHT column (grid-column:2) ──
-         Stage Art(1) → Flow & Spirituality(2) → Graphic Design(3) → Apparel(4) → Jewelry(5)
-      ── */
-      .col-left a[href="stage-art-production.html"]{
-        grid-column:2; order:1;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-left a[href="flow-and-spirituality.html"]{
-        grid-column:2; order:2;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-left a[href="graphic-design.html"]{
-        grid-column:2; order:3;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-left a[href="apparel.html"]{
-        grid-column:2; order:4;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
-      }
-      .col-right a[href="jewelry.html"]{
-        grid-column:2; order:5;
-        display:block !important; position:relative; overflow:hidden; width:100%; margin-bottom:16px;
+      .mob-col .tile{
+        display:block; position:relative; overflow:hidden; width:100%;
       }
 
       /* ── Base tile images ── */
@@ -167,13 +132,13 @@
       }
 
       /* Per-image position tuning */
-      a[href="my-partner.html"].tile img{ object-position:center top; min-height:38vw; }
-      a[href="stage-art-production.html"].tile img{ object-position:center center; min-height:36vw; }
-      a[href="flow-and-spirituality.html"].tile img{ object-position:center center; min-height:38vw; }
-      a[href="graphic-design.html"].tile img{ object-position:center top; min-height:34vw; }
-      a[href="apparel.html"].tile img{ object-position:center top; min-height:34vw; }
-      a[href="childrens-book.html"].tile img{ object-position:center top; min-height:36vw; }
-      a[href="jewelry.html"].tile img{ object-fit:contain; background:transparent; min-height:28vw; }
+      a[href="my-partner.html"] img{ object-position:center top; min-height:38vw; }
+      a[href="stage-art-production.html"] img{ object-position:center center; min-height:36vw; }
+      a[href="flow-and-spirituality.html"] img{ object-position:center center; min-height:38vw; }
+      a[href="graphic-design.html"] img{ object-position:center top; min-height:34vw; }
+      a[href="apparel.html"] img{ object-position:center top; min-height:34vw; }
+      a[href="childrens-book.html"] img{ object-position:center top; min-height:36vw; }
+      a[href="jewelry.html"] img{ object-fit:contain; background:transparent; min-height:28vw; }
 
       /* ── Labels: override desktop opacity:0 ── */
       .tile .tile__label{
@@ -186,7 +151,7 @@
       }
       .tile--small .tile__label{ font-size:11px; padding:11px 10px; }
 
-      /* ── Footer ── */
+      /* Footer */
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
       .footer-copyright{ text-align:left; }
 
@@ -262,4 +227,108 @@
   <div id="footer"></div>
 
   <script src="footer.js"></script>
+
+  <script>
+  (function(){
+    /* Mobile-only two-column layout
+       Left col:  my-partner, childrens-book, traditional-mediums, meditation
+       Right col: stage-art-production, flow-and-spirituality, graphic-design, apparel, jewelry
+       Only activates at ≤480px. Restores original on wider screens. */
+
+    var LEFT  = ['my-partner.html','childrens-book.html','traditional-mediums.html','meditation.html'];
+    var RIGHT = ['stage-art-production.html','flow-and-spirituality.html','graphic-design.html','apparel.html','jewelry.html'];
+
+    function getTile(href) {
+      return document.querySelector('.collage-columns a[href="' + href + '"]');
+    }
+
+    function buildMobile() {
+      var cols = document.querySelector('.collage-columns');
+      if (!cols) return;
+
+      /* Remove any existing mob-cols */
+      cols.querySelectorAll('.mob-col').forEach(function(el){ el.remove(); });
+
+      /* Show original cols (needed to query tiles) */
+      cols.querySelectorAll('.col-left,.col-middle,.col-right').forEach(function(el){
+        el.style.display = '';
+      });
+
+      /* Create two independent column divs */
+      var colL = document.createElement('div');
+      var colR = document.createElement('div');
+      colL.className = 'mob-col';
+      colR.className = 'mob-col';
+
+      /* Move tiles into columns in specified order */
+      LEFT.forEach(function(href){
+        var tile = getTile(href);
+        if (tile) colL.appendChild(tile);
+      });
+      RIGHT.forEach(function(href){
+        var tile = getTile(href);
+        if (tile) colR.appendChild(tile);
+      });
+
+      /* Hide now-empty original wrappers */
+      cols.querySelectorAll('.col-left,.col-middle,.col-right').forEach(function(el){
+        el.style.display = 'none';
+      });
+
+      cols.appendChild(colL);
+      cols.appendChild(colR);
+    }
+
+    function destroyMobile() {
+      var cols = document.querySelector('.collage-columns');
+      if (!cols) return;
+
+      /* Move tiles back to original col wrappers */
+      var allCols = cols.querySelectorAll('.col-left,.col-middle,.col-right');
+      allCols.forEach(function(el){ el.style.display = ''; });
+
+      /* Move tiles back using their original parent stored in data attr,
+         or simply restore from mob-col back — we stored originals by col class */
+      var mobCols = cols.querySelectorAll('.mob-col');
+      mobCols.forEach(function(mc){
+        mc.querySelectorAll('a[href]').forEach(function(tile){
+          var href = tile.getAttribute('href');
+          /* Find original container */
+          var origCol = cols.querySelector('.col-left a[data-href="' + href + '"]');
+          /* Restore by data-orig-col attribute */
+          var targetCol = cols.querySelector('.' + tile.dataset.origCol);
+          if (targetCol) targetCol.appendChild(tile);
+        });
+        mc.remove();
+      });
+    }
+
+    function storeOriginals() {
+      /* Store each tile's original col class for restore */
+      document.querySelectorAll('.col-left a[href], .col-middle a[href], .col-right a[href]').forEach(function(tile){
+        var parent = tile.parentElement;
+        if (parent.classList.contains('col-left'))   tile.dataset.origCol = 'col-left';
+        if (parent.classList.contains('col-middle'))  tile.dataset.origCol = 'col-middle';
+        if (parent.classList.contains('col-right'))   tile.dataset.origCol = 'col-right';
+      });
+    }
+
+    var isMobile = false;
+
+    function check() {
+      var mobile = window.innerWidth <= 480;
+      if (mobile && !isMobile) {
+        storeOriginals();
+        buildMobile();
+        isMobile = true;
+      } else if (!mobile && isMobile) {
+        destroyMobile();
+        isMobile = false;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', check);
+    window.addEventListener('resize', check);
+  })();
+  </script>
 </body>
