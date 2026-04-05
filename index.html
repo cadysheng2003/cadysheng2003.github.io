@@ -66,9 +66,7 @@
     .delay-1{animation-delay:0.15s;}.delay-2{animation-delay:0.3s;}.delay-3{animation-delay:0.45s;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
     
-    @media(max-width:767px){.collage-columns{flex-wrap:wrap;gap:10px;}
-
-    @media(max-width:480px){
+    @media(max-width:767px){
 
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
@@ -191,64 +189,66 @@
     /* ── Side nav styles now live in nav.js ── */
 
   </style>
-  <script src="nav.js"></script>
+    <link rel="preload" as="image" href="homepage-covers-images/CadyShengLogo.jpg">
+  <link rel="preload" as="image" href="homepage-covers-images/IllustrationsCover.jpg">
+  <script src="nav.js" defer></script>
 </head>
 <body>
 
   <header class="site-header fade-in">
-    <img src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image">
+    <img src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image" decoding="async">
     <p class="tagline">Truth, Love, Flow, Oneness</p>
   </header>
 
   <section class="collage fade-in delay-2">
     <!-- Hero: Illustrations full width -->
     <a href="illustrations.html" class="hero-tile">
-      <img src="homepage-covers-images/IllustrationsCover.jpg" alt="Illustrations" loading="lazy">
+      <img src="homepage-covers-images/IllustrationsCover.jpg" alt="Illustrations" decoding="async">
       <span class="tile__label">Illustrations</span>
     </a>
     <div class="collage-columns">
       <!-- col-left (desktop: 36%, mobile: grid-column:2 = RIGHT) -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
-          <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy">
+          <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy" decoding="async">
           <span class="tile__label">Stage Art &amp; Production</span>
         </a>
         <a href="graphic-design.html" class="tile tile--medium">
-          <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy">
+          <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy" decoding="async">
           <span class="tile__label">Graphic Design</span>
         </a>
         <a href="apparel.html" class="tile tile--small">
-          <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy">
+          <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy" decoding="async">
           <span class="tile__label">Apparel</span>
         </a>
         <a href="flow-and-spirituality.html" class="tile tile--large">
-          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy">
+          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy" decoding="async">
           <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
       </div>
       <!-- col-middle (desktop: 32.5%, mobile: grid-column:1 = LEFT) -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large">
-          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy">
+          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy" decoding="async">
           <span class="tile__label">My Partner</span>
         </a>
         <a href="traditional-mediums.html" class="tile tile--medium">
-          <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy">
+          <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy" decoding="async">
           <span class="tile__label">Traditional Mediums</span>
         </a>
         <a href="meditation.html" class="tile tile--small">
-          <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy">
+          <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy" decoding="async">
           <span class="tile__label">Meditation</span>
         </a>
       </div>
       <!-- col-right (desktop: flex:1, mobile: grid-column:1/-1 = bottom row) -->
       <div class="col-right">
         <a href="childrens-book.html" class="tile tile--large">
-          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy">
+          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy" decoding="async">
           <span class="tile__label">Children&#8217;s Book</span>
         </a>
         <a href="jewelry.html" class="tile tile--small">
-          <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy">
+          <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy" decoding="async">
           <span class="tile__label">Jewelry</span>
         </a>
       </div>
@@ -264,7 +264,7 @@
     /* Mobile-only two-column layout
        Left col:  my-partner, childrens-book, traditional-mediums, meditation
        Right col: stage-art-production, flow-and-spirituality, graphic-design, apparel, jewelry
-       Only activates at ≤480px. Restores original on wider screens. */
+       Only activates at ≤767px (covers portrait + landscape mobile). */
 
     var LEFT  = ['my-partner.html','childrens-book.html','traditional-mediums.html','meditation.html'];
     var RIGHT = ['stage-art-production.html','flow-and-spirituality.html','graphic-design.html','apparel.html','jewelry.html'];
@@ -347,7 +347,7 @@
     var isMobile = false;
 
     function check() {
-      var mobile = window.innerWidth <= 480;
+      var mobile = window.innerWidth <= 767;
       if (mobile && !isMobile) {
         storeOriginals();
         buildMobile();
