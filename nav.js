@@ -23,9 +23,16 @@
       'body{padding-left:240px;}',
       '.side-nav{',
         'display:flex;flex-direction:column;',
-        'position:fixed;top:50%;',
-        'left:max(16px, calc((100vw - 960px) / 2 + 40px - 180px));',
-        'width:160px;transform:translateY(-50%);',
+        'position:fixed;',
+        /* Stable left: always 64px from viewport edge, within the 240px margin zone.
+           Nav right edge (64+160=224px) sits ~56px left of content start (280px).
+           This is consistent at ALL desktop widths — no more drifting. */
+        'left:64px;',
+        'width:160px;',
+        /* Vertical: start at a fixed top offset that approximates hero top.
+           240px = ~logo area height. Stays stable regardless of viewport height. */
+        'top:240px;',
+        'transform:none;',
         'z-index:200;gap:0;',
       '}',
       '.side-nav a{',
@@ -81,7 +88,7 @@
     '}',
 
     /* ── Mobile nav (< 768px) ── */
-    '@media(max-width:767px){',
+    '@media(max-width:767px) and (pointer:coarse){',
       /* Hide desktop side nav entirely */
       '.side-nav{display:none !important;}',
 
@@ -279,6 +286,17 @@
         wordmark.classList.toggle('visible', visible);
       }, { threshold: 0.1 });
       observer.observe(heroLogo);
+
+      /* Align nav top with hero image top on desktop */
+      function alignNavTop() {
+        if (window.innerWidth < 768) return;
+        var collage = document.querySelector('.collage');
+        if (!collage) return;
+        var heroTop = collage.getBoundingClientRect().top + window.scrollY;
+        nav.style.top = Math.max(80, heroTop) + 'px';
+      }
+      alignNavTop();
+      window.addEventListener('resize', alignNavTop);
     } else {
       /* On category pages, always show mobile wordmark */
       wordmark.classList.add('visible');
