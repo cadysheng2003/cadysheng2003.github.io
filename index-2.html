@@ -73,7 +73,7 @@
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
 
       /* Header */
-      .site-header{ padding:4px 16px 0; text-align:center; }
+      .site-header{ padding:8px 16px 0; text-align:center; }
       .logo-image{ width:min(453px,96vw) !important; min-width:0 !important; margin:0 auto; }
       .tagline{
         font-family:'Cormorant Garamond',Georgia,serif;
@@ -81,26 +81,25 @@
         font-style:italic;
         font-weight:300;
         letter-spacing:0.04em;
-        color:#8A8278;
-        opacity:0.85;
+        color:#a8a4a0;
         text-align:center;
         text-transform:none;
-        margin-top:2px;   /* tighter to logo */
+        margin-top:4px;   /* tighter to logo */
       }
 
       /* Collage */
       .collage{ padding:0 16px; margin-top:16px; }
 
       /* Hero */
-      .hero-tile{ margin-bottom:16px; position:relative; display:block; overflow:hidden; border-radius:2px; }
+      .hero-tile{ margin-bottom:10px; position:relative; display:block; overflow:hidden; border-radius:2px; }
       .hero-tile img{ width:100%; height:auto; object-fit:unset; display:block; transition:none; }
       .hero-tile .tile__label{
         opacity:1 !important; transition:none !important;
         background:linear-gradient(to top, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 58%) !important;
         align-items:flex-end !important; justify-content:flex-start !important;
         text-align:left !important;
-        padding:18px 14px; font-size:15px; font-weight:500;
-        letter-spacing:2px; text-transform:uppercase;
+        padding:16px 14px; font-size:13px; font-weight:500;
+        letter-spacing:1.5px; text-transform:uppercase;
       }
       .hero-tile::after{ display:none; }
 
@@ -142,7 +141,7 @@
       /* Per-image position tuning */
       a[href="my-partner.html"] img{ object-position:center top; min-height:38vw; }
       a[href="stage-art-production.html"] img{ object-position:center center; min-height:36vw; }
-      a[href="flow-and-spirituality.html"] img{ object-position:center center; min-height:43vw; max-height:43vw; }
+      a[href="flow-and-spirituality.html"] img{ object-position:center center; min-height:58vw; }
       a[href="graphic-design.html"] img{ object-position:center top; min-height:34vw; }
       a[href="apparel.html"] img{ object-position:center top; min-height:34vw; }
       a[href="childrens-book.html"] img{ object-position:center top; min-height:36vw; }
@@ -154,23 +153,23 @@
         background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 60%) !important;
         align-items:flex-end !important; justify-content:flex-start !important;
         text-align:left !important;
-        padding:14px 12px; font-size:13px; font-weight:500;
-        letter-spacing:1.8px; text-transform:uppercase; color:#fff;
+        padding:14px 14px; font-size:11px; font-weight:500;
+        letter-spacing:1px; text-transform:uppercase; color:#fff;
       }
-      .tile--small .tile__label{ font-size:12px; padding:12px 10px; }
+      .tile--small .tile__label{ font-size:11px; padding:11px 10px; }
 
       /* ── Rounded corners on all mobile category tiles ── */
       .hero-tile,
       .hero-tile img,
       .hero-tile .tile__label{
-        border-radius:14px;
+        border-radius:10px;
       }
       .hero-tile{ overflow:hidden; }
 
       .mob-col .tile,
       .mob-col .tile img,
       .mob-col .tile .tile__label{
-        border-radius:9px;
+        border-radius:8px;
       }
       .mob-col .tile{ overflow:hidden; }
 
@@ -178,7 +177,7 @@
       .col-right a,
       .col-right a img,
       .col-right a .tile__label{
-        border-radius:9px;
+        border-radius:8px;
       }
       .col-right a{ overflow:hidden; }
 

@@ -100,7 +100,7 @@
       '.mob-bar__wordmark{',
         'font-family:"Cormorant Garamond",Georgia,serif;',
         'font-size:15px;font-weight:500;letter-spacing:0.2em;',
-        'text-transform:uppercase;color:#2a2a2a;',
+        'text-transform:uppercase;color:#3A3633;',
         'text-decoration:none;opacity:0;transition:opacity 0.4s ease;',
         'pointer-events:none;',
       '}',
@@ -112,7 +112,8 @@
       '}',
       '.mob-bar__burger span{',
         'display:block;width:22px;height:1.5px;',
-        'background:#2a2a2a;',
+        'background:#3A3633;',
+        'border-radius:2px;',
         'transition:transform 0.3s ease, opacity 0.3s ease;',
         'transform-origin:center;',
       '}',
@@ -136,43 +137,42 @@
       '}',
       '#mob-menu.open{transform:translateY(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;}',
 
-      /* All links: Cormorant, 17px, no per-item border */
+      /* All links: refined, lighter */
       '#mob-menu a{',
         'display:block;',
         'font-family:"Cormorant Garamond",Georgia,serif;',
-        'font-size:17px;font-weight:400;',
+        'font-size:14px;font-weight:400;',
         'color:#2a2a2a;text-decoration:none;',
-        'letter-spacing:0.15px;',
-        'line-height:1.35;',
-        'padding:5px 0;',
-        'border:none !important;',                       /* no dividers on items */
+        'letter-spacing:0.1px;',
+        'line-height:1.65;',
+        'padding:4px 0;',                                /* tighter per-item */
+        'border:none !important;',
         'transition:color 0.18s ease;',
       '}',
       '#mob-menu a:active{color:#aaa;}',
 
-      /* Group labels: small, faint, with a single thin line above each group */
+      /* Group labels: quieter, only appear between groups */
       '#mob-menu .mob-menu__label{',
         'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:10px;letter-spacing:1.8px;',
+        'font-size:11px;letter-spacing:1.2px;',
         'text-transform:uppercase;',
-        'color:#2a2a2a;opacity:0.3;',
+        'color:#2a2a2a;opacity:0.45;',                  /* softer */
         'display:block;',
-        'padding-top:16px;',
-        'margin:16px 0 4px;',
-        'border-top:1px solid rgba(0,0,0,0.08);',
+        'padding-top:14px;',
+        'margin:12px 0 6px;',
+        'border-top:1px solid rgba(0,0,0,0.06);',       /* very subtle divider */
       '}',
-      /* First label: no top line, sits right below the bar */
       '#mob-menu .mob-menu__label:first-child{',
         'border-top:none;padding-top:0;margin-top:0;',
       '}',
 
-      /* Connect links: same Cormorant style, softer, sentence case not uppercase */
+      /* Connect links: same weight, slightly muted, sentence case */
       '#mob-menu .mob-menu__contact{',
         'font-family:"Cormorant Garamond",Georgia,serif !important;',
-        'font-size:17px !important;font-weight:400;',
-        'letter-spacing:0.15px;line-height:1.35;',
-        'color:#aaa !important;',
-        'text-transform:none !important;',               /* sentence case */
+        'font-size:15px !important;font-weight:400;',
+        'letter-spacing:0.1px;line-height:1.4;',
+        'color:#999 !important;',
+        'text-transform:none !important;',
         'border:none !important;',
       '}',
 
@@ -225,7 +225,6 @@
   mobMenu.id = 'mob-menu';
   mobMenu.setAttribute('aria-hidden', 'true');
   mobMenu.innerHTML =
-    '<span class="mob-menu__label">Navigation</span>' +
     '<a href="index.html">Home</a>' +
     '<span class="mob-menu__label">Works</span>' +
     '<a href="illustrations.html">Illustrations</a>' +
