@@ -17,6 +17,16 @@
   var style = document.createElement('style');
   style.textContent = [
 
+    /* ── Global defaults: mobile elements always hidden unless mobile query activates ── */
+    '.mob-bar{display:none !important;}',
+    '#mob-menu{',
+      'display:block;',
+      'position:fixed;top:0;left:0;right:0;bottom:0;',
+      'visibility:hidden;',
+      'z-index:800;',
+      'pointer-events:none;',
+    '}',
+
     /* ── Desktop side nav (≥ 768px) ── */
     '.side-nav{display:none;}',
     '@media(min-width:768px){',
@@ -24,14 +34,9 @@
       '.side-nav{',
         'display:flex;flex-direction:column;',
         'position:fixed;',
-        /* Stable left: always 64px from viewport edge, within the 240px margin zone.
-           Nav right edge (64+160=224px) sits ~56px left of content start (280px).
-           This is consistent at ALL desktop widths — no more drifting. */
         'left:64px;',
         'width:160px;',
-        /* Vertical: start at a fixed top offset that approximates hero top.
-           240px = ~logo area height. Stays stable regardless of viewport height. */
-        'top:240px;',
+        'top:120px;',
         'transform:none;',
         'z-index:200;gap:0;',
       '}',
@@ -82,9 +87,6 @@
       '.side-nav .nav-contact:hover{color:#333;}',
       '.side-nav .nav-instagram{display:block;margin-top:14px;color:#aaa;transition:color 0.2s ease;line-height:0;}',
       '.side-nav .nav-instagram:hover{color:#2a2a2a;}',
-      /* Hide mobile elements on desktop */
-      '.mob-bar{display:none !important;}',
-      '#mob-menu{display:none !important;}',
     '}',
 
     /* ── Mobile nav (< 768px) ── */
@@ -129,20 +131,19 @@
       '.mob-bar__burger.open span:nth-child(2){opacity:0;}',
       '.mob-bar__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}',
 
-      /* Full-screen slide-in menu */
+      /* Full-screen slide-in menu — activated on mobile */
       '#mob-menu{',
-        'display:block;',
-        'position:fixed;top:0;left:0;right:0;bottom:0;',
         'background:#fff;',
         'z-index:800;',
         'transform:translateY(-100%);',
-        'visibility:hidden;',                            /* hides from layout AND tab order */
+        'visibility:hidden;',
+        'pointer-events:none;',
         'transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.38s;',
         'overflow-y:auto;',
         'padding:68px 32px 40px;',
         'box-sizing:border-box;',
       '}',
-      '#mob-menu.open{transform:translateY(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;}',
+      '#mob-menu.open{transform:translateY(0);visibility:visible;pointer-events:auto;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0s;}',
 
       /* All links: refined, lighter */
       '#mob-menu a{',
@@ -286,17 +287,6 @@
         wordmark.classList.toggle('visible', visible);
       }, { threshold: 0.1 });
       observer.observe(heroLogo);
-
-      /* Align nav top with hero image top on desktop */
-      function alignNavTop() {
-        if (window.innerWidth < 768) return;
-        var collage = document.querySelector('.collage');
-        if (!collage) return;
-        var heroTop = collage.getBoundingClientRect().top + window.scrollY;
-        nav.style.top = Math.max(80, heroTop) + 'px';
-      }
-      alignNavTop();
-      window.addEventListener('resize', alignNavTop);
     } else {
       /* On category pages, always show mobile wordmark */
       wordmark.classList.add('visible');
