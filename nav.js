@@ -149,7 +149,7 @@
       '#mob-menu a{',
         'display:block;',
         'font-family:"Cormorant Garamond",Georgia,serif;',
-        'font-size:14px;font-weight:400;',
+        'font-size:20px;font-weight:400;',
         'color:#2a2a2a;text-decoration:none;',
         'letter-spacing:0.1px;',
         'line-height:1.65;',
