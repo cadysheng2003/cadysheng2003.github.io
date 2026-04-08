@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:#4f463f;
-      --color-text-light:#8a817a;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              12px;
@@ -23,8 +23,10 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .row  { display:flex; gap:var(--gap); align-items:flex-start; margin-bottom:var(--gap); }
     .col  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g    { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
+    .g    { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g { border-radius:8px; overflow:hidden; }
+    .g img { border-radius:8px; }
     .g:hover img { opacity:0.88; }
     .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
     .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
@@ -58,64 +60,26 @@
       .row[style*="stretch"] { height:auto !important; }
       .row[style*="stretch"] > .g { height:auto !important; flex:none !important; width:100% !important; }
       .row[style*="stretch"] > .g img { height:auto !important; object-fit:unset !important; }
-      /* Title image */
-      .page-header img { width:75% !important; max-width:300px !important; }
-    }
+
+    /* ── Side nav styles now live in nav.js ── */
+      /* Title image: invert (dark→white bg), then colorize to #5A4B42 */
+      .page-header{background:#fff;}
+      .page-header img{
+        filter:invert(1) brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44);
+        mix-blend-mode:multiply;
+      }
+
     @media(max-width:767px) and (pointer:coarse){
-      body{padding-left:0 !important;}
-
-      /* Page header / title image */
-      .page-header{margin:24px auto 20px;padding:0 20px;}
-      .page-header img{width:60% !important;max-width:240px !important;height:auto !important;}
-
-      /* Gallery rows → single column */
-      .gallery{padding:0 16px;}
-      .r,.row{flex-direction:column !important;height:auto !important;gap:10px !important;}
-      .r > .g, .r > .c, .r > div,
-      .row > .g, .row > .col, .row > div{
-        width:100% !important;flex:none !important;
-        height:auto !important;overflow:visible !important;
-      }
-      .r > .g img, .r > .g video,
-      .row > .g img, .row > .g video{
-        height:auto !important;object-fit:unset !important;max-height:none !important;
-        width:100% !important;
-      }
-      .c,.col{width:100% !important;flex:none !important;}
-      .g2{grid-template-columns:1fr 1fr;}
-      .g3{grid-template-columns:1fr 1fr;}
-      /* Force grid2/grid3 to single column on mobile */
-      .grid2{grid-template-columns:1fr 1fr !important;}
-      /* grid3: keep 3-col on mobile so 3×3 grid stays intact */
-      .grid3{grid-template-columns:1fr 1fr 1fr !important;}
-      .gd3col,.tm3col{flex-direction:column !important;}
-      .gd-l,.gd-m,.gd-r,.tm-l,.tm-m,.tm-r{flex:none !important;width:100% !important;}
-      .sep{height:24px;}
-      .sep-sm{height:12px;}
-      .cb-row{flex-direction:column !important;gap:12px !important;padding:0 16px !important;}
-      .cb-img,.cb-img--small{flex:none !important;width:100% !important;}
-      .cb-text{padding-top:0 !important;font-size:15px !important;}
-      .r[style*="height"]{height:auto !important;}
-      .r[style*="height"] > .g{height:auto !important;flex:none !important;width:100% !important;overflow:visible !important;}
-      .r[style*="height"] > .g img{height:auto !important;object-fit:contain !important;}
-      .r[style*="height"] > div video{height:auto !important;width:100% !important;}
-      div[style*="display:flex"][style*="gap:12px"]{flex-direction:column !important;}
-      div[style*="padding:40px"] img[style*="width"],
-      div[style*="text-align:center"] img[style*="width"]{
-        width:55% !important;max-width:220px !important;height:auto !important;
-      }
-      .g::after,.tile::after,.hero-tile::after{display:none !important;}
+      /* Override 600px page-nav column layout → horizontal row on mobile */
       .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
         width:100%;
         box-sizing:border-box;
         padding:0 16px;
         margin:24px 0 20px;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        gap:0;
       }
-      /* Each side takes exactly 40% width */
       .page-nav__side,
       .page-nav__side--right{
         flex:0 0 40%;
@@ -126,15 +90,8 @@
         gap:2px;
         box-sizing:border-box;
       }
-      .page-nav__side{
-        align-items:flex-start;
-        padding-right:8px;
-      }
-      .page-nav__side--right{
-        align-items:flex-end;
-        padding-left:8px;
-      }
-      /* Home takes the middle 20% */
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
       .page-nav__home{
         flex:0 0 20%;
         width:20%;
@@ -145,26 +102,59 @@
       }
       .page-nav__label{ display:none; }
       .page-nav__name{
-        font-size:12px;
-        line-height:1.4;
+        font-size:11px;
+        line-height:1.3;
         word-break:break-word;
         overflow-wrap:break-word;
-        hyphens:auto;
         display:block;
         max-width:100%;
       }
-      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
-    }
 
-    /* ── Side nav styles now live in nav.js ── */
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
+      /* ── Mobile performance: reduce CLS and rendering cost ── */
+
+      /* Skip rendering rows until near viewport */
+      .gallery .r,
+      .gallery .row {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Isolate paint/layout per row — cheaper reflows */
+      .gallery .r,
+      .gallery .row {
+        contain: layout style;
+      }
+
+      /* Images: prevent reflow, GPU-friendly rendering */
+      .gallery img {
+        will-change: auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      /* Reserve minimum height before images load */
+      .gallery .g {
+        min-height: 120px;
+      }
+
+      /* Disable hover transitions on mobile (no hover anyway) */
+      .gallery img,
+      .g img {
+        transition: none !important;
+      }
+      /* Keep 9-grid as 3×3 on mobile */
+      .grid3 {
+        grid-template-columns: 1fr 1fr 1fr !important;
+        display: grid !important;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="page-header">
-    <div class="page-title">
-      <img src="illustrations/illustrations-title.png" alt="Illustrations" style="max-width:397px; width:51%; height:auto; display:inline-block">
-    </div>
+  <div style="text-align:center;padding:40px 0 20px">
+    <img loading="eager" fetchpriority="high" decoding="async" src="illustrations/illustrations-title.png" alt="Illustrations" style="max-width:397px; width:51%; height:auto; display:inline-block">
   </div>
 
   <div class="gallery">
@@ -181,66 +171,66 @@
       <!-- LEFT: I1 · I3 · I4 · I8 · I15 -->
       <div class="col" style="flex:0 0 38%">
         <div class="g" data-title="Portal">
-          <img src="illustrations/I1 (Portal).jpg" alt="Portal" loading="lazy">
+          <img decoding="async" src="illustrations/I1 (Portal).jpg" alt="Portal" loading="lazy" decoding="async">
         </div>
         <div class="g" data-title="Maternal Bond">
-          <img src="illustrations/I3 (Maternal Bond).jpg" alt="Maternal Bond" loading="lazy">
+          <img decoding="async" src="illustrations/I3 (Maternal Bond).jpg" alt="Maternal Bond" loading="lazy">
         </div>
         <div class="g" data-title="From the Mountains: Don't Be Afraid I">
-          <img src="illustrations/I4.jpg" alt="From the Mountains: Don't Be Afraid I" loading="lazy">
+          <img decoding="async" src="illustrations/I4.jpg" alt="From the Mountains: Don't Be Afraid I" loading="lazy">
         </div>
         <div class="g" data-title="From the Mountains: Don't Be Afraid II">
-          <img src="illustrations/I8.jpg" alt="From the Mountains: Don't Be Afraid II" loading="lazy">
+          <img decoding="async" src="illustrations/I8.jpg" alt="From the Mountains: Don't Be Afraid II" loading="lazy">
         </div>
         <div class="g" data-title="Notes and Trees">
-          <img src="illustrations/I15 (Notes and Trees).jpg" alt="Notes and Trees" loading="lazy">
+          <img decoding="async" src="illustrations/I15 (Notes and Trees).jpg" alt="Notes and Trees" loading="lazy">
         </div>
       </div>
 
       <!-- RIGHT: I2 · 3×3 grid · I20 wide -->
       <div class="col" style="flex:1">
         <div class="g" data-title="The Princess and the Pea">
-          <img src="illustrations/I2 (The Princess and the Pea).jpg" alt="The Princess and the Pea" loading="lazy">
+          <img decoding="async" src="illustrations/I2 (The Princess and the Pea).jpg" alt="The Princess and the Pea" loading="lazy">
         </div>
         <!-- 3×3 grid: row1 I5 I6 I7 -->
         <div class="grid3">
           <div class="g" data-title="Dialogue Between the Gods">
-            <img src="illustrations/I5 (Dialogue Between the Gods).jpg" alt="Dialogue Between the Gods" loading="lazy">
+            <img decoding="async" src="illustrations/I5 (Dialogue Between the Gods).jpg" alt="Dialogue Between the Gods" loading="lazy">
           </div>
           <div class="g" data-title="Bow">
-            <img src="illustrations/I6 (Bow).jpg" alt="Bow" loading="lazy">
+            <img decoding="async" src="illustrations/I6 (Bow).jpg" alt="Bow" loading="lazy">
           </div>
           <div class="g" data-title="Queen">
-            <img src="illustrations/I7 (Queen).jpg" alt="Queen" loading="lazy">
+            <img decoding="async" src="illustrations/I7 (Queen).jpg" alt="Queen" loading="lazy">
           </div>
         </div>
         <!-- row2 I9 I10 I11 -->
         <div class="grid3">
           <div class="g" data-title="Giant">
-            <img src="illustrations/I9 (Giant).jpg" alt="Giant" loading="lazy">
+            <img decoding="async" src="illustrations/I9 (Giant).jpg" alt="Giant" loading="lazy">
           </div>
           <div class="g" data-title="Lamb">
-            <img src="illustrations/I10 (Lamb).jpg" alt="Lamb" loading="lazy">
+            <img decoding="async" src="illustrations/I10 (Lamb).jpg" alt="Lamb" loading="lazy">
           </div>
           <div class="g" data-title="Redfish and Fox">
-            <img src="illustrations/I11 (Redfish and Fox).jpg" alt="Redfish and Fox" loading="lazy">
+            <img decoding="async" src="illustrations/I11 (Redfish and Fox).jpg" alt="Redfish and Fox" loading="lazy">
           </div>
         </div>
         <!-- row3 I12 I13 I14 -->
         <div class="grid3">
           <div class="g" data-title="Witch">
-            <img src="illustrations/I12 (Witch).jpg" alt="Witch" loading="lazy">
+            <img decoding="async" src="illustrations/I12 (Witch).jpg" alt="Witch" loading="lazy">
           </div>
           <div class="g" data-title="Ghosts">
-            <img src="illustrations/I13 (Ghosts).jpg" alt="Ghosts" loading="lazy">
+            <img decoding="async" src="illustrations/I13 (Ghosts).jpg" alt="Ghosts" loading="lazy">
           </div>
           <div class="g" data-title="Pond">
-            <img src="illustrations/I14 (Pond).jpg" alt="Pond" loading="lazy">
+            <img decoding="async" src="illustrations/I14 (Pond).jpg" alt="Pond" loading="lazy">
           </div>
         </div>
         <!-- Wide image below grid: I16 swirl dancer -->
         <div class="g" data-title="From the Mountains: The Dance Begins I">
-          <img src="illustrations/I16 (From the Mountains_ The Dance Begins I).jpg" alt="From the Mountains: The Dance Begins I" loading="lazy">
+          <img decoding="async" src="illustrations/I16 (From the Mountains_ The Dance Begins I).jpg" alt="From the Mountains: The Dance Begins I" loading="lazy">
         </div>
       </div>
 
@@ -255,25 +245,25 @@
     -->
     <div class="row">
       <div class="g" data-title="From the Mountains: The Dance Begins II" style="flex:1">
-        <img src="illustrations/I17 (From the Mountains_ The Dance Begins II).jpg" alt="From the Mountains: The Dance Begins II" loading="lazy">
+        <img decoding="async" src="illustrations/I17 (From the Mountains_ The Dance Begins II).jpg" alt="From the Mountains: The Dance Begins II" loading="lazy">
       </div>
       <div class="g" data-title="From the Mountains: The Singing Duel I" style="flex:1">
-        <img src="illustrations/I18 (From the Mountains_ The Singing Duel I).jpg" alt="From the Mountains: The Singing Duel I" loading="lazy">
+        <img decoding="async" src="illustrations/I18 (From the Mountains_ The Singing Duel I).jpg" alt="From the Mountains: The Singing Duel I" loading="lazy">
       </div>
       <div class="g" data-title="From the Mountains: Praise of Genghis Khan" style="flex:1">
-        <img src="illustrations/I19 (From the Mountains_ Praise of Genghis Khan).jpg" alt="From the Mountains: Praise of Genghis Khan" loading="lazy">
+        <img decoding="async" src="illustrations/I19 (From the Mountains_ Praise of Genghis Khan).jpg" alt="From the Mountains: Praise of Genghis Khan" loading="lazy">
       </div>
     </div>
 
     <div class="row">
       <div class="g" data-title="From the Mountains: Lobsang Dongzhi" style="flex:1">
-        <img src="illustrations/I20 (From the Mountains_ Lobsang Dongzhi).jpg" alt="From the Mountains: Lobsang Dongzhi" loading="lazy">
+        <img decoding="async" src="illustrations/I20 (From the Mountains_ Lobsang Dongzhi).jpg" alt="From the Mountains: Lobsang Dongzhi" loading="lazy">
       </div>
       <div class="g" data-title="From the Mountains: The Singing Duel II" style="flex:1">
-        <img src="illustrations/I21 (From the Mountains_ The Singing Duel II).jpg" alt="From the Mountains: The Singing Duel II" loading="lazy">
+        <img decoding="async" src="illustrations/I21 (From the Mountains_ The Singing Duel II).jpg" alt="From the Mountains: The Singing Duel II" loading="lazy">
       </div>
       <div class="g" data-title="From the Mountains: Amala" style="flex:1">
-        <img src="illustrations/I22 (From the Mountains_ Amala).jpg" alt="From the Mountains: Amala" loading="lazy">
+        <img decoding="async" src="illustrations/I22 (From the Mountains_ Amala).jpg" alt="From the Mountains: Amala" loading="lazy">
       </div>
     </div>
 
@@ -290,80 +280,43 @@
       <!-- LEFT: I23 / I25 / I27 / I29 -->
       <div class="col" style="flex:1.3">
         <div class="g" data-title="Rabbits">
-          <img src="illustrations/I23 (Rabbits).jpg" alt="Rabbits" loading="lazy">
+          <img decoding="async" src="illustrations/I23 (Rabbits).jpg" alt="Rabbits" loading="lazy">
         </div>
         <div class="g" data-title="Rabbits 1">
-          <img src="illustrations/I25 (Rabbits 1).jpg" alt="Rabbits 1" loading="lazy">
+          <img decoding="async" src="illustrations/I25 (Rabbits 1).jpg" alt="Rabbits 1" loading="lazy">
         </div>
         <div class="g" data-title="Untitled" id="i27-wrap">
-          <img src="illustrations/I27 (Untitled).jpg" alt="Untitled" loading="lazy"
+          <img decoding="async" src="illustrations/I27 (Untitled).jpg" alt="Untitled" loading="lazy"
                onerror="this.src='illustrations/I27 (Untitled).jpg_'">
         </div>
         <div class="g" data-title="Rabbit Running Free">
-          <img src="illustrations/I29 (Rabbit Running Free).jpg" alt="Rabbit Running Free" loading="lazy">
+          <img decoding="async" src="illustrations/I29 (Rabbit Running Free).jpg" alt="Rabbit Running Free" loading="lazy">
         </div>
       </div>
       <!-- RIGHT: I24 / I26 / I28 -->
       <div class="col" style="flex:1; justify-content:space-between; align-self:stretch">
         <div class="g" data-title="Play">
-          <img src="illustrations/I24 (Play).jpg" alt="Play" loading="lazy">
+          <img decoding="async" src="illustrations/I24 (Play).jpg" alt="Play" loading="lazy">
         </div>
         <div class="g" data-title="Play II">
-          <img src="illustrations/I26 (Play).jpg" alt="Play II" loading="lazy">
+          <img decoding="async" src="illustrations/I26 (Play).jpg" alt="Play II" loading="lazy">
         </div>
         <div class="g" data-title="Untitled II" style="width:105px; align-self:flex-start">
-          <img src="illustrations/I28 (Untitled).jpg" alt="Untitled II" loading="lazy">
+          <img decoding="async" src="illustrations/I28 (Untitled).jpg" alt="Untitled II" loading="lazy">
         </div>
       </div>
     </div>
 
     <div class="sep"></div>
 
-    <!--
-    BLOCK D — confirmed from design mockup pixel analysis:
-    Row 1: I30 (large, flex:1.3 left) | I31 (top right) / [I32+I33 side by side] + I34 below
-    Then: I35 · I36  two col equal
-    
-    Exact structure:
-    LEFT (flex:1.3): I30 tall image (woman in yellow field)
-    RIGHT (flex:1):  I31 (red lanterns, top)
-                     [I32 (neon) · I33 (dark purple)] side by side
-                     I34 (black figure photo, below I33)
-    Then full-width sep
-    I35 · I36  equal 2-col
-    -->
-    <div class="row">
-      <!-- LEFT: I30 large -->
-      <div class="g" data-title="Lobsang Dongzhi" style="flex:1.3">
-        <img src="illustrations/I30 (Lobsang Dongzhi).jpg" alt="Lobsang Dongzhi" loading="lazy">
-      </div>
-      <!-- RIGHT: I31 top / then I32(large left) + col[I33/I34] right -->
-      <div class="col" style="flex:1">
-        <div class="g" data-title="From the Mountains: The Drinking Song">
-          <img src="illustrations/I31 (From the Mountains_ The Drinking Song).jpg" alt="From the Mountains: The Drinking Song" loading="lazy">
-        </div>
-        <div class="row" style="margin-bottom:0">
-          <div class="g" data-title="Rainbow Ponies" style="flex:1.2">
-            <img src="illustrations/I32 (Rainbow Ponies).jpg" alt="Rainbow Ponies" loading="lazy">
-          </div>
-          <div class="col" style="flex:1">
-            <div class="g" data-title="Time Doesn't Exist">
-              <img src="illustrations/I33 (Time Doesn%E2%80%99t Exist).jpg" alt="Time Doesn't Exist" loading="lazy">
-            </div>
-            <div class="g" data-title="Jinyiwei">
-              <img src="illustrations/I34 (Jinyiwei).jpg" alt="Jinyiwei" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <div class="row" style="align-items:stretch">
       <div class="g" data-title="Argument" style="flex:1.3; display:flex">
-        <img src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
+        <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
       <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1">
-        <img src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
 

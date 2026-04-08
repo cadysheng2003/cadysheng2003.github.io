@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:#4f463f;
-      --color-text-light:#8a817a;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              8px;
@@ -23,8 +23,10 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
     .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g  { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g { border-radius:8px; overflow:hidden; }
+    .g img { border-radius:8px; }
     .g video { display:block; width:100%; height:auto; }
     .g:hover img { opacity:0.88; }
     .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
@@ -61,6 +63,47 @@
       .page-nav__side, .page-nav__side--right { align-items:center; }
     }
     @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
       body{padding-left:0 !important;}
 
       /* Page header / title image */
@@ -148,16 +191,99 @@
         display:block;
         max-width:100%;
       }
-      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
+footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
 
     /* ── Side nav styles now live in nav.js ── */
+      /* Title image: warm brown #5A4B42, transparent bg via multiply */
+      .page-header{background:#fff;}
+      .page-header img{
+        mix-blend-mode:multiply;
+        filter:brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44) !important;
+      }
+
+    @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
+      /* ── Mobile performance: reduce CLS and rendering cost ── */
+
+      /* Skip rendering rows until near viewport */
+      .gallery .r,
+      .gallery .row {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Isolate paint/layout per row — cheaper reflows */
+      .gallery .r,
+      .gallery .row,
+      .gallery .g {
+        contain: layout style;
+      }
+
+      /* Images: prevent reflow, GPU-friendly rendering */
+      .gallery img {
+        will-change: auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      /* Reserve minimum height before images load */
+      .gallery .g {
+        min-height: 120px;
+      }
+
+      /* Disable hover transitions on mobile (no hover anyway) */
+      .gallery img,
+      .g img {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div style="text-align:center;padding:40px 0 20px">
-    <img src="jewelry/jewelry-title.png" alt="Jewelry" style="width:32%;max-width:252px">
+    <img loading="eager" fetchpriority="high" decoding="async" src="jewelry/jewelry-title.png" alt="Jewelry" style="width:32%;max-width:252px">
   </div>
 
   <div class="intro-text">
@@ -168,24 +294,24 @@
   <div class="gallery">
     <div class="r" style="height:320px;align-items:stretch">
       <div class="g" data-title="Flask Chain" style="flex:131;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J1 (Flask Chain).png" alt="Flask Chain" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J1 (Flask Chain).png" alt="Flask Chain" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Nanhong Agate and Turquoise Necklace" style="flex:109;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J2 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J2 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Sunflower Necklace" style="flex:116;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J3 (Sunflower Necklace).png" alt="Sunflower Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J3 (Sunflower Necklace).png" alt="Sunflower Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Agate and Silver Necklaces" style="flex:133;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J4 (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J4 (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
     </div>
     <div class="r" style="margin-top:28px;height:320px;align-items:stretch">
       <div class="g" data-title="Agate and Silver Necklaces II" style="flex:90;height:100%;overflow:hidden">
-        <img src="jewelry/J5. (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces II" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="jewelry/J5. (Agate and Silver Necklaces).png" alt="Agate and Silver Necklaces II" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="Alxa Candy-Heart Agate Raw Stone Necklace" style="flex:160;height:100%;overflow:hidden">
-        <img src="jewelry/J6. (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="jewelry/J6. (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div style="flex:80;height:100%;overflow:hidden;line-height:0">
         <video autoplay muted loop playsinline src="jewelry/J7 (Video of Necklaces).mov" style="width:100%;height:100%;object-fit:cover;display:block"></video>
@@ -193,27 +319,27 @@
     </div>
     <div class="r" style="margin-top:28px;height:320px;align-items:stretch">
       <div class="g" data-title="Nanhong Agate and Turquoise Necklace II" style="flex:215;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J8 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J8 (Nanhong Agate and Turquoise Necklace).png" alt="Nanhong Agate and Turquoise Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Agate Necklace" style="flex:113;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J10. (Agate Necklace).png" alt="Agate Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J10. (Agate Necklace).png" alt="Agate Necklace" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Alxa Candy-Heart Agate Raw Stone Necklace II" style="flex:107;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J9 (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J9 (Alxa Candy-Heart Agate Raw Stone Necklace).png" alt="Alxa Candy-Heart Agate Raw Stone Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
       <div class="g" data-title="Agate Necklace II" style="flex:159;height:100%;overflow:hidden;background:#fff">
-        <img src="jewelry/J11 (Agate Necklace).png" alt="Agate Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
+        <img decoding="async" src="jewelry/J11 (Agate Necklace).png" alt="Agate Necklace II" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block">
       </div>
     </div>
     <div class="r" style="margin-top:28px">
       <div class="g" data-title="Plum Blossom Jade Necklace" style="flex:156">
-        <img src="jewelry/J13 (Plum Blossom Jade Necklace).png" alt="Plum Blossom Jade Necklace" loading="lazy">
+        <img decoding="async" src="jewelry/J13 (Plum Blossom Jade Necklace).png" alt="Plum Blossom Jade Necklace" loading="lazy">
       </div>
       <div class="g" data-title="Agate and Turquoise Necklace" style="flex:175">
-        <img src="jewelry/J12 (Agate and Turquoise Necklace).png" alt="Agate and Turquoise Necklace" loading="lazy">
+        <img decoding="async" src="jewelry/J12 (Agate and Turquoise Necklace).png" alt="Agate and Turquoise Necklace" loading="lazy">
       </div>
       <div class="g" data-title="My Cat with an Agate Bracelet" style="flex:162">
-        <img src="jewelry/J14 (My Cat with an Agate Bracelet).png" alt="My Cat with an Agate Bracelet" loading="lazy">
+        <img decoding="async" src="jewelry/J14 (My Cat with an Agate Bracelet).png" alt="My Cat with an Agate Bracelet" loading="lazy">
       </div>
     </div>
   </div>

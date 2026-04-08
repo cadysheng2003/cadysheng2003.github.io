@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:#4f463f;
-      --color-text-light:#8a817a;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              8px;
@@ -23,8 +23,10 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
     .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g  { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g { border-radius:8px; overflow:hidden; }
+    .g img { border-radius:8px; }
     .g video { display:block; width:100%; height:auto; }
     .g:hover img { opacity:0.88; }
     .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
@@ -61,6 +63,47 @@
       .r[style] > .g img { max-height:75vw; object-fit:cover !important; }
     }
     @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
       body{padding-left:0 !important;}
 
       /* Page header / title image */
@@ -148,16 +191,99 @@
         display:block;
         max-width:100%;
       }
-      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
+footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
 
     /* ── Side nav styles now live in nav.js ── */
+      /* Title image: warm brown #5A4B42, transparent bg via multiply */
+      .page-header{background:#fff;}
+      .page-header img{
+        mix-blend-mode:multiply;
+        filter:brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44) !important;
+      }
+
+    @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
+      /* ── Mobile performance: reduce CLS and rendering cost ── */
+
+      /* Skip rendering rows until near viewport */
+      .gallery .r,
+      .gallery .row {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Isolate paint/layout per row — cheaper reflows */
+      .gallery .r,
+      .gallery .row,
+      .gallery .g {
+        contain: layout style;
+      }
+
+      /* Images: prevent reflow, GPU-friendly rendering */
+      .gallery img {
+        will-change: auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      /* Reserve minimum height before images load */
+      .gallery .g {
+        min-height: 120px;
+      }
+
+      /* Disable hover transitions on mobile (no hover anyway) */
+      .gallery img,
+      .g img {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div style="text-align:center;padding:40px 0 20px">
-    <img src="meditation/meditation-title.png" alt="Meditation" style="width:36.8%;max-width:290px">
+    <img loading="eager" fetchpriority="high" decoding="async" src="meditation/meditation-title.png" alt="Meditation" style="width:36.8%;max-width:290px">
   </div>
 
   <div class="intro-text">
@@ -168,23 +294,23 @@
   <div class="gallery">
     <div class="r">
       <div class="g" data-title="RISD Presence Meditation" style="flex:1">
-        <img src="meditation/M1 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation" loading="lazy">
+        <img decoding="async" src="meditation/M1 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation" loading="lazy" decoding="async">
       </div>
     </div>
     <div class="r" style="gap:30px;margin-top:10px">
       <div class="g" data-title="RISD Presence Hike" style="flex:357">
-        <img src="meditation/M2 (RISD Presence Hike).jpg" alt="RISD Presence Hike" loading="lazy">
+        <img decoding="async" src="meditation/M2 (RISD Presence Hike).jpg" alt="RISD Presence Hike" loading="lazy">
       </div>
       <div class="g" data-title="RISD Presence Meditation II" style="flex:326">
-        <img src="meditation/M3 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation II" loading="lazy">
+        <img decoding="async" src="meditation/M3 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation II" loading="lazy">
       </div>
     </div>
     <div class="r" style="gap:12px;margin-top:10px">
       <div class="g" data-title="RISD Presence Meditation III" style="flex:215">
-        <img src="meditation/M4 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation III" loading="lazy">
+        <img decoding="async" src="meditation/M4 (RISD Presence Meditation).jpg" alt="RISD Presence Meditation III" loading="lazy">
       </div>
       <div class="g" data-title="Mindfulness in Prisons Event" style="flex:457">
-        <img src="meditation/M5 (Mindfulness in Prisons Event).jpg" alt="Mindfulness in Prisons Event" loading="lazy">
+        <img decoding="async" src="meditation/M5 (Mindfulness in Prisons Event).jpg" alt="Mindfulness in Prisons Event" loading="lazy">
       </div>
     </div>
   </div>

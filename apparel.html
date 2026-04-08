@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:#4f463f;
-      --color-text-light:#8a817a;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              8px;
@@ -23,8 +23,10 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
     .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g  { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g { border-radius:8px; overflow:hidden; }
+    .g img { border-radius:8px; }
     .g video { display:block; width:100%; height:auto; }
     .g:hover img { opacity:0.88; }
     .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
@@ -60,6 +62,47 @@
       .r[style*="height"] > .g img { height:auto !important; object-fit:unset !important; }
     }
     @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:15px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
       body{padding-left:0 !important;}
 
       /* Page header / title image */
@@ -147,16 +190,99 @@
         display:block;
         max-width:100%;
       }
-      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
+footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
 
     /* ── Side nav styles now live in nav.js ── */
+      /* Title image: warm brown #5A4B42, transparent bg via multiply */
+      .page-header{background:#fff;}
+      .page-header img{
+        mix-blend-mode:multiply;
+        filter:brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44) !important;
+      }
+
+    @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:15px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
+      /* ── Mobile performance: reduce CLS and rendering cost ── */
+
+      /* Skip rendering rows until near viewport */
+      .gallery .r,
+      .gallery .row {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Isolate paint/layout per row — cheaper reflows */
+      .gallery .r,
+      .gallery .row,
+      .gallery .g {
+        contain: layout style;
+      }
+
+      /* Images: prevent reflow, GPU-friendly rendering */
+      .gallery img {
+        will-change: auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      /* Reserve minimum height before images load */
+      .gallery .g {
+        min-height: 120px;
+      }
+
+      /* Disable hover transitions on mobile (no hover anyway) */
+      .gallery img,
+      .g img {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div style="text-align:center;padding:40px 0 20px">
-    <img src="apparel/apparel-title.png" alt="Apparel" style="width:30.6%;max-width:241px">
+    <img loading="eager" fetchpriority="high" decoding="async" src="apparel/apparel-title.png" alt="Apparel" style="width:30.6%;max-width:241px">
   </div>
 
   <div style="max-width:960px;margin:0 auto;padding:0 40px 4px"><p style="font-family:'Lora',serif;font-size:15px;font-style:italic;color:#888">Achieved the Season&#8217;s Top Sales in Collaboration with Toread X</p></div>
@@ -164,54 +290,54 @@
     <div class="r" style="align-items:flex-start">
       <div class="c" style="flex:140">
         <div class="g" data-title="Photoshoot Look 1">
-          <img src="apparel/A1 (Photoshoot Look 1).jpg" alt="Photoshoot Look 1" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A1 (Photoshoot Look 1).jpg" alt="Photoshoot Look 1" loading="lazy" decoding="async" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 5">
-          <img src="apparel/A5 (Photoshoot Look 5).jpg" alt="Photoshoot Look 5" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A5 (Photoshoot Look 5).jpg" alt="Photoshoot Look 5" loading="lazy" style="width:100%;display:block">
         </div>
       </div>
       <div class="c" style="flex:112">
         <div class="g" data-title="Photoshoot Look 2">
-          <img src="apparel/A2 (Photoshoot Look 2).jpg" alt="Photoshoot Look 2" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A2 (Photoshoot Look 2).jpg" alt="Photoshoot Look 2" loading="lazy" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 4">
-          <img src="apparel/A4 (Photoshoot Look 4).jpg" alt="Photoshoot Look 4" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A4 (Photoshoot Look 4).jpg" alt="Photoshoot Look 4" loading="lazy" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 8">
-          <img src="apparel/A8 (Photoshoot Look 8).jpg" alt="Photoshoot Look 8" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A8 (Photoshoot Look 8).jpg" alt="Photoshoot Look 8" loading="lazy" style="width:100%;display:block">
         </div>
       </div>
       <div class="c" style="flex:108">
         <div class="g" data-title="Photoshoot Look 3">
-          <img src="apparel/A3 (Photoshoot Look 3).jpg" alt="Photoshoot Look 3" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A3 (Photoshoot Look 3).jpg" alt="Photoshoot Look 3" loading="lazy" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 6">
-          <img src="apparel/A6 (Photoshoot Look 6).jpg" alt="Photoshoot Look 6" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A6 (Photoshoot Look 6).jpg" alt="Photoshoot Look 6" loading="lazy" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 7">
-          <img src="apparel/A7 (Photoshoot Look 7).jpg" alt="Photoshoot Look 7" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A7 (Photoshoot Look 7).jpg" alt="Photoshoot Look 7" loading="lazy" style="width:100%;display:block">
         </div>
       </div>
     </div>
     <div class="r" style="height:300px;align-items:stretch">
       <div class="g" data-title="Moon Series: Freeze" style="flex:1.8;height:100%;overflow:hidden">
-        <img src="apparel/A9 (Moon Series_ Freeze).jpg" alt="Moon Series: Freeze" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="apparel/A9 (Moon Series_ Freeze).jpg" alt="Moon Series: Freeze" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="Moon Series: Off Guard" style="flex:1;height:100%;overflow:hidden">
-        <img src="apparel/A10 (Moon Series_ Off Guard).jpg" alt="Moon Series: Off Guard" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="apparel/A10 (Moon Series_ Off Guard).jpg" alt="Moon Series: Off Guard" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     <div class="r" style="height:300px;align-items:stretch">
       <div class="g" data-title="Moon Series: Recover" style="flex:1;height:100%;overflow:hidden">
-        <img src="apparel/A11 (Moon Series_ Recover).jpg" alt="Moon Series: Recover" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="apparel/A11 (Moon Series_ Recover).jpg" alt="Moon Series: Recover" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="Moon Series: Drowning" style="flex:1.8;height:100%;overflow:hidden">
-        <img src="apparel/A12 (Moon Series_ Drowning).jpg" alt="Moon Series: Drowning" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="apparel/A12 (Moon Series_ Drowning).jpg" alt="Moon Series: Drowning" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     <div class="r">
       <div class="g" data-title="Toread Physical Store Image" style="flex:1">
-        <img src="apparel/A13 (Toread Physical Store Image).jpg" alt="Toread Physical Store Image" loading="lazy">
+        <img decoding="async" src="apparel/A13 (Toread Physical Store Image).jpg" alt="Toread Physical Store Image" loading="lazy">
       </div>
     </div>
   </div>

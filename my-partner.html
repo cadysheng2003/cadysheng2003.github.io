@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:#4f463f;
-      --color-text-light:#8a817a;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              8px;
@@ -23,8 +23,10 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
     .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g  { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
+    .g { border-radius:8px; overflow:hidden; }
+    .g img { border-radius:8px; }
     .g video { display:block; width:100%; height:auto; }
     .g:hover img { opacity:0.88; }
     .g2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
@@ -58,7 +60,49 @@
       .page-nav { flex-direction:column; gap:24px; align-items:center; }
       .page-nav__side, .page-nav__side--right { align-items:center; }
     }
+
     @media(max-width:767px) and (pointer:coarse){
+      /* Override 600px page-nav column layout → horizontal row on mobile */
+      .page-nav{
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100%;
+        box-sizing:border-box;
+        padding:0 16px;
+        margin:24px 0 20px;
+      }
+      .page-nav__side,
+      .page-nav__side--right{
+        flex:0 0 40%;
+        width:40%;
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        box-sizing:border-box;
+      }
+      .page-nav__side{ align-items:flex-start !important; padding-right:8px; }
+      .page-nav__side--right{ align-items:flex-end !important; padding-left:8px; }
+      .page-nav__home{
+        flex:0 0 20%;
+        width:20%;
+        text-align:center;
+        font-size:16px;
+        padding:0;
+        box-sizing:border-box;
+      }
+      .page-nav__label{ display:none; }
+      .page-nav__name{
+        font-size:11px;
+        line-height:1.3;
+        word-break:break-word;
+        overflow-wrap:break-word;
+        display:block;
+        max-width:100%;
+      }
+
+      .g, .g img { border-radius:3px !important; overflow:hidden; }
       body{padding-left:0 !important;}
 
       /* Page header / title image */
@@ -146,38 +190,37 @@
         display:block;
         max-width:100%;
       }
-      footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
+footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
 
-    /* ── Side nav styles now live in nav.js ── */
   </style>
 </head>
 <body>
 
   <div style="text-align:center; padding:40px 0 12px">
-    <img src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:inline-block">
+    <img decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:inline-block">
   </div>
 
   <div class="gallery">
     <!-- Row 1: MP1 + MP4(My Partner 2), equal width, cover fill, ~350px tall -->
     <div class="r" style="height:350px;gap:12px">
       <div class="g" data-title="My Partner 1" style="flex:1;height:100%;overflow:hidden">
-        <img src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="My Partner 4" style="flex:1;height:100%;overflow:hidden">
-        <img src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     <!-- Row 2: MP3 + MP2(My Partner 4) + MP5, equal width, cover fill, ~270px tall -->
     <div class="r" style="height:270px;gap:12px">
       <div class="g" data-title="My Partner 3" style="flex:1;height:100%;overflow:hidden">
-        <img src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="My Partner 2" style="flex:1;height:100%;overflow:hidden">
-        <img src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="My Partner 5" style="flex:1;height:100%;overflow:hidden">
-        <img src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
   </div>
