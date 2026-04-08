@@ -10,8 +10,8 @@
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body:    'Lora', Georgia, serif;
-      --color-text:       #2a2a2a;
-      --color-text-light: #888;
+      --color-text:#4f463f;
+      --color-text-light:#8a817a;
       --page-max-width:   960px;
       --page-padding:     40px;
       --gap:              8px;
@@ -23,7 +23,7 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .r  { display:flex; gap:var(--gap); margin-bottom:var(--gap); align-items:flex-start; }
     .c  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
-    .g  { display:block; line-height:0; cursor:pointer; min-width:0; }
+    .g  { display:block; line-height:0; cursor:pointer; min-width:0; border-radius:5px; overflow:hidden; }
     .g img   { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
     .g video { display:block; width:100%; height:auto; }
     .g:hover img { opacity:0.88; }
@@ -41,7 +41,7 @@
     .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
     .page-nav__side { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:140px; }
     .page-nav__side--right { align-items:flex-end; }
-    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#bbb; }
+    .page-nav__label { font-family:var(--font-body); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:#a89f98; }
     .page-nav__name  { font-family:var(--font-display); font-size:15px; font-weight:400; color:var(--color-text-light); text-decoration:none; letter-spacing:0.3px; transition:color 0.25s; }
     .page-nav__name:hover { color:var(--color-text); }
     .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
@@ -159,7 +159,6 @@
     }
 
     /* ── Side nav styles now live in nav.js ── */
-
   </style>
 </head>
 <body>

@@ -7,15 +7,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --font-ui:'Jost',sans-serif; --color-text:#2a2a2a; --color-text-light:#888; --page-max-width:960px; --page-padding:40px; }
+    :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --font-ui:'Jost',sans-serif; --color-text:#4f463f; --color-text-light:#8a817a; --page-max-width:960px; --page-padding:40px; }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{-webkit-font-smoothing:antialiased;}
     body{background:#fff;color:var(--color-text);}
-    .site-header{max-width:var(--page-max-width);margin:0 auto;padding:8px var(--page-padding) 0;}
+    .site-header{max-width:var(--page-max-width);margin:0 auto;padding:1px var(--page-padding) 0;}
     .logo-image{display:block;width:min(744px,calc(100% - var(--page-padding)*2));height:auto;margin:0 auto;}
-    .tagline{font-family:var(--font-body);font-size:13.5px;font-style:italic;text-align:right;color:var(--color-text-light);margin-top:10px;letter-spacing:0.3px;}
+    .tagline{font-family:var(--font-body);font-size:13.5px;font-style:italic;text-align:right;color:var(--color-text-light);margin-top:4px;letter-spacing:0.3px;}
     .collage{max-width:var(--page-max-width);margin:14px auto 0;padding:0 var(--page-padding);}
-    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:32px;position:relative;}
+    .hero-tile{display:block;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:25px;position:relative;border-radius:13px;}
     .hero-tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
     .hero-tile:hover img{opacity:1;transform:scale(1.04);}
     .hero-tile .tile__label{
@@ -26,18 +26,12 @@
       padding:16px;
     }
     .hero-tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
-    .hero-tile::after{
-      content:'↗';position:absolute;bottom:14px;right:16px;
-      font-size:13px;color:rgba(255,255,255,0.75);
-      font-family:var(--font-body);letter-spacing:0;
-      transition:opacity 0.25s ease;pointer-events:none;
-    }
-    .hero-tile:hover::after{opacity:0;}
+
     .collage-columns{display:flex;gap:16px;align-items:flex-start;}
     .col-left{flex:0 0 36%;display:flex;flex-direction:column;gap:18px;}
     .col-middle{flex:0 0 32.5%;display:flex;flex-direction:column;gap:18px;}
     .col-right{flex:1;display:flex;flex-direction:column;gap:18px;}
-    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;position:relative;}
+    .tile{display:block;overflow:hidden;text-decoration:none;color:inherit;position:relative;border-radius:13px;}
     .tile img{display:block;width:100%;height:auto;transition:transform 0.3s ease;}
     .tile:hover img{opacity:1;transform:scale(1.04);}
     .tile__label{
@@ -48,13 +42,7 @@
       padding:12px;
     }
     .tile:hover .tile__label{background:rgba(0,0,0,0.25);opacity:1;}
-    .tile::after{
-      content:'↗';position:absolute;bottom:10px;right:12px;
-      font-size:11px;color:rgba(255,255,255,0.75);
-      font-family:var(--font-body);letter-spacing:0;
-      transition:opacity 0.25s ease;pointer-events:none;
-    }
-    .tile:hover::after{opacity:0;}
+
     .connect-section{max-width:var(--page-max-width);margin:60px auto 0;padding:0 var(--page-padding);text-align:right;}
     .connect-btn{display:inline-block;font-family:var(--font-display);font-size:17px;font-weight:400;color:var(--color-text);text-decoration:none;letter-spacing:0.5px;background:#f7f5f3;padding:14px 32px;}
     .site-footer{max-width:var(--page-max-width);margin:52px auto 0;padding:32px var(--page-padding) 48px;border-top:1px solid #e8e8e8;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;}
@@ -66,6 +54,11 @@
     .delay-1{animation-delay:0.15s;}.delay-2{animation-delay:0.3s;}.delay-3{animation-delay:0.45s;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
     
+    /* Desktop: match Apparel height to Stage Art & Production */
+    a[href="apparel.html"].tile,
+    a[href="stage-art-production.html"].tile{aspect-ratio:16/9;}
+    a[href="apparel.html"].tile img,
+    a[href="stage-art-production.html"].tile img{height:100%;object-fit:cover;object-position:center;}
     @media(max-width:767px) and (pointer:coarse){
 
       body{ padding-left:0 !important; padding-bottom:env(safe-area-inset-bottom,20px); }
@@ -188,6 +181,7 @@
 
     /* ── Side nav styles now live in nav.js ── */
 
+
   </style>
     <link rel="preload" as="image" href="homepage-covers-images/CadyShengLogo.jpg">
   <link rel="preload" as="image" href="homepage-covers-images/IllustrationsCover.jpg">
@@ -213,6 +207,10 @@
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy" decoding="async">
           <span class="tile__label">Stage Art &amp; Production</span>
         </a>
+        <a href="flow-and-spirituality.html" class="tile tile--medium">
+          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy" decoding="async">
+          <span class="tile__label">Flow &amp; Spirituality</span>
+        </a>
         <a href="graphic-design.html" class="tile tile--medium">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy" decoding="async">
           <span class="tile__label">Graphic Design</span>
@@ -220,10 +218,6 @@
         <a href="apparel.html" class="tile tile--small">
           <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy" decoding="async">
           <span class="tile__label">Apparel</span>
-        </a>
-        <a href="flow-and-spirituality.html" class="tile tile--large">
-          <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy" decoding="async">
-          <span class="tile__label">Flow &amp; Spirituality</span>
         </a>
       </div>
       <!-- col-middle (desktop: 32.5%, mobile: grid-column:1 = LEFT) -->
