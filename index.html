@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cady Sheng — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root { --font-display:'Cormorant Garamond',Georgia,serif; --font-body:'Lora',Georgia,serif; --font-ui:'Jost',sans-serif; --color-text:#4f463f; --color-text-light:#8a817a; --page-max-width:960px; --page-padding:40px; }
@@ -135,7 +136,7 @@
 
       a[href="flow-and-spirituality.html"] img{ object-position:center center; min-height:43vw; max-height:43vw; }
       a[href="graphic-design.html"] img{ object-position:center top; min-height:34vw; }
-      a[href="apparel.html"] img{ object-position:center center; min-height:28vw; }
+      a[href="apparel.html"] img{ object-position:center top; min-height:34vw; }
       a[href="childrens-book.html"] img{ object-position:center top; min-height:36vw; }
       a[href="jewelry.html"] img{ object-fit:contain; background:transparent; min-height:28vw; }
 
@@ -198,59 +199,59 @@
 
   <header class="site-header fade-in">
     <img src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image" decoding="async">
-    <p class="tagline">Truth, Love, Flow, Oneness</p>
+    <p class="tagline" data-i18n="index.tagline">Truth, Love, Flow, Oneness</p>
   </header>
 
   <section class="collage fade-in delay-2">
     <!-- Hero: Illustrations full width -->
     <a href="illustrations.html" class="hero-tile">
       <img src="homepage-covers-images/IllustrationsCover.jpg" alt="Illustrations" decoding="async">
-      <span class="tile__label">Illustrations</span>
+      <span class="tile__label" data-i18n="nav.illustrations">Illustrations</span>
     </a>
     <div class="collage-columns">
       <!-- col-left (desktop: 36%, mobile: grid-column:2 = RIGHT) -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy" decoding="async">
-          <span class="tile__label">Stage Art &amp; Production</span>
+          <span class="tile__label" data-i18n="nav.stage">Stage Art &amp; Production</span>
         </a>
         <a href="flow-and-spirituality.html" class="tile tile--medium">
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy" decoding="async">
-          <span class="tile__label">Flow &amp; Spirituality</span>
+          <span class="tile__label" data-i18n="nav.flow">Flow &amp; Spirituality</span>
         </a>
         <a href="graphic-design.html" class="tile tile--medium">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy" decoding="async">
-          <span class="tile__label">Graphic Design</span>
+          <span class="tile__label" data-i18n="nav.graphic">Graphic Design</span>
         </a>
         <a href="apparel.html" class="tile tile--small">
           <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy" decoding="async">
-          <span class="tile__label">Apparel</span>
+          <span class="tile__label" data-i18n="nav.apparel">Apparel</span>
         </a>
       </div>
       <!-- col-middle (desktop: 32.5%, mobile: grid-column:1 = LEFT) -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy" decoding="async">
-          <span class="tile__label">My Partner</span>
+          <span class="tile__label" data-i18n="nav.partner">My Partner</span>
         </a>
         <a href="traditional-mediums.html" class="tile tile--medium">
           <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy" decoding="async">
-          <span class="tile__label">Traditional Mediums</span>
+          <span class="tile__label" data-i18n="nav.traditional">Traditional Mediums</span>
         </a>
         <a href="meditation.html" class="tile tile--small">
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy" decoding="async">
-          <span class="tile__label">Meditation</span>
+          <span class="tile__label" data-i18n="nav.meditation">Meditation</span>
         </a>
       </div>
       <!-- col-right (desktop: flex:1, mobile: grid-column:1/-1 = bottom row) -->
       <div class="col-right">
         <a href="childrens-book.html" class="tile tile--large">
           <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy" decoding="async">
-          <span class="tile__label">Children&#8217;s Book</span>
+          <span class="tile__label" data-i18n="nav.childrens">Children&#8217;s Book</span>
         </a>
         <a href="jewelry.html" class="tile tile--small">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy" decoding="async">
-          <span class="tile__label">Jewelry</span>
+          <span class="tile__label" data-i18n="nav.jewelry">Jewelry</span>
         </a>
       </div>
     </div>
@@ -352,6 +353,7 @@
       if (mobile && !isMobile) {
         storeOriginals();
         buildMobile();
+        if (window.csApplyTranslations) window.csApplyTranslations();
         isMobile = true;
       } else if (!mobile && isMobile) {
         destroyMobile();
