@@ -134,9 +134,12 @@
         backface-visibility: hidden;
       }
 
-      /* Reserve minimum height before images load */
+      /* Reserve minimum height before images load — but NOT inside grid3 */
       .gallery .g {
         min-height: 120px;
+      }
+      .gallery .grid3 .g {
+        min-height: 0;
       }
 
       /* Disable hover transitions on mobile (no hover anyway) */
@@ -149,6 +152,28 @@
         grid-template-columns: 1fr 1fr 1fr !important;
         display: grid !important;
       }
+
+      /* Fix: remove min-height inside grid cells — causes large gaps */
+      .grid3 .g { min-height: 0 !important; }
+
+      /* Block B mobile layout:
+         I17/I19/I20/I21 → 2×2 grid
+         I18, I22        → single full-width row                    */
+      .il-grid2x2 {
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:8px !important;
+        margin-bottom:8px !important;
+      }
+      .il-grid2x2 .g { width:100% !important; }
+      .il-grid2x2 .g img { width:100% !important; height:auto !important; display:block !important; object-fit:unset !important; }
+
+      .il-single {
+        display:block !important;
+        width:100% !important;
+        margin-bottom:8px !important;
+      }
+      .il-single img { width:100% !important; height:auto !important; display:block !important; }
     }
   </style>
 </head>
@@ -244,26 +269,26 @@
     Row 1: I17 · I18 · I19
     Row 2: I20 · I21 · I22
     -->
-    <div class="row">
-      <div class="g" data-title="From the Mountains: The Dance Begins II" style="flex:1">
+    <div class="row" data-il-row="b1">
+      <div class="g" data-il="I17" data-title="From the Mountains: The Dance Begins II" style="flex:1">
         <img decoding="async" src="illustrations/I17 (From the Mountains_ The Dance Begins II).jpg" alt="From the Mountains: The Dance Begins II" loading="lazy">
       </div>
-      <div class="g" data-title="From the Mountains: The Singing Duel I" style="flex:1">
+      <div class="g" data-il="I18" data-title="From the Mountains: The Singing Duel I" style="flex:1">
         <img decoding="async" src="illustrations/I18 (From the Mountains_ The Singing Duel I).jpg" alt="From the Mountains: The Singing Duel I" loading="lazy">
       </div>
-      <div class="g" data-title="From the Mountains: Praise of Genghis Khan" style="flex:1">
+      <div class="g" data-il="I19" data-title="From the Mountains: Praise of Genghis Khan" style="flex:1">
         <img decoding="async" src="illustrations/I19 (From the Mountains_ Praise of Genghis Khan).jpg" alt="From the Mountains: Praise of Genghis Khan" loading="lazy">
       </div>
     </div>
 
-    <div class="row">
-      <div class="g" data-title="From the Mountains: Lobsang Dongzhi" style="flex:1">
+    <div class="row" data-il-row="b2">
+      <div class="g" data-il="I20" data-title="From the Mountains: Lobsang Dongzhi" style="flex:1">
         <img decoding="async" src="illustrations/I20 (From the Mountains_ Lobsang Dongzhi).jpg" alt="From the Mountains: Lobsang Dongzhi" loading="lazy">
       </div>
-      <div class="g" data-title="From the Mountains: The Singing Duel II" style="flex:1">
+      <div class="g" data-il="I21" data-title="From the Mountains: The Singing Duel II" style="flex:1">
         <img decoding="async" src="illustrations/I21 (From the Mountains_ The Singing Duel II).jpg" alt="From the Mountains: The Singing Duel II" loading="lazy">
       </div>
-      <div class="g" data-title="From the Mountains: Amala" style="flex:1">
+      <div class="g" data-il="I22" data-title="From the Mountains: Amala" style="flex:1">
         <img decoding="async" src="illustrations/I22 (From the Mountains_ Amala).jpg" alt="From the Mountains: Amala" loading="lazy">
       </div>
     </div>
@@ -339,5 +364,46 @@
   <script src="nav.js"></script>
   <script src="lightbox.js"></script>
   <script src="footer.js"></script>
+  <script>
+  (function(){
+    if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+    if(document.querySelector('.il-mobile-built')) return;
+
+    var gallery = document.querySelector('.gallery');
+    if(!gallery) return;
+
+    function get(id){ return document.querySelector('[data-il="'+id+'"]'); }
+
+    var I17=get('I17'), I18=get('I18'), I19=get('I19');
+    var I20=get('I20'), I21=get('I21'), I22=get('I22');
+    if(!I17||!I18||!I19||!I20||!I21||!I22) return;
+
+    var rowB1 = document.querySelector('[data-il-row="b1"]');
+    var rowB2 = document.querySelector('[data-il-row="b2"]');
+    if(!rowB1||!rowB2) return;
+
+    /* Build: I18 single → 2×2 grid(I17,I19,I20,I21) → I22 single */
+    var single18 = document.createElement('div');
+    single18.className = 'il-single';
+    single18.appendChild(I18);
+
+    var grid2x2 = document.createElement('div');
+    grid2x2.className = 'il-grid2x2';
+    [I17, I19, I20, I21].forEach(function(el){ grid2x2.appendChild(el); });
+
+    var single22 = document.createElement('div');
+    single22.className = 'il-single';
+    single22.appendChild(I22);
+
+    /* Insert before rowB1, then hide original rows */
+    rowB1.parentNode.insertBefore(single18, rowB1);
+    rowB1.parentNode.insertBefore(grid2x2, rowB1);
+    rowB1.parentNode.insertBefore(single22, rowB1);
+    rowB1.style.display = 'none';
+    rowB2.style.display = 'none';
+
+    gallery.classList.add('il-mobile-built');
+  })();
+  </script>
 </body>
 </html>
