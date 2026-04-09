@@ -105,6 +105,75 @@
       .g, .g img { border-radius:3px !important; overflow:hidden; }
       body{padding-left:0 !important;}
 
+      /* ── Apparel mobile overrides ── */
+
+      /* Subtitle: tighten to title, smaller font */
+      .ap-title-wrap{
+        padding-bottom:8px !important;
+      }
+      .ap-title-wrap img{
+        width:15% !important;
+        max-width:120px !important;
+        height:auto !important;
+      }
+      .ap-subtitle{
+        margin-top:0 !important;
+        margin-bottom:12px !important;
+        padding:0 16px !important;
+        text-align:center !important;
+      }
+      .ap-subtitle p{
+        font-size:12px !important;
+        letter-spacing:0.3px !important;
+      }
+
+      /* Row 1 top: A1/A2/A3 — 3-col, fixed height, perfectly aligned */
+      .ap-row3{
+        display:grid !important;
+        grid-template-columns:repeat(3, 1fr) !important;
+        gap:8px !important;
+        margin-bottom:8px !important;
+        align-items:stretch !important;
+      }
+      .ap-row3 .g{
+        width:100% !important;
+        aspect-ratio:3/4 !important;
+        overflow:hidden !important;
+        display:block !important;
+        height:auto !important;
+      }
+      .ap-row3 .g img{
+        width:100% !important;
+        height:100% !important;
+        object-fit:cover !important;
+        object-position:center top !important;
+        display:block !important;
+      }
+
+      /* Row 1 remaining: A4–A8 — 2-col CSS columns (no gaps) */
+      .ap-grid2{
+        column-count:2 !important;
+        column-gap:8px !important;
+        margin-bottom:8px !important;
+        display:block !important;
+      }
+      .ap-grid2 .g{
+        break-inside:avoid !important;
+        width:100% !important;
+        margin-bottom:8px !important;
+        display:block !important;
+      }
+      .ap-grid2 .g img{
+        width:100% !important;
+        height:auto !important;
+        display:block !important;
+        object-fit:unset !important;
+      }
+
+      /* Moon Series rows handled below after generic overrides */
+      .ap-moon-row2 > .g:nth-child(1){ flex:1 !important; }
+      .ap-moon-row2 > .g:nth-child(2){ flex:1.8 !important; }
+
       /* Page header / title image */
       .page-header{margin:24px auto 20px;padding:0 20px;}
       .page-header img{width:60% !important;max-width:240px !important;height:auto !important;}
@@ -140,6 +209,12 @@
       div[style*="padding:40px"] img[style*="width"],
       div[style*="text-align:center"] img[style*="width"]{
         width:55% !important;max-width:220px !important;height:auto !important;
+      }
+      /* Apparel title: override the above, keep small */
+      .ap-title-wrap img{
+        width:15% !important;
+        max-width:120px !important;
+        height:auto !important;
       }
       .g::after,.tile::after,.hero-tile::after{display:none !important;}
       .page-nav{
@@ -276,16 +351,37 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
       .g img {
         transition: none !important;
       }
+
+      /* ── Moon Series rows: MUST be last to override .r column rules ── */
+      .gallery .r[style*="height:300px"]{
+        flex-direction:row !important;
+        height:45vw !important;
+        gap:8px !important;
+        align-items:stretch !important;
+      }
+      .gallery .r[style*="height:300px"] > .g{
+        height:100% !important;
+        flex:1 !important;
+        overflow:hidden !important;
+        width:auto !important;
+      }
+      .gallery .r[style*="height:300px"] > .g img{
+        width:100% !important;
+        height:100% !important;
+        object-fit:cover !important;
+        display:block !important;
+        max-height:none !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div style="text-align:center;padding:40px 0 20px">
-    <img loading="eager" fetchpriority="high" decoding="async" src="apparel/apparel-title.png" alt="Apparel" style="width:30.6%;max-width:241px">
+  <div class="ap-title-wrap" style="text-align:center;padding:40px 0 20px">
+    <img loading="eager" fetchpriority="high" decoding="async" src="apparel/apparel-title.png" alt="Apparel" style="width:30.6%;max-width:241px" id="ap-title-img">
   </div>
 
-  <div style="max-width:960px;margin:0 auto;padding:0 40px 4px"><p style="font-family:'Lora',serif;font-size:15px;font-style:italic;color:#888">Achieved the Season&#8217;s Top Sales in Collaboration with Toread X</p></div>
+  <div class="ap-subtitle" style="max-width:960px;margin:0 auto;padding:0 40px 4px"><p style="font-family:'Lora',serif;font-size:15px;font-style:italic;color:#888">Achieved the Season&#8217;s Top Sales in Collaboration with Toread X</p></div>
   <div class="gallery" style="--gap:12px">
     <div class="r" style="align-items:flex-start">
       <div class="c" style="flex:140">
@@ -358,5 +454,55 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
   <script src="nav.js"></script>
   <script src="lightbox.js"></script>
   <script src="footer.js"></script>
+
+  <script>
+  (function(){
+    function buildApparelMobile(){
+      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+      if(document.querySelector('.apparel-mobile-built')) return;
+
+      var gallery = document.querySelector('.gallery');
+      if(!gallery) return;
+
+      var row1 = gallery.querySelector('.r');
+      if(!row1) return;
+
+      /* Collect all .g tiles from row1
+         Desktop column order: col-left(A1,A5), col-mid(A2,A4,A8), col-right(A3,A6,A7)
+         allTiles indices:      0=A1,1=A5,  2=A2,3=A4,4=A8,  5=A3,6=A6,7=A7          */
+      var allTiles = Array.from(row1.querySelectorAll('.g'));
+
+      /* Row A: A1(0), A2(2), A3(5) — 3-col single row */
+      var rowA = document.createElement('div');
+      rowA.className = 'ap-row3';
+      [0,2,5].forEach(function(i){ if(allTiles[i]) rowA.appendChild(allTiles[i]); });
+
+      /* Grid B: A4(3), A5(1), A6(6), A7(7), A8(4) — 2-col columns */
+      var gridB = document.createElement('div');
+      gridB.className = 'ap-grid2';
+      [3,1,6,7,4].forEach(function(i){ if(allTiles[i]) gridB.appendChild(allTiles[i]); });
+
+      row1.parentNode.insertBefore(rowA, row1);
+      row1.parentNode.insertBefore(gridB, row1);
+      row1.style.display = 'none';
+
+      /* Tag Moon Series rows for reliable flex-ratio targeting */
+      var moonRows = Array.from(gallery.querySelectorAll('.r[style*="height:300px"]'));
+      if(moonRows[0]) moonRows[0].classList.add('ap-moon-row1');
+      if(moonRows[1]) moonRows[1].classList.add('ap-moon-row2');
+
+      gallery.classList.add('apparel-mobile-built');
+    }
+
+    document.addEventListener('DOMContentLoaded', buildApparelMobile);
+
+    /* Force title image size on mobile */
+    document.addEventListener('DOMContentLoaded', function(){
+      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+      var img = document.getElementById('ap-title-img');
+      if(img){ img.style.setProperty('width','35%','important'); img.style.setProperty('max-width','180px','important'); }
+    });
+  })();
+  </script>
 </body>
 </html>
