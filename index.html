@@ -65,10 +65,10 @@
 
       /* Header */
       .site-header{ padding:4px 16px 0; text-align:center; }
-      .logo-image{ width:min(453px,96vw) !important; min-width:0 !important; display:block; margin:0 auto; transform:translateX(-7px); }
+      .logo-image{ width:min(453px,96vw) !important; min-width:0 !important; display:block; margin:0 auto; transform:translateX(-6px); }
       .tagline{
         font-family:'Cormorant Garamond',Georgia,serif;
-        font-size:13px;
+        font-size:15px;
         font-style:italic;
         font-weight:300;
         letter-spacing:0.04em;
@@ -132,7 +132,7 @@
 
       /* Per-image position tuning */
       a[href="my-partner.html"] img{ object-position:center top; min-height:38vw; }
-      a[href="stage-art-production.html"] img{ object-position:center center; min-height:34vw; }
+
       a[href="flow-and-spirituality.html"] img{ object-position:center center; min-height:43vw; max-height:43vw; }
       a[href="graphic-design.html"] img{ object-position:center top; min-height:34vw; }
       a[href="apparel.html"] img{ object-position:center top; min-height:34vw; }
@@ -177,6 +177,13 @@
       .site-footer{ flex-direction:column; gap:20px; padding:32px 20px calc(40px + env(safe-area-inset-bottom,0px)); }
       .footer-copyright{ text-align:left; }
 
+    
+      /* Stage Art: fixed card height creates vertical crop space */
+      a[href="stage-art-production.html"].tile img,
+      a[href="stage-art-production.html"] img{
+        object-fit:cover !important;
+        object-position:center 85% !important;
+      }
     }
 
     /* ── Side nav styles now live in nav.js ── */

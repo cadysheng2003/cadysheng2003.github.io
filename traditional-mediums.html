@@ -71,6 +71,51 @@
     .tm-r { flex:1.000 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
 
     @media(max-width:767px) and (pointer:coarse){
+            /* TM mobile custom layout */
+      .tm-mob-top{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        margin-bottom:12px;
+      }
+      .tm-mob-figs{
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr 1fr;
+        gap:3px;
+        margin-bottom:4px;
+      }
+      .tm-mob-top .g{
+        width:100%;
+        flex:none !important;
+      }
+      .tm-mob-top .g img{
+        width:100% !important;
+        height:auto !important;
+        object-fit:unset !important;
+        display:block;
+      }
+      .tm-mob-figs .g{
+        width:100%;
+        flex:none !important;
+      }
+      /* Hide empty original containers after JS moves elements */
+      .tm-fig-moved{ display:none !important; }
+
+      /* TM top section: 3-column grid for tm3col */
+      .tm3col{
+        display:grid !important;
+        grid-template-columns:1fr 1fr 1fr !important;
+        gap:4px !important;
+        flex-direction:unset !important;
+      }
+      .tm-l, .tm-m, .tm-r{
+        width:100% !important;
+        flex:none !important;
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+      }
+
       /* Override 600px page-nav column layout → horizontal row on mobile */
       .page-nav{
         flex-direction:row !important;
@@ -103,7 +148,7 @@
       }
       .page-nav__label{ display:none; }
       .page-nav__name{
-        font-size:11px;
+        font-size:15px;
         line-height:1.3;
         word-break:break-word;
         overflow-wrap:break-word;
@@ -124,7 +169,7 @@
   <div class="gallery">
     <div class="tm3col">
       <div class="tm-l">
-        <div class="g" data-title="Untitled Watercolor 1">
+        <div class="g" data-title="Untitled Watercolor 1" data-tm="TM1">
         <img decoding="async" src="traditional-mediums/TM1 (Untitled Watercolor 1).jpg" alt="Untitled Watercolor 1" loading="lazy">
       </div>
         <div class="g" data-title="Pastel Figure Drawing">
@@ -132,7 +177,7 @@
       </div>
       </div>
       <div class="tm-m">
-        <div class="g" data-title="Untitled Watercolor 2">
+        <div class="g" data-title="Untitled Watercolor 2" data-tm="TM2">
         <img decoding="async" src="traditional-mediums/TM2 (Untitled Watercolor 2).jpg" alt="Untitled Watercolor 2" loading="lazy">
       </div>
         <div class="g" data-title="Untitled Oil Painting 1">
@@ -143,13 +188,13 @@
       </div>
       </div>
       <div class="tm-r">
-        <div class="g" data-title="Untitled Watercolor 3">
+        <div class="g" data-title="Untitled Watercolor 3" data-tm="TM3">
         <img decoding="async" src="traditional-mediums/TM3 (Untitled Watercolor 3).jpg" alt="Untitled Watercolor 3" loading="lazy">
       </div>
-        <div class="g" data-title="Untitled Oil Painting 2">
+        <div class="g" data-title="Untitled Oil Painting 2" data-tm="TM5">
         <img decoding="async" src="traditional-mediums/TM5 (Untitled Oil Painting 2).jpg" alt="Untitled Oil Painting 2" loading="lazy">
       </div>
-        <div class="g" data-title="Untitled Oil Painting 3">
+        <div class="g" data-title="Untitled Oil Painting 3" data-tm="TM8">
         <img decoding="async" src="traditional-mediums/TM8 (Untitled Oil Painting 3).jpg" alt="Untitled Oil Painting 3" loading="lazy">
       </div>
       </div>
@@ -164,25 +209,25 @@
       </div>
     </div>
     <div class="sep-sm"></div>
-    <div class="r">
-      <div class="g" data-title="Untitled" style="flex:1">
+    <div class="r tm-fig-row">
+      <div class="g" data-title="Untitled" data-tm="TM11" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM11 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
-      <div class="g" data-title="Untitled" style="flex:1">
+      <div class="g" data-title="Untitled" data-tm="TM12" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM12 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
-      <div class="g" data-title="Untitled" style="flex:1">
+      <div class="g" data-title="Untitled" data-tm="TM13" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM13 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
     </div>
-    <div class="r">
-      <div class="g" data-title="Untitled" style="flex:1">
+    <div class="r tm-fig-row">
+      <div class="g" data-title="Untitled" data-tm="TM14" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM14 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
-      <div class="g" data-title="Untitled" style="flex:1">
+      <div class="g" data-title="Untitled" data-tm="TM15" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM15 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
-      <div class="g" data-title="Untitled" style="flex:1">
+      <div class="g" data-title="Untitled" data-tm="TM16" style="flex:1">
         <img decoding="async" src="traditional-mediums/TM16 (Untitled).jpg" alt="Untitled" loading="lazy">
       </div>
     </div>
@@ -256,5 +301,46 @@
   <script src="nav.js"></script>
   <script src="lightbox.js"></script>
   <script src="footer.js"></script>
+
+
+  <script>
+  (function(){
+    function buildTMMobile(){
+      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+      if(document.querySelector('.tm-mobile-built')) return;
+
+      var gallery = document.querySelector('.gallery');
+      if(!gallery) return;
+
+      /* Collect all needed elements by data-tm */
+      function get(tm){ return document.querySelector('[data-tm="'+tm+'"]'); }
+
+      var tm1=get('TM1'), tm2=get('TM2'), tm3=get('TM3');
+      var fig = ['TM5','TM8','TM11','TM12','TM13','TM14','TM15','TM16'].map(get);
+
+      /* Verify we have all required elements */
+      if(!tm1||!tm2||!tm3) return;
+      if(fig.filter(Boolean).length !== 8) return;
+
+      /* ── Block 1: TM1/TM2/TM3 in 3-col row ── */
+      var block1 = document.createElement('div');
+      block1.className = 'tm-mob-top';
+      [tm1,tm2,tm3].forEach(function(el){ block1.appendChild(el); });
+
+      /* ── Block 2: 8 figure images in 4-col x 2 rows ── */
+      var block2 = document.createElement('div');
+      block2.className = 'tm-mob-figs';
+      fig.forEach(function(el){ block2.appendChild(el); });
+
+      /* ── Prepend both blocks to gallery (before existing content) ── */
+      gallery.insertBefore(block2, gallery.firstChild);
+      gallery.insertBefore(block1, gallery.firstChild);
+
+      /* Mark as built */
+      gallery.classList.add('tm-mobile-built');
+    }
+    document.addEventListener('DOMContentLoaded', buildTMMobile);
+  })();
+  </script>
 </body>
 </html>
