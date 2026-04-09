@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Children's Book — Cady Sheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -191,11 +192,18 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     }
 
   </style>
+  <style>
+    @media(max-width:767px) and (pointer:coarse){
+      .gallery .r, .gallery .row { content-visibility:auto; contain-intrinsic-size:0 400px; }
+      .gallery .g { contain:layout style; }
+      .gallery img { will-change:auto; transform:translateZ(0); backface-visibility:hidden; transition:none !important; }
+    }
+  </style>
 </head>
 <body>
 
   <div style="text-align:center; padding:40px 0 28px">
-    <img decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%; max-width:420px; height:auto; display:inline-block">
+    <img loading="eager" fetchpriority="high" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%; max-width:420px; height:auto; display:inline-block">
   </div>
 
   <style>

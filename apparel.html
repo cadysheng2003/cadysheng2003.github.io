@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apparel — Cady Sheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -352,6 +353,12 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
         transition: none !important;
       }
 
+      /* ── Performance: skip offscreen rendering ── */
+      .gallery .r { content-visibility:auto; contain-intrinsic-size:0 400px; }
+      .gallery .c { contain:layout style; }
+      .gallery img { will-change:auto; transform:translateZ(0); backface-visibility:hidden; }
+      .gallery img { transition:none !important; }
+
       /* ── Moon Series rows: MUST be last to override .r column rules ── */
       .gallery .r[style*="height:300px"]{
         flex-direction:row !important;
@@ -386,7 +393,7 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
     <div class="r" style="align-items:flex-start">
       <div class="c" style="flex:140">
         <div class="g" data-title="Photoshoot Look 1">
-          <img decoding="async" src="apparel/A1 (Photoshoot Look 1).jpg" alt="Photoshoot Look 1" loading="lazy" decoding="async" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A1 (Photoshoot Look 1).jpg" alt="Photoshoot Look 1" loading="eager" fetchpriority="high" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 5">
           <img decoding="async" src="apparel/A5 (Photoshoot Look 5).jpg" alt="Photoshoot Look 5" loading="lazy" style="width:100%;display:block">
@@ -394,7 +401,7 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
       </div>
       <div class="c" style="flex:112">
         <div class="g" data-title="Photoshoot Look 2">
-          <img decoding="async" src="apparel/A2 (Photoshoot Look 2).jpg" alt="Photoshoot Look 2" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A2 (Photoshoot Look 2).jpg" alt="Photoshoot Look 2" loading="eager" fetchpriority="high" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 4">
           <img decoding="async" src="apparel/A4 (Photoshoot Look 4).jpg" alt="Photoshoot Look 4" loading="lazy" style="width:100%;display:block">
@@ -405,7 +412,7 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
       </div>
       <div class="c" style="flex:108">
         <div class="g" data-title="Photoshoot Look 3">
-          <img decoding="async" src="apparel/A3 (Photoshoot Look 3).jpg" alt="Photoshoot Look 3" loading="lazy" style="width:100%;display:block">
+          <img decoding="async" src="apparel/A3 (Photoshoot Look 3).jpg" alt="Photoshoot Look 3" loading="eager" fetchpriority="high" style="width:100%;display:block">
         </div>
         <div class="g" data-title="Photoshoot Look 6">
           <img decoding="async" src="apparel/A6 (Photoshoot Look 6).jpg" alt="Photoshoot Look 6" loading="lazy" style="width:100%;display:block">
@@ -494,14 +501,14 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
       gallery.classList.add('apparel-mobile-built');
     }
 
-    document.addEventListener('DOMContentLoaded', buildApparelMobile);
+    buildApparelMobile();
 
     /* Force title image size on mobile */
-    document.addEventListener('DOMContentLoaded', function(){
+    (function(){
       if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
       var img = document.getElementById('ap-title-img');
       if(img){ img.style.setProperty('width','35%','important'); img.style.setProperty('max-width','180px','important'); }
-    });
+    })();
   })();
   </script>
 </body>

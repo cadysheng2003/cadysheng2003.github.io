@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flow & Spirituality — Cady Sheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -111,11 +112,18 @@
       .g, .g img { border-radius:3px !important; overflow:hidden; }
     }
   </style>
+  <style>
+    @media(max-width:767px) and (pointer:coarse){
+      .gallery .r, .gallery .row { content-visibility:auto; contain-intrinsic-size:0 400px; }
+      .gallery .g { contain:layout style; }
+      .gallery img { will-change:auto; transform:translateZ(0); backface-visibility:hidden; transition:none !important; }
+    }
+  </style>
 </head>
 <body>
 
   <div class="page-header">
-    <img decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:134px;width:auto;display:block;margin:0 auto;">
+    <img loading="eager" fetchpriority="high" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:134px;width:auto;display:block;margin:0 auto;">
   </div>
 
   <div class="gallery">

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Traditional Mediums — Cady Sheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -105,21 +106,6 @@
       /* Remove gap from sep-sm if surrounded by hidden rows */
       .tm-mobile-built .sep-sm{ display:none; }
 
-      /* S6: TM9, TM17 — full width stacked */
-      .tm-s6{ display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
-      .tm-s6 .g{ width:100% !important; flex:none !important; overflow:visible !important; }
-      .tm-s6 .g img{ width:100% !important; height:auto !important; display:block !important; object-fit:unset !important; }
-
-      /* S7: TM10 video — full width, half natural height via max-height */
-      .tm-s7{ margin-bottom:12px; }
-      .tm-s7-video{ width:100% !important; overflow:hidden; }
-      .tm-s7-video video{ width:100% !important; display:block !important; max-height:84vw; object-fit:cover; }
-
-      /* S8: remaining images — each full width, stacked */
-      .tm-s8{ display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
-      .tm-s8 .g{ width:100% !important; flex:none !important; overflow:visible !important; }
-      .tm-s8 .g img{ width:100% !important; height:auto !important; display:block !important; object-fit:unset !important; }
-
       /* TM top section: 3-column grid for tm3col */
       .tm3col{
         display:grid !important;
@@ -178,11 +164,18 @@
       .g, .g img { border-radius:3px !important; overflow:hidden; }
     }
   </style>
+  <style>
+    @media(max-width:767px) and (pointer:coarse){
+      .gallery .r, .gallery .row { content-visibility:auto; contain-intrinsic-size:0 400px; }
+      .gallery .g { contain:layout style; }
+      .gallery img { will-change:auto; transform:translateZ(0); backface-visibility:hidden; transition:none !important; }
+    }
+  </style>
 </head>
 <body>
 
   <div class="page-header">
-    <img decoding="async" src="traditional-mediums/traditional-mediums-title.png" alt="Traditional Mediums" style="height:92px;width:auto;display:block;margin:0 auto;">
+    <img loading="eager" fetchpriority="high" decoding="async" src="traditional-mediums/traditional-mediums-title.png" alt="Traditional Mediums" style="height:92px;width:auto;display:block;margin:0 auto;">
   </div>
 
   <div class="gallery">
@@ -329,201 +322,110 @@
 
   
 <script>
-(function(){
-  function buildTMMobile(){
-    if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
-    if(document.querySelector('.tm-mobile-built')) return;
+  (function(){
+    function buildTMMobile(){
+      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+      if(document.querySelector('.tm-mobile-built')) return;
 
-    var gallery = document.querySelector('.gallery');
-    if(!gallery) return;
+      var gallery = document.querySelector('.gallery');
+      if(!gallery) return;
 
-    /* Get element by data-tm attribute */
-    function get(tm){ return document.querySelector('[data-tm="'+tm+'"]'); }
+      function get(tm){ return document.querySelector('[data-tm="'+tm+'"]'); }
 
-    /* For abs-positioned containers: extract real img src and build clean .g wrapper */
-    function cleanImgWrap(tm){
-      var el = get(tm);
-      if(!el) return null;
-      var imgs = Array.from(el.querySelectorAll('img'));
-      /* Prefer the abs-positioned real image; fallback to any non-hidden img */
-      var real = imgs.find(function(i){
-        var s = i.getAttribute('style') || '';
-        return s.indexOf('position:absolute') !== -1 || s.indexOf('position: absolute') !== -1;
-      });
-      if(!real){
-        real = imgs.find(function(i){
+      /* Extract clean img from abs-positioned containers */
+      function cleanImg(tm){
+        var el = get(tm);
+        if(!el) return null;
+        var imgs = Array.from(el.querySelectorAll('img'));
+        var real = imgs.find(function(i){
           return (i.getAttribute('style')||'').indexOf('visibility:hidden') === -1;
         });
+        if(!real) return null;
+        var wrap = document.createElement('div');
+        wrap.className = 'g';
+        var img = new Image();
+        img.src = real.src;
+        img.alt = real.alt || '';
+        img.loading = 'lazy';
+        img.style.cssText = 'width:100%;height:auto;display:block';
+        wrap.appendChild(img);
+        return wrap;
       }
-      if(!real) return null;
-      var wrap = document.createElement('div');
-      wrap.className = 'g';
-      wrap.setAttribute('data-title', el.getAttribute('data-title') || '');
-      var img = new Image();
-      img.src = real.src;
-      img.alt = real.alt || '';
-      img.loading = 'lazy';
-      img.style.cssText = 'width:100%;height:auto;display:block;';
-      wrap.appendChild(img);
-      return wrap;
-    }
 
-    /* For abs-positioned containers: extract video and build clean wrapper */
-    function cleanVideoWrap(tm){
-      var el = get(tm);
-      if(!el) return null;
-      var vid = el.querySelector('video');
-      if(!vid) return null;
-      var wrap = document.createElement('div');
-      wrap.className = 'g tm-s7-video';
-      var v = document.createElement('video');
-      v.src = vid.src;
-      v.autoplay = true;
-      v.muted = true;
-      v.loop = true;
-      v.setAttribute('playsinline','');
-      v.style.cssText = 'width:100%;display:block;';
-      wrap.appendChild(v);
-      return wrap;
-    }
+      /* Verify */
+      var s2ids = ['TM5','TM8','TM11','TM12','TM13','TM14','TM15','TM16'];
+      var s4ids = ['TM18','TM20','TM21'];
+      var s5ids = ['TM22','TM23'];
+      if(s2ids.map(get).filter(Boolean).length !== 8) return;
+      if(s4ids.filter(function(tm){ return cleanImg(tm) !== null; }).length !== 3) return;
+      if(s5ids.filter(function(tm){ return cleanImg(tm) !== null; }).length !== 2) return;
 
-    /* ── VERIFY all required nodes exist before touching DOM ── */
-    var s1ids = ['TM1','TM2','TM3'];
-    var s2ids = ['TM5','TM8','TM11','TM12','TM13','TM14','TM15','TM16'];
-    var s3ids = ['TM6','TM19','TM4','TM7'];
-    var s4ids = ['TM18','TM20','TM21'];
-    var s5ids = ['TM22','TM23'];
-    var s6ids = ['TM9','TM17'];
+      /* S1: TM1/2/3 - move existing nodes */
+      var s1 = document.createElement('div'); s1.className = 'tm-s1';
+      ['TM1','TM2','TM3'].forEach(function(tm){ var e=get(tm); if(e) s1.appendChild(e); });
 
-    var ok = true;
-    s1ids.concat(s2ids).concat(s6ids).forEach(function(tm){ if(!get(tm)) ok=false; });
-    /* s3: TM6,TM4,TM7 are plain nodes; TM19 is abs-positioned */
-    ['TM6','TM4','TM7'].forEach(function(tm){ if(!get(tm)) ok=false; });
-    if(!cleanImgWrap('TM19')) ok=false;
-    /* s4: TM18/TM20 are abs-positioned, TM21 is plain */
-    ['TM18','TM20'].forEach(function(tm){ if(!cleanImgWrap(tm)) ok=false; });
-    if(!get('TM21')) ok=false;
-    /* s5: TM22/TM23 are abs-positioned */
-    s5ids.forEach(function(tm){ if(!cleanImgWrap(tm)) ok=false; });
-    /* s7: TM10 is video */
-    if(!cleanVideoWrap('TM10')) ok=false;
-    if(!ok) return;
+      /* S2: 8 figures 4x2 grid - move existing nodes */
+      var s2 = document.createElement('div'); s2.className = 'tm-s2';
+      s2ids.forEach(function(tm){ var e=get(tm); if(e) s2.appendChild(e); });
 
-    /* ── BUILD SECTIONS ── */
+      /* S3: TM6/19/4/7 full images - move existing nodes */
+      var s3 = document.createElement('div'); s3.className = 'tm-s3';
+      ['TM6','TM19','TM10','TM4','TM7'].forEach(function(tm){ var e=get(tm); if(e) s3.appendChild(e); });
 
-    /* S1: TM1, TM2, TM3 — full, stacked */
-    var s1 = document.createElement('div');
-    s1.className = 'tm-s1';
-    s1ids.forEach(function(tm){ s1.appendChild(get(tm)); });
-
-    /* S2: TM5,TM8,TM11–TM16 — 4×2 grid */
-    var s2 = document.createElement('div');
-    s2.className = 'tm-s2';
-    s2ids.forEach(function(tm){ s2.appendChild(get(tm)); });
-
-    /* S3: TM6, TM19, TM4, TM7 — full, stacked
-       TM6/TM4/TM7 are plain nodes (move directly)
-       TM19 is abs-positioned (use cleanImgWrap, hide original) */
-    var s3 = document.createElement('div');
-    s3.className = 'tm-s3';
-    s3.appendChild(get('TM6'));
-    var tm19wrap = cleanImgWrap('TM19'); s3.appendChild(tm19wrap); get('TM19').style.display='none';
-    s3.appendChild(get('TM4'));
-    s3.appendChild(get('TM7'));
-
-    /* S4: TM18, TM20, TM21 — 3-col grid
-       TM18/TM20 are abs-positioned → cleanImgWrap + hide original
-       TM21 is a plain node → move directly */
-    var s4 = document.createElement('div');
-    s4.className = 'tm-s4';
-    ['TM18','TM20'].forEach(function(tm){
-      s4.appendChild(cleanImgWrap(tm));
-      get(tm).style.display='none';
-    });
-    s4.appendChild(get('TM21'));
-
-    /* S5: TM22, TM23 — 2-col grid (abs-positioned, use clean copies) */
-    var s5 = document.createElement('div');
-    s5.className = 'tm-s5';
-    s5ids.forEach(function(tm){
-      s5.appendChild(cleanImgWrap(tm));
-      get(tm).style.display='none';
-    });
-
-    /* S6: TM9, TM17 — each full width, own row */
-    var s6 = document.createElement('div');
-    s6.className = 'tm-s6';
-    s6ids.forEach(function(tm){ s6.appendChild(get(tm)); });
-
-    /* S7: TM10 video — full width, half natural height via object-fit+container */
-    var s7 = document.createElement('div');
-    s7.className = 'tm-s7';
-    s7.appendChild(cleanVideoWrap('TM10'));
-    get('TM10').style.display='none';
-
-    /* S8: remaining images not in any section — TM24, TM25, TM26, TM27
-       each full width, single row. Extract clean img for abs-positioned ones. */
-    var s8 = document.createElement('div');
-    s8.className = 'tm-s8';
-    ['TM24','TM25','TM26','TM27'].forEach(function(tm){
-      var el = get(tm);
-      if(!el) return;
-      /* Check if abs-positioned (has visibility:hidden spacer img) */
-      var imgs = Array.from(el.querySelectorAll('img'));
-      var hasAbsImg = imgs.some(function(i){
-        return (i.getAttribute('style')||'').indexOf('position:absolute') !== -1
-          || (i.getAttribute('style')||'').indexOf('position: absolute') !== -1;
+      /* S4: TM18/20/21 3-col - create clean copies, hide originals */
+      var s4 = document.createElement('div'); s4.className = 'tm-s4';
+      s4ids.forEach(function(tm){
+        var el = get(tm);
+        var w = cleanImg(tm);
+        if(w){ s4.appendChild(w); el.style.display='none'; }
       });
-      if(hasAbsImg){
-        var w = cleanImgWrap(tm);
-        if(w){ s8.appendChild(w); el.style.display='none'; }
-      } else {
-        s8.appendChild(el);
-      }
-    });
 
-    /* ── VERIFY counts ── */
-    if(s1.children.length !== 3) return;
-    if(s2.children.length !== 8) return;
-    if(s3.children.length !== 4) return;
-    if(s4.children.length !== 3) return;
-    if(s5.children.length !== 2) return;
-    if(s6.children.length !== 2) return;
-    if(s7.children.length !== 1) return;
-    /* s8 count not verified — flexible, shows whatever remains */
+      /* S5: TM22/23 2-col - create clean copies, hide originals */
+      var s5 = document.createElement('div'); s5.className = 'tm-s5';
+      s5ids.forEach(function(tm){
+        var el = get(tm);
+        var w = cleanImg(tm);
+        if(w){ s5.appendChild(w); el.style.display='none'; }
+      });
 
-    /* ── INSERT all sections at top of gallery in order ── */
-    [s8,s7,s6,s5,s4,s3,s2,s1].forEach(function(s){
-      gallery.insertBefore(s, gallery.firstChild);
-    });
+      /* Verify counts */
+      if(s2.children.length !== 8) return;
+      if(s4.children.length !== 3) return;
+      if(s5.children.length !== 2) return;
 
-    /* ── HIDE original structural containers now emptied ── */
-    gallery.querySelectorAll('.tm3col').forEach(function(el){ el.style.display='none'; });
-    gallery.querySelectorAll('.tm-fig-row').forEach(function(el){ el.style.display='none'; });
-    gallery.querySelectorAll('.sep-sm').forEach(function(el){ el.style.display='none'; });
-    gallery.querySelectorAll('.sep').forEach(function(el){ el.style.display='none'; });
+      /* Insert sections at top of gallery */
+      [s5,s4,s3,s2,s1].forEach(function(s){
+        gallery.insertBefore(s, gallery.firstChild);
+      });
 
-    /* Hide .r rows by walking each element's ancestors up to the row,
-       checking for display:none set by JS — more reliable than querySelector */
-    gallery.querySelectorAll('.r').forEach(function(row){
-      var visibleContent = Array.from(row.querySelectorAll('img, video')).filter(function(node){
-        if((node.getAttribute('style')||'').indexOf('visibility:hidden') !== -1) return false;
-        var cur = node;
-        while(cur && cur !== row){
-          var s = cur.getAttribute('style') || '';
-          if(s.indexOf('display:none') !== -1 || s.indexOf('display: none') !== -1) return false;
-          cur = cur.parentElement;
+      /* Hide ONLY the specific empty structural containers:
+         - .tm3col (TM1/2/3/5/6/7/8 all moved out)
+         - .tm-fig-row rows (TM11-16 moved out)
+         - .sep-sm spacers
+         Do NOT hide .r rows — they contain TM9/10/17+ that should stay */
+      gallery.querySelectorAll('.tm3col').forEach(function(el){ el.style.display='none'; });
+      gallery.querySelectorAll('.tm-fig-row').forEach(function(el){ el.style.display='none'; });
+      gallery.querySelectorAll('.sep-sm').forEach(function(el){ el.style.display='none'; });
+
+      /* Hide .r rows only if they contain NO remaining visible data-tm items
+         AND no video elements */
+      gallery.querySelectorAll('.r').forEach(function(row){
+        var hasVideo = row.querySelector('video');
+        var hasVisibleTM = row.querySelector('[data-tm]:not([style*="display:none"])');
+        var hasNonTMImg = Array.from(row.querySelectorAll('img')).some(function(img){
+          return (img.getAttribute('style')||'').indexOf('visibility:hidden') === -1
+            && (img.getAttribute('style')||'').indexOf('display:none') === -1
+            && !img.closest('[style*="display:none"]');
+        });
+        if(!hasVideo && !hasVisibleTM && !hasNonTMImg){
+          row.style.display = 'none';
         }
-        return true;
       });
-      if(visibleContent.length === 0) row.style.display='none';
-    });
 
-    gallery.classList.add('tm-mobile-built');
-  }
-
-  document.addEventListener('DOMContentLoaded', buildTMMobile);
-})();
-</script>
+      gallery.classList.add('tm-mobile-built');
+    }
+    document.addEventListener('DOMContentLoaded', buildTMMobile);
+  })();
+  </script>
 </body>
 </html>
