@@ -518,7 +518,58 @@
   ].join('');
   document.head.appendChild(style);
 
-  /* ─── DOM: nav, mobBar, mobMenu ─── */
+  /* ─── IMAGE PROTECTION ───
+     Prevents long-press save on mobile and right-click save on desktop.
+     A transparent overlay sits on top of every gallery image.
+     contextmenu is suppressed on all img elements. */
+  var protStyle = document.createElement('style');
+  protStyle.textContent =
+    '.img-prot-wrap{position:relative;display:block;line-height:0;}' +
+    '.img-prot-wrap::after{' +
+      'content:"";' +
+      'position:absolute;inset:0;' +
+      'z-index:10;' +
+      '-webkit-touch-callout:none;' +
+      'user-select:none;' +
+      '-webkit-user-select:none;' +
+    '}' +
+    '.img-prot-wrap img{' +
+      '-webkit-touch-callout:none;' +
+      'user-select:none;' +
+      '-webkit-user-select:none;' +
+      'pointer-events:none;' +
+    '}';
+  document.head.appendChild(protStyle);
+
+  function protectImages() {
+    document.querySelectorAll('.gallery img, .g img').forEach(function(img) {
+      /* Skip if already wrapped */
+      if (img.parentElement.classList.contains('img-prot-wrap')) return;
+      /* Skip spacer/hidden images */
+      if ((img.getAttribute('style') || '').indexOf('visibility:hidden') !== -1) return;
+      /* Wrap in protection div */
+      var wrap = document.createElement('span');
+      wrap.className = 'img-prot-wrap';
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+    });
+    /* Suppress context menu on all images sitewide */
+    document.querySelectorAll('img').forEach(function(img) {
+      img.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      img.draggable = false;
+    });
+  }
+
+  /* Run after DOM ready and also after any dynamic content loads */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', protectImages);
+  } else {
+    protectImages();
+  }
+  /* Re-run after footer injects (catches footer images if any) */
+  window.addEventListener('load', protectImages);
+
+
     var nav = document.createElement('nav');
   nav.className = 'side-nav';
   nav.innerHTML =

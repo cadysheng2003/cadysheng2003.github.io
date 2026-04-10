@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="theme-color" content="#fff9f7">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stage Art & Production — Cady Sheng</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preload" as="image" href="stage-art-Production/stage-title.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -114,35 +117,44 @@
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
 
-      /* ── Mobile performance ── */
-      .gallery .r, .gallery .row {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 300px;
-      }
-      .gallery .r, .gallery .row, .gallery .g {
-        contain: layout style;
-      }
-      .gallery img {
-        will-change: auto;
-        transform: translateZ(0);
-        backface-visibility: hidden;
-      }
-      .gallery img, .g img { transition: none !important; }
-
-      /* ── Stage page: sp-cols — keep two columns, just fix contain/min-height gaps ── */
+      /* ── Stage page: fix photo grid spacing on mobile ── */
+      /* Two-col flex → single col, remove contain/min-height that causes gaps */
       .sp-cols {
-        display:flex !important;
-        flex-direction:row !important;
+        flex-direction:column !important;
         gap:8px !important;
-        align-items:flex-start !important;
       }
       .sp-cols .c {
-        min-width:0;
+        width:100% !important;
+        flex:none !important;
+      }
+      .sp-cols .g {
+        min-height:0 !important;
+        contain:none !important;
+      }
+      .sp-cols .g img {
+        width:100% !important;
+        height:auto !important;
+        display:block !important;
       }
       .sp-cols .g2 {
         display:grid !important;
         grid-template-columns:1fr 1fr !important;
         gap:8px !important;
+      }
+      /* ── Mobile performance: reduce CLS and rendering cost ── */
+
+      /* Skip rendering rows until near viewport */
+      .gallery .r,
+      .gallery .row {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Isolate paint/layout per row — cheaper reflows */
+      .gallery .r,
+      .gallery .row,
+      .gallery .g {
+        contain: layout style;
       }
 
       /* Images: prevent reflow, GPU-friendly rendering */
@@ -161,18 +173,6 @@
       .gallery img,
       .g img {
         transition: none !important;
-      }
-
-      /* sp-cols overrides MUST be last — after min-height and contain rules */
-      .sp-cols .g {
-        min-height:0 !important;
-        contain:none !important;
-        content-visibility:visible !important;
-      }
-      .sp-cols .g img {
-        width:100% !important;
-        height:auto !important;
-        display:block !important;
       }
     }
   </style>
@@ -304,8 +304,8 @@
   </nav>
 
   <div id="footer"></div>
-  <script src="nav.js"></script>
+  <script src="nav.js" defer></script>
   <script src="lightbox.js"></script>
-  <script src="footer.js"></script>
+  <script src="footer.js" defer></script>
 </body>
 </html>
