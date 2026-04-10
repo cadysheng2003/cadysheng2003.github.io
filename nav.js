@@ -1,11 +1,21 @@
 (function () {
 
-  /* ═══════════════════════════════════════════════
-     i18n — BILINGUAL DICTIONARY
-     All translatable strings keyed by id.
-     To edit a translation: find the key, change zh value.
-  ═══════════════════════════════════════════════ */
-  var i18n = {
+  /* ─── FONTS ─── */
+  if (!document.querySelector('link[href*="Inter"]')) {
+    var fl = document.createElement('link');
+    fl.rel = 'stylesheet';
+    fl.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap';
+    document.head.appendChild(fl);
+  }
+  if (!document.querySelector('link[href*="Noto+Serif+SC"]')) {
+    var zf = document.createElement('link');
+    zf.rel = 'stylesheet';
+    zf.href = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap';
+    document.head.appendChild(zf);
+  }
+
+  /* ─── i18n DICTIONARY ─── */
+    var i18n = {
     en: {
       /* ── Index page ── */
       'index.tagline': 'Truth, Love, Flow, Oneness',
@@ -223,139 +233,26 @@
     }
   };
 
-  /* ═══════════════════════════════════════════════
-     LANGUAGE STATE
-     - First ever visit: English (no localStorage value)
-     - After user switches: remember across pages via localStorage
-  ═══════════════════════════════════════════════ */
+  /* ─── LANGUAGE STATE ─── */
   var LANG_KEY = 'cs-lang';
   var currentLang = localStorage.getItem(LANG_KEY) || 'en';
-
-  /* Apply font class immediately to avoid FOUC on Chinese — mobile only */
-  if (currentLang === 'zh' && window.innerWidth <= 767 &&
-      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) {
-    document.documentElement.classList.add('lang-zh');
-    document.documentElement.lang = 'zh-CN';
-  }
 
   function t(key) {
     return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
   }
 
-  function setLang(lang) {
-    currentLang = lang;
-    localStorage.setItem(LANG_KEY, lang);
-    /* Always apply on explicit user action — device check is in applyTranslations
-       but we force it here for the lang button click */
-    applyTranslationsForced();
-    updateLangBtn();
-    applyFontClass();
-  }
-
-  /* Force translation regardless of device — used on explicit lang switch */
-  function applyTranslationsForced() {
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n');
-      var val = t(key);
-      if (val) el.textContent = val;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n-html');
-      var val = t(key);
-      if (val) el.innerHTML = val;
-    });
-    document.querySelectorAll('.page-nav__home').forEach(function(el) {
-      el.textContent = currentLang === 'zh' ? '主页' : 'Home';
-      el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
-      el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
-    });
-    injectOrUpdateZhTitles();
-    var wm = document.querySelector('.mob-bar__wordmark');
-    if (wm) wm.textContent = 'Cady Sheng 盛开';
-    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-  }
-
-  function injectOrUpdateZhTitles() {
-    document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
-      var alt = img.getAttribute('alt') || '';
-      var zh  = zhTitles[alt];
-      if (!zh) return;
-      var subtitle = img.parentElement.querySelector('.' + ZH_TITLE_CLASS);
-      if (currentLang === 'zh') {
-        if (!subtitle) {
-          subtitle = document.createElement('p');
-          subtitle.className = ZH_TITLE_CLASS;
-          subtitle.style.cssText = 'font-family:"Noto Serif SC",serif;font-size:13px;font-weight:300;letter-spacing:0.15em;color:#8a817a;text-align:center;margin:4px 0 0;line-height:1.4;display:block;';
-          img.insertAdjacentElement('afterend', subtitle);
-        }
-        subtitle.textContent = zh;
-        subtitle.style.display = 'block';
-      } else {
-        if (subtitle) subtitle.style.display = 'none';
-      }
-    });
-  }
-
-  /* Apply zh font class to <html> — mobile only */
-  function applyFontClass() {
-    if (!isMobileDevice()) return;
-    document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
-  }
-
-  /* ═══════════════════════════════════════════════
-     APPLY TRANSLATIONS — walk all [data-i18n] nodes
-  ═══════════════════════════════════════════════ */
-  function isMobileDevice() {
+  /* ─── MOBILE DETECTION ─── */
+  function isMobile() {
     return window.innerWidth <= 767 &&
       (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches);
   }
 
-  function applyTranslations() {
-    /* Desktop: no translation applied — keep original English */
-    if (!isMobileDevice()) return;
-
-    /* Standard text replacement */
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n');
-      var val = t(key);
-      if (val) el.textContent = val;
-    });
-    /* innerHTML replacement for elements containing <br> or HTML markup */
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n-html');
-      var val = t(key);
-      if (val) el.innerHTML = val;
-    });
-    /* page-nav__home: explicit update + fix letter-spacing for Chinese */
-    document.querySelectorAll('.page-nav__home').forEach(function(el) {
-      el.textContent = currentLang === 'zh' ? '主页' : 'Home';
-      el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
-      el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
-    });
-    /* Mobile wordmark: always show Chinese name */
-    var wm = document.querySelector('.mob-bar__wordmark');
-    if (wm) {
-      wm.textContent = 'Cady Sheng 盛开';
-    }
-    /* Mobile zh title images */
-    injectOrUpdateZhTitles();
-    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-  }
-  /* Expose globally so page scripts can call after DOM changes */
-  window.csApplyTranslations = applyTranslations;
-
-  /* ═══════════════════════════════════════════════
-     MOBILE CHINESE TITLE SYSTEM
-     On mobile + zh: hide title PNG, show zh text instead.
-     On en: restore original image.
-  ═══════════════════════════════════════════════ */
-
-  /* Map: image alt → Chinese title text */
+  /* ─── PAGE TITLE CHINESE MAP ─── */
   var zhTitles = {
     'Illustrations':          '插画',
     'Stage Art & Production': '舞台艺术与制作',
     'My Partner':             '我的伴侣',
-    "Children's Book":        '儿童绘本',
+    "Children's Book":       '儿童绘本',
     'Flow & Spirituality':    '流动与灵性',
     'Traditional Mediums':    '传统媒介',
     'Graphic Design':         '平面设计',
@@ -364,69 +261,76 @@
     'Apparel':                '服装',
   };
 
-  var ZH_TITLE_CLASS = 'zh-title-text';
+  /* ─── APPLY TRANSLATIONS ─── */
+  function _doTranslate() {
+    var isDesktop = window.innerWidth >= 768;
 
-  function applyZhTitles() {
-    /* Mobile only */
-    var isMobile = window.innerWidth <= 767 &&
-      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches);
-    if (!isMobile) return;
-
-    document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
-      var alt = img.getAttribute('alt') || '';
-      var zh  = zhTitles[alt];
-      if (!zh) return;
-
-      var wrap = img.parentElement;
-
-      /* Get or create the zh subtitle element */
-      var subtitle = wrap.querySelector('.' + ZH_TITLE_CLASS);
-
-      if (currentLang === 'zh') {
-        /* Keep image visible, just add/show zh subtitle below */
-        img.style.display = '';
-        if (!subtitle) {
-          subtitle = document.createElement('p');
-          subtitle.className = ZH_TITLE_CLASS;
-          subtitle.style.cssText = [
-            'font-family:"Noto Serif SC",serif',
-            'font-size:13px',
-            'font-weight:300',
-            'letter-spacing:0.15em',
-            'color:#8a817a',
-            'text-align:center',
-            'margin:4px 0 0',
-            'line-height:1.4',
-            'display:block',
-          ].join(';');
-          /* Insert after the image */
-          img.insertAdjacentElement('afterend', subtitle);
-        }
-        subtitle.textContent = zh;
-        subtitle.style.display = 'block';
-      } else {
-        /* Hide zh subtitle, keep image */
-        img.style.display = '';
-        if (subtitle) subtitle.style.display = 'none';
-      }
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      /* Skip page-nav and page content on desktop — side-nav is English-only */
+      if (isDesktop && !el.closest('#mob-menu') && !el.closest('.mob-bar')) return;
+      var key = el.getAttribute('data-i18n');
+      var val = (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key];
+      if (val) el.textContent = val;
     });
-  }
-  if (!document.querySelector('link[href*="Inter"]')) {
-    var fontLink = document.createElement('link');
-    fontLink.rel  = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap';
-    document.head.appendChild(fontLink);
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      if (isDesktop) return;
+      var key = el.getAttribute('data-i18n-html');
+      var val = (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key];
+      if (val) el.innerHTML = val;
+    });
+    /* page-nav Home — mobile only */
+    if (!isDesktop) {
+      document.querySelectorAll('.page-nav__home').forEach(function(el) {
+        el.textContent = currentLang === 'zh' ? '主页' : 'Home';
+        el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
+        el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
+      });
+    }
+    /* wordmark */
+    var wm = document.querySelector('.mob-bar__wordmark');
+    if (wm) wm.innerHTML = 'Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span>';
+    /* html lang + font class */
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
+    /* page title subtitles — mobile only */
+    if (!isDesktop) {
+      document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
+        var zh = zhTitles[img.getAttribute('alt') || ''];
+        if (!zh) return;
+        var sub = img.parentElement.querySelector('.zh-title-text');
+        if (currentLang === 'zh') {
+          if (!sub) {
+            sub = document.createElement('p');
+            sub.className = 'zh-title-text';
+            sub.style.cssText = 'font-family:"Noto Serif SC",serif;font-size:13px;font-weight:300;letter-spacing:0.15em;color:#8a817a;text-align:center;margin:4px 0 0;line-height:1.4;display:none;';
+            img.insertAdjacentElement('afterend', sub);
+          }
+          sub.textContent = zh;
+          sub.style.display = 'block';
+        } else {
+          if (sub) sub.style.display = 'none';
+        }
+      });
+    }
+    /* lang button state */
+    var btn = document.getElementById('mob-lang-btn');
+    if (btn) {
+      btn.classList.toggle('is-zh', currentLang === 'zh');
+      btn.classList.toggle('is-en', currentLang === 'en');
+    }
   }
 
-  /* Load Chinese fonts (Noto Serif SC for body/nav, Noto Sans SC for UI) */
-  if (!document.querySelector('link[href*="Noto+Serif+SC"]')) {
-    var zhFont = document.createElement('link');
-    zhFont.rel  = 'stylesheet';
-    zhFont.href = 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap';
-    document.head.appendChild(zhFont);
+  function applyTranslations() { _doTranslate(); }
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem(LANG_KEY, lang);
+    _doTranslate();
   }
 
-  var style = document.createElement('style');
+  window.csApplyTranslations = applyTranslations;
+
+  /* ─── STYLES ─── */
+    var style = document.createElement('style');
   style.textContent = [
 
     /* ── Chinese overrides: mobile only ── */
@@ -555,6 +459,7 @@
         'pointer-events:none;',
       '}',
       '.mob-bar__wordmark.visible{opacity:1;pointer-events:auto;}',
+      '.mob-bar__zhname{font-size:14px;letter-spacing:0.1em;}',
 
       /* Right: burger */
       '.mob-bar__burger{',
@@ -613,29 +518,25 @@
   ].join('');
   document.head.appendChild(style);
 
-  /* ═══════════════════════════════════════════════
-     BUILD NAV HTML
-  ═══════════════════════════════════════════════ */
-
-  /* Desktop side nav */
-  var nav = document.createElement('nav');
+  /* ─── DOM: nav, mobBar, mobMenu ─── */
+    var nav = document.createElement('nav');
   nav.className = 'side-nav';
   nav.innerHTML =
     '<a href="index.html" class="nav-wordmark">Cady Sheng</a>' +
-    '<a href="index.html" class="nav-home"><span data-i18n="nav.home">Home</span></a>' +
+    '<a href="index.html" class="nav-home"><span>Home</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="illustrations.html"><span data-i18n="nav.illustrations">Illustrations</span></a>' +
-    '<a href="stage-art-production.html"><span data-i18n="nav.stage">Stage Art &amp; Production</span></a>' +
-    '<a href="my-partner.html"><span data-i18n="nav.partner">My Partner</span></a>' +
-    '<a href="childrens-book.html"><span data-i18n="nav.childrens">Children\u2019s Book</span></a>' +
-    '<a href="flow-and-spirituality.html"><span data-i18n="nav.flow">Flow &amp; Spirituality</span></a>' +
-    '<a href="traditional-mediums.html"><span data-i18n="nav.traditional">Traditional Mediums</span></a>' +
-    '<a href="graphic-design.html"><span data-i18n="nav.graphic">Graphic Design</span></a>' +
-    '<a href="jewelry.html"><span data-i18n="nav.jewelry">Jewelry</span></a>' +
-    '<a href="meditation.html"><span data-i18n="nav.meditation">Meditation</span></a>' +
-    '<a href="apparel.html"><span data-i18n="nav.apparel">Apparel</span></a>' +
+    '<a href="illustrations.html"><span>Illustrations</span></a>' +
+    '<a href="stage-art-production.html"><span>Stage Art &amp; Production</span></a>' +
+    '<a href="my-partner.html"><span>My Partner</span></a>' +
+    '<a href="childrens-book.html"><span>Children\u2019s Book</span></a>' +
+    '<a href="flow-and-spirituality.html"><span>Flow &amp; Spirituality</span></a>' +
+    '<a href="traditional-mediums.html"><span>Traditional Mediums</span></a>' +
+    '<a href="graphic-design.html"><span>Graphic Design</span></a>' +
+    '<a href="jewelry.html"><span>Jewelry</span></a>' +
+    '<a href="meditation.html"><span>Meditation</span></a>' +
+    '<a href="apparel.html"><span>Apparel</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="#footer" class="nav-contact"><span data-i18n="nav.contact">Contact</span></a>' +
+    '<a href="#footer" class="nav-contact"><span>Contact</span></a>' +
     '<a href="https://instagram.com/cadysheng" target="_blank" class="nav-instagram" aria-label="Instagram">' +
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
         '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>' +
@@ -648,7 +549,7 @@
   var mobBar = document.createElement('div');
   mobBar.className = 'mob-bar';
   mobBar.innerHTML =
-    '<a href="index.html" class="mob-bar__wordmark">Cady Sheng 盛开</a>' +
+    '<a href="index.html" class="mob-bar__wordmark">Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span></a>' +
     '<div style="flex:1"></div>' +
     '<button class="mob-bar__lang ' + (currentLang === 'zh' ? 'is-zh' : 'is-en') + '" id="mob-lang-btn" aria-label="Toggle language">' +
       '<span class="lang-zh">中</span>' +
@@ -680,39 +581,25 @@
     '<a href="#footer" class="mob-menu__contact" data-i18n="nav.contact">Contact</a>' +
     '<a href="https://instagram.com/cadysheng" target="_blank" class="mob-menu__contact" data-i18n="nav.instagram">Instagram</a>';
 
-  /* ═══════════════════════════════════════════════
-     LANG BUTTON DISPLAY
-  ═══════════════════════════════════════════════ */
-  function updateLangBtn() {
-    var btn = document.getElementById('mob-lang-btn');
-    if (!btn) return;
-    btn.classList.toggle('is-zh', currentLang === 'zh');
-    btn.classList.toggle('is-en', currentLang === 'en');
-  }
-
-  /* ═══════════════════════════════════════════════
-     INIT
-  ═══════════════════════════════════════════════ */
+  /* ─── INIT ─── */
   function init() {
     document.body.insertBefore(nav, document.body.firstChild);
     document.body.insertBefore(mobMenu, document.body.firstChild);
     document.body.insertBefore(mobBar, document.body.firstChild);
 
-    var burger   = mobBar.querySelector('.mob-bar__burger');
-    var wordmark = mobBar.querySelector('.mob-bar__wordmark');
-    var langBtn  = document.getElementById('mob-lang-btn');
+    var burger  = mobBar.querySelector('.mob-bar__burger');
+    var langBtn = document.getElementById('mob-lang-btn');
 
-    /* ── Burger toggle ── */
-    burger.addEventListener('click', function () {
+    /* Burger toggle */
+    burger.addEventListener('click', function() {
       var isOpen = mobMenu.classList.toggle('open');
       burger.classList.toggle('open', isOpen);
       burger.setAttribute('aria-expanded', isOpen);
       mobMenu.setAttribute('aria-hidden', !isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-
-    mobMenu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
+    mobMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
         mobMenu.classList.remove('open');
         burger.classList.remove('open');
         burger.setAttribute('aria-expanded', 'false');
@@ -720,34 +607,30 @@
       });
     });
 
-    /* ── Lang button ── */
-    updateLangBtn();
-    langBtn.addEventListener('click', function () {
+    /* Lang button */
+    langBtn.addEventListener('click', function() {
       setLang(currentLang === 'en' ? 'zh' : 'en');
     });
 
-    /* ── Wordmark / lang btn scroll behaviour ──
-       Homepage: watch hero logo intersection.
-       Other pages: wordmark always visible, lang btn always hidden after scroll. */
+    /* Wordmark scroll behaviour */
     var heroLogo = document.querySelector('.logo-image');
+    var wordmark = mobBar.querySelector('.mob-bar__wordmark');
     if (heroLogo) {
       document.body.classList.add('is-homepage');
       var desktopWordmark = nav.querySelector('.nav-wordmark');
-      var observer = new IntersectionObserver(function (entries) {
-        var scrolledPast = !entries[0].isIntersecting;
-        desktopWordmark.classList.toggle('visible', scrolledPast);
-        wordmark.classList.toggle('visible', scrolledPast);
-        langBtn.classList.toggle('hidden', scrolledPast);
+      var observer = new IntersectionObserver(function(entries) {
+        var past = !entries[0].isIntersecting;
+        desktopWordmark.classList.toggle('visible', past);
+        wordmark.classList.toggle('visible', past);
+        langBtn.classList.toggle('hidden', past);
       }, { threshold: 0.1 });
       observer.observe(heroLogo);
     } else {
-      /* Category pages: wordmark always shown */
       wordmark.classList.add('visible');
-      /* Lang btn: hide once user scrolls past 20px */
       var ticking = false;
-      window.addEventListener('scroll', function () {
+      window.addEventListener('scroll', function() {
         if (!ticking) {
-          requestAnimationFrame(function () {
+          requestAnimationFrame(function() {
             langBtn.classList.toggle('hidden', window.scrollY > 20);
             ticking = false;
           });
@@ -756,26 +639,31 @@
       }, { passive: true });
     }
 
-    /* ── Apply translations on load ── */
+    /* Apply translations on load */
     applyTranslations();
-    applyFontClass();
 
-    /* ── Highlight current page ── */
+    /* Highlight current page */
     var current = window.location.pathname.split('/').pop() || 'index.html';
-    [nav, mobMenu].forEach(function (el) {
-      el.querySelectorAll('a[href]').forEach(function (link) {
-        if (link.getAttribute('href') === current) {
-          link.style.color = '#2a2a2a';
-        }
+    [nav, mobMenu].forEach(function(el) {
+      el.querySelectorAll('a[href]').forEach(function(link) {
+        if (link.getAttribute('href') === current) link.style.color = '#2a2a2a';
       });
     });
   }
 
-  /* Run init immediately if DOM is ready, otherwise wait */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+
+  /* Handle bfcache restore — DOMContentLoaded does NOT fire on back/forward nav.
+     pageshow fires every time, including bfcache restores (event.persisted === true). */
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      /* DOM restored from bfcache — re-apply correct language state */
+      _doTranslate();
+    }
+  });
 
 })();
