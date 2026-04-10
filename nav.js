@@ -75,6 +75,42 @@
       'cb.p10bc':   '\u201cNow I will never unsee you,\u201d says the little girl.<br>She hugs everyone.',
       'cb.p10de':   '! Bye Everyone !<br>Echoes in the woods.',
 
+      /* ── Stage Art intro ── */
+      'sp.title':    'From the Mountains',
+      'sp.role':     'Stage Art & Production Director',
+      'sp.location': 'Shanghai, China · June 2024',
+      'sp.b1': 'Served as Art Director for the 2024 cultural heritage event supporting ethnic education initiatives.',
+      'sp.b2': 'Independently designed and executed all stage paintings and lighting design.',
+      'sp.b3': 'Developed visual concepts reflecting the identity of participating ethnic communities.',
+      'sp.b4': 'Collaborated with directors and cultural educators to ensure authenticity.',
+      'sp.b5': 'Led and trained volunteer teams (ages 8–12).',
+      'sp.b6': 'Produced and edited event documentation video.',
+
+      /* ── Stage Art journal ── */
+      /* ── Stage Art intro ── */
+      'sp.title':    '来自大山',
+      'sp.role':     '舞台艺术与制作总监',
+      'sp.location': '中国上海 · 2024年6月',
+      'sp.b1': '担任2024年民族文化遗产活动艺术总监，支持少数民族教育公益项目。',
+      'sp.b2': '独立完成全部舞台绘画及灯光设计。',
+      'sp.b3': '建立反映各参与民族群体文化身份认同的视觉概念。',
+      'sp.b4': '与导演及文化教育者密切协作，确保呼应文化真实性。',
+      'sp.b5': '带领并培训志愿者团队（年8–12岁）。',
+      'sp.b6': '制作并剩辑活动记录视频。',
+
+      /* ── Stage Art journal ── */
+      /* ── Stage Art journal ── */
+      'sp.journal.title': '\u201cFrom the Mountains\u201d Journal',
+      'sp.journal.p1': 'Before coming, I had no idea what I would be doing. After arriving, I barely slept more than five hours a day. Working on stage design meant going day and night, often until around three in the morning. I had never slept so little or worked continuously for so long in my life. I had a fever, menstrual pain, heart pain, stomach pain, and a sore throat\u2014haha.',
+      'sp.journal.p2': 'But the overflowing love carried me through everything and gave me more than enough strength to do my work beautifully.',
+      'sp.journal.p3': 'Every day during the daytime, I saw the smiles of the children, the teachers, and the volunteers\u2014their soft little hands and cheeks. One heartfelt conversation after another moved the deepest parts of my soul. I found myself crying several times a day, whether from being touched by such pure hearts or from tears of happiness. Somehow my body no longer felt tired, and my energy was overflowing.',
+      'sp.journal.p4': 'One time, while passing through the hotel hallway, I heard all of you loudly calling my name again and again from inside the rooms \U0001f602 It felt like I had become the Monkey King.',
+      'sp.journal.p5': 'All I wanted was to be good to you, to see you smile every day\u2014to lift you up, spin you around, kiss your little cheeks, and give you delicious things to eat. After I hugged and kissed one of you, the rest would rush over, all competing: \u201cMe too, me too! I want one too!\u201d',
+      'sp.journal.p6': 'That day in the dressing room before the stage performance, you all excitedly took colorful hair clips and pinned them into my hair as gifts. On the final day of camp, you ran after each other smearing cake cream on each other\'s faces\u2014and mine ended up covered with it too.',
+      'sp.journal.p7': 'Shengkai jiejie loves you all.',
+      'sp.journal.p8': 'I will miss you so much. I want to see you grow up surrounded by love and warmth.',
+      'sp.journal.p9': 'And this is not really a goodbye\u2014I am always here. \u2764\ufe0f',
+
       /* ── Footer ── */
       'footer.inquiries':  'For commissions, collaborations, or general inquiries,',
       'footer.contact':    'please contact me at:',
@@ -153,6 +189,29 @@
       'cb.p10bc':   '\u201c现在我再也无法假装看不见你们了，\u201d小女孩说。<br>她拥抱了所有人。',
       'cb.p10de':   '！再见，大家！<br>声音在林间回响。',
 
+      /* ── Stage Art intro ── */
+      'sp.title':    '来自大山',
+      'sp.role':     '舞台艺术与制作总监',
+      'sp.location': '中国上海 · 2024年6月',
+      'sp.b1': '担任2024年民族文化遗产活动艺术总监，支持少数民族教育公益项目。',
+      'sp.b2': '独立完成全部舞台绘画及灯光设计。',
+      'sp.b3': '建立反映各参与民族群体文化身份认同的视觉概念。',
+      'sp.b4': '与导演及文化教育者密切协作，确保呼应文化真实性。',
+      'sp.b5': '带领并培训志愿者团队（年龄8—12岁）。',
+      'sp.b6': '制作并剪辑活动记录视频。',
+
+      /* ── Stage Art journal ── */
+      'sp.journal.title': '《来自大山》',
+      'sp.journal.p1': '来之前根本不知道干麻，来之后每天基本上睡不够五个小时。做舞美的工作没日没夜做到凌晨三点左右，这辈子没睡过这么少持续工作这么久。发烧，痛经，心脏疼，胃疼，嗓子疼哈哈哈哈哈哈。',
+      'sp.journal.p2': '但是，溢出的爱全程超额支撑我出色的完成了工作！！！！',
+      'sp.journal.p3': '白天也每一天看到孩子，老师，和志愿者的笑容，软软的小手和脸蛋。一个个热泪盈眶的谈话，触动着我心灵最深处。每天都会哭上那么几次，不管是来自纯净心灵的触动，还是幸福的眼泪。身体一点也不累了，能量也是溢满的。',
+      'sp.journal.p4': '有次路过酒店的走廊，我听见房间里你们一次次大声呼喊我的名字😂哈哈哈有一种当了猴王的感觉。',
+      'sp.journal.p5': '就想对你们好，就想天天看你们笑，把你们抱起来转圈，亲你们的小脸蛋，给你们喂好吃的。亲完，抱完一个，剩下的都争着抢着要亲亲抱抱"我也要我也要"。',
+      'sp.journal.p6': '那天在舞台演出的化妆室，你们争着抢着把五颜六色发卡作为礼物别到我头上。结营那天追着跑着互相把奶油抹到脸上，脸被你们抹花了。',
+      'sp.journal.p7': '盛开姐姐爱你们',
+      'sp.journal.p8': '我是舍不得你们，我也想看到你们充满爱和温暖的长大',
+      'sp.journal.p9': '这也不是分别，我一直都在❤️',
+
       /* ── Footer ── */
       'footer.inquiries':  '如有委托、合作或其他咨询，',
       'footer.contact':    '欢迎通过以下方式联系我：',
@@ -172,8 +231,9 @@
   var LANG_KEY = 'cs-lang';
   var currentLang = localStorage.getItem(LANG_KEY) || 'en';
 
-  /* Apply font class immediately to avoid FOUC on Chinese */
-  if (currentLang === 'zh') {
+  /* Apply font class immediately to avoid FOUC on Chinese — mobile only */
+  if (currentLang === 'zh' && window.innerWidth <= 767 &&
+      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) {
     document.documentElement.classList.add('lang-zh');
     document.documentElement.lang = 'zh-CN';
   }
@@ -185,20 +245,75 @@
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem(LANG_KEY, lang);
-    applyTranslations();
+    /* Always apply on explicit user action — device check is in applyTranslations
+       but we force it here for the lang button click */
+    applyTranslationsForced();
     updateLangBtn();
     applyFontClass();
   }
 
-  /* Apply zh font class to <html> */
+  /* Force translation regardless of device — used on explicit lang switch */
+  function applyTranslationsForced() {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      var val = t(key);
+      if (val) el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      var val = t(key);
+      if (val) el.innerHTML = val;
+    });
+    document.querySelectorAll('.page-nav__home').forEach(function(el) {
+      el.textContent = currentLang === 'zh' ? '主页' : 'Home';
+      el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
+      el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
+    });
+    injectOrUpdateZhTitles();
+    var wm = document.querySelector('.mob-bar__wordmark');
+    if (wm) wm.textContent = 'Cady Sheng 盛开';
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+  }
+
+  function injectOrUpdateZhTitles() {
+    document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
+      var alt = img.getAttribute('alt') || '';
+      var zh  = zhTitles[alt];
+      if (!zh) return;
+      var subtitle = img.parentElement.querySelector('.' + ZH_TITLE_CLASS);
+      if (currentLang === 'zh') {
+        if (!subtitle) {
+          subtitle = document.createElement('p');
+          subtitle.className = ZH_TITLE_CLASS;
+          subtitle.style.cssText = 'font-family:"Noto Serif SC",serif;font-size:13px;font-weight:300;letter-spacing:0.15em;color:#8a817a;text-align:center;margin:4px 0 0;line-height:1.4;display:block;';
+          img.insertAdjacentElement('afterend', subtitle);
+        }
+        subtitle.textContent = zh;
+        subtitle.style.display = 'block';
+      } else {
+        if (subtitle) subtitle.style.display = 'none';
+      }
+    });
+  }
+
+  /* Apply zh font class to <html> — mobile only */
   function applyFontClass() {
+    if (!isMobileDevice()) return;
     document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
   }
 
   /* ═══════════════════════════════════════════════
      APPLY TRANSLATIONS — walk all [data-i18n] nodes
   ═══════════════════════════════════════════════ */
+  function isMobileDevice() {
+    return window.innerWidth <= 767 &&
+      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches);
+  }
+
   function applyTranslations() {
+    /* Desktop: no translation applied — keep original English */
+    if (!isMobileDevice()) return;
+
     /* Standard text replacement */
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
       var key = el.getAttribute('data-i18n');
@@ -217,13 +332,13 @@
       el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
       el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
     });
-    /* Mobile wordmark: show Chinese name when in zh */
+    /* Mobile wordmark: always show Chinese name */
     var wm = document.querySelector('.mob-bar__wordmark');
     if (wm) {
-      wm.textContent = currentLang === 'zh' ? 'Cady Sheng 盛开' : 'Cady Sheng';
+      wm.textContent = 'Cady Sheng 盛开';
     }
     /* Mobile zh title images */
-    applyZhTitles();
+    injectOrUpdateZhTitles();
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
   }
   /* Expose globally so page scripts can call after DOM changes */
@@ -314,20 +429,20 @@
   var style = document.createElement('style');
   style.textContent = [
 
-    'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
-    'html.lang-zh .side-nav a,html.lang-zh #mob-menu a,html.lang-zh .mob-bar__wordmark,html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
-    'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact,html.lang-zh .mob-menu__label,html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
-    'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label,html.lang-zh .tagline,html.lang-zh footer p{font-family:"Noto Serif SC",serif !important;}',
-
-    /* ── Chinese tile labels on mobile ── */
+    /* ── Chinese overrides: mobile only ── */
     '@media(max-width:767px) and (pointer:coarse){',
+      'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
+      'html.lang-zh .side-nav a,html.lang-zh #mob-menu a,html.lang-zh .mob-bar__wordmark,html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
+      'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact,html.lang-zh .mob-menu__label,html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
+      'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label,html.lang-zh .tagline,html.lang-zh footer p{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .tile__label, html.lang-zh .hero-tile .tile__label{',
         'font-size:15px !important;',
-        'font-weight:600 !important;',
-        'letter-spacing:0.05em !important;',
+        'font-weight:700 !important;',
+        'letter-spacing:0 !important;',
         'text-transform:none !important;',
       '}',
       'html.lang-zh .tile--small .tile__label{font-size:14px !important;}',
+      'html.lang-zh .tagline{font-size:12.5px !important;}',
     '}',
 
     '.mob-bar{display:none !important;}',
@@ -533,9 +648,9 @@
   var mobBar = document.createElement('div');
   mobBar.className = 'mob-bar';
   mobBar.innerHTML =
-    '<a href="index.html" class="mob-bar__wordmark">Cady Sheng</a>' +
+    '<a href="index.html" class="mob-bar__wordmark">Cady Sheng 盛开</a>' +
     '<div style="flex:1"></div>' +
-    '<button class="mob-bar__lang is-en" id="mob-lang-btn" aria-label="Toggle language">' +
+    '<button class="mob-bar__lang ' + (currentLang === 'zh' ? 'is-zh' : 'is-en') + '" id="mob-lang-btn" aria-label="Toggle language">' +
       '<span class="lang-zh">中</span>' +
       '<span class="lang-sep">/</span>' +
       '<span class="lang-en">Eng</span>' +
