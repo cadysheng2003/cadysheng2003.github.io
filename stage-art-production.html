@@ -5,6 +5,9 @@
   <meta name="theme-color" content="#fff9f7">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stage Art & Production — Cady Sheng</title>
+  <meta property="og:site_name" content="Cady Sheng">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stage Art & Production — Cady Sheng">
     <link rel="preload" as="image" href="stage-art-Production/stage-title.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +56,9 @@
     .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
     .page-nav__home:hover { opacity:0.6; }
 
-    @media (max-width:600px) {
+          .sp-mob { display:none; }
+
+@media (max-width:600px) {
       :root { --page-padding:18px; }
       .r { flex-direction:column; gap:12px; }
       .r > .c, .r > .g { width:100% !important; flex:none !important; }
@@ -75,6 +80,23 @@
       }
 
     @media(max-width:767px) and (pointer:coarse){
+      /* ── SP mobile layout: pure CSS, no JS ── */
+      .sp-mob { display:block; }
+      .sp-cols { display:none !important; }
+
+      .sp-mob-full { margin-bottom:8px; }
+      .sp-mob-cols {
+        display:grid;
+        grid-template-columns:1.3fr 1fr;
+        gap:8px;
+        align-items:start;
+      }
+      .sp-mob-left  { display:flex; flex-direction:column; gap:8px; }
+      .sp-mob-right { display:flex; flex-direction:column; gap:8px; }
+      .sp-mob-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+      .sp-mob .g { line-height:0; }
+      .sp-mob .g img { width:100%; height:auto; display:block; border-radius:3px; }
+
       /* Override 600px page-nav column layout → horizontal row on mobile */
       .page-nav{
         flex-direction:row !important;
@@ -117,30 +139,7 @@
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
 
-      /* ── Stage page: fix photo grid spacing on mobile ── */
-      /* Two-col flex → single col, remove contain/min-height that causes gaps */
-      .sp-cols {
-        flex-direction:column !important;
-        gap:8px !important;
-      }
-      .sp-cols .c {
-        width:100% !important;
-        flex:none !important;
-      }
-      .sp-cols .g {
-        min-height:0 !important;
-        contain:none !important;
-      }
-      .sp-cols .g img {
-        width:100% !important;
-        height:auto !important;
-        display:block !important;
-      }
-      .sp-cols .g2 {
-        display:grid !important;
-        grid-template-columns:1fr 1fr !important;
-        gap:8px !important;
-      }
+
       /* ── Mobile performance: reduce CLS and rendering cost ── */
 
       /* Skip rendering rows until near viewport */
@@ -184,6 +183,9 @@
     </div>
 
   <div class="gallery">
+
+
+
     <div style="line-height:0;position:relative;width:100%;padding-bottom:56.25%;">
         <iframe
           src="https://www.youtube.com/embed/t4qgBs5QRgQ?autoplay=1&mute=1&rel=0&vq=hd1080"
@@ -226,6 +228,33 @@
         <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">与导演及文化教育者密切协作，确保呼应文化真实性。</p>
         <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text);margin-bottom:4px">带领并培训志愿者团队（年8–12岁）。</p>
         <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.7;color:var(--color-text)">制作并剩辑活动记录视频。</p>
+      </div>
+    </div>
+    <!-- ═══ MOBILE-ONLY LAYOUT ═══ -->
+    <div class="sp-mob">
+      <!-- SP2 full width single row -->
+      <div class="sp-mob-full">
+        <div class="g"><img src="stage-art-Production/SP2 (From the Mountains Series).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+      <!-- Two columns: LEFT flex:1.3 / RIGHT flex:1 -->
+      <div class="sp-mob-cols">
+        <div class="sp-mob-left">
+          <div class="g"><img src="stage-art-Production/SP5 (From the Mountains Group Photo).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP7 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP8 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP10 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        </div>
+        <div class="sp-mob-right">
+          <div class="g"><img src="stage-art-Production/SP3 (From the Mountains Stage Design).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP4 (From the Mountains Stage Design).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP6 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP9 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="g"><img src="stage-art-Production/SP11 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          <div class="sp-mob-grid2">
+            <div class="g"><img src="stage-art-Production/SP12 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+            <div class="g"><img src="stage-art-Production/SP13 (From the Mountains Back Stage).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Two independent columns: left gets SP2,5,7,10 / right gets SP3,4,6,8,9,11,12,13 -->
@@ -278,7 +307,7 @@
   </div>
 
   <!-- Journal text block -->
-  <div style="max-width:var(--page-max-width);margin:48px auto 0;padding:0 var(--page-padding)">
+  <div style="max-width:var(--page-max-width);margin:20px auto 0;padding:0 var(--page-padding)">
     <p data-i18n="sp.journal.title" style="font-family:var(--font-display);font-size:18px;font-weight:400;color:var(--color-text);margin-bottom:20px">"From the Mountains" Journal</p>
     <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px" data-i18n="sp.journal.p1">Before coming, I had no idea what I would be doing. After arriving, I barely slept more than five hours a day. Working on stage design meant going day and night, often until around three in the morning. I had never slept so little or worked continuously for so long in my life. I had a fever, menstrual pain, heart pain, stomach pain, and a sore throat—haha.</p>
     <p style="font-family:var(--font-body);font-size:13.5px;line-height:1.9;color:var(--color-text);margin-bottom:12px" data-i18n="sp.journal.p2">But the overflowing love carried me through everything and gave me more than enough strength to do my work beautifully.</p>
