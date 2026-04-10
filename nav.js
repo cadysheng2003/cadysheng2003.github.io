@@ -66,21 +66,14 @@
       'cb.p4':   '\u201cHolding hands\u201d',
       'cb.p5':   'I see everyone! Everyone feels me too!',
       'cb.p6':   'A little girl shouts:',
-      'cb.p7a':  '\u201cHi Everyone!',
-      'cb.p7b':  'Hi Everyone!',
-      'cb.p7c':  'Hi Everyone!',
-      'cb.p7d':  'I see you',
-      'cb.p7e':  'I love you!',
-      'cb.p7f':  'I feel you!\u201d',
-      'cb.p7g':  'She feels the fullness in everything.',
-      'cb.p7h':  'She feels incredibly alive.',
       'cb.p8':   'She hears all the animals too, all at the same time from miles away; the crickets, a deer stepping into the crunchy leaves.',
       'cb.p9':   'A vibration, a melody made by nature all together.',
       'cb.p10a': 'Everyone dances back to me, waving their bodies and branches and leaves.',
-      'cb.p10b': '\u201cNow I will never unsee you,\u201d says the little girl.',
-      'cb.p10c': 'She hugs everyone.',
-      'cb.p10d': '! Bye Everyone !',
-      'cb.p10e': 'Echoes in the woods.',
+      /* Multi-line cb paragraphs (contain <br>) — use innerHTML */
+      'cb.p7_poem': '\u201cHi Everyone!<br>Hi Everyone!<br>Hi Everyone!<br>I see you<br>I love you!<br>I feel you!\u201d',
+      'cb.p7_feel': 'She feels the fullness in everything.<br>She feels incredibly alive.',
+      'cb.p10bc':   '\u201cNow I will never unsee you,\u201d says the little girl.<br>She hugs everyone.',
+      'cb.p10de':   '! Bye Everyone !<br>Echoes in the woods.',
 
       /* ── Footer ── */
       'footer.inquiries':  'For commissions, collaborations, or general inquiries,',
@@ -152,21 +145,13 @@
       'cb.p4':   '"手牵着手"',
       'cb.p5':   '我看见了所有人！所有人也感受到我！',
       'cb.p6':   '一个小女孩喊道：',
-      'cb.p7a':  '"大家好！',
-      'cb.p7b':  '大家好！',
-      'cb.p7c':  '大家好！',
-      'cb.p7d':  '我看见你们',
-      'cb.p7e':  '我爱你们！',
-      'cb.p7f':  '我感受到你们！"',
-      'cb.p7g':  '她感受到万物中饱满的存在。',
-      'cb.p7h':  '她感到无比鲜活。',
       'cb.p8':   '她也同时听到了远处所有动物的声音——蟋蟀的鸣叫，一头鹿踩入落叶的声响。',
       'cb.p9':   '一种振动，一首由大自然共同演奏的旋律。',
       'cb.p10a': '万物向我舞动而来，摇曳着身躯、枝桠与叶片。',
-      'cb.p10b': '"现在我再也无法假装看不见你们了，"小女孩说。',
-      'cb.p10c': '她拥抱了所有人。',
-      'cb.p10d': '！再见，大家！',
-      'cb.p10e': '声音在林间回响。',
+      'cb.p7_poem': '\u201c大家好！<br>大家好！<br>大家好！<br>我看见你们<br>我爱你们！<br>我感受到你们！\u201d',
+      'cb.p7_feel': '她感受到万物中饱满的存在。<br>她感到无比鲜活。',
+      'cb.p10bc':   '\u201c现在我再也无法假装看不见你们了，\u201d小女孩说。<br>她拥抱了所有人。',
+      'cb.p10de':   '！再见，大家！<br>声音在林间回响。',
 
       /* ── Footer ── */
       'footer.inquiries':  '如有委托、合作或其他咨询，',
@@ -181,11 +166,17 @@
 
   /* ═══════════════════════════════════════════════
      LANGUAGE STATE
-     Always default to English on fresh load.
-     Only remember preference after user explicitly switches.
+     - First ever visit: English (no localStorage value)
+     - After user switches: remember across pages via localStorage
   ═══════════════════════════════════════════════ */
   var LANG_KEY = 'cs-lang';
-  var currentLang = 'en'; /* always start English */
+  var currentLang = localStorage.getItem(LANG_KEY) || 'en';
+
+  /* Apply font class immediately to avoid FOUC on Chinese */
+  if (currentLang === 'zh') {
+    document.documentElement.classList.add('lang-zh');
+    document.documentElement.lang = 'zh-CN';
+  }
 
   function t(key) {
     return (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key] || key;
@@ -208,19 +199,103 @@
      APPLY TRANSLATIONS — walk all [data-i18n] nodes
   ═══════════════════════════════════════════════ */
   function applyTranslations() {
+    /* Standard text replacement */
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
       var key = el.getAttribute('data-i18n');
       var val = t(key);
       if (val) el.textContent = val;
     });
+    /* innerHTML replacement for elements containing <br> or HTML markup */
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      var val = t(key);
+      if (val) el.innerHTML = val;
+    });
+    /* page-nav__home: explicit update + fix letter-spacing for Chinese */
+    document.querySelectorAll('.page-nav__home').forEach(function(el) {
+      el.textContent = currentLang === 'zh' ? '主页' : 'Home';
+      el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
+      el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
+    });
+    /* Mobile wordmark: show Chinese name when in zh */
+    var wm = document.querySelector('.mob-bar__wordmark');
+    if (wm) {
+      wm.textContent = currentLang === 'zh' ? 'Cady Sheng 盛开' : 'Cady Sheng';
+    }
+    /* Mobile zh title images */
+    applyZhTitles();
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
   }
   /* Expose globally so page scripts can call after DOM changes */
   window.csApplyTranslations = applyTranslations;
 
   /* ═══════════════════════════════════════════════
-     STYLES
+     MOBILE CHINESE TITLE SYSTEM
+     On mobile + zh: hide title PNG, show zh text instead.
+     On en: restore original image.
   ═══════════════════════════════════════════════ */
+
+  /* Map: image alt → Chinese title text */
+  var zhTitles = {
+    'Illustrations':          '插画',
+    'Stage Art & Production': '舞台艺术与制作',
+    'My Partner':             '我的伴侣',
+    "Children's Book":        '儿童绘本',
+    'Flow & Spirituality':    '流动与灵性',
+    'Traditional Mediums':    '传统媒介',
+    'Graphic Design':         '平面设计',
+    'Jewelry':                '珠宝',
+    'Meditation':             '冥想',
+    'Apparel':                '服装',
+  };
+
+  var ZH_TITLE_CLASS = 'zh-title-text';
+
+  function applyZhTitles() {
+    /* Mobile only */
+    var isMobile = window.innerWidth <= 767 &&
+      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches);
+    if (!isMobile) return;
+
+    document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
+      var alt = img.getAttribute('alt') || '';
+      var zh  = zhTitles[alt];
+      if (!zh) return;
+
+      var wrap = img.parentElement;
+
+      /* Get or create the zh subtitle element */
+      var subtitle = wrap.querySelector('.' + ZH_TITLE_CLASS);
+
+      if (currentLang === 'zh') {
+        /* Keep image visible, just add/show zh subtitle below */
+        img.style.display = '';
+        if (!subtitle) {
+          subtitle = document.createElement('p');
+          subtitle.className = ZH_TITLE_CLASS;
+          subtitle.style.cssText = [
+            'font-family:"Noto Serif SC",serif',
+            'font-size:13px',
+            'font-weight:300',
+            'letter-spacing:0.15em',
+            'color:#8a817a',
+            'text-align:center',
+            'margin:4px 0 0',
+            'line-height:1.4',
+            'display:block',
+          ].join(';');
+          /* Insert after the image */
+          img.insertAdjacentElement('afterend', subtitle);
+        }
+        subtitle.textContent = zh;
+        subtitle.style.display = 'block';
+      } else {
+        /* Hide zh subtitle, keep image */
+        img.style.display = '';
+        if (subtitle) subtitle.style.display = 'none';
+      }
+    });
+  }
   if (!document.querySelector('link[href*="Inter"]')) {
     var fontLink = document.createElement('link');
     fontLink.rel  = 'stylesheet';
@@ -239,11 +314,21 @@
   var style = document.createElement('style');
   style.textContent = [
 
-    /* ── Chinese font overrides ── */
     'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
     'html.lang-zh .side-nav a,html.lang-zh #mob-menu a,html.lang-zh .mob-bar__wordmark,html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
     'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact,html.lang-zh .mob-menu__label,html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
     'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label,html.lang-zh .tagline,html.lang-zh footer p{font-family:"Noto Serif SC",serif !important;}',
+
+    /* ── Chinese tile labels on mobile ── */
+    '@media(max-width:767px) and (pointer:coarse){',
+      'html.lang-zh .tile__label, html.lang-zh .hero-tile .tile__label{',
+        'font-size:15px !important;',
+        'font-weight:600 !important;',
+        'letter-spacing:0.05em !important;',
+        'text-transform:none !important;',
+      '}',
+      'html.lang-zh .tile--small .tile__label{font-size:14px !important;}',
+    '}',
 
     '.mob-bar{display:none !important;}',
     '#mob-menu{',
@@ -493,7 +578,7 @@
   /* ═══════════════════════════════════════════════
      INIT
   ═══════════════════════════════════════════════ */
-  document.addEventListener('DOMContentLoaded', function () {
+  function init() {
     document.body.insertBefore(nav, document.body.firstChild);
     document.body.insertBefore(mobMenu, document.body.firstChild);
     document.body.insertBefore(mobBar, document.body.firstChild);
@@ -569,6 +654,13 @@
         }
       });
     });
-  });
+  }
+
+  /* Run init immediately if DOM is ready, otherwise wait */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
