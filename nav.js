@@ -98,13 +98,13 @@
 
       /* ── Stage Art journal ── */
       /* ── Stage Art intro ── */
-      'sp.title':    '来自大山',
-      'sp.role':     '舞台艺术与制作总监',
-      'sp.location': '中国上海 · 2024年6月',
-      'sp.b1': '担任2024年民族文化遗产活动艺术总监，支持少数民族教育公益项目。',
-      'sp.b2': '独立完成全部舞台绘画及灯光设计。',
-      'sp.b3': '建立反映各参与民族群体文化身份认同的视觉概念。',
-      'sp.b4': '与导演及文化教育者密切协作，确保呼应文化真实性。',
+      'sp.title':    'From the Mountains',
+      'sp.role':     'Stage Art & Production Director',
+      'sp.location': 'Shanghai, China · June 2024',
+      'sp.b1': 'Served as Art Director for the 2024 cultural heritage event supporting ethnic education initiatives.',
+      'sp.b2': 'Independently designed and executed all stage paintings and lighting design.',
+      'sp.b3': 'Developed visual concepts reflecting the identity of participating ethnic communities.',
+      'sp.b4': 'Collaborated with directors and cultural educators to ensure authenticity.',
       'sp.b5': '带领并培训志愿者团队（年8–12岁）。',
       'sp.b6': '制作并剩辑活动记录视频。',
 
@@ -243,8 +243,7 @@
 
   /* ─── MOBILE DETECTION ─── */
   function isMobile() {
-    return window.innerWidth <= 767 &&
-      (navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches);
+    return window.innerWidth <= 767;
   }
 
   /* ─── PAGE TITLE CHINESE MAP ─── */
@@ -266,7 +265,8 @@
     var isDesktop = window.innerWidth >= 768;
 
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      /* Skip page-nav and page content on desktop — side-nav is English-only */
+      /* On desktop: only translate elements inside #mob-menu or .mob-bar (hidden UI) */
+      /* On mobile: translate everything */
       if (isDesktop && !el.closest('#mob-menu') && !el.closest('.mob-bar')) return;
       var key = el.getAttribute('data-i18n');
       var val = (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key];
@@ -289,7 +289,7 @@
     /* wordmark */
     var wm = document.querySelector('.mob-bar__wordmark');
     if (wm) wm.innerHTML = 'Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span>';
-    /* html lang + font class */
+    /* html lang + font class — mobile only to avoid font changes on desktop */
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
     document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
     /* page title subtitles — mobile only */
@@ -334,7 +334,7 @@
   style.textContent = [
 
     /* ── Chinese overrides: mobile only ── */
-    '@media(max-width:767px) and (pointer:coarse){',
+    '@media(max-width:767px){',
       'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
       'html.lang-zh .side-nav a,html.lang-zh #mob-menu a,html.lang-zh .mob-bar__wordmark,html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact,html.lang-zh .mob-menu__label,html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
@@ -417,7 +417,7 @@
     '}',
 
     /* ── Mobile nav ── */
-    '@media(max-width:767px) and (pointer:coarse){',
+    '@media(max-width:767px){',
       '.side-nav{display:none !important;}',
 
       '.mob-bar{',
