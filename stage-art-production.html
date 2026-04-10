@@ -113,20 +113,36 @@
       }
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
-      /* ── Mobile performance: reduce CLS and rendering cost ── */
 
-      /* Skip rendering rows until near viewport */
-      .gallery .r,
-      .gallery .row {
+      /* ── Mobile performance ── */
+      .gallery .r, .gallery .row {
         content-visibility: auto;
         contain-intrinsic-size: 0 300px;
       }
-
-      /* Isolate paint/layout per row — cheaper reflows */
-      .gallery .r,
-      .gallery .row,
-      .gallery .g {
+      .gallery .r, .gallery .row, .gallery .g {
         contain: layout style;
+      }
+      .gallery img {
+        will-change: auto;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+      .gallery img, .g img { transition: none !important; }
+
+      /* ── Stage page: sp-cols — keep two columns, just fix contain/min-height gaps ── */
+      .sp-cols {
+        display:flex !important;
+        flex-direction:row !important;
+        gap:8px !important;
+        align-items:flex-start !important;
+      }
+      .sp-cols .c {
+        min-width:0;
+      }
+      .sp-cols .g2 {
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:8px !important;
       }
 
       /* Images: prevent reflow, GPU-friendly rendering */
@@ -145,6 +161,18 @@
       .gallery img,
       .g img {
         transition: none !important;
+      }
+
+      /* sp-cols overrides MUST be last — after min-height and contain rules */
+      .sp-cols .g {
+        min-height:0 !important;
+        contain:none !important;
+        content-visibility:visible !important;
+      }
+      .sp-cols .g img {
+        width:100% !important;
+        height:auto !important;
+        display:block !important;
       }
     }
   </style>
@@ -201,7 +229,7 @@
       </div>
     </div>
     <!-- Two independent columns: left gets SP2,5,7,10 / right gets SP3,4,6,8,9,11,12,13 -->
-    <div style="display:flex; gap:12px; align-items:flex-start">
+    <div class="sp-cols" style="display:flex; gap:12px; align-items:flex-start">
       <!-- LEFT col -->
       <div class="c" style="flex:1.3">
         <div class="g" data-title="From the Mountains Series">

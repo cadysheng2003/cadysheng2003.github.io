@@ -52,7 +52,9 @@
 
 
 
-    @media (max-width:600px) {
+          .tm-mob { display:none; }
+
+@media (max-width:600px) {
       :root { --page-padding:18px; }
       .r { flex-direction:column; gap:12px; }
       .r > .c, .r > .g { width:100% !important; flex:none !important; }
@@ -72,6 +74,17 @@
     .tm-r { flex:1.000 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
 
     @media(max-width:767px) and (pointer:coarse){
+      /* ── TM mobile layout: pure CSS, no JS ── */
+      .tm-mob { display:block; }
+      .gallery > :not(.tm-mob) { display:none !important; }
+      .tm-mob-stack { display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+      .tm-mob-grid4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3px; margin-bottom:8px; }
+      .tm-mob-grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:3px; margin-bottom:8px; }
+      .tm-mob-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-bottom:8px; }
+      .tm-mob .g { line-height:0; }
+      .tm-mob .g img, .tm-mob .g video { width:100%; height:auto; display:block; border-radius:3px; }
+      .tm-mob .g video { max-height:84vw; object-fit:cover; }
+
             /* TM mobile custom layout */
 
       /* S1: TM1/2/3 — full width, no crop */
@@ -105,6 +118,21 @@
       .tm-moved-container{ display:none !important; }
       /* Remove gap from sep-sm if surrounded by hidden rows */
       .tm-mobile-built .sep-sm{ display:none; }
+
+      /* S6: TM9, TM17 — full width stacked */
+      .tm-s6{ display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
+      .tm-s6 .g{ width:100% !important; flex:none !important; overflow:visible !important; }
+      .tm-s6 .g img{ width:100% !important; height:auto !important; display:block !important; object-fit:unset !important; }
+
+      /* S7: TM10 video — full width, half natural height via max-height */
+      .tm-s7{ margin-bottom:12px; }
+      .tm-s7-video{ width:100% !important; overflow:hidden; }
+      .tm-s7-video video{ width:100% !important; display:block !important; max-height:84vw; object-fit:cover; }
+
+      /* S8: remaining images — each full width, stacked */
+      .tm-s8{ display:flex; flex-direction:column; gap:12px; margin-bottom:12px; }
+      .tm-s8 .g{ width:100% !important; flex:none !important; overflow:visible !important; }
+      .tm-s8 .g img{ width:100% !important; height:auto !important; display:block !important; object-fit:unset !important; }
 
       /* TM top section: 3-column grid for tm3col */
       .tm3col{
@@ -164,21 +192,79 @@
       .g, .g img { border-radius:3px !important; overflow:hidden; }
     }
   </style>
-  <style>
-    @media(max-width:767px) and (pointer:coarse){
-      .gallery .r, .gallery .row { content-visibility:auto; contain-intrinsic-size:0 400px; }
-      .gallery .g { contain:layout style; }
-      .gallery img { will-change:auto; transform:translateZ(0); backface-visibility:hidden; transition:none !important; }
-    }
-  </style>
 </head>
 <body>
 
   <div class="page-header">
-    <img loading="eager" fetchpriority="high" decoding="async" src="traditional-mediums/traditional-mediums-title.png" alt="Traditional Mediums" style="height:92px;width:auto;display:block;margin:0 auto;">
+    <img decoding="async" src="traditional-mediums/traditional-mediums-title.png" alt="Traditional Mediums" style="height:92px;width:auto;display:block;margin:0 auto;">
   </div>
 
   <div class="gallery">
+
+    <!-- MOBILE LAYOUT: display:none on desktop, shown only on mobile -->
+    <div class="tm-mob">
+
+      <!-- S1: TM1, TM2, TM3 stacked full width -->
+      <div class="tm-mob-stack">
+        <div class="g"><img src="traditional-mediums/TM1 (Untitled Watercolor 1).jpg" loading="eager" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM2 (Untitled Watercolor 2).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM3 (Untitled Watercolor 3).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S2: TM5 TM8 TM11 TM12 TM13 TM14 TM15 TM16 — 4-col grid -->
+      <div class="tm-mob-grid4">
+        <div class="g"><img src="traditional-mediums/TM5 (Untitled Oil Painting 2).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM8 (Untitled Oil Painting 3).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM11 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM12 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM13 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM14 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM15 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM16 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S3: TM6, TM19, TM4, TM7 stacked full width -->
+      <div class="tm-mob-stack">
+        <div class="g"><img src="traditional-mediums/TM6 (Pastel Figure Drawing).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM19 (Crocodiles in My Dreams).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM4 (Untitled Oil Painting 1).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM7 (Watercolors and Sculptures).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S4: TM18 TM20 TM21 — 3-col grid -->
+      <div class="tm-mob-grid3">
+        <div class="g"><img src="traditional-mediums/TM18 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM20 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S5: TM22 TM23 — 2-col grid -->
+      <div class="tm-mob-grid2">
+        <div class="g"><img src="traditional-mediums/TM22 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM23 (Animal Death).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S6: TM9, TM17 each full width -->
+      <div class="tm-mob-stack">
+        <div class="g"><img src="traditional-mediums/TM9 (Cat Memes).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM17 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <!-- S7: TM10 video full width -->
+      <div class="tm-mob-stack">
+        <div class="g"><video autoplay muted loop playsinline src="traditional-mediums/TM10 (Portrait of My Grandmother When She Was Young).mp4" style="width:100%;display:block;max-height:84vw;object-fit:cover"></video></div>
+      </div>
+
+      <!-- S8: TM24 TM25 TM26 TM27 each full width -->
+      <div class="tm-mob-stack">
+        <div class="g"><img src="traditional-mediums/TM24 (My Sister).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM26 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="traditional-mediums/TM27 (Almost Electrified).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+    </div>
+
     <div class="tm3col">
       <div class="tm-l">
         <div class="g" data-title="Untitled Watercolor 1" data-tm="TM1">
@@ -299,7 +385,7 @@
       <span class="page-nav__label" data-i18n="pnav.prev">Previous</span>
       <a href="flow-and-spirituality.html" class="page-nav__name"><span data-i18n="pnav.flow">&lsaquo;&ensp;Flow</span></a>
     </div>
-    <a href="index.html" class="page-nav__home">Home</a>
+    <a href="index.html" class="page-nav__home" data-i18n="nav.home">Home</a>
     <div class="page-nav__side page-nav__side--right">
       <span class="page-nav__label" data-i18n="pnav.next">Next</span>
       <a href="graphic-design.html" class="page-nav__name"><span data-i18n="pnav.graphic">Graphic&ensp;&rsaquo;</span></a>
@@ -321,111 +407,6 @@
 
 
   
-<script>
-  (function(){
-    function buildTMMobile(){
-      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
-      if(document.querySelector('.tm-mobile-built')) return;
 
-      var gallery = document.querySelector('.gallery');
-      if(!gallery) return;
-
-      function get(tm){ return document.querySelector('[data-tm="'+tm+'"]'); }
-
-      /* Extract clean img from abs-positioned containers */
-      function cleanImg(tm){
-        var el = get(tm);
-        if(!el) return null;
-        var imgs = Array.from(el.querySelectorAll('img'));
-        var real = imgs.find(function(i){
-          return (i.getAttribute('style')||'').indexOf('visibility:hidden') === -1;
-        });
-        if(!real) return null;
-        var wrap = document.createElement('div');
-        wrap.className = 'g';
-        var img = new Image();
-        img.src = real.src;
-        img.alt = real.alt || '';
-        img.loading = 'lazy';
-        img.style.cssText = 'width:100%;height:auto;display:block';
-        wrap.appendChild(img);
-        return wrap;
-      }
-
-      /* Verify */
-      var s2ids = ['TM5','TM8','TM11','TM12','TM13','TM14','TM15','TM16'];
-      var s4ids = ['TM18','TM20','TM21'];
-      var s5ids = ['TM22','TM23'];
-      if(s2ids.map(get).filter(Boolean).length !== 8) return;
-      if(s4ids.filter(function(tm){ return cleanImg(tm) !== null; }).length !== 3) return;
-      if(s5ids.filter(function(tm){ return cleanImg(tm) !== null; }).length !== 2) return;
-
-      /* S1: TM1/2/3 - move existing nodes */
-      var s1 = document.createElement('div'); s1.className = 'tm-s1';
-      ['TM1','TM2','TM3'].forEach(function(tm){ var e=get(tm); if(e) s1.appendChild(e); });
-
-      /* S2: 8 figures 4x2 grid - move existing nodes */
-      var s2 = document.createElement('div'); s2.className = 'tm-s2';
-      s2ids.forEach(function(tm){ var e=get(tm); if(e) s2.appendChild(e); });
-
-      /* S3: TM6/19/4/7 full images - move existing nodes */
-      var s3 = document.createElement('div'); s3.className = 'tm-s3';
-      ['TM6','TM19','TM10','TM4','TM7'].forEach(function(tm){ var e=get(tm); if(e) s3.appendChild(e); });
-
-      /* S4: TM18/20/21 3-col - create clean copies, hide originals */
-      var s4 = document.createElement('div'); s4.className = 'tm-s4';
-      s4ids.forEach(function(tm){
-        var el = get(tm);
-        var w = cleanImg(tm);
-        if(w){ s4.appendChild(w); el.style.display='none'; }
-      });
-
-      /* S5: TM22/23 2-col - create clean copies, hide originals */
-      var s5 = document.createElement('div'); s5.className = 'tm-s5';
-      s5ids.forEach(function(tm){
-        var el = get(tm);
-        var w = cleanImg(tm);
-        if(w){ s5.appendChild(w); el.style.display='none'; }
-      });
-
-      /* Verify counts */
-      if(s2.children.length !== 8) return;
-      if(s4.children.length !== 3) return;
-      if(s5.children.length !== 2) return;
-
-      /* Insert sections at top of gallery */
-      [s5,s4,s3,s2,s1].forEach(function(s){
-        gallery.insertBefore(s, gallery.firstChild);
-      });
-
-      /* Hide ONLY the specific empty structural containers:
-         - .tm3col (TM1/2/3/5/6/7/8 all moved out)
-         - .tm-fig-row rows (TM11-16 moved out)
-         - .sep-sm spacers
-         Do NOT hide .r rows — they contain TM9/10/17+ that should stay */
-      gallery.querySelectorAll('.tm3col').forEach(function(el){ el.style.display='none'; });
-      gallery.querySelectorAll('.tm-fig-row').forEach(function(el){ el.style.display='none'; });
-      gallery.querySelectorAll('.sep-sm').forEach(function(el){ el.style.display='none'; });
-
-      /* Hide .r rows only if they contain NO remaining visible data-tm items
-         AND no video elements */
-      gallery.querySelectorAll('.r').forEach(function(row){
-        var hasVideo = row.querySelector('video');
-        var hasVisibleTM = row.querySelector('[data-tm]:not([style*="display:none"])');
-        var hasNonTMImg = Array.from(row.querySelectorAll('img')).some(function(img){
-          return (img.getAttribute('style')||'').indexOf('visibility:hidden') === -1
-            && (img.getAttribute('style')||'').indexOf('display:none') === -1
-            && !img.closest('[style*="display:none"]');
-        });
-        if(!hasVideo && !hasVisibleTM && !hasNonTMImg){
-          row.style.display = 'none';
-        }
-      });
-
-      gallery.classList.add('tm-mobile-built');
-    }
-    document.addEventListener('DOMContentLoaded', buildTMMobile);
-  })();
-  </script>
 </body>
 </html>
