@@ -48,7 +48,9 @@
     .page-nav__home  { font-family:var(--font-display); font-size:30px; font-weight:300; color:var(--color-text); letter-spacing:2px; text-decoration:none; transition:opacity 0.25s; }
     .page-nav__home:hover { opacity:0.6; }
 
-    @media (max-width:600px) {
+          .il-mob { display:none; }
+
+@media (max-width:600px) {
       :root { --page-padding:18px; }
       .row { flex-direction:column; }
       .row > .col, .row > .g { width:100% !important; flex:none !important; }
@@ -74,6 +76,20 @@
       }
 
     @media(max-width:767px) and (pointer:coarse){
+      /* ── IL mobile layout: pure CSS ── */
+      .il-mob { display:block; }
+      .gallery > :not(.il-mob) { display:none !important; }
+
+      .il-mob-stack { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+      .il-mob-grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:20px; align-items:start; }
+      .il-mob-2col  { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; align-items:start; }
+      .il-mob-col   { display:flex; flex-direction:column; gap:10px; }
+      .il-mob-sep   { height:20px; }
+      .il-mob .g { min-height:0 !important; }
+      .il-mob .g img { min-height:0 !important; }
+      .il-mob .g    { line-height:0; }
+      .il-mob .g img { width:100%; height:auto; display:block; border-radius:3px; }
+
       /* Override 600px page-nav column layout → horizontal row on mobile */
       .page-nav{
         flex-direction:row !important;
@@ -147,32 +163,7 @@
       .g img {
         transition: none !important;
       }
-      /* Keep 9-grid as 3×3 on mobile */
-      .grid3 {
-        grid-template-columns: 1fr 1fr 1fr !important;
-        display: grid !important;
-      }
 
-      /* Fix: remove min-height inside grid cells — causes large gaps */
-      .grid3 .g { min-height: 0 !important; }
-
-      /* Block B: I17–I22 — 2-col × 3-row grid, full images */
-      .il-block-b {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        margin-bottom: 8px !important;
-      }
-      .il-block-b .g {
-        width: 100% !important;
-        flex: none !important;
-      }
-      .il-block-b .g img {
-        width: 100% !important;
-        height: auto !important;
-        display: block !important;
-        object-fit: unset !important;
-      }
     }
   </style>
 </head>
@@ -183,6 +174,55 @@
   </div>
 
   <div class="gallery">
+
+    <!-- ═══ MOBILE-ONLY LAYOUT ═══ display:none on desktop via CSS -->
+    <div class="il-mob">
+
+      <!-- Block A: I1 full → I2 full → 3×3 grid → I3 I4 I8 I15 stack → I16 full -->
+      <div class="il-mob-stack">
+        <div class="g"><img src="illustrations/I1 (Portal).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I2 (The Princess and the Pea).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+      <div class="il-mob-grid3">
+        <div class="g"><img src="illustrations/I5 (Dialogue Between the Gods).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I6 (Bow).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I7 (Queen).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I9 (Giant).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I10 (Lamb).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I11 (Redfish and Fox).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I12 (Witch).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I13 (Ghosts).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I14 (Pond).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+      <div class="il-mob-stack">
+        <div class="g"><img src="illustrations/I3 (Maternal Bond).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I4.jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I8.jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I15 (Notes and Trees).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I16 (From the Mountains_ The Dance Begins I).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <div class="il-mob-sep"></div>
+
+      <!-- Block B: I17-22 — single 3-col grid, 2 rows -->
+      <div class="il-mob-grid3">
+        <div class="g"><img src="illustrations/I17 (From the Mountains_ The Dance Begins II).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I18 (From the Mountains_ The Singing Duel I).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I19 (From the Mountains_ Praise of Genghis Khan).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I20 (From the Mountains_ Lobsang Dongzhi).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I21 (From the Mountains_ The Singing Duel II).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I22 (From the Mountains_ Amala).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <div class="il-mob-sep"></div>
+
+      <!-- Block C: I23 I25 I27 I29 each full width -->
+      <div class="il-mob-stack">
+        <div class="g"><img src="illustrations/I23 (Rabbits).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I25 (Rabbits 1).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I27 (Untitled).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block" onerror="this.src='illustrations/I27 (Untitled).jpg_'"></div>
+        <div class="g"><img src="illustrations/I29 (Rabbit Running Free).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+      <div class="il-mob-sep"></div>
+
+      <!-- Block D: I35 + I36 full width -->
+      <div class="il-mob-stack">
+        <div class="g"><img src="illustrations/I35 (Argument).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+      </div>
+
+    </div><!-- /il-mob -->
+
 
     <!--
     BLOCK A — confirmed from pixel analysis of design mockup:
