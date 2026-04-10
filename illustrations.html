@@ -34,6 +34,9 @@
     .gallery { max-width:var(--page-max-width); margin:0 auto; padding:0 var(--page-padding); }
     .row  { display:flex; gap:var(--gap); align-items:flex-start; margin-bottom:var(--gap); }
     .col  { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
+    /* Aliases used by merged My Partner + Flow sections */
+    .r    { display:flex; gap:var(--gap); align-items:flex-start; margin-bottom:var(--gap); }
+    .c    { display:flex; flex-direction:column; gap:var(--gap); min-width:0; }
     .g    { display:block; line-height:0; cursor:pointer; min-width:0; }
     .g img { display:block; width:100%; height:auto; transition:opacity 0.3s ease; }
     .g { border-radius:8px; overflow:hidden; }
@@ -61,6 +64,10 @@
       :root { --page-padding:18px; }
       .row { flex-direction:column; }
       .row > .col, .row > .g { width:100% !important; flex:none !important; }
+      /* Reset .r rows from merged sections */
+      .r { flex-direction:column !important; gap:12px !important; height:auto !important; }
+      .r > .g { width:100% !important; flex:none !important; height:auto !important; }
+      .r > .g img { height:auto !important; object-fit:unset !important; }
       .grid2 { grid-template-columns:1fr 1fr; }
       .grid3 { grid-template-columns:1fr 1fr; }
       .row > .col > .g[style*="width:105px"] { width:50% !important; }
@@ -81,6 +88,31 @@
         filter:invert(1) brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44);
         mix-blend-mode:multiply;
       }
+
+
+    /* ── Sub-sections: My Partner + Flow & Spirituality ── */
+    .sub-section {
+      margin-top: 140px;
+    }
+    .sub-section__header {
+      max-width: var(--page-max-width);
+      margin: 0 auto 56px;
+      padding: 0 var(--page-padding);
+      text-align: center;
+    }
+    #my-partner {
+      margin-top: 165px; /* 140 + 25 */
+    }
+    #my-partner .sub-section__header {
+      margin-bottom: 81px; /* 56 + 25 */
+    }
+    /* sub-section uses same .gallery/.row/.col/.g as main section */
+    /* gap override: flow uses 8px, my-partner uses 12px inline — keep inline styles */
+
+    /* Desktop only — hide sub-sections on mobile (they have own pages) */
+    @media (max-width: 767px) {
+      .sub-section { display: none !important; }
+    }
 
     @media(max-width:767px) and (pointer:coarse){
       /* ── IL mobile layout: pure CSS ── */
@@ -385,7 +417,7 @@
 
     <div class="row" style="align-items:stretch">
       <div class="g" data-title="Argument" style="flex:1.3; display:flex">
-        <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
+        <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1">
         <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
@@ -393,6 +425,96 @@
     </div>
 
   </div><!-- /gallery -->
+
+
+  <!-- ═══ MY PARTNER SECTION ═══ -->
+  <div id="my-partner" class="sub-section">
+    <div class="sub-section__header">
+      <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:block; margin:0 auto;">
+    </div>
+    <div class="gallery sub-section__gallery">
+<!-- Row 1: MP1 + MP4(My Partner 2), equal width, cover fill, ~350px tall -->
+    <div class="r" style="height:350px;gap:12px;align-items:stretch;margin-bottom:12px">
+      <div class="g" data-title="My Partner 1" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 4" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    <!-- Row 2: MP3 + MP2(My Partner 4) + MP5, equal width, cover fill, ~270px tall -->
+    <div class="r" style="height:270px;gap:12px;align-items:stretch;margin-bottom:0">
+      <div class="g" data-title="My Partner 3" style="flex:1;height:100%;overflow:hidden;display:flex">
+        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 2" style="flex:1;height:100%;overflow:hidden;display:flex">
+        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div class="g" data-title="My Partner 5" style="flex:1;height:100%;overflow:hidden;display:flex">
+        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ═══ FLOW & SPIRITUALITY SECTION ═══ -->
+  <div id="flow-and-spirituality" class="sub-section">
+    <div class="sub-section__header">
+      <img loading="lazy" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:134px; width:auto; display:block; margin:0 auto;">
+    </div>
+    <div class="gallery sub-section__gallery">
+<div class="r">
+      <div class="c" style="flex:1.299">
+        <div class="g" data-title="Kento and Josh's Energetic Fields">
+        <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="lazy">
+      </div>
+        <div class="g" data-title="White Fox">
+        <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy">
+      </div>
+        <div class="g" data-title="Baby and the Dragon">
+        <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy">
+      </div>
+        <div class="g" data-title="Sunset">
+        <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy">
+      </div>
+        <div class="g" data-title="Sunset and Rabbit">
+        <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy">
+      </div>
+        <div class="g" data-title="Untitled">
+        <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      </div>
+      <div class="c" style="flex:1">
+        <div class="g" data-title="A Dream That Blossoms in the Sun">
+        <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy">
+      </div>
+        <div class="g" data-title="Love">
+        <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy">
+      </div>
+        <div class="g" data-title="The Infinite Portal of the Universe">
+        <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy">
+      </div>
+        <div class="g" data-title="Yixuan's Energy Body">
+        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan's Energy Body" loading="lazy">
+      </div>
+        <div class="g" data-title="Shaokang's Grandmother">
+        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang's Grandmother" loading="lazy">
+      </div>
+      </div>
+    </div>
+    <div class="r">
+      <div class="g" data-title="Parallel Universes" style="flex:1.299 0 0">
+        <img decoding="async" src="flow-and-spirituality/FS12 (Parallel Universes).jpg" alt="Parallel Universes" loading="lazy">
+      </div>
+      <div style="flex:1 0 0"></div>
+    </div>
+    <div class="r" style="margin-top:20px">
+      <div class="g" data-title="Moon" style="flex:1">
+        <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy">
+      </div>
+    </div>
+    </div>
+  </div>
 
   <nav class="page-nav">
     <div class="page-nav__side">

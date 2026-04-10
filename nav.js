@@ -291,7 +291,7 @@
     if (wm) wm.innerHTML = 'Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span>';
     /* html lang + font class — mobile only to avoid font changes on desktop */
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-    document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
+    document.documentElement.classList.toggle('lang-zh', !isDesktop && currentLang === 'zh');
     /* page title subtitles — mobile only */
     if (!isDesktop) {
       document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
@@ -383,7 +383,16 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover{color:#3a332d;}',
-      '.side-nav a:hover span::after{transform:scaleX(1);}',
+      '.side-nav a:hover span::after{transform:scaleX(1);}' +
+      '.side-nav .nav-sub-item{',
+        'font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;',
+        'font-size:14.5px;font-weight:400;letter-spacing:0.3px;',
+        'color:#a89f98;padding:2px 0 2px 18px;line-height:1.3;',
+      '}' +
+      '.side-nav .nav-sub-item span::after{display:none !important;}' +
+      '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
+      '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}' +
+      '.side-nav a[href="illustrations.html"]{font-weight:500;letter-spacing:0.5px;}',
       '.side-nav .nav-wordmark{',
         'font-family:"Cormorant Garamond",Georgia,serif;',
         'font-size:16px;font-weight:500;',
@@ -577,10 +586,10 @@
     '<a href="index.html" class="nav-home"><span>Home</span></a>' +
     '<div class="nav-divider"></div>' +
     '<a href="illustrations.html"><span>Illustrations</span></a>' +
+    '<a href="illustrations.html#my-partner" class="nav-sub-item"><span>My Partner</span></a>' +
+    '<a href="illustrations.html#flow-and-spirituality" class="nav-sub-item"><span>Flow &amp; Spirituality</span></a>' +
     '<a href="stage-art-production.html"><span>Stage Art &amp; Production</span></a>' +
-    '<a href="my-partner.html"><span>My Partner</span></a>' +
     '<a href="childrens-book.html"><span>Children\u2019s Book</span></a>' +
-    '<a href="flow-and-spirituality.html"><span>Flow &amp; Spirituality</span></a>' +
     '<a href="traditional-mediums.html"><span>Traditional Mediums</span></a>' +
     '<a href="graphic-design.html"><span>Graphic Design</span></a>' +
     '<a href="jewelry.html"><span>Jewelry</span></a>' +
@@ -693,13 +702,43 @@
     /* Apply translations on load */
     applyTranslations();
 
-    /* Highlight current page */
-    var current = window.location.pathname.split('/').pop() || 'index.html';
-    [nav, mobMenu].forEach(function(el) {
-      el.querySelectorAll('a[href]').forEach(function(link) {
-        if (link.getAttribute('href') === current) link.style.color = '#2a2a2a';
+    /* Highlight current page — match by filename, ignoring hash */
+    var currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    [nav, mobMenu].forEach(function(container) {
+      container.querySelectorAll('a[href]').forEach(function(link) {
+        var href = link.getAttribute('href');
+        var hrefFile = href.split('#')[0].split('/').pop();
+        if (hrefFile === currentFile) link.style.color = '#2a2a2a';
       });
     });
+
+    /* Scroll-based highlight for sub-items on illustrations.html — desktop only */
+    if (currentFile === 'illustrations.html' && window.innerWidth >= 768) {
+      function resetSubItems() {
+        nav.querySelectorAll('.nav-sub-item').forEach(function(el) { el.style.color = ''; });
+      }
+      function setSubActive(href) {
+        resetSubItems();
+        var link = nav.querySelector('.nav-sub-item[href="' + href + '"]');
+        if (link) link.style.color = '#2a2a2a';
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.id || entry.target.className;
+          if (id === 'my-partner') setSubActive('illustrations.html#my-partner');
+          else if (id === 'flow-and-spirituality') setSubActive('illustrations.html#flow-and-spirituality');
+          else resetSubItems();
+        });
+      }, { rootMargin: '-10% 0px -80% 0px' });
+      /* Observe main gallery for reset when scrolled back up */
+      var mainGallery = document.querySelector('.gallery:not(.sub-section__gallery)');
+      if (mainGallery) { mainGallery.id = mainGallery.id || 'illustrations-main'; observer.observe(mainGallery); }
+      ['my-partner', 'flow-and-spirituality'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
