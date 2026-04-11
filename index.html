@@ -211,59 +211,59 @@
 
   <header class="site-header fade-in">
     <img loading="eager" fetchpriority="high" src="homepage-covers-images/CadyShengLogo.jpg" alt="Cady Sheng" class="logo-image" decoding="async">
-    <p class="tagline"><span class="t-en">Truth, Love, Flow, Oneness</span><span class="t-zh">真理、爱、流动、合一</span></p>
+    <p class="tagline" data-i18n="index.tagline">Truth, Love, Flow, Oneness</p>
   </header>
 
   <section class="collage fade-in delay-2">
     <!-- Hero: Illustrations full width -->
     <a href="illustrations.html" class="hero-tile">
       <img src="homepage-covers-images/IllustrationsCover.jpg" alt="Illustrations" decoding="async">
-      <span class="tile__label"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></span>
+      <span class="tile__label" data-i18n="nav.illustrations">Illustrations</span>
     </a>
     <div class="collage-columns">
       <!-- col-left (desktop: 36%, mobile: grid-column:2 = RIGHT) -->
       <div class="col-left">
         <a href="stage-art-production.html" class="tile tile--large">
           <img src="homepage-covers-images/SPCover.jpg" alt="Stage Art &amp; Production" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Stage Art &amp; Production</span><span class="t-zh">舞台艺术与制作</span></span>
+          <span class="tile__label" data-i18n="nav.stage">Stage Art &amp; Production</span>
         </a>
         <a href="flow-and-spirituality.html" class="tile tile--medium" data-desktop-href="illustrations.html#flow-and-spirituality">
           <img src="homepage-covers-images/SCover.jpg" alt="Flow &amp; Spirituality" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Flow &amp; Spirituality</span><span class="t-zh">流动与灵性</span></span>
+          <span class="tile__label" data-i18n="nav.flow">Flow &amp; Spirituality</span>
         </a>
         <a href="graphic-design.html" class="tile tile--medium">
           <img src="homepage-covers-images/GDCover.jpg" alt="Graphic Design" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Graphic Design</span><span class="t-zh">平面设计</span></span>
+          <span class="tile__label" data-i18n="nav.graphic">Graphic Design</span>
         </a>
         <a href="apparel.html" class="tile tile--small">
           <img src="homepage-covers-images/ACover.jpg" alt="Apparel" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Apparel</span><span class="t-zh">服装</span></span>
+          <span class="tile__label" data-i18n="nav.apparel">Apparel</span>
         </a>
       </div>
       <!-- col-middle (desktop: 32.5%, mobile: grid-column:1 = LEFT) -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large" data-desktop-href="illustrations.html#my-partner">
           <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">My Partner</span><span class="t-zh">我的伴侣</span></span>
+          <span class="tile__label" data-i18n="nav.partner">My Partner</span>
         </a>
         <a href="traditional-mediums.html" class="tile tile--medium">
           <img src="homepage-covers-images/TMCover.jpg" alt="Traditional Mediums" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Traditional Mediums</span><span class="t-zh">传统媒介</span></span>
+          <span class="tile__label" data-i18n="nav.traditional">Traditional Mediums</span>
         </a>
         <a href="meditation.html" class="tile tile--small">
           <img src="homepage-covers-images/MCover.jpg" alt="Meditation" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Meditation</span><span class="t-zh">冥想</span></span>
+          <span class="tile__label" data-i18n="nav.meditation">Meditation</span>
         </a>
       </div>
       <!-- col-right (desktop: flex:1, mobile: grid-column:1/-1 = bottom row) -->
       <div class="col-right">
         <a href="childrens-book.html" class="tile tile--large">
           <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Children’s Book</span><span class="t-zh">儿童绘本</span></span>
+          <span class="tile__label" data-i18n="nav.childrens">Children’s Book</span>
         </a>
         <a href="jewelry.html" class="tile tile--small">
           <img src="homepage-covers-images/JCover.jpg" alt="Jewelry" loading="lazy" decoding="async">
-          <span class="tile__label"><span class="t-en">Jewelry</span><span class="t-zh">珠宝</span></span>
+          <span class="tile__label" data-i18n="nav.jewelry">Jewelry</span>
         </a>
       </div>
     </div>
@@ -388,6 +388,11 @@
 
     document.addEventListener('DOMContentLoaded', check);
     window.addEventListener('resize', check);
+
+    window.addEventListener('cs-nav-ready', function() {
+      if (isMobile && window.csApplyTranslations) window.csApplyTranslations();
+    });
   })();
   </script>
 </body>
+</html>

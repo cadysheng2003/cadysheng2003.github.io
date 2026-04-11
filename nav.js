@@ -291,7 +291,7 @@
     if (wm) wm.innerHTML = 'Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span>';
     /* html lang + font class — mobile only to avoid font changes on desktop */
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
-    document.documentElement.classList.toggle('lang-zh', !isDesktop && currentLang === 'zh');
+    document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
     /* page title subtitles — mobile only */
     if (!isDesktop) {
       document.querySelectorAll('img[src*="-title."]').forEach(function(img) {

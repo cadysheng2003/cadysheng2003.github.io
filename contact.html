@@ -27,108 +27,59 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { -webkit-font-smoothing: antialiased; }
     body { background:#fff; color:var(--color-text); }
-
     .contact-wrap {
       max-width: var(--page-max-width);
       margin: 64px auto 0;
       padding: 0 var(--page-padding);
       display: flex;
       gap: 64px;
-      align-items: flex-start;
+      align-items: center;
     }
-    .contact-photo {
-      flex: 0 0 320px;
-      border-radius: 12px;
-      overflow: hidden;
-      line-height: 0;
-    }
-    .contact-photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-    }
-    .contact-text {
-      flex: 1;
-      min-width: 0;
-      padding-top: 8px;
-    }
+    .contact-photo { flex: 0 0 320px; border-radius: 12px; overflow: hidden; line-height: 0; }
+    .contact-photo img { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .contact-text { flex: 1; min-width: 0; padding-top: 8px; }
     .contact-name {
       font-family: var(--font-display);
-      font-size: 42px;
-      font-weight: 400;
+      font-size: 42px; font-weight: 400;
       letter-spacing: 0.5px;
       color: var(--color-text);
-      line-height: 1.1;
-      margin-bottom: 6px;
+      line-height: 1.1; margin-bottom: 6px;
     }
     .contact-title {
       font-family: var(--font-display);
-      font-size: 16px;
-      font-style: italic;
-      font-weight: 400;
+      font-size: 16px; font-style: italic; font-weight: 400;
       color: var(--color-text-light);
-      letter-spacing: 0.3px;
-      margin-bottom: 36px;
+      letter-spacing: 0.3px; margin-bottom: 36px;
     }
     .contact-bio {
       font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 2;
-      color: #4a4440;
-      letter-spacing: 0.15px;
-      margin-bottom: 48px;
+      font-size: 17px; font-weight: 400;
+      line-height: 2; color: #4a4440;
+      letter-spacing: 0.15px; margin-bottom: 48px;
     }
     .contact-bio p + p { margin-top: 20px; }
-    .contact-info {
-      border-top: 1px solid #efefef;
-      padding-top: 32px;
-    }
+    .contact-info { border-top: 1px solid #efefef; padding-top: 32px; }
     .contact-info__label {
       font-family: var(--font-body);
-      font-size: 10px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: #b0a8a0;
-      margin-bottom: 20px;
+      font-size: 10px; letter-spacing: 1.8px;
+      text-transform: uppercase; color: #b0a8a0; margin-bottom: 20px;
     }
-    .contact-info__row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    .contact-info__row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
     .contact-info__key {
       font-family: "Inter", system-ui, sans-serif;
-      font-size: 10px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: #b0a8a0;
-      min-width: 80px;
-      padding-top: 3px;
+      font-size: 10px; letter-spacing: 1.4px;
+      text-transform: uppercase; color: #b0a8a0;
+      min-width: 80px; padding-top: 3px;
     }
     .contact-info__val {
       font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 400;
-      color: #666;
-      text-decoration: none;
-      letter-spacing: 0.2px;
-      transition: color 0.2s ease;
-      border-bottom: 1px solid transparent;
+      font-size: 18px; font-weight: 400; color: #666;
+      text-decoration: none; letter-spacing: 0.2px;
+      transition: color 0.2s ease; border-bottom: 1px solid transparent;
     }
-    .contact-info__val:hover {
-      color: var(--color-text);
-      border-bottom-color: #ccc;
-    }
+    .contact-info__val:hover { color: var(--color-text); border-bottom-color: #ccc; }
     @media (max-width: 767px) {
-      .contact-wrap {
-        flex-direction: column;
-        gap: 36px;
-        margin-top: 28px;
-        padding: 0 20px;
-      }
+      .contact-wrap { flex-direction: column; gap: 36px; margin-top: 28px; padding: 0 20px; }
       .contact-photo { flex: none; width: 60%; max-width: 240px; }
       .contact-name { font-size: 32px; }
       .contact-bio { font-size: 15px; }
@@ -136,7 +87,6 @@
   </style>
 </head>
 <body>
-
   <div class="contact-wrap">
     <div class="contact-photo">
       <img src="cady.jpg" alt="Cady Sheng">
@@ -145,13 +95,13 @@
       <h1 class="contact-name">Cady Sheng</h1>
       <p class="contact-title">Artist &amp; Illustrator — RISD</p>
       <div class="contact-bio">
-        <p>Hi everyone ☺️, I'm Cady.</p>
+        <p>Hi everyone ☺️, I’m Cady.</p>
         <p>I see art as a way to express truth and to connect.</p>
-        <p>My work explores consciousness, nature, the soul, subtle feelings, and the existence of multiple worlds — through illustration, jewelry design, stage art, and experiential design. These aren't separate disciplines; they're different expressions of the same inquiry.</p>
+        <p>My work explores consciousness, nature, the soul, subtle feelings, and the existence of multiple worlds — through illustration, jewelry design, stage art, and experiential design. These aren’t separate disciplines; they’re different expressions of the same inquiry.</p>
         <p>When fully immersed in creation, the process becomes playful, focused, and freeing.</p>
         <p>The present moment is the only place where we can experience the complexity and flow of life. Waking from the dream, growing, and evolving endlessly — these can only be experienced in the now.</p>
-        <p>Through my work and my daily actions, I hope we, as a collective, can begin to recognize each other's vulnerability, and the shared oneness within us — and through that, find healing and authentic expression together.</p>
-        <p>If you're interested in creating something meaningful or simply doing something fun together, feel free to reach out.</p>
+        <p>Through my work and my daily actions, I hope we, as a collective, can begin to recognize each other’s vulnerability, and the shared oneness within us — and through that, find healing and authentic expression together.</p>
+        <p>If you’re interested in creating something meaningful or simply doing something fun together, feel free to reach out.</p>
       </div>
       <div class="contact-info">
         <p class="contact-info__label">Get in touch</p>
@@ -170,7 +120,6 @@
       </div>
     </div>
   </div>
-
   <div id="footer"></div>
   <script src="nav.js" defer></script>
   <script src="footer.js" defer></script>
