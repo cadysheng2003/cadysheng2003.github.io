@@ -28,7 +28,6 @@
     html { -webkit-font-smoothing: antialiased; }
     body { background:#fff; color:var(--color-text); }
 
-    /* ── Main layout ── */
     .contact-wrap {
       max-width: var(--page-max-width);
       margin: 64px auto 0;
@@ -37,8 +36,6 @@
       gap: 64px;
       align-items: flex-start;
     }
-
-    /* ── Photo column ── */
     .contact-photo {
       flex: 0 0 320px;
       border-radius: 12px;
@@ -51,31 +48,11 @@
       display: block;
       border-radius: 12px;
     }
-    /* Placeholder when no real photo yet */
-    .contact-photo__placeholder {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: linear-gradient(135deg, #f0e8e0 0%, #e8ddd4 50%, #ddd0c8 100%);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .contact-photo__placeholder span {
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-style: italic;
-      color: #b0a8a0;
-      letter-spacing: 0.5px;
-    }
-
-    /* ── Text column ── */
     .contact-text {
       flex: 1;
       min-width: 0;
       padding-top: 8px;
     }
-
     .contact-name {
       font-family: var(--font-display);
       font-size: 42px;
@@ -94,7 +71,6 @@
       letter-spacing: 0.3px;
       margin-bottom: 36px;
     }
-
     .contact-bio {
       font-family: var(--font-display);
       font-size: 17px;
@@ -104,11 +80,7 @@
       letter-spacing: 0.15px;
       margin-bottom: 48px;
     }
-    .contact-bio p + p {
-      margin-top: 20px;
-    }
-
-    /* ── Contact info ── */
+    .contact-bio p + p { margin-top: 20px; }
     .contact-info {
       border-top: 1px solid #efefef;
       padding-top: 32px;
@@ -150,8 +122,6 @@
       color: var(--color-text);
       border-bottom-color: #ccc;
     }
-
-    /* ── Mobile ── */
     @media (max-width: 767px) {
       .contact-wrap {
         flex-direction: column;
@@ -159,31 +129,21 @@
         margin-top: 28px;
         padding: 0 20px;
       }
-      .contact-photo {
-        flex: none;
-        width: 60%;
-        max-width: 240px;
-      }
+      .contact-photo { flex: none; width: 60%; max-width: 240px; }
       .contact-name { font-size: 32px; }
-      .contact-bio { font-size: 14px; }
+      .contact-bio { font-size: 15px; }
     }
   </style>
 </head>
 <body>
 
   <div class="contact-wrap">
-
-    <!-- Photo -->
     <div class="contact-photo">
-      <img src="cady.jpg" alt="Cady Sheng" style="width:100%;height:auto;display:block;border-radius:12px;">
+      <img src="cady.jpg" alt="Cady Sheng">
     </div>
-
-    <!-- Text -->
     <div class="contact-text">
-
       <h1 class="contact-name">Cady Sheng</h1>
       <p class="contact-title">Artist &amp; Illustrator — RISD</p>
-
       <div class="contact-bio">
         <p>Hi everyone ☺️, I'm Cady.</p>
         <p>I see art as a way to express truth and to connect.</p>
@@ -193,12 +153,11 @@
         <p>Through my work and my daily actions, I hope we, as a collective, can begin to recognize each other's vulnerability, and the shared oneness within us — and through that, find healing and authentic expression together.</p>
         <p>If you're interested in creating something meaningful or simply doing something fun together, feel free to reach out.</p>
       </div>
-
       <div class="contact-info">
         <p class="contact-info__label">Get in touch</p>
         <div class="contact-info__row">
           <span class="contact-info__key">Email</span>
-          <a href="/cdn-cgi/l/email-protection#f59694918c869d909b92c7c5c5c6b59298949c99db969a98" class="contact-info__val"><span class="__cf_email__" data-cfemail="cba8aaafb2b8a3aea5acf9fbfbf88baca6aaa2a7e5a8a4a6">[email&#160;protected]</span></a>
+          <a href="mailto:cadysheng2003@gmail.com" class="contact-info__val">cadysheng2003@gmail.com</a>
         </div>
         <div class="contact-info__row">
           <span class="contact-info__key">Phone</span>
@@ -209,5 +168,11 @@
           <a href="https://instagram.com/cady_sheng" target="_blank" class="contact-info__val">@cady_sheng</a>
         </div>
       </div>
+    </div>
+  </div>
 
- 
+  <div id="footer"></div>
+  <script src="nav.js" defer></script>
+  <script src="footer.js" defer></script>
+</body>
+</html>
