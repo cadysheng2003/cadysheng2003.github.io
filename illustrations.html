@@ -91,6 +91,9 @@
 
 
     /* ── Sub-sections: My Partner + Flow & Spirituality ── */
+    /* Desktop: restore cover crop on MP images */
+    .sub-section__gallery .r > .g { height: 100%; overflow: hidden; }
+    .sub-section__gallery .r > .g img { height: 100%; object-fit: cover; }
     .sub-section {
       margin-top: 140px;
     }
@@ -108,11 +111,6 @@
     }
     /* sub-section uses same .gallery/.row/.col/.g as main section */
     /* gap override: flow uses 8px, my-partner uses 12px inline — keep inline styles */
-
-    /* Desktop only — hide sub-sections on mobile (they have own pages) */
-    @media (max-width: 767px) {
-      .sub-section { display: none !important; }
-    }
 
     @media(max-width:767px) and (pointer:coarse){
       /* ── IL mobile layout: pure CSS ── */
@@ -168,6 +166,18 @@
         display:block;
         max-width:100%;
       }
+
+      /* ── Sub-section mobile fixes ── */
+      .sub-section { margin-top: 60px !important; }
+      #my-partner { margin-top: 60px !important; }
+      #my-partner .sub-section__header { margin-bottom: 32px !important; }
+      .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
+      .sub-section .r { flex-direction:column !important; height:auto !important; gap:10px !important; }
+      .sub-section .r > .g { flex:none !important; width:100% !important; height:auto !important; overflow:visible !important; }
+      .sub-section .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
+      .sub-section .c { width:100% !important; flex:none !important; }
+      .sub-section .g { width:100% !important; }
+      .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
       /* ── Mobile performance: reduce CLS and rendering cost ── */
@@ -417,10 +427,10 @@
 
     <div class="row" style="align-items:stretch">
       <div class="g" data-title="Argument" style="flex:1.3; display:flex">
-        <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
       <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1">
-        <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+        <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
     </div>
 
@@ -435,23 +445,23 @@
     <div class="gallery sub-section__gallery">
 <!-- Row 1: MP1 + MP4(My Partner 2), equal width, cover fill, ~350px tall -->
     <div class="r" style="height:350px;gap:12px;align-items:stretch;margin-bottom:6px">
-      <div class="g" data-title="My Partner 1" style="flex:1;height:100%;overflow:hidden">
-        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="g" data-title="My Partner 1" style="flex:1;overflow:hidden">
+        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
-      <div class="g" data-title="My Partner 4" style="flex:1;height:100%;overflow:hidden">
-        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="g" data-title="My Partner 4" style="flex:1;overflow:hidden">
+        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
     </div>
     <!-- Row 2: MP3 + MP2(My Partner 4) + MP5, equal width, cover fill, ~270px tall -->
     <div class="r" style="height:270px;gap:12px;align-items:stretch;margin-bottom:0">
-      <div class="g" data-title="My Partner 3" style="flex:1;height:100%;overflow:hidden;display:flex">
-        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="g" data-title="My Partner 3" style="flex:1;overflow:hidden">
+        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
-      <div class="g" data-title="My Partner 2" style="flex:1;height:100%;overflow:hidden;display:flex">
-        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="g" data-title="My Partner 2" style="flex:1;overflow:hidden">
+        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
-      <div class="g" data-title="My Partner 5" style="flex:1;height:100%;overflow:hidden;display:flex">
-        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="g" data-title="My Partner 5" style="flex:1;overflow:hidden">
+        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
     </div>
     </div>

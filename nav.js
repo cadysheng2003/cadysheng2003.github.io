@@ -501,7 +501,10 @@
         'letter-spacing:0.1px;line-height:1.65;',
         'padding:4px 0;border:none !important;transition:color 0.18s ease;',
       '}',
-      '#mob-menu a:active{color:#aaa;}',
+      '#mob-menu a:active{color:#aaa;}' +
+      '#mob-menu .mob-sub-item{' +
+        'padding-left:24px;font-size:17px;color:#aaa;' +
+      '}',
 
       '#mob-menu .mob-menu__label{',
         'font-family:"Inter",system-ui,sans-serif;',
@@ -626,10 +629,10 @@
     '<a href="index.html" data-i18n="nav.home">Home</a>' +
     '<span class="mob-menu__label" data-i18n="nav.works">Works</span>' +
     '<a href="illustrations.html" data-i18n="nav.illustrations">Illustrations</a>' +
+    '<a href="illustrations.html#my-partner" class="mob-sub-item" data-i18n="nav.partner">My Partner</a>' +
+    '<a href="illustrations.html#flow-and-spirituality" class="mob-sub-item" data-i18n="nav.flow">Flow &amp; Spirituality</a>' +
     '<a href="stage-art-production.html" data-i18n="nav.stage">Stage Art &amp; Production</a>' +
-    '<a href="my-partner.html" data-i18n="nav.partner">My Partner</a>' +
     '<a href="childrens-book.html" data-i18n="nav.childrens">Children\u2019s Book</a>' +
-    '<a href="flow-and-spirituality.html" data-i18n="nav.flow">Flow &amp; Spirituality</a>' +
     '<a href="traditional-mediums.html" data-i18n="nav.traditional">Traditional Mediums</a>' +
     '<a href="graphic-design.html" data-i18n="nav.graphic">Graphic Design</a>' +
     '<a href="jewelry.html" data-i18n="nav.jewelry">Jewelry</a>' +
