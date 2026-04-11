@@ -116,6 +116,10 @@
       /* ── IL mobile layout: pure CSS ── */
       .il-mob { display:block; }
       .gallery > :not(.il-mob) { display:none !important; }
+      /* Sub-section galleries are exempt from the il-mob hide rule */
+      .sub-section__gallery > * { display:flex !important; }
+      .sub-section__gallery > .r { display:flex !important; }
+      .sub-section__gallery > .c { display:flex !important; }
 
       .il-mob-stack { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
       .il-mob-grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px; align-items:start; }
