@@ -23,6 +23,7 @@
     '  <div style="text-align:right">',
     '    <p style="' + s + '" data-i18n="footer.copyright">\u00a9 2026 Cady Sheng.</p>',
     '    <p style="' + s + '" data-i18n="footer.rights">All rights reserved.</p>',
+    '    <a href="contact.html" style="font-family:\'Cormorant Garamond\',Georgia,serif;font-size:15px;font-weight:400;color:#aaa;text-decoration:none;letter-spacing:0.3px;display:inline-block;margin-top:12px;transition:color 0.2s ease;" onmouseover="this.style.color=\'#2a2a2a\'" onmouseout="this.style.color=\'#aaa\'">Get in Touch&ensp;&rsaquo;</a>',
     '  </div>',
     '</footer>'
   ].join('\n');

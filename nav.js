@@ -385,14 +385,12 @@
       '.side-nav a:hover{color:#3a332d;}',
       '.side-nav a:hover span::after{transform:scaleX(1);}' +
       '.side-nav .nav-sub-item{',
-        'font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;',
-        'font-size:14.5px;font-weight:400;letter-spacing:0.3px;',
+        'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
+        'font-size:13px;font-weight:400;letter-spacing:0.4px;',
         'color:#a89f98;padding:2px 0 2px 18px;line-height:1.3;',
       '}' +
-      '.side-nav .nav-sub-item span::after{display:none !important;}' +
       '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
-      '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}' +
-      '.side-nav a[href="illustrations.html"]{font-weight:500;letter-spacing:0.5px;}',
+      '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
       '.side-nav .nav-wordmark{',
         'font-family:"Cormorant Garamond",Georgia,serif;',
         'font-size:16px;font-weight:500;',
@@ -596,7 +594,7 @@
     '<a href="meditation.html"><span>Meditation</span></a>' +
     '<a href="apparel.html"><span>Apparel</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="#footer" class="nav-contact"><span>Contact</span></a>' +
+    '<a href="contact.html" class="nav-contact"><span>Contact</span></a>' +
     '<a href="https://instagram.com/cadysheng" target="_blank" class="nav-instagram" aria-label="Instagram">' +
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
         '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>' +
@@ -638,7 +636,7 @@
     '<a href="meditation.html" data-i18n="nav.meditation">Meditation</a>' +
     '<a href="apparel.html" data-i18n="nav.apparel">Apparel</a>' +
     '<span class="mob-menu__label" data-i18n="nav.connect">Connect</span>' +
-    '<a href="#footer" class="mob-menu__contact" data-i18n="nav.contact">Contact</a>' +
+    '<a href="contact.html" class="mob-menu__contact" data-i18n="nav.contact">Contact</a>' +
     '<a href="https://instagram.com/cadysheng" target="_blank" class="mob-menu__contact" data-i18n="nav.instagram">Instagram</a>';
 
   /* ─── INIT ─── */

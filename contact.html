@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#fff9f7">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Cady Sheng</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMTAwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMEIwNjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIzMCUiIHN0b3AtY29sb3I9IiNFODg4QjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI2NSUiIHN0b3AtY29sb3I9IiNCODk4RTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzBDOEEwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjE4IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iNTAiIHk9Ijc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI2OCIgZm9udC13ZWlnaHQ9IjMwMCIgZmlsbD0id2hpdGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMTAwJSIgeDI9IjEwMCUiIHkyPSIwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGMEIwNjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIzMCUiIHN0b3AtY29sb3I9IiNFODg4QjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI2NSUiIHN0b3AtY29sb3I9IiNCODk4RTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNzBDOEEwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjE4IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iNTAiIHk9Ijc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI2OCIgZm9udC13ZWlnaHQ9IjMwMCIgZmlsbD0id2hpdGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
+  <meta property="og:site_name" content="Cady Sheng">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Cady Sheng">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"></noscript>
+  <style>
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Lora', Georgia, serif;
+      --color-text:       #2a2a2a;
+      --color-text-light: #888;
+      --page-max-width:   960px;
+      --page-padding:     40px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background:#fff; color:var(--color-text); }
+
+    /* ── Main layout ── */
+    .contact-wrap {
+      max-width: var(--page-max-width);
+      margin: 64px auto 0;
+      padding: 0 var(--page-padding);
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    /* ── Photo column ── */
+    .contact-photo {
+      flex: 0 0 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .contact-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+    /* Placeholder when no real photo yet */
+    .contact-photo__placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #f0e8e0 0%, #e8ddd4 50%, #ddd0c8 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-photo__placeholder span {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-style: italic;
+      color: #b0a8a0;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Text column ── */
+    .contact-text {
+      flex: 1;
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    .contact-name {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--color-text);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-text-light);
+      letter-spacing: 0.3px;
+      margin-bottom: 36px;
+    }
+
+    .contact-bio {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 2;
+      color: #4a4440;
+      letter-spacing: 0.15px;
+      margin-bottom: 48px;
+    }
+    .contact-bio p + p {
+      margin-top: 20px;
+    }
+
+    /* ── Contact info ── */
+    .contact-info {
+      border-top: 1px solid #efefef;
+      padding-top: 32px;
+    }
+    .contact-info__label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #b0a8a0;
+      margin-bottom: 20px;
+    }
+    .contact-info__row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .contact-info__key {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #b0a8a0;
+      min-width: 80px;
+      padding-top: 3px;
+    }
+    .contact-info__val {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      transition: color 0.2s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .contact-info__val:hover {
+      color: var(--color-text);
+      border-bottom-color: #ccc;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 767px) {
+      .contact-wrap {
+        flex-direction: column;
+        gap: 36px;
+        margin-top: 28px;
+        padding: 0 20px;
+      }
+      .contact-photo {
+        flex: none;
+        width: 60%;
+        max-width: 240px;
+      }
+      .contact-name { font-size: 32px; }
+      .contact-bio { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contact-wrap">
+
+    <!-- Photo -->
+    <div class="contact-photo">
+      <!-- Replace src with your actual photo path when ready -->
+      <!-- <img src="your-photo.jpg" alt="Cady Sheng"> -->
+      <div class="contact-photo__placeholder">
+        <span>Photo coming soon</span>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="contact-text">
+
+      <h1 class="contact-name">Cady Sheng</h1>
+      <p class="contact-title">Artist &amp; Illustrator — RISD</p>
+
+      <div class="contact-bio">
+        <!-- Replace with your actual bio -->
+        <p>Your bio placeholder — a few sentences about who you are, your practice, and what drives your work.</p>
+        <p>Second paragraph placeholder — background, education, what kinds of projects you love, what you're drawn to.</p>
+      </div>
+
+      <div class="contact-info">
+        <p class="contact-info__label">Get in touch</p>
+        <div class="contact-info__row">
+          <span class="contact-info__key">Email</span>
+          <a href="mailto:cadysheng2003@gmail.com" class="contact-info__val">cadysheng2003@gmail.com</a>
+        </div>
+        <div class="contact-info__row">
+          <span class="contact-info__key">Phone</span>
+          <a href="tel:6464044950" class="contact-info__val">646-404-4950</a>
+        </div>
+        <div class="contact-info__row">
+          <span class="contact-info__key">Instagram</span>
+          <a href="https://instagram.com/cady_sheng" target="_blank" class="contact-info__val">@cady_sheng</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer"></div>
+  <script src="nav.js" defer></script>
+  <script src="footer.js" defer></script>
+</body>
+</html>
