@@ -256,20 +256,40 @@
   /* ─────────────────────────────────────────────
      INIT
   ───────────────────────────────────────────── */
-  document.addEventListener('DOMContentLoaded', function () {
-    var els = document.querySelectorAll('.g img, .cb-img img');
-    els.forEach(function (imgEl) {
-      imgEl.style.cursor = 'zoom-in';
-      var name = '';
-      var parent = imgEl.closest('[data-title]');
-      if (parent) name = parent.getAttribute('data-title');
+  function attachLightbox() {
+    /* Select .g containers (not img directly) so img-prot-wrap::after overlay
+       does not block clicks — we catch the click at container level */
+    var containers = document.querySelectorAll('.g, .cb-img');
+    containers.forEach(function (container) {
+      /* Skip already attached */
+      if (container.dataset.lbAttached) return;
+      /* Skip containers with no real image */
+      var imgEl = container.querySelector('img');
+      if (!imgEl) return;
+      /* Skip visibility:hidden ghost images */
+      if ((imgEl.getAttribute('style') || '').indexOf('visibility:hidden') !== -1) return;
+      /* Skip videos */
+      if (container.querySelector('video') && !imgEl) return;
+
+      container.dataset.lbAttached = '1';
+      var name = container.getAttribute('data-title') || '';
       var index = images.length;
       images.push({ src: imgEl.src, name: name });
-      imgEl.addEventListener('click', function (e) {
+
+      /* cursor on the container */
+      container.style.cursor = 'zoom-in';
+
+      /* Click on container (catches clicks through img-prot-wrap::after overlay) */
+      container.addEventListener('click', function (e) {
         e.stopPropagation();
         openLightbox(index);
       });
     });
-  });
+  }
+
+  /* Expose globally so mobile JS can call after rebuilding DOM */
+  window.csRefreshLightbox = attachLightbox;
+
+  document.addEventListener('DOMContentLoaded', attachLightbox);
 
 })();

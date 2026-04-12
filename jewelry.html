@@ -502,6 +502,7 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
       });
 
       gallery.classList.add('j-mobile-built');
+    if (window.csRefreshLightbox) window.csRefreshLightbox();
     }
 
     if(document.readyState === 'loading'){
