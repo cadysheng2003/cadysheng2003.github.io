@@ -90,61 +90,6 @@
       }
 
 
-    /* ── Children's Book sub-section CSS ── */
-    /* Cover row: full width, no text */
-    .cb-section .cb-cover-row {
-      display: block !important;
-      max-width: var(--page-max-width);
-      margin: 0 auto 20px;
-      padding: 0 var(--page-padding);
-    }
-    .cb-section .cb-cover-row .g {
-      display: block !important;
-      width: 100% !important;
-      line-height: 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .cb-section .cb-cover-row img {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-    /* Content rows: left image 60%, right text 40% */
-    .cb-section .cb-row {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      gap: 32px !important;
-      margin-bottom: 20px !important;
-    }
-    .cb-section .cb-img {
-      flex: 0 0 60% !important;
-      min-width: 0 !important;
-      line-height: 0 !important;
-      cursor: pointer !important;
-      display: block !important;
-      border-radius: 8px !important;
-      overflow: hidden !important;
-    }
-    .cb-section .cb-img img {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-    .cb-section .cb-img:hover img { opacity: 0.88; }
-    .cb-section .cb-img--small { flex: 0 0 40% !important; }
-    .cb-section .cb-text {
-      flex: 1 !important;
-      font-family: var(--font-body) !important;
-      font-size: 16px !important;
-      line-height: 1.9 !important;
-      color: var(--color-text-light) !important;
-      padding-top: 8px !important;
-      min-width: 0 !important;
-    }
-    .cb-section .cb-text p { margin-bottom: 10px !important; }
-
     /* ── Sub-sections: My Partner + Flow & Spirituality ── */
     /* Desktop: restore cover crop on MP images */
     .sub-section__gallery .r > .g { height: 100%; overflow: hidden; }
@@ -175,10 +120,6 @@
       .sub-section__gallery > * { display:flex !important; }
       .sub-section__gallery > .r { display:flex !important; }
       .sub-section__gallery > .c { display:flex !important; }
-      /* CB gallery wrapper exempt from il-mob hide rule */
-      .cb-wrap > * { display:flex !important; }
-      .cb-wrap > .cb-row { display:flex !important; }
-
       .il-mob-stack { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
       .il-mob-grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px; align-items:start; }
       .il-mob-2col  { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; align-items:start; }
@@ -240,11 +181,7 @@
       .sub-section .c { width:100% !important; flex:none !important; }
       .sub-section:not(.cb-section) .g { width:100% !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
-      /* CB mobile */
-      .cb-section .cb-cover-row { padding:0 16px !important; }
-      .cb-section .cb-row { flex-direction:column !important; gap:10px !important; padding:0 16px !important; }
-      .cb-section .cb-img, .cb-section .cb-img--small { flex:none !important; width:100% !important; }
-      .cb-section .cb-text { padding-top:0 !important; font-size:15px !important; }
+      /* CB mobile - handled via inline styles on elements */
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
       /* ── Mobile performance: reduce CLS and rendering cost ── */
@@ -511,24 +448,24 @@
     </div>
     <div class="gallery sub-section__gallery">
 <!-- Row 1: MP1 + MP4(My Partner 2), equal width, cover fill, ~350px tall -->
-    <div class="r" style="height:350px;gap:12px;align-items:stretch;margin-bottom:6px">
-      <div class="g" data-title="My Partner 1" style="flex:1;overflow:hidden">
-        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:auto;display:block">
+    <div class="r" style="height:350px;gap:8px;align-items:stretch;margin-bottom:4px">
+      <div class="g" data-title="My Partner 1" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
-      <div class="g" data-title="My Partner 4" style="flex:1;overflow:hidden">
-        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:auto;display:block">
+      <div class="g" data-title="My Partner 4" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     <!-- Row 2: MP3 + MP2(My Partner 4) + MP5, equal width, cover fill, ~270px tall -->
-    <div class="r" style="height:270px;gap:12px;align-items:stretch;margin-bottom:0">
-      <div class="g" data-title="My Partner 3" style="flex:1;overflow:hidden">
-        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:auto;display:block">
+    <div class="r" style="height:270px;gap:8px;align-items:stretch;margin-bottom:0">
+      <div class="g" data-title="My Partner 3" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
-      <div class="g" data-title="My Partner 2" style="flex:1;overflow:hidden">
-        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:auto;display:block">
+      <div class="g" data-title="My Partner 2" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
-      <div class="g" data-title="My Partner 5" style="flex:1;overflow:hidden">
-        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:auto;display:block">
+      <div class="g" data-title="My Partner 5" style="flex:1;height:100%;overflow:hidden">
+        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
     </div>
@@ -596,111 +533,99 @@
 
   <!-- ═══ CHILDREN'S BOOK SECTION ═══ -->
   <div id="childrens-book" class="sub-section cb-section">
-    <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
-      <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%; max-width:420px; height:auto; display:block; margin:0 auto;">
+    <div class="sub-section__header" style="padding-top:32px;padding-bottom:24px">
+      <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%;max-width:420px;height:auto;display:block;margin:0 auto;">
     </div>
-    <div class="gallery cb-wrap">
-<!-- CB1: Full width cover, no text -->
-    <div class="cb-cover-row">
-      <div class="g" data-title="Maybe We Will Find a Rainbow and Teach It to Fly — Cover" style="flex:1;line-height:0;cursor:pointer">
-        <img decoding="async" src="childrens-book/CB1 (Maybe We Will Find a Rainbow and Teach It to Fly-Cover).jpg" alt="Cover" loading="lazy" style="width:100%;height:auto;display:block;transition:opacity 0.3s">
+
+    <!-- CB1: Full-width cover -->
+    <div style="max-width:880px;margin:0 auto 28px;padding:0 40px;">
+      <div class="g" data-title="Maybe We Will Find a Rainbow and Teach It to Fly — Cover" style="line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB1 (Maybe We Will Find a Rainbow and Teach It to Fly-Cover).jpg" alt="Cover" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
     </div>
 
-    <!-- CB2: small sketch + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 1">
-        <img decoding="async" src="childrens-book/CB2 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 1).jpg" alt="Page 1" loading="lazy">
+    <!-- CB2 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 1" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB2 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 1).jpg" alt="Page 1" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>I remember when Earth was created,</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>I remember when Earth was created,</p></div>
     </div>
 
-    <!-- CB3: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 2">
-        <img decoding="async" src="childrens-book/CB3 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 2).jpg" alt="Page 2" loading="lazy">
+    <!-- CB3 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 2" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB3 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 2).jpg" alt="Page 2" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>Earth was just a little asteroid.</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>Earth was just a little asteroid.</p></div>
     </div>
 
-    <!-- CB4: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 3">
-        <img decoding="async" src="childrens-book/CB4 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 3).jpg" alt="Page 3" loading="lazy">
+    <!-- CB4 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 3" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB4 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 3).jpg" alt="Page 3" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>We put planets together</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>We put planets together</p></div>
     </div>
 
-    <!-- CB5: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 4">
-        <img decoding="async" src="childrens-book/CB5 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 4).jpg" alt="Page 4" loading="lazy">
+    <!-- CB5 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 4" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB5 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 4).jpg" alt="Page 4" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>"Holding hands"</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>"Holding hands"</p></div>
     </div>
 
-    <!-- CB6: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 5">
-        <img decoding="async" src="childrens-book/CB6 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 5).jpg" alt="Page 5" loading="lazy">
+    <!-- CB6 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 5" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB6 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 5).jpg" alt="Page 5" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;">
         <p>I see everyone! Everyone feels me too!</p>
         <p>A little girl shouts:</p>
       </div>
     </div>
 
-    <!-- CB7: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 6">
-        <img decoding="async" src="childrens-book/CB7 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 6).jpg" alt="Page 6" loading="lazy">
+    <!-- CB7 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 6" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB7 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 6).jpg" alt="Page 6" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:14px;line-height:1.9;color:#888;padding-top:8px;">
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:14px;line-height:1.95;color:#888;padding-top:12px;">
         <p>"Hi Everyone!<br>Hi Everyone!<br>Hi Everyone!<br>I see you<br>I love you!<br>I feel you!"</p>
         <p>She feels the fullness in everything.<br>She feels incredibly alive.</p>
       </div>
     </div>
 
-    <!-- CB8: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 7">
-        <img decoding="async" src="childrens-book/CB8 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 7).jpg" alt="Page 7" loading="lazy">
+    <!-- CB8 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 7" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB8 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 7).jpg" alt="Page 7" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>She hears all the animals too, all at the same time from miles away; the crickets, a deer stepping into the crunchy leaves.</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>She hears all the animals too, all at the same time from miles away; the crickets, a deer stepping into the crunchy leaves.</p></div>
     </div>
 
-    <!-- CB9: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 8">
-        <img decoding="async" src="childrens-book/CB9 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 8).jpg" alt="Page 8" loading="lazy">
+    <!-- CB9 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 8" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB9 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 8).jpg" alt="Page 8" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.9;color:#888;padding-top:8px;">
-        <p>A vibration, a melody made by nature all together.</p>
-      </div>
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.95;color:#888;padding-top:12px;"><p>A vibration, a melody made by nature all together.</p></div>
     </div>
 
-    <!-- CB10: wide image + text -->
-    <div class="cb-row" style="display:flex;flex-direction:row;align-items:flex-start;gap:32px;margin-bottom:20px;">
-      <div class="cb-img g" style="flex:0 0 60%;min-width:0;overflow:hidden;border-radius:8px;" data-title="Page 9">
-        <img decoding="async" src="childrens-book/CB10 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 9).jpg" alt="Page 9" loading="lazy">
+    <!-- CB10 -->
+    <div style="display:flex;flex-direction:row;align-items:flex-start;gap:28px;margin-bottom:24px;max-width:880px;margin-left:auto;margin-right:auto;padding:0 40px;">
+      <div class="g" data-title="Page 9" style="flex:0 0 65%;min-width:0;line-height:0;border-radius:8px;overflow:hidden;cursor:pointer;">
+        <img decoding="async" src="childrens-book/CB10 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 9).jpg" alt="Page 9" loading="lazy" style="display:block;width:100%;height:auto;">
       </div>
-      <div class="cb-text" style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:14px;line-height:1.9;color:#888;padding-top:8px;">
+      <div style="flex:1;min-width:0;font-family:'Lora',Georgia,serif;font-size:14px;line-height:1.95;color:#888;padding-top:12px;">
         <p>Everyone dances back to me, waving their bodies and branches and leaves.</p>
         <p>"Now I will never unsee you," says the little girl.<br>She hugs everyone.</p>
         <p>! Bye Everyone !<br>Echoes in the woods.</p>
       </div>
     </div>
-    </div><!-- /cb-wrap -->
+
   </div>
 
 

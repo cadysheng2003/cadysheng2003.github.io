@@ -736,7 +736,7 @@
       /* Observe main gallery for reset when scrolled back up */
       var mainGallery = document.querySelector('.gallery:not(.sub-section__gallery)');
       if (mainGallery) { mainGallery.id = mainGallery.id || 'illustrations-main'; observer.observe(mainGallery); }
-      ['my-partner', 'flow-and-spirituality'].forEach(function(id) {
+      ['my-partner', 'flow-and-spirituality', 'childrens-book'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el) observer.observe(el);
       });
