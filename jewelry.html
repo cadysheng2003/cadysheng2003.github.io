@@ -74,6 +74,44 @@
       .page-nav__side, .page-nav__side--right { align-items:center; }
     }
     @media(max-width:767px) and (pointer:coarse){
+      /* Jewelry mobile: hide desktop rows, JS rebuilds layout */
+      .gallery .r { display:none !important; }
+      .gallery .j-mob-row {
+        display:flex !important;
+        gap:6px;
+        margin-bottom:6px;
+        align-items:stretch;
+      }
+      .gallery .j-mob-row .g,
+      .gallery .j-mob-row > div {
+        flex:1;
+        min-width:0;
+        overflow:hidden;
+        background:#fff;
+      }
+      .gallery .j-mob-row .g img {
+        width:100%;
+        height:auto;
+        display:block;
+        object-fit:contain;
+      }
+      .gallery .j-mob-row video {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+        min-height:140px;
+      }
+      .gallery .j-mob-full {
+        display:block !important;
+        margin-bottom:6px;
+      }
+      .gallery .j-mob-full img {
+        width:100%;
+        height:auto;
+        display:block;
+        object-fit:contain;
+      }
       /* Override 600px page-nav column layout → horizontal row on mobile */
       .page-nav{
         flex-direction:row !important;
@@ -371,5 +409,107 @@ footer,#footer{padding-bottom:env(safe-area-inset-bottom,20px);}
   <script src="nav.js" defer></script>
   <script src="lightbox.js"></script>
   <script src="footer.js" defer></script>
+
+  <script>
+  (function(){
+    function buildJewelryMobile(){
+      if(window.innerWidth > 767 || !(navigator.maxTouchPoints > 0 || matchMedia('(pointer:coarse)').matches)) return;
+      if(document.querySelector('.j-mobile-built')) return;
+
+      var gallery = document.querySelector('.gallery');
+      if(!gallery) return;
+
+      // Get all .g tiles and video from desktop rows
+      function makeTile(src, alt, isVideo, contain){
+        var wrap = document.createElement('div');
+        wrap.className = 'g';
+        if(isVideo){
+          var v = document.createElement('video');
+          v.src = src; v.autoplay = true; v.muted = true;
+          v.loop = true; v.setAttribute('playsinline','');
+          v.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;min-height:140px;';
+          wrap.appendChild(v);
+        } else {
+          var img = document.createElement('img');
+          img.src = src; img.alt = alt; img.loading = 'lazy';
+          img.style.cssText = 'width:100%;height:auto;display:block;object-fit:' + (contain ? 'contain' : 'cover') + ';';
+          wrap.style.background = contain ? '#fff' : '';
+          wrap.appendChild(img);
+        }
+        return wrap;
+      }
+
+      function makeRow(tiles){
+        var row = document.createElement('div');
+        row.className = 'j-mob-row';
+        tiles.forEach(function(t){ row.appendChild(t); });
+        return row;
+      }
+
+      function makeFull(src, alt, contain){
+        var wrap = document.createElement('div');
+        wrap.className = 'j-mob-full';
+        var img = document.createElement('img');
+        img.src = src; img.alt = alt; img.loading = 'lazy';
+        img.style.cssText = 'width:100%;height:auto;display:block;object-fit:' + (contain ? 'contain' : 'cover') + ';';
+        wrap.style.background = contain ? '#fff' : '';
+        wrap.appendChild(img);
+        return wrap;
+      }
+
+      // Define all images/videos
+      var p = 'jewelry/';
+      var sections = [
+        // J1(红棕) + J3(多色中性) — 暖色开场
+        makeRow([
+          makeTile(p+'J1 (Flask Chain).jpg','Flask Chain',false,true),
+          makeTile(p+'J3 (Sunflower Necklace).jpg','Sunflower Necklace',false,true)
+        ]),
+        // J2 全宽 — 红蓝过渡
+        makeFull(p+'J2 (Nanhong Agate and Turquoise Necklace).jpg','Nanhong Agate and Turquoise Necklace',true),
+        // J9(暖红绿) + J10(冷绿灰) — 暖色区，远离蓝
+        makeRow([
+          makeTile(p+'J9 (Alxa Candy-Heart Agate Raw Stone Necklace).jpg','Alxa Candy-Heart Agate Raw Stone Necklace II',false,true),
+          makeTile(p+'J10. (Agate Necklace).jpg','Agate Necklace',false,true)
+        ]),
+        // J4 全宽 — 蓝色独立呈现
+        makeFull(p+'J4 (Agate and Silver Necklaces).jpg','Agate and Silver Necklaces',true),
+        // J8(橙红) + J13(深绿黑) — 暖色隔断蓝色
+        makeRow([
+          makeTile(p+'J8 (Nanhong Agate and Turquoise Necklace).jpg','Nanhong Agate and Turquoise Necklace II',false,true),
+          makeTile(p+'J13 (Plum Blossom Jade Necklace).jpg','Plum Blossom Jade Necklace',false,false)
+        ]),
+        // J6 全宽 — 蓝色，和J4之间有暖色隔断
+        makeFull(p+'J6. (Alxa Candy-Heart Agate Raw Stone Necklace).jpg','Alxa Candy-Heart Agate Raw Stone Necklace',true),
+        // J5(红) + J7视频(混色) — 暖色再次隔断
+        makeRow([
+          makeTile(p+'J5. (Agate and Silver Necklaces).jpg','Agate and Silver Necklaces II',false,true),
+          makeTile(p+'J7 (Video of Necklaces).mov','',true,false)
+        ]),
+        // J11(蓝) + J12(蓝) — 蓝色收尾组，两蓝并列作为一个章节
+        makeRow([
+          makeTile(p+'J11 (Agate Necklace).jpg','Agate Necklace II',false,true),
+          makeTile(p+'J12 (Agate and Turquoise Necklace).jpg','Agate and Turquoise Necklace',false,false)
+        ]),
+        // J14 全宽 — 猫咪压轴
+        makeFull(p+'J14 (My Cat with an Agate Bracelet).jpg','My Cat with an Agate Bracelet',false),
+      ];
+
+      // Insert all sections before first desktop row
+      var firstRow = gallery.querySelector('.r');
+      sections.forEach(function(s){
+        gallery.insertBefore(s, firstRow);
+      });
+
+      gallery.classList.add('j-mobile-built');
+    }
+
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', buildJewelryMobile);
+    } else {
+      buildJewelryMobile();
+    }
+  })();
+  </script>
 </body>
 </html>
