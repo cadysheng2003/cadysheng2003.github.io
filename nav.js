@@ -383,6 +383,7 @@
       'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
+
     '}',
 
     '.mob-bar{display:none !important;}',
@@ -400,14 +401,14 @@
       'body{padding-left:clamp(240px,20vw,320px);}',
       '.side-nav{',
         'display:flex;flex-direction:column;',
-        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:100px;',
+        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:133px;',
         'transform:none;z-index:200;gap:2px;',
       '}',
       '.side-nav a{',
         'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:16px;font-weight:400;',
+        'font-size:18px;font-weight:400;',
         'color:#4f463f;text-decoration:none;',
-        'letter-spacing:0.4px;padding:4px 0;',
+        'letter-spacing:0.3px;padding:5px 0;',
         'line-height:1.2;white-space:nowrap;',
         'display:block;transition:color 0.2s ease;',
       '}',
@@ -431,8 +432,8 @@
       '.side-nav a:hover .t-en::after,.side-nav a:hover .t-zh::after{transform:scaleX(1);}' +
       '.side-nav .nav-sub-item{',
         'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
-        'font-size:13px;font-weight:400;letter-spacing:0.3px;',
-        'color:#b5afa9;padding:2px 0 2px 14px;line-height:1.3;',
+        'font-size:14px;font-weight:400;letter-spacing:0.2px;',
+        'color:#b5afa9;padding:3px 0 3px 14px;line-height:1.3;',
       '}' +
       '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
       '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
@@ -445,11 +446,13 @@
         'text-transform:uppercase;',
         'transition:opacity 0.45s ease;',
       '}',
+      '.side-nav .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
+
       'body.is-homepage .side-nav .nav-wordmark{opacity:0;pointer-events:none;}',
       'body.is-homepage .side-nav .nav-wordmark.visible{opacity:1;pointer-events:auto;}',
       '.side-nav .nav-home{',
         'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:12px;letter-spacing:1.6px;',
+        'font-size:13px;letter-spacing:1.4px;',
         'text-transform:uppercase;color:#8a817a;',
         'margin-bottom:0;background-image:none;transition:color 0.2s ease;',
       '}',
@@ -458,7 +461,7 @@
       '.side-nav .nav-divider{width:20px;height:1px;background:#e0dbd7;margin:8px 0;}',
       '.side-nav .nav-contact{',
         'font-family:"Inter",system-ui,sans-serif;',
-        'font-size:12px;letter-spacing:1.6px;',
+        'font-size:13px;letter-spacing:1.4px;',
         'text-transform:uppercase;color:#8a817a;',
         'margin-top:0;background-image:none;transition:color 0.2s ease;',
       '}',
@@ -633,7 +636,7 @@
     var nav = document.createElement('nav');
   nav.className = 'side-nav';
   nav.innerHTML =
-    '<a href="index.html" class="nav-wordmark">Cady Sheng</a>' +
+    '<a href="index.html" class="nav-wordmark">Cady Sheng <span class="nav-zhname">盛开</span></a>' +
     '<a href="index.html" class="nav-home"><span class="t-en">Home</span><span class="t-zh">主页</span></a>' +
     '<div class="nav-divider"></div>' +
     '<a href="illustrations.html"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></a>' +
