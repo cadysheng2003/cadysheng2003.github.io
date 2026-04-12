@@ -265,35 +265,30 @@
     var isDesktop = window.innerWidth >= 768;
 
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      /* On desktop: only translate elements inside #mob-menu or .mob-bar (hidden UI) */
-      /* On mobile: translate everything */
-      if (isDesktop && !el.closest('#mob-menu') && !el.closest('.mob-bar')) return;
       var key = el.getAttribute('data-i18n');
       var val = (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key];
       if (val) el.textContent = val;
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      if (isDesktop) return;
+      var skip = false; /* translate on both mobile and desktop */
       var key = el.getAttribute('data-i18n-html');
       var val = (i18n[currentLang] && i18n[currentLang][key]) || i18n.en[key];
       if (val) el.innerHTML = val;
     });
-    /* page-nav Home — mobile only */
-    if (!isDesktop) {
-      document.querySelectorAll('.page-nav__home').forEach(function(el) {
-        el.textContent = currentLang === 'zh' ? '主页' : 'Home';
-        el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
-        el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
-      });
-    }
+    /* page-nav Home — both mobile and desktop */
+    document.querySelectorAll('.page-nav__home').forEach(function(el) {
+      el.textContent = currentLang === 'zh' ? '主页' : 'Home';
+      el.style.letterSpacing = currentLang === 'zh' ? '0px' : '';
+      el.style.fontFamily = currentLang === 'zh' ? '"Noto Serif SC",serif' : '';
+    });
     /* wordmark */
     var wm = document.querySelector('.mob-bar__wordmark');
     if (wm) wm.innerHTML = 'Cady Sheng <span class="mob-bar__zhname">\u76db\u5f00</span>';
     /* html lang + font class — mobile only to avoid font changes on desktop */
     document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
     document.documentElement.classList.toggle('lang-zh', currentLang === 'zh');
-    /* page title subtitles — mobile only */
-    if (!isDesktop) {
+    /* page title subtitles — both desktop and mobile */
+    if (true) {
       document.querySelectorAll('img[src*="-title."]').forEach(function(img) {
         var zh = zhTitles[img.getAttribute('alt') || ''];
         if (!zh) return;
@@ -312,11 +307,16 @@
         }
       });
     }
-    /* lang button state */
+    /* lang button state — both mobile and desktop */
     var btn = document.getElementById('mob-lang-btn');
     if (btn) {
       btn.classList.toggle('is-zh', currentLang === 'zh');
       btn.classList.toggle('is-en', currentLang === 'en');
+    }
+    var deskBtn = document.getElementById('desk-lang-btn');
+    if (deskBtn) {
+      deskBtn.classList.toggle('is-zh', currentLang === 'zh');
+      deskBtn.classList.toggle('is-en', currentLang === 'en');
     }
   }
 
@@ -350,6 +350,41 @@
       'html.lang-zh .tagline{font-size:12.5px !important;}',
     '}',
 
+    /* Bilingual show/hide — global */
+    '.t-zh{display:none !important;}',
+    'html.lang-zh .t-en{display:none !important;}',
+    'html.lang-zh .t-zh{display:inline !important;}',
+
+    /* Desktop lang button */
+    '@media(min-width:768px){',
+      '.desk-lang-btn{',
+        'position:fixed;top:22px;right:32px;z-index:500;',
+        'display:flex;align-items:center;gap:3px;',
+        'font-family:"Inter",system-ui,sans-serif;',
+        'font-size:11px;font-weight:400;letter-spacing:0.5px;',
+        'color:#8a817a;background:none;border:none;cursor:pointer;',
+        'padding:0;transition:color 0.2s ease;',
+        'outline:none;',
+      '}',
+      '.desk-lang-btn:hover{color:#3a332d;}',
+      '.desk-lang-btn:focus{outline:none;}',
+      '.desk-lang-btn .lang-sep{color:#ccc;margin:0 1px;}',
+      '.desk-lang-btn .lang-zh{color:#2a2a2a;font-weight:500;}',
+      '.desk-lang-btn .lang-en{color:#2a2a2a;font-weight:500;}',
+      '.desk-lang-btn.is-zh .lang-zh{color:#2a2a2a;font-weight:500;}',
+      '.desk-lang-btn.is-zh .lang-en{color:#bbb;font-weight:400;}',
+      '.desk-lang-btn.is-en .lang-zh{color:#bbb;font-weight:400;}',
+      '.desk-lang-btn.is-en .lang-en{color:#2a2a2a;font-weight:500;}',
+
+      /* Desktop lang-zh font overrides */
+      'html.lang-zh .side-nav a{font-family:"Noto Serif SC",serif !important;}',
+      'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact{font-family:"Noto Sans SC",sans-serif !important;font-size:11px !important;}',
+      'html.lang-zh .side-nav .nav-sub-item{font-family:"Noto Sans SC",sans-serif !important;font-size:12px !important;letter-spacing:0 !important;}',
+      'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label{font-family:"Noto Serif SC",serif !important;}',
+      'html.lang-zh .page-nav__name,html.lang-zh .page-nav__home{font-family:"Noto Serif SC",serif !important;}',
+      'html.lang-zh .page-nav__label{font-family:"Noto Sans SC",sans-serif !important;}',
+    '}',
+
     '.mob-bar{display:none !important;}',
     '#mob-menu{',
       'display:block;',
@@ -362,10 +397,10 @@
     /* ── Desktop side nav ── */
     '.side-nav{display:none;}',
     '@media(min-width:768px){',
-      'body{padding-left:240px;}',
+      'body{padding-left:clamp(240px,20vw,320px);}',
       '.side-nav{',
         'display:flex;flex-direction:column;',
-        'position:fixed;left:64px;width:160px;top:100px;',
+        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:100px;',
         'transform:none;z-index:200;gap:2px;',
       '}',
       '.side-nav a{',
@@ -376,15 +411,24 @@
         'line-height:1.2;white-space:nowrap;',
         'display:block;transition:color 0.2s ease;',
       '}',
-      '.side-nav a span{display:inline;position:relative;}',
-      '.side-nav a span::after{',
+      '.side-nav a span:not(.t-en):not(.t-zh){display:inline;position:relative;}',
+      '.side-nav a span:not(.t-en):not(.t-zh)::after{',
         'content:"";position:absolute;left:0;bottom:-1px;',
         'width:100%;height:1px;background:currentColor;',
         'transform:scaleX(0);transform-origin:left center;',
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover{color:#3a332d;}',
-      '.side-nav a:hover span::after{transform:scaleX(1);}' +
+      '.side-nav a:hover span:not(.t-en):not(.t-zh)::after{transform:scaleX(1);}',
+      /* Underline for bilingual spans */
+      '.side-nav a .t-en,.side-nav a .t-zh{position:relative;}',
+      '.side-nav a .t-en::after,.side-nav a .t-zh::after{',
+        'content:"";position:absolute;left:0;bottom:-1px;',
+        'width:100%;height:1px;background:currentColor;',
+        'transform:scaleX(0);transform-origin:left center;',
+        'transition:transform 0.18s ease;',
+      '}',
+      '.side-nav a:hover .t-en::after,.side-nav a:hover .t-zh::after{transform:scaleX(1);}' +
       '.side-nav .nav-sub-item{',
         'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
         'font-size:13px;font-weight:400;letter-spacing:0.3px;',
@@ -590,26 +634,27 @@
   nav.className = 'side-nav';
   nav.innerHTML =
     '<a href="index.html" class="nav-wordmark">Cady Sheng</a>' +
-    '<a href="index.html" class="nav-home"><span>Home</span></a>' +
+    '<a href="index.html" class="nav-home"><span class="t-en">Home</span><span class="t-zh">主页</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="illustrations.html"><span>Illustrations</span></a>' +
-    '<a href="illustrations.html#my-partner" class="nav-sub-item"><span>My Partner</span></a>' +
-    '<a href="illustrations.html#flow-and-spirituality" class="nav-sub-item"><span>Flow &amp; Spirituality</span></a>' +
-        '<a href="illustrations.html#childrens-book" class="nav-sub-item"><span>Children\u2019s Book</span></a>' +
-    '<a href="stage-art-production.html"><span>Stage Art &amp; Production</span></a>' +
-    '<a href="traditional-mediums.html"><span>Traditional Mediums</span></a>' +
-    '<a href="graphic-design.html"><span>Graphic Design</span></a>' +
-    '<a href="jewelry.html"><span>Jewelry</span></a>' +
-    '<a href="meditation.html"><span>Meditation</span></a>' +
-    '<a href="apparel.html"><span>Apparel</span></a>' +
+    '<a href="illustrations.html"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></a>' +
+    '<a href="illustrations.html#my-partner" class="nav-sub-item"><span class="t-en">My Partner</span><span class="t-zh">我的伴侣</span></a>' +
+    '<a href="illustrations.html#flow-and-spirituality" class="nav-sub-item"><span class="t-en">Flow &amp; Spirituality</span><span class="t-zh">流动与灵性</span></a>' +
+    '<a href="illustrations.html#childrens-book" class="nav-sub-item"><span class="t-en">Children’s Book</span><span class="t-zh">儿童绘本</span></a>' +
+    '<a href="stage-art-production.html"><span class="t-en">Stage Art &amp; Production</span><span class="t-zh">舞台艺术与制作</span></a>' +
+    '<a href="traditional-mediums.html"><span class="t-en">Traditional Mediums</span><span class="t-zh">传统媒介</span></a>' +
+    '<a href="graphic-design.html"><span class="t-en">Graphic Design</span><span class="t-zh">平面设计</span></a>' +
+    '<a href="jewelry.html"><span class="t-en">Jewelry</span><span class="t-zh">珠宝</span></a>' +
+    '<a href="meditation.html"><span class="t-en">Meditation</span><span class="t-zh">冥想</span></a>' +
+    '<a href="apparel.html"><span class="t-en">Apparel</span><span class="t-zh">服装</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="contact.html" class="nav-contact"><span>Contact</span></a>' +
+    '<a href="contact.html" class="nav-contact"><span class="t-en">Contact</span><span class="t-zh">联系我</span></a>' +
     '<a href="https://instagram.com/cadysheng" target="_blank" class="nav-instagram" aria-label="Instagram">' +
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
         '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>' +
         '<circle cx="12" cy="12" r="4"/>' +
         '<circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>' +
       '</svg>' +
+    '</a>' +
     '</a>';
 
   /* Mobile top bar */
@@ -651,6 +696,14 @@
   /* ─── INIT ─── */
   function init() {
     document.body.insertBefore(nav, document.body.firstChild);
+
+    /* Desktop lang button — fixed top right */
+    var deskLangWrap = document.createElement('button');
+    deskLangWrap.className = 'desk-lang-btn';
+    deskLangWrap.id = 'desk-lang-btn';
+    deskLangWrap.setAttribute('aria-label', 'Toggle language');
+    deskLangWrap.innerHTML = '<span class="lang-zh">中</span><span class="lang-sep">/</span><span class="lang-en">Eng</span>';
+    document.body.appendChild(deskLangWrap);
     document.body.insertBefore(mobMenu, document.body.firstChild);
     document.body.insertBefore(mobBar, document.body.firstChild);
 
@@ -704,6 +757,14 @@
           ticking = true;
         }
       }, { passive: true });
+    }
+
+    /* Desktop lang button */
+    var deskLangBtn = document.getElementById('desk-lang-btn');
+    if (deskLangBtn) {
+      deskLangBtn.addEventListener('click', function() {
+        setLang(currentLang === 'en' ? 'zh' : 'en');
+      });
     }
 
     /* Apply translations on load */
