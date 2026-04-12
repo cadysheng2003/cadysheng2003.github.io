@@ -589,8 +589,8 @@
     '<a href="illustrations.html"><span>Illustrations</span></a>' +
     '<a href="illustrations.html#my-partner" class="nav-sub-item"><span>My Partner</span></a>' +
     '<a href="illustrations.html#flow-and-spirituality" class="nav-sub-item"><span>Flow &amp; Spirituality</span></a>' +
+    '<a href="illustrations.html#childrens-book" class="nav-sub-item"><span>Children\u2019s Book</span></a>' +
     '<a href="stage-art-production.html"><span>Stage Art &amp; Production</span></a>' +
-    '<a href="childrens-book.html"><span>Children\u2019s Book</span></a>' +
     '<a href="traditional-mediums.html"><span>Traditional Mediums</span></a>' +
     '<a href="graphic-design.html"><span>Graphic Design</span></a>' +
     '<a href="jewelry.html"><span>Jewelry</span></a>' +
@@ -631,8 +631,8 @@
     '<a href="illustrations.html" data-i18n="nav.illustrations">Illustrations</a>' +
     '<a href="illustrations.html#my-partner" class="mob-sub-item" data-i18n="nav.partner">My Partner</a>' +
     '<a href="illustrations.html#flow-and-spirituality" class="mob-sub-item" data-i18n="nav.flow">Flow &amp; Spirituality</a>' +
+    '<a href="illustrations.html#childrens-book" class="mob-sub-item" data-i18n="nav.childrens">Children\u2019s Book</a>' +
     '<a href="stage-art-production.html" data-i18n="nav.stage">Stage Art &amp; Production</a>' +
-    '<a href="childrens-book.html" data-i18n="nav.childrens">Children\u2019s Book</a>' +
     '<a href="traditional-mediums.html" data-i18n="nav.traditional">Traditional Mediums</a>' +
     '<a href="graphic-design.html" data-i18n="nav.graphic">Graphic Design</a>' +
     '<a href="jewelry.html" data-i18n="nav.jewelry">Jewelry</a>' +
@@ -729,6 +729,7 @@
           var id = entry.target.id || entry.target.className;
           if (id === 'my-partner') setSubActive('illustrations.html#my-partner');
           else if (id === 'flow-and-spirituality') setSubActive('illustrations.html#flow-and-spirituality');
+          else if (id === 'childrens-book') setSubActive('illustrations.html#childrens-book');
           else resetSubItems();
         });
       }, { rootMargin: '-10% 0px -80% 0px' });

@@ -90,6 +90,29 @@
       }
 
 
+    /* ── Children's Book sub-section CSS ── */
+    .cb-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: var(--page-max-width);
+      margin: 0 auto 14px;
+      padding: 0 var(--page-padding);
+    }
+    .cb-img  { flex: 0 0 68%; min-width: 0; line-height: 0; cursor: pointer; }
+    .cb-img img { display: block; width: 100%; height: auto; transition: opacity 0.3s; }
+    .cb-img:hover img { opacity: 0.88; }
+    .cb-img--small { flex: 0 0 40%; }
+    .cb-text {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--color-text-light);
+      padding-top: 4px;
+    }
+    .cb-text p { margin-bottom: 8px; }
+
     /* ── Sub-sections: My Partner + Flow & Spirituality ── */
     /* Desktop: restore cover crop on MP images */
     .sub-section__gallery .r > .g { height: 100%; overflow: hidden; }
@@ -182,6 +205,10 @@
       .sub-section .c { width:100% !important; flex:none !important; }
       .sub-section .g { width:100% !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
+      /* CB mobile */
+      .cb-gallery .cb-row { flex-direction:column !important; gap:10px !important; padding:0 16px !important; }
+      .cb-gallery .cb-img, .cb-gallery .cb-img--small { flex:none !important; width:100% !important; }
+      .cb-gallery .cb-text { padding-top:0 !important; font-size:14px !important; }
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
       /* ── Mobile performance: reduce CLS and rendering cost ── */
@@ -525,6 +552,116 @@
     <div class="r" style="margin-top:20px">
       <div class="g" data-title="Moon" style="flex:1">
         <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy">
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ CHILDREN'S BOOK SECTION ═══ -->
+  <div id="childrens-book" class="sub-section">
+    <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
+      <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%; max-width:420px; height:auto; display:block; margin:0 auto;">
+    </div>
+    <div class="gallery sub-section__gallery cb-gallery">
+<!-- CB1: Full width cover, no text -->
+    <div class="cb-row">
+      <div class="g" data-title="Maybe We Will Find a Rainbow and Teach It to Fly — Cover" style="flex:1;line-height:0;cursor:pointer">
+        <img decoding="async" src="childrens-book/CB1 (Maybe We Will Find a Rainbow and Teach It to Fly-Cover).jpg" alt="Cover" loading="lazy" style="width:100%;height:auto;display:block;transition:opacity 0.3s">
+      </div>
+    </div>
+
+    <!-- CB2: small sketch + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 1">
+        <img decoding="async" src="childrens-book/CB2 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 1).jpg" alt="Page 1" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>I remember when Earth was created,</p>
+      </div>
+    </div>
+
+    <!-- CB3: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 2">
+        <img decoding="async" src="childrens-book/CB3 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 2).jpg" alt="Page 2" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>Earth was just a little asteroid.</p>
+      </div>
+    </div>
+
+    <!-- CB4: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 3">
+        <img decoding="async" src="childrens-book/CB4 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 3).jpg" alt="Page 3" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>We put planets together</p>
+      </div>
+    </div>
+
+    <!-- CB5: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 4">
+        <img decoding="async" src="childrens-book/CB5 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 4).jpg" alt="Page 4" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>"Holding hands"</p>
+      </div>
+    </div>
+
+    <!-- CB6: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 5">
+        <img decoding="async" src="childrens-book/CB6 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 5).jpg" alt="Page 5" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>I see everyone! Everyone feels me too!</p>
+        <p>A little girl shouts:</p>
+      </div>
+    </div>
+
+    <!-- CB7: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 6">
+        <img decoding="async" src="childrens-book/CB7 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 6).jpg" alt="Page 6" loading="lazy">
+      </div>
+      <div class="cb-text" style="font-size:14px">
+        <p>"Hi Everyone!<br>Hi Everyone!<br>Hi Everyone!<br>I see you<br>I love you!<br>I feel you!"</p>
+        <p>She feels the fullness in everything.<br>She feels incredibly alive.</p>
+      </div>
+    </div>
+
+    <!-- CB8: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 7">
+        <img decoding="async" src="childrens-book/CB8 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 7).jpg" alt="Page 7" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>She hears all the animals too, all at the same time from miles away; the crickets, a deer stepping into the crunchy leaves.</p>
+      </div>
+    </div>
+
+    <!-- CB9: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 8">
+        <img decoding="async" src="childrens-book/CB9 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 8).jpg" alt="Page 8" loading="lazy">
+      </div>
+      <div class="cb-text">
+        <p>A vibration, a melody made by nature all together.</p>
+      </div>
+    </div>
+
+    <!-- CB10: wide image + text -->
+    <div class="cb-row">
+      <div class="cb-img g" data-title="Page 9">
+        <img decoding="async" src="childrens-book/CB10 (Maybe We Will Find a Rainbow and Teach It to Fly-Page 9).jpg" alt="Page 9" loading="lazy">
+      </div>
+      <div class="cb-text" style="font-size:14px">
+        <p>Everyone dances back to me, waving their bodies and branches and leaves.</p>
+        <p>"Now I will never unsee you," says the little girl.<br>She hugs everyone.</p>
+        <p>! Bye Everyone !<br>Echoes in the woods.</p>
       </div>
     </div>
     </div>
