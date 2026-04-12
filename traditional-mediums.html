@@ -81,6 +81,30 @@
     .tm-m { flex:1.317 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
     .tm-r { flex:1.000 0 0; display:flex; flex-direction:column; gap:8px; min-width:0; }
 
+    /* ── New desktop layout helpers ── */
+    @media(min-width:768px) {
+      /* 4-col figure rows: fixed height so all 8 images align */
+      .tm-4col-row {
+        display: flex !important;
+        gap: 8px;
+        margin-bottom: 8px;
+        align-items: stretch;
+        height: 220px;
+      }
+      .tm-4col-row .g {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+      .tm-4col-row .g img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
     @media(max-width:767px) and (pointer:coarse){
             /* TM mobile custom layout */
 
@@ -187,6 +211,8 @@
       }
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
+
+
     }
   </style>
 </head>
@@ -197,118 +223,122 @@
   </div>
 
   <div class="gallery">
-    <div class="tm3col">
-      <div class="tm-l">
-        <div class="g" data-title="Untitled Watercolor 1" data-tm="TM1">
-        <img decoding="async" src="traditional-mediums/TM1 (Untitled Watercolor 1).jpg" alt="Untitled Watercolor 1" loading="lazy">
+    <!-- TM1 hero + TM2/TM3 -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM1" data-title="Untitled Watercolor 1" style="flex:1.4;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM1 (Untitled Watercolor 1).jpg" alt="Untitled Watercolor 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-        <div class="g" data-title="Pastel Figure Drawing" data-tm="TM6">
-        <img decoding="async" src="traditional-mediums/TM6 (Pastel Figure Drawing).jpg" alt="Pastel Figure Drawing" loading="lazy">
-      </div>
-      </div>
-      <div class="tm-m">
-        <div class="g" data-title="Untitled Watercolor 2" data-tm="TM2">
-        <img decoding="async" src="traditional-mediums/TM2 (Untitled Watercolor 2).jpg" alt="Untitled Watercolor 2" loading="lazy">
-      </div>
-        <div class="g" data-tm="TM4" data-title="Untitled Oil Painting 1">
-        <img decoding="async" src="traditional-mediums/TM4 (Untitled Oil Painting 1).jpg" alt="Untitled Oil Painting 1" loading="lazy">
-      </div>
-        <div class="g" data-tm="TM7" data-title="Watercolors and Sculptures">
-        <img decoding="async" src="traditional-mediums/TM7 (Watercolors and Sculptures).jpg" alt="Watercolors and Sculptures" loading="lazy">
-      </div>
-      </div>
-      <div class="tm-r">
-        <div class="g" data-title="Untitled Watercolor 3" data-tm="TM3">
-        <img decoding="async" src="traditional-mediums/TM3 (Untitled Watercolor 3).jpg" alt="Untitled Watercolor 3" loading="lazy">
-      </div>
-        <div class="g" data-title="Untitled Oil Painting 2" data-tm="TM5">
-        <img decoding="async" src="traditional-mediums/TM5 (Untitled Oil Painting 2).jpg" alt="Untitled Oil Painting 2" loading="lazy">
-      </div>
-        <div class="g" data-title="Untitled Oil Painting 3" data-tm="TM8">
-        <img decoding="async" src="traditional-mediums/TM8 (Untitled Oil Painting 3).jpg" alt="Untitled Oil Painting 3" loading="lazy">
-      </div>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;align-self:stretch;">
+        <div class="g" data-tm="TM3" data-title="Untitled Watercolor 3" style="flex:1;min-height:0;overflow:hidden;border-radius:8px;">
+          <img decoding="async" src="traditional-mediums/TM3 (Untitled Watercolor 3).jpg" alt="Untitled Watercolor 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="g" data-tm="TM2" data-title="Untitled Watercolor 2" style="flex:1;min-height:0;overflow:hidden;border-radius:8px;">
+          <img decoding="async" src="traditional-mediums/TM2 (Untitled Watercolor 2).jpg" alt="Untitled Watercolor 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
       </div>
     </div>
-    <div class="r" style="align-items:stretch">
-      <div class="g" data-tm="TM9" data-title="Cat Memes" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM9 (Cat Memes).jpg" alt="Cat Memes" loading="lazy" style="width:100%;display:block;">
+    <!-- TM4 TM7 -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM4" data-title="Untitled Oil Painting 1" style="flex:1;min-width:0;">
+        <img decoding="async" src="traditional-mediums/TM4 (Untitled Oil Painting 1).jpg" alt="Untitled Oil Painting 1" loading="lazy" style="width:100%;height:auto;display:block;">
       </div>
-      <div class="g" data-tm="TM10" data-title="Portrait of My Grandmother When She Was Young" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM9 (Cat Memes).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <video autoplay muted loop playsinline src="traditional-mediums/TM10 (Portrait of My Grandmother When She Was Young).mp4" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block"></video>
-      </div>
-    </div>
-    <div class="sep-sm"></div>
-    <div class="r tm-fig-row">
-      <div class="g" data-title="Untitled" data-tm="TM11" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM11 (Untitled).jpg" alt="Untitled" loading="lazy">
-      </div>
-      <div class="g" data-title="Untitled" data-tm="TM12" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM12 (Untitled).jpg" alt="Untitled" loading="lazy">
-      </div>
-      <div class="g" data-title="Untitled" data-tm="TM13" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM13 (Untitled).jpg" alt="Untitled" loading="lazy">
+      <div class="g" data-tm="TM7" data-title="Watercolors and Sculptures" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM7 (Watercolors and Sculptures).jpg" alt="Watercolors and Sculptures" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
-    <div class="r tm-fig-row">
-      <div class="g" data-title="Untitled" data-tm="TM14" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM14 (Untitled).jpg" alt="Untitled" loading="lazy">
+    <div style="height:32px;"></div>
+    <!-- TM6 full width -->
+    <div class="g" data-tm="TM6" data-title="Pastel Figure Drawing" style="margin-bottom:8px;border-radius:8px;overflow:hidden;">
+      <img decoding="async" src="traditional-mediums/TM6 (Pastel Figure Drawing).jpg" alt="Pastel Figure Drawing" loading="lazy" style="width:100%;height:auto;display:block;">
+    </div>
+    <!-- TM5 TM8 TM11 TM12 -->
+    <div class="tm-4col-row">
+      <div class="g" data-tm="TM5" data-title="Untitled Oil Painting 2" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM5 (Untitled Oil Painting 2).jpg" alt="Untitled Oil Painting 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="g" data-title="Untitled" data-tm="TM15" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM15 (Untitled).jpg" alt="Untitled" loading="lazy">
+      <div class="g" data-tm="TM8" data-title="Untitled Oil Painting 3" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM8 (Untitled Oil Painting 3).jpg" alt="Untitled Oil Painting 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="g" data-title="Untitled" data-tm="TM16" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM16 (Untitled).jpg" alt="Untitled" loading="lazy">
+      <div class="g" data-tm="TM11" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM11 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-tm="TM12" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM12 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
-    <div class="r" style="align-items:stretch">
-      <div class="g" data-tm="TM17" data-title="Untitled" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM17 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;display:block;">
+    <!-- TM13 TM14 TM15 TM16 -->
+    <div class="tm-4col-row">
+      <div class="g" data-tm="TM13" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM13 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="g" data-title="Untitled" data-tm="TM18" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM17 (Untitled).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM18 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="g" data-tm="TM14" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM14 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-    </div>
-    <div class="r" style="align-items:stretch">
-      <div class="g" data-tm="TM19" data-title="Crocodiles in My Dreams" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM19 (Crocodiles in My Dreams).jpg" alt="Crocodiles in My Dreams" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="g" data-tm="TM15" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM15 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="g" data-title="Untitled" data-tm="TM20" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM20 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="g" data-title="A Friend's Grandma" data-tm="TM21" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="A Friend's Grandma" loading="lazy" style="width:100%;display:block;">
+      <div class="g" data-tm="TM16" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM16 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
-    <div class="r" style="align-items:stretch">
-      <div class="g" data-tm="TM22" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM24 (My Sister).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM22 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+    <div style="height:32px;"></div>
+    <!-- TM9 + TM10 video -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM9" data-title="Cat Memes" style="flex:1;min-width:0;">
+        <img decoding="async" src="traditional-mediums/TM9 (Cat Memes).jpg" alt="Cat Memes" loading="lazy" style="width:100%;height:auto;display:block;">
       </div>
-      <div class="g" data-tm="TM23" data-title="Animal Death" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM24 (My Sister).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM23 (Animal Death).jpg" alt="Animal Death" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="g" data-title="My Sister" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM24 (My Sister).jpg" alt="My Sister" loading="lazy" style="width:100%;display:block;">
+      <div class="g" data-tm="TM10" data-title="Portrait of My Grandmother When She Was Young" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;position:relative;">
+        <video autoplay muted loop playsinline src="traditional-mediums/TM10 (Portrait of My Grandmother When She Was Young).mp4" style="position:absolute;top:50%;left:0;transform:translateY(-50%);width:100%;height:200%;object-fit:cover;display:block;"></video>
       </div>
     </div>
-    <div class="r" style="align-items:stretch">
-      <div class="g" data-title="See No Evil, Hear No Evil, Speak No Evil" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" alt="See No Evil, Hear No Evil, Speak No Evil" loading="lazy" style="width:100%;display:block;">
+    <div style="height:32px;"></div>
+    <!-- TM17 (2col) + TM25/TM26/TM24 stacked -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM17" data-title="Untitled" style="flex:2;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM17 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
-      <div class="g" data-title="Untitled" style="flex:1;overflow:hidden;position:relative">
-        <img decoding="async" loading="lazy" src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" alt="" style="width:100%;display:block;visibility:hidden;">
-        <img decoding="async" src="traditional-mediums/TM26 (Untitled).jpg" alt="Untitled" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px;align-self:flex-start;">
+        <div class="g" data-tm="TM25" data-title="See No Evil, Hear No Evil, Speak No Evil" style="flex:1;overflow:hidden;border-radius:8px;">
+          <img decoding="async" src="traditional-mediums/TM25 (See No Evil, Hear No Evil, Speak No Evil).jpg" alt="See No Evil, Hear No Evil, Speak No Evil" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="g" data-tm="TM26" data-title="Untitled" style="flex:1;overflow:hidden;border-radius:8px;">
+          <img decoding="async" src="traditional-mediums/TM26 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="g" data-tm="TM24" data-title="My Sister" style="flex:1;overflow:hidden;border-radius:8px;">
+          <img decoding="async" src="traditional-mediums/TM24 (My Sister).jpg" alt="My Sister" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
       </div>
     </div>
-    <div class="r">
-      <div class="g" data-title="Almost Electrified" style="flex:1">
-        <img decoding="async" src="traditional-mediums/TM27 (Almost Electrified).jpg" alt="Almost Electrified" loading="lazy">
+    <div style="height:32px;"></div>
+    <!-- TM18 TM19 TM20 TM21 -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM18" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM18 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
+      <div class="g" data-tm="TM19" data-title="Crocodiles in My Dreams" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM19 (Crocodiles in My Dreams).jpg" alt="Crocodiles in My Dreams" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-tm="TM20" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM20 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-tm="TM21" data-title="A Friend's Grandma" style="flex:1;min-width:0;">
+        <img decoding="async" src="traditional-mediums/TM21 (A Friend_s Grandma).jpg" alt="A Friend's Grandma" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+    <div style="height:32px;"></div>
+    <!-- TM22 TM23 -->
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:stretch;">
+      <div class="g" data-tm="TM22" data-title="Untitled" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM22 (Untitled).jpg" alt="Untitled" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="g" data-tm="TM23" data-title="Animal Death" style="flex:1;min-width:0;border-radius:8px;overflow:hidden;">
+        <img decoding="async" src="traditional-mediums/TM23 (Animal Death).jpg" alt="Animal Death" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div style="height:32px;"></div>
+    <!-- TM27 full width -->
+    <div class="g" data-tm="TM27" data-title="Almost Electrified" style="margin-bottom:8px;border-radius:8px;overflow:hidden;">
+      <img decoding="async" src="traditional-mediums/TM27 (Almost Electrified).jpg" alt="Almost Electrified" loading="lazy" style="width:100%;height:auto;display:block;">
     </div>
   </div>
 
@@ -355,17 +385,21 @@
     function cleanImgWrap(tm){
       var el = get(tm);
       if(!el) return null;
+      /* If already a simple .g with one img, just return a clone */
       var imgs = Array.from(el.querySelectorAll('img'));
-      /* Prefer the abs-positioned real image; fallback to any non-hidden img */
+      /* Prefer abs-positioned real image */
       var real = imgs.find(function(i){
         var s = i.getAttribute('style') || '';
         return s.indexOf('position:absolute') !== -1 || s.indexOf('position: absolute') !== -1;
       });
+      /* Fallback: any non-hidden img */
       if(!real){
         real = imgs.find(function(i){
           return (i.getAttribute('style')||'').indexOf('visibility:hidden') === -1;
         });
       }
+      /* Last fallback: first img */
+      if(!real && imgs.length > 0) real = imgs[0];
       if(!real) return null;
       var wrap = document.createElement('div');
       wrap.className = 'g';
@@ -530,7 +564,25 @@
       if(visibleContent.length === 0) row.style.display='none';
     });
 
+    /* Hide new desktop-only flex containers */
+    Array.from(gallery.children).forEach(function(el){
+      if(el.style && el.style.display === 'flex' && !el.classList.contains('tm-s1')
+         && !el.classList.contains('tm-s2') && !el.classList.contains('tm-s3')
+         && !el.classList.contains('tm-s4') && !el.classList.contains('tm-s5')
+         && !el.classList.contains('tm-s6') && !el.classList.contains('tm-s7')
+         && !el.classList.contains('tm-s8')) {
+        el.style.display = 'none';
+      }
+    });
+    /* Also hide tm-4col-row and .g direct children (TM27) */
+    gallery.querySelectorAll('.tm-4col-row').forEach(function(el){ el.style.display='none'; });
+    var directGs = Array.from(gallery.children).filter(function(el){
+      return el.classList.contains('g') || el.classList.contains('r');
+    });
+    directGs.forEach(function(el){ el.style.display='none'; });
+
     gallery.classList.add('tm-mobile-built');
+
   }
 
   document.addEventListener('DOMContentLoaded', buildTMMobile);

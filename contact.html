@@ -32,10 +32,10 @@
       margin: 64px auto 0;
       padding: 0 var(--page-padding);
       display: flex;
-      gap: 64px;
-      align-items: center;
+      gap: 48px;
+      align-items: flex-start;
     }
-    .contact-photo { flex: 0 0 320px; border-radius: 12px; overflow: hidden; line-height: 0; }
+    .contact-photo { flex: 0 0 260px; border-radius: 12px; overflow: hidden; line-height: 0; }
     .contact-photo img { width: 100%; height: auto; display: block; border-radius: 12px; }
     .contact-text { flex: 1; min-width: 0; padding-top: 8px; }
     .contact-name {
@@ -80,7 +80,7 @@
     .contact-info__val:hover { color: var(--color-text); border-bottom-color: #ccc; }
     @media (max-width: 767px) {
       .contact-wrap { flex-direction: column; gap: 36px; margin-top: 28px; padding: 0 20px; }
-      .contact-photo { flex: none; width: 60%; max-width: 240px; }
+      .contact-photo { flex: none; width: 100%; max-width: 100%; }
       .contact-name { font-size: 32px; }
       .contact-bio { font-size: 15px; }
     }

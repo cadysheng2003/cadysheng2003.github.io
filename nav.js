@@ -341,7 +341,7 @@
       'html.lang-zh .intro-text p,html.lang-zh .cb-text,html.lang-zh .sec-label,html.lang-zh .tagline,html.lang-zh footer p{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .tile__label, html.lang-zh .hero-tile .tile__label{',
         'font-size:15px !important;',
-        'font-weight:700 !important;',
+        'font-weight:400 !important;',
         'letter-spacing:0 !important;',
         'text-transform:none !important;',
       '}',

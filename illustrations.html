@@ -174,32 +174,24 @@
       .sub-section { margin-top: 60px !important; }
       #my-partner { margin-top: 60px !important; }
       #my-partner .sub-section__header { margin-bottom: 32px !important; }
-      .sub-section:not(.cb-section) .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
+      /* FS title: taller image, needs more width */
+      #flow-and-spirituality .sub-section__header img { width:72% !important; max-width:300px !important; height:auto !important; }
+      /* MP title */
+      #my-partner .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
+      /* CB title */
+      .cb-section .sub-section__header img { width:75% !important; max-width:320px !important; height:auto !important; }
       .sub-section .r { flex-direction:column !important; height:auto !important; gap:10px !important; }
-      /* MP mobile: reset inline flex rows */
-      #my-partner div[style*="height:350px"],
-      #my-partner div[style*="height:270px"] {
-        flex-direction: column !important;
-        height: auto !important;
-        gap: 10px !important;
-      }
-      #my-partner div[style*="height:350px"] > .g,
-      #my-partner div[style*="height:270px"] > .g {
-        flex: none !important;
-        width: 100% !important;
-        height: auto !important;
-        border-radius: 6px !important;
-      }
-      #my-partner div[style*="height:350px"] > .g img,
-      #my-partner div[style*="height:270px"] > .g img {
-        height: auto !important;
-        object-fit: unset !important;
-      }
+      /* MP mobile CSS: in mp-section <style> tag */
       .sub-section .r > .g { flex:none !important; width:100% !important; height:auto !important; overflow:visible !important; }
       .sub-section .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       .sub-section .c { width:100% !important; flex:none !important; }
       .sub-section:not(.cb-section) .g { width:100% !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
+      /* CB mobile: cover row padding match */
+      .cb-section > div[style*="max-width:880px"][style*="padding:0 40px"] {
+        padding: 0 16px !important;
+        max-width: 100% !important;
+      }
       /* CB mobile: override inline flex-direction:row on small screens */
       .cb-section > div[style*="flex-direction:row"] {
         flex-direction: column !important;
@@ -479,35 +471,48 @@
 
   <!-- ═══ MY PARTNER SECTION ═══ -->
   <div id="my-partner" class="sub-section">
+    <style>
+      /* MP desktop: two fixed-height rows */
+      .mp-section-wrap { padding: 0 var(--page-padding); max-width: var(--page-max-width); margin: 0 auto; }
+      .mp-r1 { display:flex; gap:6px; margin-bottom:6px; height:350px; }
+      .mp-r2 { display:flex; gap:6px; }
+      .mp-r1 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
+      .mp-r2 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
+      .mp-r1 .mp-g img { width:100%; height:100%; object-fit:cover; display:block; }
+      .mp-r2 .mp-g img { width:100%; height:auto; display:block; }
+      @media(max-width:767px) and (pointer:coarse) {
+        .mp-r1 { flex-direction:column; height:auto; gap:10px; }
+        .mp-r2 { flex-direction:column; gap:10px; }
+        .mp-r1 .mp-g { flex:none; width:100%; height:auto; }
+        .mp-r2 .mp-g { flex:none; width:100%; }
+        .mp-r1 .mp-g img { height:auto; object-fit:unset; }
+      }
+    </style>
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:block; margin:0 auto;">
     </div>
-    <div class="gallery sub-section__gallery">
-<!-- Row 1: MP1 + MP4 -->
-    <div style="display:flex;gap:6px;margin-bottom:6px;height:350px;">
-      <div class="g" data-title="My Partner 1" style="flex:1;min-width:0;overflow:hidden;border-radius:8px;">
-        <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="mp-section-wrap">
+      <div class="mp-r1">
+        <div class="mp-g g" data-title="My Partner 1">
+          <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy">
+        </div>
+        <div class="mp-g g" data-title="My Partner 4">
+          <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy">
+        </div>
       </div>
-      <div class="g" data-title="My Partner 4" style="flex:1;min-width:0;overflow:hidden;border-radius:8px;">
-        <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="mp-r2">
+        <div class="mp-g g" data-title="My Partner 3">
+          <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy">
+        </div>
+        <div class="mp-g g" data-title="My Partner 2">
+          <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy">
+        </div>
+        <div class="mp-g g" data-title="My Partner 5">
+          <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy">
+        </div>
       </div>
-    </div>
-    <!-- Row 2: MP3 + MP2 + MP5 -->
-    <div style="display:flex;gap:6px;margin-bottom:0;height:270px;">
-      <div class="g" data-title="My Partner 3" style="flex:1;min-width:0;overflow:hidden;border-radius:8px;">
-        <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="g" data-title="My Partner 2" style="flex:1;min-width:0;overflow:hidden;border-radius:8px;">
-        <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="g" data-title="My Partner 5" style="flex:1;min-width:0;overflow:hidden;border-radius:8px;">
-        <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-    </div>
     </div>
   </div>
-
-  <!-- ═══ FLOW & SPIRITUALITY SECTION ═══ -->
   <div id="flow-and-spirituality" class="sub-section">
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:134px; width:auto; display:block; margin:0 auto;">
