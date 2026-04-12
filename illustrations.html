@@ -91,27 +91,59 @@
 
 
     /* ── Children's Book sub-section CSS ── */
-    .cb-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
+    /* Cover row: full width, no text */
+    .cb-section .cb-cover-row {
+      display: block !important;
       max-width: var(--page-max-width);
-      margin: 0 auto 14px;
+      margin: 0 auto 20px;
       padding: 0 var(--page-padding);
     }
-    .cb-img  { flex: 0 0 68%; min-width: 0; line-height: 0; cursor: pointer; }
-    .cb-img img { display: block; width: 100%; height: auto; transition: opacity 0.3s; }
-    .cb-img:hover img { opacity: 0.88; }
-    .cb-img--small { flex: 0 0 40%; }
-    .cb-text {
-      flex: 1;
-      font-family: var(--font-body);
-      font-size: 17px;
-      line-height: 1.8;
-      color: var(--color-text-light);
-      padding-top: 4px;
+    .cb-section .cb-cover-row .g {
+      display: block !important;
+      width: 100% !important;
+      line-height: 0;
+      border-radius: 8px;
+      overflow: hidden;
     }
-    .cb-text p { margin-bottom: 8px; }
+    .cb-section .cb-cover-row img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    /* Content rows: left image 60%, right text 40% */
+    .cb-section .cb-row {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      gap: 32px !important;
+      margin-bottom: 20px !important;
+    }
+    .cb-section .cb-img {
+      flex: 0 0 60% !important;
+      min-width: 0 !important;
+      line-height: 0 !important;
+      cursor: pointer !important;
+      display: block !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+    .cb-section .cb-img img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    .cb-section .cb-img:hover img { opacity: 0.88; }
+    .cb-section .cb-img--small { flex: 0 0 40% !important; }
+    .cb-section .cb-text {
+      flex: 1 !important;
+      font-family: var(--font-body) !important;
+      font-size: 16px !important;
+      line-height: 1.9 !important;
+      color: var(--color-text-light) !important;
+      padding-top: 8px !important;
+      min-width: 0 !important;
+    }
+    .cb-section .cb-text p { margin-bottom: 10px !important; }
 
     /* ── Sub-sections: My Partner + Flow & Spirituality ── */
     /* Desktop: restore cover crop on MP images */
@@ -143,6 +175,9 @@
       .sub-section__gallery > * { display:flex !important; }
       .sub-section__gallery > .r { display:flex !important; }
       .sub-section__gallery > .c { display:flex !important; }
+      /* CB gallery wrapper exempt from il-mob hide rule */
+      .cb-wrap > * { display:flex !important; }
+      .cb-wrap > .cb-row { display:flex !important; }
 
       .il-mob-stack { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
       .il-mob-grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px; align-items:start; }
@@ -198,17 +233,18 @@
       .sub-section { margin-top: 60px !important; }
       #my-partner { margin-top: 60px !important; }
       #my-partner .sub-section__header { margin-bottom: 32px !important; }
-      .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
+      .sub-section:not(.cb-section) .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
       .sub-section .r { flex-direction:column !important; height:auto !important; gap:10px !important; }
       .sub-section .r > .g { flex:none !important; width:100% !important; height:auto !important; overflow:visible !important; }
       .sub-section .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       .sub-section .c { width:100% !important; flex:none !important; }
-      .sub-section .g { width:100% !important; }
+      .sub-section:not(.cb-section) .g { width:100% !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
       /* CB mobile */
-      .cb-gallery .cb-row { flex-direction:column !important; gap:10px !important; padding:0 16px !important; }
-      .cb-gallery .cb-img, .cb-gallery .cb-img--small { flex:none !important; width:100% !important; }
-      .cb-gallery .cb-text { padding-top:0 !important; font-size:14px !important; }
+      .cb-section .cb-cover-row { padding:0 16px !important; }
+      .cb-section .cb-row { flex-direction:column !important; gap:10px !important; padding:0 16px !important; }
+      .cb-section .cb-img, .cb-section .cb-img--small { flex:none !important; width:100% !important; }
+      .cb-section .cb-text { padding-top:0 !important; font-size:15px !important; }
 
       .g, .g img { border-radius:3px !important; overflow:hidden; }
       /* ── Mobile performance: reduce CLS and rendering cost ── */
@@ -559,13 +595,13 @@
 
 
   <!-- ═══ CHILDREN'S BOOK SECTION ═══ -->
-  <div id="childrens-book" class="sub-section">
+  <div id="childrens-book" class="sub-section cb-section">
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%; max-width:420px; height:auto; display:block; margin:0 auto;">
     </div>
-    <div class="gallery sub-section__gallery cb-gallery">
+    <div class="gallery cb-wrap">
 <!-- CB1: Full width cover, no text -->
-    <div class="cb-row">
+    <div class="cb-cover-row">
       <div class="g" data-title="Maybe We Will Find a Rainbow and Teach It to Fly — Cover" style="flex:1;line-height:0;cursor:pointer">
         <img decoding="async" src="childrens-book/CB1 (Maybe We Will Find a Rainbow and Teach It to Fly-Cover).jpg" alt="Cover" loading="lazy" style="width:100%;height:auto;display:block;transition:opacity 0.3s">
       </div>
@@ -664,8 +700,9 @@
         <p>! Bye Everyone !<br>Echoes in the woods.</p>
       </div>
     </div>
-    </div>
+    </div><!-- /cb-wrap -->
   </div>
+
 
   <nav class="page-nav">
     <div class="page-nav__side">
