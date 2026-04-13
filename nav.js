@@ -450,13 +450,13 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover .t-en::after,.side-nav a:hover .t-zh::after{transform:scaleX(1);}' +
-      '.side-nav .nav-sub-item{',
+      '.side-nav a.nav-sub-item{',
         'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
-        'font-size:14px;font-weight:400;letter-spacing:0.2px;',
-        'color:#b5afa9;padding:3px 0 3px 14px;line-height:1.3;',
+        'font-size:13px;font-weight:400;letter-spacing:0.2px;',
+        'color:#8a817a;padding:3px 0 3px 14px;line-height:1.3;',
       '}' +
-      '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
-      '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
+      '.side-nav a.nav-sub-item:hover{color:#6b6158;}' +
+      '.side-nav a.nav-sub-item:last-of-type{margin-bottom:4px;}',
       '.side-nav .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
       '.side-nav .nav-home{',
@@ -564,7 +564,7 @@
       '}',
       '#mob-menu a:active{color:#aaa;}' +
       '#mob-menu .mob-sub-item{' +
-        'padding-left:16px;font-size:17px;color:#bbb;' +
+        'padding-left:16px;font-size:16px;color:#b5afa9;' +
       '}',
 
       '#mob-menu .mob-menu__label{',
@@ -791,6 +791,8 @@
     [nav, mobMenu].forEach(function(container) {
       container.querySelectorAll('a[href]').forEach(function(link) {
         var href = link.getAttribute('href');
+        /* Skip sub-items (hash links) — scroll spy handles those separately */
+        if (link.classList.contains('nav-sub-item') || link.classList.contains('mob-sub-item')) return;
         var hrefFile = href.split('#')[0].split('/').pop();
         if (hrefFile === currentFile) link.style.color = '#2a2a2a';
       });
@@ -798,31 +800,35 @@
 
     /* Scroll-based highlight for sub-items on illustrations.html — desktop only */
     if (currentFile === 'illustrations.html' && window.innerWidth >= 768) {
-      function resetSubItems() {
-        nav.querySelectorAll('.nav-sub-item').forEach(function(el) { el.style.color = ''; });
-      }
-      function setSubActive(href) {
-        resetSubItems();
-        var link = nav.querySelector('.nav-sub-item[href="' + href + '"]');
-        if (link) link.style.color = '#2a2a2a';
-      }
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (!entry.isIntersecting) return;
-          var id = entry.target.id || entry.target.className;
-          if (id === 'my-partner') setSubActive('illustrations.html#my-partner');
-          else if (id === 'flow-and-spirituality') setSubActive('illustrations.html#flow-and-spirituality');
-          else if (id === 'childrens-book') setSubActive('illustrations.html#childrens-book');
-          else resetSubItems();
+      var sectionIds = ['my-partner', 'flow-and-spirituality', 'childrens-book'];
+
+      function getActiveSection() {
+        var viewportMid = window.innerHeight * 0.4; /* 40% down the screen */
+        var best = null;
+        var bestTop = -Infinity;
+        sectionIds.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          var rect = el.getBoundingClientRect();
+          /* Section is visible: top is above the trigger line, bottom is below 0 */
+          if (rect.top <= viewportMid && rect.bottom > 0) {
+            /* Pick the one whose top is closest to (but not past) the trigger */
+            if (rect.top > bestTop) { bestTop = rect.top; best = id; }
+          }
         });
-      }, { rootMargin: '-10% 0px -80% 0px' });
-      /* Observe main gallery for reset when scrolled back up */
-      var mainGallery = document.querySelector('.gallery:not(.sub-section__gallery)');
-      if (mainGallery) { mainGallery.id = mainGallery.id || 'illustrations-main'; observer.observe(mainGallery); }
-      ['my-partner', 'flow-and-spirituality', 'childrens-book'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
+        return best;
+      }
+
+      function updateSubHighlight() {
+        var active = getActiveSection();
+        nav.querySelectorAll('.nav-sub-item').forEach(function(el) {
+          var href = el.getAttribute('href');
+          el.style.color = (active && href === 'illustrations.html#' + active) ? '#4a4440' : '';
+        });
+      }
+
+      window.addEventListener('scroll', updateSubHighlight, { passive: true });
+      updateSubHighlight(); /* run once on load */
     }
   }
 
