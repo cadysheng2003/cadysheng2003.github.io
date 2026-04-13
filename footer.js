@@ -23,7 +23,7 @@
     '  <div style="text-align:right">',
     '    <p style="' + s + '" data-i18n="footer.copyright">\u00a9 2026 Cady Sheng.</p>',
     '    <p style="' + s + '" data-i18n="footer.rights">All rights reserved.</p>',
-    '    <a href="contact.html"'+' style="display:inline-block;margin-top:20px;padding:10px 28px;'+'font-size:15px;letter-spacing:1.2px;color:#2a2a2a;'+'text-decoration:none;border:1px solid #c8bfb8;border-radius:2px;'+'transition:background 0.2s,color 0.2s;"'+' onmouseover="this.style.background=\'#2a2a2a\';this.style.color=\'#fff\'"'+' onmouseout="this.style.background=\'\';this.style.color=\'#2a2a2a\'"'+' data-i18n="footer.getintouch">Get in Touch</a>',
+    '    <a href="contact.html"'+' style="display:inline-block;margin-top:20px;padding:10px 28px;'+'font-size:15px;letter-spacing:1.2px;color:#2a2a2a;'+'text-decoration:none;border:1px solid #c8bfb8;border-radius:6px;'+'transition:background 0.2s,color 0.2s;"'+' onmouseover="this.style.background=\'#2a2a2a\';this.style.color=\'#fff\'"'+' onmouseout="this.style.background=\'\';this.style.color=\'#2a2a2a\'"'+' data-i18n="footer.getintouch">Get in Touch</a>',
     '  </div>',
     '</footer>'
   ].join('\n');
