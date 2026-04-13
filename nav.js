@@ -129,6 +129,7 @@
       'footer.instagram':  'Instagram:',
       'footer.copyright':  '\u00a9 2026 Cady Sheng.',
       'footer.rights':     'All rights reserved.',
+      'footer.getintouch': 'Get in Touch',
     },
 
     zh: {
@@ -230,6 +231,7 @@
       'footer.instagram':  'Instagram：',
       'footer.copyright':  '\u00a9 2026 Cady Sheng。',
       'footer.rights':     '版权所有。',
+      'footer.getintouch': '联系我',
     }
   };
 
@@ -378,6 +380,17 @@
       '.desk-lang-btn.is-en .lang-zh{color:#bbb;font-weight:400;}',
       '.desk-lang-btn.is-en .lang-en{color:#2a2a2a;font-weight:500;}',
 
+      '.desk-wordmark{',
+        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);top:32px;',
+        'font-family:"Cormorant Garamond",Georgia,serif;',
+        'font-size:16px;font-weight:500;letter-spacing:0.22em;',
+        'text-transform:uppercase;color:#2a2a2a;',
+        'text-decoration:none;line-height:1.2;white-space:nowrap;',
+        'z-index:200;',
+      '}',
+      '.desk-wordmark:hover{color:#000;}',
+      '.desk-wordmark .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
+
       /* Desktop lang-zh font overrides */
       'html.lang-zh .side-nav a{font-family:"Noto Serif SC",serif !important;}',
       'html.lang-zh .side-nav .nav-home,html.lang-zh .side-nav .nav-contact{font-family:"Noto Sans SC",sans-serif !important;font-size:11px !important;}',
@@ -403,13 +416,13 @@
       'body{padding-left:clamp(240px,20vw,320px);}',
       '.side-nav{',
         'display:flex;flex-direction:column;',
-        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:133px;',
+        'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:210px;',
         'transform:none;z-index:200;gap:2px;',
       '}',
       '.side-nav a{',
         'font-family:"Inter",system-ui,sans-serif;',
         'font-size:18px;font-weight:400;',
-        'color:#4f463f;text-decoration:none;',
+        'color:#2a2a2a;text-decoration:none;',
         'letter-spacing:0.3px;padding:5px 0;',
         'line-height:1.2;white-space:nowrap;',
         'display:block;transition:color 0.2s ease;',
@@ -421,7 +434,7 @@
         'transform:scaleX(0);transform-origin:left center;',
         'transition:transform 0.18s ease;',
       '}',
-      '.side-nav a:hover{color:#3a332d;}',
+      '.side-nav a:hover{color:#000;}',
       '.side-nav a:hover span:not(.t-en):not(.t-zh)::after{transform:scaleX(1);}',
       /* Underline for bilingual spans */
       '.side-nav a .t-en,.side-nav a .t-zh{position:relative;}',
@@ -439,19 +452,8 @@
       '}' +
       '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
       '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
-      '.side-nav .nav-wordmark{',
-        'font-family:"Cormorant Garamond",Georgia,serif;',
-        'font-size:16px;font-weight:500;',
-        'letter-spacing:0.22em;color:#4f463f;',
-        'text-decoration:none;margin-bottom:28px;',
-        'line-height:1.2;white-space:nowrap;',
-        'text-transform:uppercase;',
-        'transition:opacity 0.45s ease;',
-      '}',
       '.side-nav .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
-      'body.is-homepage .side-nav .nav-wordmark{opacity:0;pointer-events:none;}',
-      'body.is-homepage .side-nav .nav-wordmark.visible{opacity:1;pointer-events:auto;}',
       '.side-nav .nav-home{',
         'font-family:"Inter",system-ui,sans-serif;',
         'font-size:13px;letter-spacing:1.4px;',
@@ -469,7 +471,7 @@
       '}',
       '.side-nav .nav-contact::after{display:none;}',
       '.side-nav .nav-contact:hover{color:#3a332d;}',
-      '.side-nav .nav-instagram{display:block;margin-top:14px;color:#a89f98;transition:color 0.2s ease;line-height:0;}',
+      '.side-nav .nav-instagram{display:block;margin-top:10px;color:#a89f98;transition:color 0.2s ease;line-height:0;}',
       '.side-nav .nav-instagram:hover{color:#4f463f;}',
     '}',
 
@@ -638,8 +640,7 @@
     var nav = document.createElement('nav');
   nav.className = 'side-nav';
   nav.innerHTML =
-    '<a href="index.html" class="nav-wordmark">Cady Sheng <span class="nav-zhname">盛开</span></a>' +
-    '<a href="index.html" class="nav-home"><span class="t-en">Home</span><span class="t-zh">主页</span></a>' +
+        '<a href="index.html" class="nav-home"><span class="t-en">Home</span><span class="t-zh">主页</span></a>' +
     '<div class="nav-divider"></div>' +
     '<a href="illustrations.html"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></a>' +
     '<a href="illustrations.html#my-partner" class="nav-sub-item"><span class="t-en">My Partner</span><span class="t-zh">我的伴侣</span></a>' +
@@ -702,6 +703,13 @@
   function init() {
     document.body.insertBefore(nav, document.body.firstChild);
 
+    /* Desktop wordmark — fixed top left, always visible */
+    var deskWordmark = document.createElement('a');
+    deskWordmark.href = 'index.html';
+    deskWordmark.className = 'desk-wordmark';
+    deskWordmark.innerHTML = 'Cady Sheng <span class="nav-zhname">盛开</span>';
+    document.body.appendChild(deskWordmark);
+
     /* Desktop lang button — fixed top right */
     var deskLangWrap = document.createElement('button');
     deskLangWrap.className = 'desk-lang-btn';
@@ -742,10 +750,8 @@
     var wordmark = mobBar.querySelector('.mob-bar__wordmark');
     if (heroLogo) {
       document.body.classList.add('is-homepage');
-      var desktopWordmark = nav.querySelector('.nav-wordmark');
       var observer = new IntersectionObserver(function(entries) {
         var past = !entries[0].isIntersecting;
-        desktopWordmark.classList.toggle('visible', past);
         wordmark.classList.toggle('visible', past);
         langBtn.classList.toggle('hidden', past);
       }, { threshold: 0.1 });
