@@ -335,6 +335,9 @@
     var style = document.createElement('style');
   style.textContent = [
 
+    /* ── Global link visited colour reset ── */
+    'a:visited{color:inherit;}',
+
     /* ── Chinese overrides: mobile only ── */
     '@media(max-width:767px){',
       'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
@@ -389,6 +392,7 @@
         'z-index:200;',
       '}',
       '.desk-wordmark:hover{color:#000;}',
+      '.desk-wordmark:visited{color:#2a2a2a;}',
       '.desk-wordmark .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
       /* Desktop lang-zh font overrides */
@@ -435,6 +439,7 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover{color:#000;}',
+      '.side-nav a:visited{color:#2a2a2a;}',
       '.side-nav a:hover span:not(.t-en):not(.t-zh)::after{transform:scaleX(1);}',
       /* Underline for bilingual spans */
       '.side-nav a .t-en,.side-nav a .t-zh{position:relative;}',
@@ -518,6 +523,7 @@
         'pointer-events:none;',
       '}',
       '.mob-bar__wordmark.visible{opacity:1;pointer-events:auto;}',
+      '.mob-bar__wordmark:visited{color:#3A3633;}',
       '.mob-bar__zhname{font-size:14px;letter-spacing:0.1em;}',
 
       /* Right: burger */
@@ -684,7 +690,6 @@
   mobMenu.setAttribute('aria-hidden', 'true');
   mobMenu.innerHTML =
     '<a href="index.html" data-i18n="nav.home">Home</a>' +
-    '<span class="mob-menu__label" data-i18n="nav.works">Works</span>' +
     '<a href="illustrations.html" data-i18n="nav.illustrations">Illustrations</a>' +
     '<a href="illustrations.html#my-partner" class="mob-sub-item" data-i18n="nav.partner">My Partner</a>' +
     '<a href="illustrations.html#flow-and-spirituality" class="mob-sub-item" data-i18n="nav.flow">Flow &amp; Spirituality</a>' +
