@@ -130,6 +130,17 @@
       'footer.copyright':  '\u00a9 2026 Cady Sheng.',
       'footer.rights':     'All rights reserved.',
       'footer.getintouch': 'Get in Touch',
+
+      /* ── Contact page bio ── */
+      'contact.name':   'Cady Sheng',
+      'contact.title':  'Artist &amp; Illustrator — RISD',
+      'contact.bio.p1': 'Hi everyone,',
+      'contact.bio.p2': 'A couple of years ago, I had an experience that freed me from years of depression and led me to realize that we are not just our stories, minds, and identities, but a deeper, non-dual consciousness that is aware of what is constantly emerging. Later, I came to understand how this realization is described across different psychological, spiritual, and cultural contexts. On a deeper level, we are all one—continuously evolving and changing.',
+      'contact.bio.p3': 'This understanding became the foundation of how I live and create. I began to work in a state of flow and meditation. My work emerges from presence, where art becomes a language—one that connects us as a community and expresses love.',
+      'contact.bio.p4': 'I am deeply inspired by nature, animals, meditation, and diverse cultures across the world, such as Chinese, Tibetan, Mongolian, and more. These inspirations appear in my work in intuitive forms and expressive colors.',
+      'contact.bio.p5': 'I work across illustration—digital, watercolor, and oil—and create children&#x27;s books. My work also extends into graphic design, including branding, typography, and poster design. Beyond the studio, I have worked as a stage art director, independently designing and executing large-scale stage paintings and lighting design, while developing visual concepts that reflect the identity of different cultural communities. I have also taught and facilitated creative workshops for children.',
+      'contact.bio.p6': 'My work extends into wearable and spatial experiences. I created a clothing collection that became a top-selling series, designed a permanent installation at the Sydney Opera House, and developed a jewelry collection inspired by Buddhist philosophy.',
+      'contact.bio.p7': 'Across all mediums, my work returns to being present, going deeper to explore what&#x27;s in humanity, and the positive impacts we can bring to the world.',
     },
 
     zh: {
@@ -232,6 +243,17 @@
       'footer.copyright':  '\u00a9 2026 Cady Sheng。',
       'footer.rights':     '版权所有。',
       'footer.getintouch': '联系我',
+
+      /* ── Contact page bio ── */
+      'contact.name':   'Cady Sheng 盛开',
+      'contact.title':  '艺术家 &amp; 插画师 — RISD',
+      'contact.bio.p1': '大家好，',
+      'contact.bio.p2': '几年前，我经历了一次让我从多年抑郁中解脱出来的体验。那次体验让我意识到，我们不仅仅是自己的故事、思想和身份认同，而是更深层的、非二元的意识——一种觉知着一切不断涌现之物的觉知本身。后来，我逐渐理解了这种觉悟在不同心理学、灵性和文化语境中的各种表达方式。在更深的层面上，我们都是一体的——不断地演化与改变。',
+      'contact.bio.p3': '这种理解成为了我生活与创作的根基。我开始在流动与冥想的状态中工作。我的作品从当下的临在中生发，在那里，艺术成为一种语言——一种将我们作为群体连结在一起、并传递爱的语言。',
+      'contact.bio.p4': '我深受自然、动物、冥想以及世界各地多元文化的启发，如中华文化、藏族文化、蒙古族文化等。这些灵感以直觉性的形态与富有表现力的色彩呈现在我的作品中。',
+      'contact.bio.p5': '我的创作跨越多种插画媒介——数字插画、水彩与油画——并创作儿童绘本。我的工作也延伸至平面设计领域，涵盖品牌设计、字体设计与海报设计。在工作室之外，我曾担任舞台艺术总监，独立设计并执行大型舞台绘画与灯光设计，同时发展出能够体现不同文化群体身份认同的视觉概念。我也曾为儿童教授并带领创意工作坊。',
+      'contact.bio.p6': '我的创作延伸至可穿戴与空间体验领域。我创作了一个成为热销系列的服装系列，为悉尼歌剧院设计了永久装置，并创作了一个以佛教哲学为灵感的珠宝系列。',
+      'contact.bio.p7': '无论跨越何种媒介，我的作品始终回归到临在本身——深入探索人类内在的本质，以及我们能够为这个世界带来的积极影响。',
     }
   };
 
@@ -335,9 +357,6 @@
     var style = document.createElement('style');
   style.textContent = [
 
-    /* ── Global link visited colour reset ── */
-    'a:visited{color:inherit;}',
-
     /* ── Chinese overrides: mobile only ── */
     '@media(max-width:767px){',
       'html.lang-zh body{font-family:"Noto Serif SC",serif;}',
@@ -392,7 +411,6 @@
         'z-index:200;',
       '}',
       '.desk-wordmark:hover{color:#000;}',
-      '.desk-wordmark:visited{color:#2a2a2a;}',
       '.desk-wordmark .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
       /* Desktop lang-zh font overrides */
@@ -439,7 +457,6 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover{color:#000;}',
-      '.side-nav a:visited{color:#2a2a2a;}',
       '.side-nav a:hover span:not(.t-en):not(.t-zh)::after{transform:scaleX(1);}',
       /* Underline for bilingual spans */
       '.side-nav a .t-en,.side-nav a .t-zh{position:relative;}',
@@ -450,13 +467,13 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover .t-en::after,.side-nav a:hover .t-zh::after{transform:scaleX(1);}' +
-      '.side-nav a.nav-sub-item{',
+      '.side-nav .nav-sub-item{',
         'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
-        'font-size:13px;font-weight:400;letter-spacing:0.2px;',
-        'color:#8a817a;padding:3px 0 3px 14px;line-height:1.3;',
+        'font-size:14px;font-weight:400;letter-spacing:0.2px;',
+        'color:#b5afa9;padding:3px 0 3px 14px;line-height:1.3;',
       '}' +
-      '.side-nav a.nav-sub-item:hover{color:#6b6158;}' +
-      '.side-nav a.nav-sub-item:last-of-type{margin-bottom:4px;}',
+      '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
+      '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
       '.side-nav .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
       '.side-nav .nav-home{',
@@ -523,7 +540,6 @@
         'pointer-events:none;',
       '}',
       '.mob-bar__wordmark.visible{opacity:1;pointer-events:auto;}',
-      '.mob-bar__wordmark:visited{color:#3A3633;}',
       '.mob-bar__zhname{font-size:14px;letter-spacing:0.1em;}',
 
       /* Right: burger */
@@ -564,7 +580,7 @@
       '}',
       '#mob-menu a:active{color:#aaa;}' +
       '#mob-menu .mob-sub-item{' +
-        'padding-left:16px;font-size:16px;color:#b5afa9;' +
+        'padding-left:16px;font-size:17px;color:#bbb;' +
       '}',
 
       '#mob-menu .mob-menu__label{',
@@ -690,6 +706,7 @@
   mobMenu.setAttribute('aria-hidden', 'true');
   mobMenu.innerHTML =
     '<a href="index.html" data-i18n="nav.home">Home</a>' +
+    '<span class="mob-menu__label" data-i18n="nav.works">Works</span>' +
     '<a href="illustrations.html" data-i18n="nav.illustrations">Illustrations</a>' +
     '<a href="illustrations.html#my-partner" class="mob-sub-item" data-i18n="nav.partner">My Partner</a>' +
     '<a href="illustrations.html#flow-and-spirituality" class="mob-sub-item" data-i18n="nav.flow">Flow &amp; Spirituality</a>' +
@@ -791,8 +808,6 @@
     [nav, mobMenu].forEach(function(container) {
       container.querySelectorAll('a[href]').forEach(function(link) {
         var href = link.getAttribute('href');
-        /* Skip sub-items (hash links) — scroll spy handles those separately */
-        if (link.classList.contains('nav-sub-item') || link.classList.contains('mob-sub-item')) return;
         var hrefFile = href.split('#')[0].split('/').pop();
         if (hrefFile === currentFile) link.style.color = '#2a2a2a';
       });
@@ -800,35 +815,31 @@
 
     /* Scroll-based highlight for sub-items on illustrations.html — desktop only */
     if (currentFile === 'illustrations.html' && window.innerWidth >= 768) {
-      var sectionIds = ['my-partner', 'flow-and-spirituality', 'childrens-book'];
-
-      function getActiveSection() {
-        var viewportMid = window.innerHeight * 0.4; /* 40% down the screen */
-        var best = null;
-        var bestTop = -Infinity;
-        sectionIds.forEach(function(id) {
-          var el = document.getElementById(id);
-          if (!el) return;
-          var rect = el.getBoundingClientRect();
-          /* Section is visible: top is above the trigger line, bottom is below 0 */
-          if (rect.top <= viewportMid && rect.bottom > 0) {
-            /* Pick the one whose top is closest to (but not past) the trigger */
-            if (rect.top > bestTop) { bestTop = rect.top; best = id; }
-          }
-        });
-        return best;
+      function resetSubItems() {
+        nav.querySelectorAll('.nav-sub-item').forEach(function(el) { el.style.color = ''; });
       }
-
-      function updateSubHighlight() {
-        var active = getActiveSection();
-        nav.querySelectorAll('.nav-sub-item').forEach(function(el) {
-          var href = el.getAttribute('href');
-          el.style.color = (active && href === 'illustrations.html#' + active) ? '#4a4440' : '';
-        });
+      function setSubActive(href) {
+        resetSubItems();
+        var link = nav.querySelector('.nav-sub-item[href="' + href + '"]');
+        if (link) link.style.color = '#2a2a2a';
       }
-
-      window.addEventListener('scroll', updateSubHighlight, { passive: true });
-      updateSubHighlight(); /* run once on load */
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.id || entry.target.className;
+          if (id === 'my-partner') setSubActive('illustrations.html#my-partner');
+          else if (id === 'flow-and-spirituality') setSubActive('illustrations.html#flow-and-spirituality');
+          else if (id === 'childrens-book') setSubActive('illustrations.html#childrens-book');
+          else resetSubItems();
+        });
+      }, { rootMargin: '-10% 0px -80% 0px' });
+      /* Observe main gallery for reset when scrolled back up */
+      var mainGallery = document.querySelector('.gallery:not(.sub-section__gallery)');
+      if (mainGallery) { mainGallery.id = mainGallery.id || 'illustrations-main'; observer.observe(mainGallery); }
+      ['my-partner', 'flow-and-spirituality', 'childrens-book'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
     }
   }
 

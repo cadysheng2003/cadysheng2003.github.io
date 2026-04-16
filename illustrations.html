@@ -94,6 +94,11 @@
     /* Desktop: restore cover crop on MP images */
     .sub-section__gallery .r > .g { height: 100%; overflow: hidden; }
     .sub-section__gallery .r > .g img { height: 100%; object-fit: cover; }
+
+    /* ── FS full-width single column (desktop) ── */
+    /* ── FS full-width single column ── */
+    #fs-gallery .g img { object-fit: unset !important; height: auto !important; }
+    #fs-gallery .g:hover img { opacity: 0.88; }
     .sub-section {
       margin-top: 140px;
     }
@@ -175,17 +180,21 @@
       #my-partner { margin-top: 60px !important; }
       #my-partner .sub-section__header { margin-bottom: 32px !important; }
       /* FS title: taller image, needs more width */
-      #flow-and-spirituality .sub-section__header img { height:60px !important; width:auto !important; max-width:100% !important; }
+      #flow-and-spirituality .sub-section__header img { width:72% !important; max-width:300px !important; height:auto !important; }
       /* MP title */
-      #my-partner .sub-section__header img { height:60px !important; width:auto !important; max-width:100% !important; }
+      #my-partner .sub-section__header img { width:55% !important; max-width:220px !important; height:auto !important; }
       /* CB title */
-      .cb-section .sub-section__header img { height:60px !important; width:auto !important; max-width:100% !important; }
+      .cb-section .sub-section__header img { width:75% !important; max-width:320px !important; height:auto !important; }
       .sub-section .r { flex-direction:column !important; height:auto !important; gap:10px !important; }
       /* MP mobile CSS: in mp-section <style> tag */
       .sub-section .r > .g { flex:none !important; width:100% !important; height:auto !important; overflow:visible !important; }
       .sub-section .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       .sub-section .c { width:100% !important; flex:none !important; }
       .sub-section:not(.cb-section) .g { width:100% !important; }
+      /* FS gallery mobile: already single column, just ensure full width */
+      #fs-gallery { padding: 0 16px !important; }
+      #fs-gallery .g { margin-bottom: 10px !important; border-radius: 3px !important; }
+      #fs-gallery .g img { border-radius: 3px !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
       /* CB mobile: cover row padding match */
       .cb-section > div[style*="max-width:880px"][style*="padding:0 40px"] {
@@ -251,7 +260,7 @@
 <body>
 
   <div style="text-align:center;padding:40px 0 20px">
-    <img loading="eager" fetchpriority="high" decoding="async" src="illustrations/illustrations-title.png" alt="Illustrations" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
+    <img loading="eager" fetchpriority="high" decoding="async" src="illustrations/illustrations-title.png" alt="Illustrations" style="max-width:397px; width:51%; height:auto; display:inline-block">
   </div>
 
   <div class="gallery">
@@ -489,7 +498,7 @@
       }
     </style>
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
-      <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
+      <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:block; margin:0 auto;">
     </div>
     <div class="mp-section-wrap">
       <div class="mp-r1">
@@ -517,51 +526,46 @@
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
     </div>
-    <div class="gallery sub-section__gallery">
-<div class="r">
-      <div class="c" style="flex:1.299">
-        <div class="g" data-title="Kento and Josh's Energetic Fields">
-        <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="lazy">
+    <div id="fs-gallery" style="max-width:var(--page-max-width);margin:0 auto;padding:0 var(--page-padding);">
+      <div class="g" data-title="Kento and Josh's Energetic Fields" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="White Fox">
-        <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy">
+      <div class="g" data-title="A Dream That Blossoms in the Sun" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Baby and the Dragon">
-        <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy">
+      <div class="g" data-title="Love" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Sunset">
-        <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy">
+      <div class="g" data-title="White Fox" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Sunset and Rabbit">
-        <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy">
+      <div class="g" data-title="The Infinite Portal of the Universe" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Untitled">
-        <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy">
+      <div class="g" data-title="Baby and the Dragon" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
+      <div class="g" data-title="Yixuan’s Energy Body" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan’s Energy Body" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="c" style="flex:1">
-        <div class="g" data-title="A Dream That Blossoms in the Sun">
-        <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy">
+      <div class="g" data-title="Sunset" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Love">
-        <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy">
+      <div class="g" data-title="Shaokang’s Grandmother" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang’s Grandmother" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="The Infinite Portal of the Universe">
-        <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy">
+      <div class="g" data-title="Sunset and Rabbit" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Yixuan's Energy Body">
-        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan's Energy Body" loading="lazy">
+      <div class="g" data-title="Untitled" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-        <div class="g" data-title="Shaokang's Grandmother">
-        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang's Grandmother" loading="lazy">
+      <div class="g" data-title="Parallel Universes" style="margin-bottom:32px">
+        <img decoding="async" src="flow-and-spirituality/FS12 (Parallel Universes).jpg" alt="Parallel Universes" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
+      <div class="g" data-title="Moon">
+        <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-    </div>
-    <div class="r" style="margin-top:20px">
-      <div class="g" data-title="Moon" style="flex:1">
-        <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy">
-      </div>
-    </div>
     </div>
   </div>
 
@@ -569,7 +573,7 @@
   <!-- ═══ CHILDREN'S BOOK SECTION ═══ -->
   <div id="childrens-book" class="sub-section cb-section">
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:24px">
-      <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
+      <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%;max-width:420px;height:auto;display:block;margin:0 auto;">
     </div>
 
     <!-- CB1: Full-width cover -->
