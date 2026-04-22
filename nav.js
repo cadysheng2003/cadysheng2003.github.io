@@ -500,6 +500,8 @@
     /* ── Mobile nav ── */
     '@media(max-width:767px){',
       '.side-nav{display:none !important;}',
+      '.desk-wordmark{display:none !important;}',
+      '.desk-lang-btn{display:none !important;}',
 
       '.mob-bar{',
         'display:flex !important;',
@@ -580,7 +582,7 @@
       '}',
       '#mob-menu a:active{color:#aaa;}' +
       '#mob-menu .mob-sub-item{' +
-        'padding-left:16px;font-size:17px;color:#bbb;' +
+        'padding-left:20px;font-size:17px;color:#2a2a2a;opacity:0.6;' +
       '}',
 
       '#mob-menu .mob-menu__label{',

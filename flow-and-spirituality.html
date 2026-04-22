@@ -49,11 +49,6 @@
     .sep    { height:40px; }
     .sep-sm { height:20px; }
 
-    /* FS full-width layout */
-    .fs-full { display:flex; flex-direction:column; gap:var(--gap); }
-    .fs-full > .g { width:100%; }
-    @media(min-width:768px){ .fs-full { gap:32px; } }
-
     .page-header { max-width:var(--page-max-width); margin:40px auto 12px; padding:0 var(--page-padding); }
     .page-title  { font-family:var(--font-display); font-size:32px; font-weight:400; letter-spacing:0.5px; text-align:center; }
 
@@ -84,7 +79,7 @@
       .r[style] > div { height:auto !important; flex:none !important; width:100% !important; }
       .r[style] > .g img { max-height:75vw; object-fit:cover !important; }
       /* Title image */
-      .page-header img { height:60px !important; width:auto !important; max-width:100% !important; }
+      .page-header img { height:auto !important; width:75% !important; max-width:300px !important; }
     }
 
     @media(max-width:767px) and (pointer:coarse){
@@ -142,48 +137,53 @@
 <body>
 
   <div class="page-header">
-    <img loading="eager" fetchpriority="high" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
+    <img loading="eager" fetchpriority="high" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:134px;width:auto;display:block;margin:0 auto;">
   </div>
 
-  <div class="gallery fs-full">
-    <div class="g" data-title="Kento and Josh's Energetic Fields">
-      <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="eager">
+  <div class="gallery">
+    <div class="r">
+      <div class="c" style="flex:1.299">
+        <div class="g" data-title="Kento and Josh's Energetic Fields">
+        <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="lazy">
+      </div>
+        <div class="g" data-title="White Fox">
+        <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy">
+      </div>
+        <div class="g" data-title="Baby and the Dragon">
+        <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy">
+      </div>
+        <div class="g" data-title="Sunset">
+        <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy">
+      </div>
+        <div class="g" data-title="Sunset and Rabbit">
+        <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy">
+      </div>
+        <div class="g" data-title="Untitled">
+        <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy">
+      </div>
+      </div>
+      <div class="c" style="flex:1">
+        <div class="g" data-title="A Dream That Blossoms in the Sun">
+        <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy">
+      </div>
+        <div class="g" data-title="Love">
+        <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy">
+      </div>
+        <div class="g" data-title="The Infinite Portal of the Universe">
+        <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy">
+      </div>
+        <div class="g" data-title="Yixuan's Energy Body">
+        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan's Energy Body" loading="lazy">
+      </div>
+        <div class="g" data-title="Shaokang's Grandmother">
+        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang's Grandmother" loading="lazy">
+      </div>
+      </div>
     </div>
-    <div class="g" data-title="A Dream That Blossoms in the Sun">
-      <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy">
-    </div>
-    <div class="g" data-title="Love">
-      <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy">
-    </div>
-    <div class="g" data-title="White Fox">
-      <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy">
-    </div>
-    <div class="g" data-title="The Infinite Portal of the Universe">
-      <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy">
-    </div>
-    <div class="g" data-title="Baby and the Dragon">
-      <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy">
-    </div>
-    <div class="g" data-title="Yixuan's Energy Body">
-      <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan's Energy Body" loading="lazy">
-    </div>
-    <div class="g" data-title="Sunset">
-      <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy">
-    </div>
-    <div class="g" data-title="Shaokang's Grandmother">
-      <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang's Grandmother" loading="lazy">
-    </div>
-    <div class="g" data-title="Sunset and Rabbit">
-      <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy">
-    </div>
-    <div class="g" data-title="Untitled">
-      <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy">
-    </div>
-    <div class="g" data-title="Parallel Universes">
-      <img decoding="async" src="flow-and-spirituality/FS12 (Parallel Universes).jpg" alt="Parallel Universes" loading="lazy">
-    </div>
-    <div class="g" data-title="Moon">
-      <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy">
+    <div class="r" style="margin-top:20px">
+      <div class="g" data-title="Moon" style="flex:1">
+        <img decoding="async" src="flow-and-spirituality/FS13 (Moon).jpg" alt="Moon" loading="lazy">
+      </div>
     </div>
   </div>
 
@@ -204,7 +204,7 @@
   <div id="footer"></div>
 
   <script src="nav.js" defer></script>
-  <script src="lightbox.js"></script>
+  <script src="lightbox.js" defer></script>
   <script src="footer.js" defer></script>
 </body>
 </html>
