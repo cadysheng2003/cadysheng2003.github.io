@@ -230,6 +230,20 @@
         contain-intrinsic-size: 0 300px;
       }
 
+      /* il-mob containers: skip off-screen rendering */
+      .il-mob-stack,
+      .il-mob-grid3,
+      .il-mob-2col {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 300px;
+      }
+
+      /* Sub-sections: far below fold, skip until needed */
+      .sub-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 1200px;
+      }
+
       /* Isolate paint/layout per row — cheaper reflows */
       .gallery .r,
       .gallery .row {
@@ -270,8 +284,8 @@
 
       <!-- Block A: I1 full → I2 full → 3×3 grid → I3 I4 I8 I15 stack → I16 full -->
       <div class="il-mob-stack">
-        <div class="g"><img src="illustrations/I1 (Portal).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
-        <div class="g"><img src="illustrations/I2 (The Princess and the Pea).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I1 (Portal).jpg" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I2 (The Princess and the Pea).jpg" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:auto;display:block"></div>
       </div>
       <div class="il-mob-grid3">
         <div class="g"><img src="illustrations/I5 (Dialogue Between the Gods).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I6 (Bow).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I7 (Queen).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
