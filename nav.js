@@ -384,7 +384,7 @@
     /* Desktop lang button */
     '@media(min-width:768px){',
       '.desk-lang-btn{',
-        'position:fixed;top:22px;right:32px;z-index:500;',
+        'position:fixed;top:32px;right:32px;z-index:500;',
         'display:flex;align-items:center;gap:3px;',
         'font-family:"Inter",system-ui,sans-serif;',
         'font-size:11px;font-weight:400;letter-spacing:0.5px;',
