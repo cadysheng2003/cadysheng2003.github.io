@@ -46,7 +46,7 @@
     .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
     .sep { height:40px; }
 
-    .page-header { max-width:var(--page-max-width); margin:40px auto 47px; padding:0 var(--page-padding); text-align:center; }
+    .page-header { max-width:var(--page-max-width); margin:40px auto 64px; padding:0 var(--page-padding); text-align:center; }
     .page-title  { text-align:center; }
 
     .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
@@ -481,11 +481,11 @@
 
 
     <div class="row" style="align-items:stretch">
-      <div class="g" data-title="Argument" style="flex:1.3; display:flex">
+      <div class="g" data-title="Argument" style="flex:1.55">
         <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
-      <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1">
-        <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:auto;display:block">
+      <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1;overflow:hidden">
+        <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
       </div>
     </div>
 
@@ -495,43 +495,35 @@
   <!-- ═══ MY PARTNER SECTION ═══ -->
   <div id="my-partner" class="sub-section">
     <style>
-      /* MP desktop: two fixed-height rows */
-      .mp-section-wrap { padding: 0 var(--page-padding); max-width: var(--page-max-width); margin: 0 auto; }
-      .mp-r1 { display:flex; gap:6px; margin-bottom:6px; height:350px; }
-      .mp-r2 { display:flex; gap:6px; }
-      .mp-r1 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
-      .mp-r2 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
-      .mp-r1 .mp-g img { width:100%; height:100%; object-fit:cover; display:block; }
-      .mp-r2 .mp-g img { width:100%; height:auto; display:block; }
+      .mp-wrap { padding: 0 var(--page-padding); max-width: var(--page-max-width); margin: 0 auto; }
       @media(max-width:767px) and (pointer:coarse) {
-        .mp-r1 { flex-direction:column; height:auto; gap:10px; }
-        .mp-r2 { flex-direction:column; gap:10px; }
-        .mp-r1 .mp-g { flex:none; width:100%; height:auto; }
-        .mp-r2 .mp-g { flex:none; width:100%; }
-        .mp-r1 .mp-g img { height:auto; object-fit:unset; }
+        .mp-wrap { padding: 0 16px; }
+        .mp-wrap .mp-r1, .mp-wrap .mp-r2 { flex-direction:column !important; height:auto !important; gap:10px !important; }
+        .mp-wrap .mp-r1 > div, .mp-wrap .mp-r2 > div { flex:none !important; width:100% !important; height:auto !important; }
+        .mp-wrap img { height:auto !important; object-fit:unset !important; }
       }
     </style>
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:block; margin:0 auto;">
     </div>
-    <div class="mp-section-wrap">
-      <div class="mp-r1">
-        <div class="mp-g g" data-title="My Partner 1">
-          <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy">
+    <div class="mp-wrap">
+      <div class="mp-r1" style="display:flex;gap:12px;margin-bottom:12px;height:280px;">
+        <div class="g" data-title="My Partner 1" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
+          <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
-        <div class="mp-g g" data-title="My Partner 4">
-          <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy">
+        <div class="g" data-title="My Partner 4" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
+          <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
-      <div class="mp-r2">
-        <div class="mp-g g" data-title="My Partner 3">
-          <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy">
+      <div class="mp-r2" style="display:flex;gap:12px;height:200px;">
+        <div class="g" data-title="My Partner 3" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
+          <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
         </div>
-        <div class="mp-g g" data-title="My Partner 2">
-          <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy">
+        <div class="g" data-title="My Partner 2" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
+          <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
         </div>
-        <div class="mp-g g" data-title="My Partner 5">
-          <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy">
+        <div class="g" data-title="My Partner 5" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
+          <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
         </div>
       </div>
     </div>
@@ -541,37 +533,37 @@
       <img loading="lazy" decoding="async" src="flow-and-spirituality/flow-and-spirituality-title.png" alt="Flow &amp; Spirituality" style="height:120px;width:auto;max-width:100%;display:block;margin:0 auto;">
     </div>
     <div id="fs-gallery" style="max-width:var(--page-max-width);margin:0 auto;padding:0 var(--page-padding);">
-      <div class="g" data-title="Kento and Josh's Energetic Fields" style="margin-bottom:32px">
+      <div class="g" data-title="Kento and Josh's Energetic Fields" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS1 (Kento and Josh_s Energetic Fields).jpg" alt="Kento and Josh's Energetic Fields" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="A Dream That Blossoms in the Sun" style="margin-bottom:32px">
+      <div class="g" data-title="A Dream That Blossoms in the Sun" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS2 (A Dream That Blossoms in the Sun).jpg" alt="A Dream That Blossoms in the Sun" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Love" style="margin-bottom:32px">
+      <div class="g" data-title="Love" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS3 (Love).jpg" alt="Love" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="White Fox" style="margin-bottom:32px">
+      <div class="g" data-title="White Fox" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS4 (White Fox).jpg" alt="White Fox" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="The Infinite Portal of the Universe" style="margin-bottom:32px">
+      <div class="g" data-title="The Infinite Portal of the Universe" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS5 (The Infinite Portal of the Universe).jpg" alt="The Infinite Portal of the Universe" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Baby and the Dragon" style="margin-bottom:32px">
+      <div class="g" data-title="Baby and the Dragon" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Yixuan’s Energy Body" style="margin-bottom:32px">
+      <div class="g" data-title="Yixuan’s Energy Body" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan’s Energy Body" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Sunset" style="margin-bottom:32px">
+      <div class="g" data-title="Sunset" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Shaokang’s Grandmother" style="margin-bottom:32px">
+      <div class="g" data-title="Shaokang’s Grandmother" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang’s Grandmother" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Sunset and Rabbit" style="margin-bottom:32px">
+      <div class="g" data-title="Sunset and Rabbit" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Untitled" style="margin-bottom:32px">
+      <div class="g" data-title="Untitled" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS11 (Untitled).jpg" alt="Untitled" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
       <div class="g" data-title="Moon">

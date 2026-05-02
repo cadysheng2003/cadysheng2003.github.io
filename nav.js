@@ -130,17 +130,6 @@
       'footer.copyright':  '\u00a9 2026 Cady Sheng.',
       'footer.rights':     'All rights reserved.',
       'footer.getintouch': 'Get in Touch',
-
-      /* ── Contact page bio ── */
-      'contact.name':   'Cady Sheng',
-      'contact.title':  'Artist &amp; Illustrator — RISD',
-      'contact.bio.p1': 'Hi everyone,',
-      'contact.bio.p2': 'A couple of years ago, I had an experience that freed me from years of depression and led me to realize that we are not just our stories, minds, and identities, but a deeper, non-dual consciousness that is aware of what is constantly emerging. Later, I came to understand how this realization is described across different psychological, spiritual, and cultural contexts. On a deeper level, we are all one—continuously evolving and changing.',
-      'contact.bio.p3': 'This understanding became the foundation of how I live and create. I began to work in a state of flow and meditation. My work emerges from presence, where art becomes a language—one that connects us as a community and expresses love.',
-      'contact.bio.p4': 'I am deeply inspired by nature, animals, meditation, and diverse cultures across the world, such as Chinese, Tibetan, Mongolian, and more. These inspirations appear in my work in intuitive forms and expressive colors.',
-      'contact.bio.p5': 'I work across illustration—digital, watercolor, and oil—and create children&#x27;s books. My work also extends into graphic design, including branding, typography, and poster design. Beyond the studio, I have worked as a stage art director, independently designing and executing large-scale stage paintings and lighting design, while developing visual concepts that reflect the identity of different cultural communities. I have also taught and facilitated creative workshops for children.',
-      'contact.bio.p6': 'My work extends into wearable and spatial experiences. I created a clothing collection that became a top-selling series, designed a permanent installation at the Sydney Opera House, and developed a jewelry collection inspired by Buddhist philosophy.',
-      'contact.bio.p7': 'Across all mediums, my work returns to being present, going deeper to explore what&#x27;s in humanity, and the positive impacts we can bring to the world.',
     },
 
     zh: {
@@ -243,17 +232,6 @@
       'footer.copyright':  '\u00a9 2026 Cady Sheng。',
       'footer.rights':     '版权所有。',
       'footer.getintouch': '联系我',
-
-      /* ── Contact page bio ── */
-      'contact.name':   'Cady Sheng 盛开',
-      'contact.title':  '艺术家 &amp; 插画师 — RISD',
-      'contact.bio.p1': '大家好，',
-      'contact.bio.p2': '几年前，我经历了一次让我从多年抑郁中解脱出来的体验。那次体验让我意识到，我们不仅仅是自己的故事、思想和身份认同，而是更深层的、非二元的意识——一种觉知着一切不断涌现之物的觉知本身。后来，我逐渐理解了这种觉悟在不同心理学、灵性和文化语境中的各种表达方式。在更深的层面上，我们都是一体的——不断地演化与改变。',
-      'contact.bio.p3': '这种理解成为了我生活与创作的根基。我开始在流动与冥想的状态中工作。我的作品从当下的临在中生发，在那里，艺术成为一种语言——一种将我们作为群体连结在一起、并传递爱的语言。',
-      'contact.bio.p4': '我深受自然、动物、冥想以及世界各地多元文化的启发，如中华文化、藏族文化、蒙古族文化等。这些灵感以直觉性的形态与富有表现力的色彩呈现在我的作品中。',
-      'contact.bio.p5': '我的创作跨越多种插画媒介——数字插画、水彩与油画——并创作儿童绘本。我的工作也延伸至平面设计领域，涵盖品牌设计、字体设计与海报设计。在工作室之外，我曾担任舞台艺术总监，独立设计并执行大型舞台绘画与灯光设计，同时发展出能够体现不同文化群体身份认同的视觉概念。我也曾为儿童教授并带领创意工作坊。',
-      'contact.bio.p6': '我的创作延伸至可穿戴与空间体验领域。我创作了一个成为热销系列的服装系列，为悉尼歌剧院设计了永久装置，并创作了一个以佛教哲学为灵感的珠宝系列。',
-      'contact.bio.p7': '无论跨越何种媒介，我的作品始终回归到临在本身——深入探索人类内在的本质，以及我们能够为这个世界带来的积极影响。',
     }
   };
 
@@ -384,7 +362,7 @@
     /* Desktop lang button */
     '@media(min-width:768px){',
       '.desk-lang-btn{',
-        'position:fixed;top:32px;right:32px;z-index:500;',
+        'position:fixed;top:22px;right:32px;z-index:500;',
         'display:flex;align-items:center;gap:3px;',
         'font-family:"Inter",system-ui,sans-serif;',
         'font-size:11px;font-weight:400;letter-spacing:0.5px;',
@@ -405,7 +383,7 @@
       '.desk-wordmark{',
         'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);top:32px;',
         'font-family:"Cormorant Garamond",Georgia,serif;',
-        'font-size:16px;font-weight:500;letter-spacing:0.22em;',
+        'font-size:22px;font-weight:500;letter-spacing:0.15em;',
         'text-transform:uppercase;color:#2a2a2a;',
         'text-decoration:none;line-height:1.2;white-space:nowrap;',
         'z-index:200;',
@@ -441,6 +419,20 @@
         'position:fixed;left:clamp(40px,calc(20vw - 200px),120px);width:160px;top:213px;',
         'transform:none;z-index:200;gap:1px;',
       '}',
+      '.side-nav .nav-wordmark{',
+        'position:fixed;',
+        'left:clamp(40px,calc(20vw - 200px),120px);top:32px;',
+        'font-family:"Cormorant Garamond",Georgia,serif;',
+        'font-size:16px;font-weight:500;letter-spacing:0.22em;white-space:nowrap;',
+        'text-transform:uppercase;color:#2a2a2a;',
+        'text-decoration:none;line-height:1.2;',
+        'display:block;z-index:201;',
+        'opacity:0;pointer-events:none;transition:opacity 0.4s ease;',
+      '}',
+      '.side-nav .nav-wordmark.visible{opacity:1;pointer-events:auto;}',
+      '.side-nav .nav-wordmark:hover{color:#000;}',
+      '.side-nav .nav-wordmark .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
+
       '.side-nav a{',
         'font-family:"Inter",system-ui,sans-serif;',
         'font-size:18px;font-weight:400;',
@@ -467,12 +459,15 @@
         'transition:transform 0.18s ease;',
       '}',
       '.side-nav a:hover .t-en::after,.side-nav a:hover .t-zh::after{transform:scaleX(1);}' +
+      '.side-nav .nav-sub-group{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}',
+      '.side-nav .nav-sub-group.open{max-height:200px;}',
       '.side-nav .nav-sub-item{',
         'font-family:"Inter",system-ui,sans-serif;font-style:normal;',
         'font-size:14px;font-weight:400;letter-spacing:0.2px;',
-        'color:#b5afa9;padding:3px 0 3px 14px;line-height:1.3;',
+        'color:#8a817a;padding:3px 0 3px 14px;line-height:1.3;display:block;',
       '}' +
-      '.side-nav .nav-sub-item:hover{color:#6b6158;}' +
+      '.side-nav a.nav-sub-item:hover{color:#6b6158;}' +
+      '.side-nav a.nav-sub-item:visited{color:#8a817a;}' +
       '.side-nav .nav-sub-item:last-of-type{margin-bottom:4px;}',
       '.side-nav .nav-zhname{font-size:11px;letter-spacing:0.15em;text-transform:none;opacity:0.55;font-weight:400;vertical-align:middle;}',
 
@@ -495,13 +490,21 @@
       '.side-nav .nav-contact:hover{color:#3a332d;}',
       '.side-nav .nav-instagram{display:block;margin-top:10px;color:#a89f98;transition:color 0.2s ease;line-height:0;}',
       '.side-nav .nav-instagram:hover{color:#4f463f;}',
+      '.side-nav .nav-side-lang{',
+        'display:flex;align-items:center;gap:3px;margin-top:24px;',
+        'font-family:"Inter",system-ui,sans-serif;font-size:10px;',
+        'letter-spacing:0.5px;color:#a89f98;background:none;border:none;',
+        'cursor:pointer;padding:0;transition:color 0.2s ease;outline:none;',
+      '}',
+      '.side-nav .nav-side-lang:hover{color:#4f463f;}',
+      '.side-nav .nav-side-lang .lang-sep{color:#ccc;margin:0 1px;}',
+      '.side-nav .nav-side-lang.is-zh .lang-en{color:#ccc;font-weight:400;}',
+      '.side-nav .nav-side-lang.is-en .lang-zh{color:#ccc;font-weight:400;}',
     '}',
 
     /* ── Mobile nav ── */
     '@media(max-width:767px){',
       '.side-nav{display:none !important;}',
-      '.desk-wordmark{display:none !important;}',
-      '.desk-lang-btn{display:none !important;}',
 
       '.mob-bar{',
         'display:flex !important;',
@@ -582,7 +585,7 @@
       '}',
       '#mob-menu a:active{color:#aaa;}' +
       '#mob-menu .mob-sub-item{' +
-        'padding-left:20px;font-size:17px;color:#2a2a2a;opacity:0.6;' +
+        'padding-left:16px;font-size:17px;color:#bbb;' +
       '}',
 
       '#mob-menu .mob-menu__label{',
@@ -664,12 +667,15 @@
     var nav = document.createElement('nav');
   nav.className = 'side-nav';
   nav.innerHTML =
+        '<a href="index.html" class="nav-wordmark"><span>Cady Sheng</span><span class="nav-zhname"> 盛开</span></a>' +
         '<a href="index.html" class="nav-home"><span class="t-en">Home</span><span class="t-zh">主页</span></a>' +
     '<div class="nav-divider"></div>' +
-    '<a href="illustrations.html"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></a>' +
+    '<a href="illustrations.html" id="nav-illus-toggle" class="nav-illus-parent"><span class="t-en">Illustrations</span><span class="t-zh">插画</span></a>' +
+    '<div class="nav-sub-group">' +
     '<a href="illustrations.html#my-partner" class="nav-sub-item"><span class="t-en">My Partner</span><span class="t-zh">我的伴侣</span></a>' +
     '<a href="illustrations.html#flow-and-spirituality" class="nav-sub-item"><span class="t-en">Flow &amp; Spirituality</span><span class="t-zh">流动与灵性</span></a>' +
     '<a href="illustrations.html#childrens-book" class="nav-sub-item"><span class="t-en">Children’s Book</span><span class="t-zh">儿童绘本</span></a>' +
+    '</div>' +
     '<a href="stage-art-production.html"><span class="t-en">Stage Art &amp; Production</span><span class="t-zh">舞台艺术与制作</span></a>' +
     '<a href="traditional-mediums.html"><span class="t-en">Traditional Mediums</span><span class="t-zh">传统媒介</span></a>' +
     '<a href="graphic-design.html"><span class="t-en">Graphic Design</span><span class="t-zh">平面设计</span></a>' +
@@ -685,6 +691,7 @@
         '<circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>' +
       '</svg>' +
     '</a>' +
+    '<button id="side-lang-btn" class="nav-side-lang"><span class="lang-zh">中</span><span class="lang-sep">/</span><span class="lang-en">Eng</span></button>' +
     '</a>';
 
   /* Mobile top bar */
@@ -727,20 +734,6 @@
   function init() {
     document.body.insertBefore(nav, document.body.firstChild);
 
-    /* Desktop wordmark — fixed top left, always visible */
-    var deskWordmark = document.createElement('a');
-    deskWordmark.href = 'index.html';
-    deskWordmark.className = 'desk-wordmark';
-    deskWordmark.innerHTML = 'Cady Sheng <span class="nav-zhname">盛开</span>';
-    document.body.appendChild(deskWordmark);
-
-    /* Desktop lang button — fixed top right */
-    var deskLangWrap = document.createElement('button');
-    deskLangWrap.className = 'desk-lang-btn';
-    deskLangWrap.id = 'desk-lang-btn';
-    deskLangWrap.setAttribute('aria-label', 'Toggle language');
-    deskLangWrap.innerHTML = '<span class="lang-zh">中</span><span class="lang-sep">/</span><span class="lang-en">Eng</span>';
-    document.body.appendChild(deskLangWrap);
     document.body.insertBefore(mobMenu, document.body.firstChild);
     document.body.insertBefore(mobBar, document.body.firstChild);
 
@@ -772,16 +765,19 @@
     /* Wordmark scroll behaviour */
     var heroLogo = document.querySelector('.logo-image');
     var wordmark = mobBar.querySelector('.mob-bar__wordmark');
+    var navWordmark = nav.querySelector('.nav-wordmark');
     if (heroLogo) {
       document.body.classList.add('is-homepage');
       var observer = new IntersectionObserver(function(entries) {
         var past = !entries[0].isIntersecting;
         wordmark.classList.toggle('visible', past);
         langBtn.classList.toggle('hidden', past);
+        if (navWordmark) navWordmark.classList.toggle('visible', past);
       }, { threshold: 0.1 });
       observer.observe(heroLogo);
     } else {
       wordmark.classList.add('visible');
+      if (navWordmark) navWordmark.classList.add('visible');
       var ticking = false;
       window.addEventListener('scroll', function() {
         if (!ticking) {
@@ -801,6 +797,13 @@
         setLang(currentLang === 'en' ? 'zh' : 'en');
       });
     }
+    /* Side nav lang button */
+    var sideLangBtnEl = document.getElementById('side-lang-btn');
+    if (sideLangBtnEl) {
+      sideLangBtnEl.addEventListener('click', function() {
+        setLang(currentLang === 'en' ? 'zh' : 'en');
+      });
+    }
 
     /* Apply translations on load */
     applyTranslations();
@@ -810,6 +813,8 @@
     [nav, mobMenu].forEach(function(container) {
       container.querySelectorAll('a[href]').forEach(function(link) {
         var href = link.getAttribute('href');
+        /* Skip sub-items — scroll spy handles them */
+        if (link.classList.contains('nav-sub-item') || link.classList.contains('mob-sub-item')) return;
         var hrefFile = href.split('#')[0].split('/').pop();
         if (hrefFile === currentFile) link.style.color = '#2a2a2a';
       });
@@ -817,31 +822,26 @@
 
     /* Scroll-based highlight for sub-items on illustrations.html — desktop only */
     if (currentFile === 'illustrations.html' && window.innerWidth >= 768) {
-      function resetSubItems() {
-        nav.querySelectorAll('.nav-sub-item').forEach(function(el) { el.style.color = ''; });
-      }
-      function setSubActive(href) {
-        resetSubItems();
-        var link = nav.querySelector('.nav-sub-item[href="' + href + '"]');
-        if (link) link.style.color = '#2a2a2a';
-      }
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (!entry.isIntersecting) return;
-          var id = entry.target.id || entry.target.className;
-          if (id === 'my-partner') setSubActive('illustrations.html#my-partner');
-          else if (id === 'flow-and-spirituality') setSubActive('illustrations.html#flow-and-spirituality');
-          else if (id === 'childrens-book') setSubActive('illustrations.html#childrens-book');
-          else resetSubItems();
+      var sectionIds = ['my-partner', 'flow-and-spirituality', 'childrens-book'];
+      function updateSubHighlight() {
+        var trigger = window.innerHeight * 0.4;
+        var active = null;
+        var bestTop = -Infinity;
+        sectionIds.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          var rect = el.getBoundingClientRect();
+          if (rect.top <= trigger && rect.bottom > 0 && rect.top > bestTop) {
+            bestTop = rect.top; active = id;
+          }
         });
-      }, { rootMargin: '-10% 0px -80% 0px' });
-      /* Observe main gallery for reset when scrolled back up */
-      var mainGallery = document.querySelector('.gallery:not(.sub-section__gallery)');
-      if (mainGallery) { mainGallery.id = mainGallery.id || 'illustrations-main'; observer.observe(mainGallery); }
-      ['my-partner', 'flow-and-spirituality', 'childrens-book'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
+        nav.querySelectorAll('.nav-sub-item').forEach(function(el) {
+          var href = el.getAttribute('href');
+          el.style.color = (active && href === 'illustrations.html#' + active) ? '#2a2a2a' : '';
+        });
+      }
+      window.addEventListener('scroll', updateSubHighlight, { passive: true });
+      updateSubHighlight();
     }
   }
 
@@ -849,6 +849,27 @@
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+
+  /* ── Collapsible sub-group (desktop only) ── */
+  /* Sub-group: open on click, auto-open on illustrations pages, no close */
+  if (window.innerWidth >= 768) {
+    var subGroup = document.querySelector('.side-nav .nav-sub-group');
+    var illusToggle = document.getElementById('nav-illus-toggle');
+    if (subGroup) {
+      var cp = (window.location.pathname.split('/').pop() || 'index.html');
+      var illustsPages = ['illustrations.html','my-partner.html','flow-and-spirituality.html','childrens-book.html'];
+      /* Auto-open on illustrations-related pages */
+      if (illustsPages.indexOf(cp) !== -1) {
+        subGroup.classList.add('open');
+      }
+      /* Click Illustrations to open (no close) */
+      if (illusToggle) {
+        illusToggle.addEventListener('click', function() {
+          subGroup.classList.add('open');
+        });
+      }
+    }
   }
 
   /* Handle bfcache restore — DOMContentLoaded does NOT fire on back/forward nav.
