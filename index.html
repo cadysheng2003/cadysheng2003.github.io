@@ -145,7 +145,7 @@
       a[href="childrens-book.html"] img{ object-position:center top; min-height:36vw; }
       a[href="jewelry.html"] img{ object-fit:contain; background:transparent; min-height:28vw; }
 
-      /* ── Labels: override desktop opacity:0 ── */
+      /* ── Labels: show immediately, no JS dependency ── */
       .tile .tile__label{
         opacity:1 !important; transition:none !important;
         background:linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 60%) !important;
@@ -243,7 +243,7 @@
       <!-- col-middle (desktop: 32.5%, mobile: grid-column:1 = LEFT) -->
       <div class="col-middle">
         <a href="my-partner.html" class="tile tile--large" data-desktop-href="illustrations.html#my-partner">
-          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="lazy" decoding="async">
+          <img src="homepage-covers-images/MPCover.jpg" alt="My Partner" loading="eager" decoding="async">
           <span class="tile__label" data-i18n="nav.partner">My Partner</span>
         </a>
         <a href="traditional-mediums.html" class="tile tile--medium">
@@ -258,7 +258,7 @@
       <!-- col-right (desktop: flex:1, mobile: grid-column:1/-1 = bottom row) -->
       <div class="col-right">
         <a href="childrens-book.html" class="tile tile--large" data-desktop-href="illustrations.html#childrens-book">
-          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="lazy" decoding="async">
+          <img src="homepage-covers-images/CBCover.jpg" alt="Children&#8217;s Book" loading="eager" decoding="async">
           <span class="tile__label" data-i18n="nav.childrens">Children’s Book</span>
         </a>
         <a href="jewelry.html" class="tile tile--small">
@@ -271,7 +271,7 @@
 
   <div id="footer"></div>
 
-  <script src="footer.js" defer></script>
+  <script src="footer.js"></script>
   <script>
     /* Desktop: point My Partner and Flow tiles to illustrations.html anchor */
     if (window.innerWidth >= 768) {
