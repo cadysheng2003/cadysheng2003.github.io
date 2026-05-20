@@ -85,6 +85,11 @@
       'cb.p10bc':   '\u201cNow I will never unsee you,\u201d says the little girl.<br>She hugs everyone.',
       'cb.p10de':   '! Bye Everyone !<br>Echoes in the woods.',
 
+      /* ── Children's Book: Hi Everyone flip-book card ── */
+      'cb.cta_byline': 'by Cady Sheng',
+      'cb.cta_view':   'View it as a Book',
+      'cb.close':      'Close',
+
       /* ── Stage Art intro ── */
       'sp.title':    'From the Mountains',
       'sp.role':     'Stage Art & Production Director',
@@ -199,6 +204,11 @@
       'cb.p7_feel': '她感受到万物中饱满的存在。<br>她感到无比鲜活。',
       'cb.p10bc':   '\u201c现在我再也无法假装看不见你们了，\u201d小女孩说。<br>她拥抱了所有人。',
       'cb.p10de':   '！再见，大家！<br>声音在林间回响。',
+
+      /* ── Children's Book: Hi Everyone flip-book card ── */
+      'cb.cta_byline': '盛开 著',
+      'cb.cta_view':   '以翻书方式阅读',
+      'cb.close':      '关闭',
 
       /* ── Stage Art intro ── */
       'sp.title':    '来自大山',

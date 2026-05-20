@@ -46,7 +46,7 @@
     .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gap); }
     .sep { height:40px; }
 
-    .page-header { max-width:var(--page-max-width); margin:40px auto 64px; padding:0 var(--page-padding); text-align:center; }
+    .page-header { max-width:var(--page-max-width); margin:40px auto 47px; padding:0 var(--page-padding); text-align:center; }
     .page-title  { text-align:center; }
 
     .page-nav { max-width:var(--page-max-width); margin:56px auto 52px; padding:0 var(--page-padding); display:flex; justify-content:space-between; align-items:center; }
@@ -88,17 +88,14 @@
         filter:invert(1) brightness(0) sepia(1) saturate(0.55) hue-rotate(338deg) brightness(0.44);
         mix-blend-mode:multiply;
       }
+    }
+    /* ↑ closes @media (max-width:600px) — was missing in the original file */
 
 
     /* ── Sub-sections: My Partner + Flow & Spirituality ── */
     /* Desktop: restore cover crop on MP images */
     .sub-section__gallery .r > .g { height: 100%; overflow: hidden; }
     .sub-section__gallery .r > .g img { height: 100%; object-fit: cover; }
-
-    /* ── FS full-width single column (desktop) ── */
-    /* ── FS full-width single column ── */
-    #fs-gallery .g img { object-fit: unset !important; height: auto !important; }
-    #fs-gallery .g:hover img { opacity: 0.88; }
     .sub-section {
       margin-top: 140px;
     }
@@ -109,10 +106,11 @@
       text-align: center;
     }
     #my-partner {
-      margin-top: 220px;
+      margin-top: 140px;
+      padding-bottom: 80px;
     }
     #my-partner .sub-section__header {
-      margin-bottom: 120px;
+      margin-bottom: 56px;
     }
     /* sub-section uses same .gallery/.row/.col/.g as main section */
     /* gap override: flow uses 8px, my-partner uses 12px inline — keep inline styles */
@@ -191,10 +189,6 @@
       .sub-section .r > .g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       .sub-section .c { width:100% !important; flex:none !important; }
       .sub-section:not(.cb-section) .g { width:100% !important; }
-      /* FS gallery mobile: already single column, just ensure full width */
-      #fs-gallery { padding: 0 16px !important; }
-      #fs-gallery .g { margin-bottom: 10px !important; border-radius: 3px !important; }
-      #fs-gallery .g img { border-radius: 3px !important; }
       .sub-section__header { padding-top:16px !important; margin-bottom:24px !important; }
       /* CB mobile: cover row padding match */
       .cb-section > div[style*="max-width:880px"][style*="padding:0 40px"] {
@@ -230,20 +224,6 @@
         contain-intrinsic-size: 0 300px;
       }
 
-      /* il-mob containers: skip off-screen rendering */
-      .il-mob-stack,
-      .il-mob-grid3,
-      .il-mob-2col {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 300px;
-      }
-
-      /* Sub-sections: far below fold, skip until needed */
-      .sub-section {
-        content-visibility: auto;
-        contain-intrinsic-size: 0 1200px;
-      }
-
       /* Isolate paint/layout per row — cheaper reflows */
       .gallery .r,
       .gallery .row {
@@ -269,6 +249,96 @@
       }
 
     }
+
+    /* ─── Hi Everyone book CTA — bottom of #childrens-book ───
+       V2: warm cream card with brown border + open-book icon.
+       Color palette echoes the warm watercolor tones of the illustrations.
+       Narrower (520px) than the gallery (880px) so it reads as a distinct
+       interactive module rather than another content panel. */
+    .book-cta { max-width:880px; margin:80px auto 64px; padding:0 40px; }
+    .book-cta__card {
+      display:block; max-width:520px; margin:0 auto;
+      padding:38px 48px;
+      text-align:center;
+      background:#f7f1e8;
+      border:1px solid #d8c8b0;
+      border-radius:8px;
+      text-decoration:none; color:inherit; cursor:pointer;
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+    .book-cta__card:hover { background:#f0e6d4; border-color:#a89478; }
+    .book-cta__icon {
+      display:block; margin:0 auto 14px;
+      color:#8a6d4a;
+      transition: color 0.35s ease, transform 0.35s ease;
+    }
+    .book-cta__card:hover .book-cta__icon { color:#4a3520; transform:translateY(-2px); }
+    .book-cta__action {
+      display:inline-flex; align-items:baseline; gap:10px;
+      font-family:var(--font-display); font-size:23px; font-weight:400;
+      color:#3a2a1a; letter-spacing:0.4px;
+      transition: gap 0.35s ease;
+    }
+    .book-cta__card:hover .book-cta__action { gap:14px; }
+    .book-cta__arrow {
+      font-family:var(--font-display); font-size:24px; line-height:1;
+      color:#8a6d4a;
+      transition: color 0.35s ease, transform 0.35s ease;
+    }
+    .book-cta__card:hover .book-cta__arrow { color:#4a3520; transform: translateX(3px); }
+
+    @media (max-width: 600px) {
+      .book-cta { margin:56px auto 44px; padding:0 18px; }
+      .book-cta__card { padding:32px 24px; }
+      .book-cta__icon { width:30px; height:30px; }
+      .book-cta__action { font-size:19px; gap:8px; }
+      .book-cta__arrow { font-size:20px; }
+    }
+
+    /* ─── Flip-book full-screen iframe overlay ─── */
+    #book-overlay {
+      display:none; position:fixed; inset:0; z-index:9998;
+      background:#ffffff;
+    }
+    #book-overlay.active { display:block; }
+    #book-overlay iframe { width:100%; height:100%; border:0; display:block; }
+    #book-overlay-close {
+      position:fixed; top:20px; right:24px; z-index:10001;
+      font-family:'Inter',system-ui,sans-serif; font-size:11px;
+      letter-spacing:2px; text-transform:uppercase; color:#888;
+      background:rgba(255,255,255,0.92); border:1px solid #e0dbd7;
+      padding:9px 18px; border-radius:20px;
+      cursor:pointer; transition:color 0.18s ease, border-color 0.18s ease;
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      outline:none;
+    }
+    #book-overlay-close:hover { color:#1a1a1a; border-color:#888; }
+
+    /* Wordmark in overlay top-left — mirrors main site .nav-wordmark.
+       Links back to home. z-index above iframe so clicks reach it. */
+    #book-overlay-wordmark {
+      position:fixed; top:32px; left:max(20px, calc(50vw - 570px));
+      z-index:10001;
+      pointer-events:auto;
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:16px; font-weight:500;
+      letter-spacing:0.22em; text-transform:uppercase;
+      color:#2a2a2a; text-decoration:none;
+      line-height:1.2; white-space:nowrap;
+      transition:opacity 0.2s ease, color 0.2s ease;
+    }
+    #book-overlay-wordmark:hover { color:#000; opacity:0.7; }
+    #book-overlay-wordmark:active { opacity:0.4; transition:opacity 0.08s ease; }
+    #book-overlay-wordmark .zhname {
+      font-size:11px; letter-spacing:0.15em;
+      text-transform:none; opacity:0.55; font-weight:400;
+      vertical-align:middle;
+    }
+    @media (max-width: 767px) {
+      #book-overlay-wordmark { top:18px; left:20px; font-size:14px; letter-spacing:0.18em; }
+      #book-overlay-wordmark .zhname { font-size:10px; }
+      #book-overlay-close { top:14px; right:18px; padding:7px 14px; font-size:10px; }
+    }
   </style>
 </head>
 <body>
@@ -284,8 +354,8 @@
 
       <!-- Block A: I1 full → I2 full → 3×3 grid → I3 I4 I8 I15 stack → I16 full -->
       <div class="il-mob-stack">
-        <div class="g"><img src="illustrations/I1 (Portal).jpg" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:auto;display:block"></div>
-        <div class="g"><img src="illustrations/I2 (The Princess and the Pea).jpg" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I1 (Portal).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
+        <div class="g"><img src="illustrations/I2 (The Princess and the Pea).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
       </div>
       <div class="il-mob-grid3">
         <div class="g"><img src="illustrations/I5 (Dialogue Between the Gods).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I6 (Bow).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div><div class="g"><img src="illustrations/I7 (Queen).jpg" loading="lazy" decoding="async" style="width:100%;height:auto;display:block"></div>
@@ -481,10 +551,10 @@
 
 
     <div class="row" style="align-items:stretch">
-      <div class="g" data-title="Argument" style="flex:1.55">
+      <div class="g" data-title="Argument" style="flex:1.55; overflow:hidden">
         <img decoding="async" src="illustrations/I35 (Argument).jpg" alt="Argument" loading="lazy" style="width:100%;height:auto;display:block">
       </div>
-      <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1;overflow:hidden">
+      <div class="g" data-title="The Curious Incident of the Dog in the Night-Time" style="flex:1; overflow:hidden">
         <img decoding="async" src="illustrations/I36 (The Curious Incident of the Dog in the Night-Time).jpg" alt="The Curious Incident of the Dog in the Night-Time" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block">
       </div>
     </div>
@@ -495,35 +565,43 @@
   <!-- ═══ MY PARTNER SECTION ═══ -->
   <div id="my-partner" class="sub-section">
     <style>
-      .mp-wrap { padding: 0 var(--page-padding); max-width: var(--page-max-width); margin: 0 auto; }
+      /* MP desktop: two fixed-height rows */
+      .mp-section-wrap { padding: 0 var(--page-padding); max-width: var(--page-max-width); margin: 0 auto; }
+      .mp-r1 { display:flex; gap:12px; margin-bottom:12px; height:280px; }
+      .mp-r2 { display:flex; gap:12px; height:200px; }
+      .mp-r1 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
+      .mp-r2 .mp-g { flex:1; min-width:0; overflow:hidden; border-radius:8px; }
+      .mp-r1 .mp-g img { width:100%; height:100%; object-fit:cover; display:block; }
+      .mp-r2 .mp-g img { width:100% !important; height:100% !important; object-fit:cover !important; display:block; }
       @media(max-width:767px) and (pointer:coarse) {
-        .mp-wrap { padding: 0 16px; }
-        .mp-wrap .mp-r1, .mp-wrap .mp-r2 { flex-direction:column !important; height:auto !important; gap:10px !important; }
-        .mp-wrap .mp-r1 > div, .mp-wrap .mp-r2 > div { flex:none !important; width:100% !important; height:auto !important; }
-        .mp-wrap img { height:auto !important; object-fit:unset !important; }
+        .mp-r1 { flex-direction:column; height:auto; gap:10px; }
+        .mp-r2 { flex-direction:column; gap:10px; }
+        .mp-r1 .mp-g { flex:none; width:100%; height:auto; }
+        .mp-r2 .mp-g { flex:none; width:100%; }
+        .mp-r1 .mp-g img { height:auto; object-fit:unset; }
       }
     </style>
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
       <img loading="lazy" decoding="async" src="my-partner/my-partner-title.png" alt="My Partner" style="width:65%; max-width:320px; height:auto; display:block; margin:0 auto;">
     </div>
-    <div class="mp-wrap">
-      <div class="mp-r1" style="display:flex;gap:12px;margin-bottom:12px;height:280px;">
-        <div class="g" data-title="My Partner 1" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
-          <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="mp-section-wrap">
+      <div class="mp-r1">
+        <div class="mp-g g" data-title="My Partner 1">
+          <img decoding="async" src="my-partner/MP1 (My Partner 1).jpg" alt="My Partner 1" loading="lazy">
         </div>
-        <div class="g" data-title="My Partner 4" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
-          <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="mp-g g" data-title="My Partner 4">
+          <img decoding="async" src="my-partner/MP4 (My Partner 2).jpg" alt="My Partner 4" loading="lazy">
         </div>
       </div>
-      <div class="mp-r2" style="display:flex;gap:12px;height:200px;">
-        <div class="g" data-title="My Partner 3" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
-          <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+      <div class="mp-r2">
+        <div class="mp-g g" data-title="My Partner 3">
+          <img decoding="async" src="my-partner/MP3 (My Partner 3).jpg" alt="My Partner 3" loading="lazy">
         </div>
-        <div class="g" data-title="My Partner 2" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
-          <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <div class="mp-g g" data-title="My Partner 2">
+          <img decoding="async" src="my-partner/MP2 (My Partner 4).jpg" alt="My Partner 2" loading="lazy">
         </div>
-        <div class="g" data-title="My Partner 5" style="flex:1;overflow:hidden;border-radius:8px;min-width:0;">
-          <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;">
+        <div class="mp-g g" data-title="My Partner 5">
+          <img decoding="async" src="my-partner/MP5 (My Partner 5).jpg" alt="My Partner 5" loading="lazy">
         </div>
       </div>
     </div>
@@ -551,14 +629,14 @@
       <div class="g" data-title="Baby and the Dragon" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS6 (Baby and the Dragon).jpg" alt="Baby and the Dragon" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Yixuan’s Energy Body" style="margin-bottom:12px">
-        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan’s Energy Body" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
+      <div class="g" data-title="Yixuan's Energy Body" style="margin-bottom:12px">
+        <img decoding="async" src="flow-and-spirituality/FS7 (Yixuan%E2%80%99s Energy Body).jpg" alt="Yixuan's Energy Body" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
       <div class="g" data-title="Sunset" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS8 (Sunset).jpg" alt="Sunset" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
-      <div class="g" data-title="Shaokang’s Grandmother" style="margin-bottom:12px">
-        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang’s Grandmother" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
+      <div class="g" data-title="Shaokang's Grandmother" style="margin-bottom:12px">
+        <img decoding="async" src="flow-and-spirituality/FS9 (Shaokang%E2%80%99s Grandmother).jpg" alt="Shaokang's Grandmother" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
       </div>
       <div class="g" data-title="Sunset and Rabbit" style="margin-bottom:12px">
         <img decoding="async" src="flow-and-spirituality/FS10 (Sunset and Rabbit).jpg" alt="Sunset and Rabbit" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;">
@@ -571,10 +649,7 @@
       </div>
     </div>
   </div>
-
-
-  <!-- ═══ CHILDREN'S BOOK SECTION ═══ -->
-  <div id="childrens-book" class="sub-section cb-section">
+    <div id="childrens-book" class="sub-section cb-section">
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:24px">
       <img loading="lazy" decoding="async" src="childrens-book/childrens-book-title.png" alt="Children's Book" style="width:52.5%;max-width:420px;height:auto;display:block;margin:0 auto;">
     </div>
@@ -668,6 +743,20 @@
       </div>
     </div>
 
+    <!-- ─── Hi Everyone Online Flip Book CTA ─── -->
+    <div class="book-cta">
+      <a href="javascript:void(0)" class="book-cta__card" id="open-flipbook" role="button" aria-label="Open Hi Everyone flip book">
+        <svg class="book-cta__icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/>
+          <path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/>
+        </svg>
+        <span class="book-cta__action">
+          <span data-i18n="cb.cta_view">View it as a Book</span>
+          <span class="book-cta__arrow">&rsaquo;</span>
+        </span>
+      </a>
+    </div>
+
   </div>
 
 
@@ -684,8 +773,70 @@
   </nav>
 
   <div id="footer"></div>
+
+  <!-- ─── Flip-book full-screen overlay ─── -->
+  <div id="book-overlay" aria-hidden="true">
+    <a href="index.html" id="book-overlay-wordmark" aria-label="Back to home">
+      <span>Cady Sheng</span><span class="zhname"> &#30427;&#24320;</span>
+    </a>
+    <button id="book-overlay-close" type="button" data-i18n="cb.close">Close</button>
+    <iframe id="book-overlay-frame" title="Hi Everyone — Flip Book"></iframe>
+  </div>
+
+  <script>
+  (function() {
+    /* Flip book entry point. Renamed to flipbook.html to avoid conflict with
+       the main site's index.html (both files were named index.html before
+       and they collided). */
+    var BOOK_URL = 'hi_everyone_online_version_flip_book/book_local_v21/flipbook.html';
+
+    var overlay  = document.getElementById('book-overlay');
+    var frame    = document.getElementById('book-overlay-frame');
+    var closeBtn = document.getElementById('book-overlay-close');
+    var trigger  = document.getElementById('open-flipbook');
+    if (!overlay || !trigger) return;
+
+    /* Hide the flip book's own title-bar so it doesn't duplicate the
+       wordmark we show in the overlay top-left. Works because the iframe
+       is same-origin. */
+    frame.addEventListener('load', function() {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc) return;
+        if (doc.getElementById('cs-hide-title-bar')) return;
+        var style = doc.createElement('style');
+        style.id = 'cs-hide-title-bar';
+        style.textContent = '.title-bar { display: none !important; }';
+        (doc.head || doc.documentElement).appendChild(style);
+      } catch (err) {
+        console.warn('[Hi Everyone] Could not inject style into iframe:', err.message);
+      }
+    });
+
+    function openBook(e) {
+      if (e) e.preventDefault();
+      if (!frame.src) frame.src = BOOK_URL;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function() { closeBtn.focus(); }, 50);
+    }
+    function closeBook() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', openBook);
+    closeBtn.addEventListener('click', closeBook);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeBook();
+    });
+  })();
+  </script>
+
   <script src="nav.js" defer></script>
-  <script src="lightbox.js" defer></script>
+  <script src="lightbox.js"></script>
   <script src="footer.js" defer></script>
 </body>
 </html>
