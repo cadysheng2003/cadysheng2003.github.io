@@ -72,8 +72,8 @@
       /* ── Children's Book text ── */
       'cb.p1':   'I remember when Earth was created,',
       'cb.p2':   'Earth was just a little asteroid.',
-      'cb.p3':   'We put planets together',
-      'cb.p4':   '\u201cHolding hands\u201d',
+      'cb.p3':   'We put planets together<br>\u201cHolding hands\u201d',
+      'cb.p4':   'On this little planet, Earth gave life to a little girl.<br>She wandered through the forest.',
       'cb.p5':   'I see everyone! Everyone feels me too!',
       'cb.p6':   'A little girl shouts:',
       'cb.p8':   'She hears all the animals too, all at the same time from miles away; the crickets, a deer stepping into the crunchy leaves.',
@@ -193,8 +193,8 @@
       /* ── Children's Book text ── */
       'cb.p1':   '我记得地球刚被创造出来的时候，',
       'cb.p2':   '地球只是一颗小小的陨石。',
-      'cb.p3':   '我们把星球拼凑在一起',
-      'cb.p4':   '"手牵着手"',
+      'cb.p3':   '我们把星球拼凑在一起<br>\u201c手牵着手\u201d',
+      'cb.p4':   '在这颗小小的星球上，地球孕育了一个小女孩。<br>她在森林中漫游。',
       'cb.p5':   '我看见了所有人！所有人也感受到我！',
       'cb.p6':   '一个小女孩喊道：',
       'cb.p8':   '她也同时听到了远处所有动物的声音——蟋蟀的鸣叫，一头鹿踩入落叶的声响。',
