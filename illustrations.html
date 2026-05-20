@@ -251,46 +251,47 @@
     }
 
     /* ─── Hi Everyone book CTA — bottom of #childrens-book ───
-       V2: warm cream card with brown border + open-book icon.
-       Color palette echoes the warm watercolor tones of the illustrations.
-       Narrower (520px) than the gallery (880px) so it reads as a distinct
-       interactive module rather than another content panel. */
+       Style matches the site's "Get in Touch" ghost-button pattern but
+       with a heavier border for stronger presence: 2px solid #2a2a2a.
+       Hover fills the card with #2a2a2a, all inner elements inherit color. */
     .book-cta { max-width:880px; margin:80px auto 64px; padding:0 40px; }
     .book-cta__card {
       display:block; max-width:520px; margin:0 auto;
-      padding:38px 48px;
+      padding:42px 56px;
       text-align:center;
-      background:#f7f1e8;
-      border:1px solid #d8c8b0;
+      background:transparent;
+      border:2px solid #2a2a2a;
       border-radius:8px;
-      text-decoration:none; color:inherit; cursor:pointer;
-      transition: background 0.35s ease, border-color 0.35s ease;
+      text-decoration:none; color:#2a2a2a; cursor:pointer;
+      transition: background 0.35s ease, color 0.35s ease;
     }
-    .book-cta__card:hover { background:#f0e6d4; border-color:#a89478; }
+    .book-cta__card:hover {
+      background:#2a2a2a; color:#fff;
+    }
     .book-cta__icon {
-      display:block; margin:0 auto 14px;
-      color:#8a6d4a;
-      transition: color 0.35s ease, transform 0.35s ease;
+      display:block; margin:0 auto 16px;
+      color:inherit;
+      transition: transform 0.35s ease;
     }
-    .book-cta__card:hover .book-cta__icon { color:#4a3520; transform:translateY(-2px); }
+    .book-cta__card:hover .book-cta__icon { transform:translateY(-2px); }
     .book-cta__action {
       display:inline-flex; align-items:baseline; gap:10px;
-      font-family:var(--font-display); font-size:23px; font-weight:400;
-      color:#3a2a1a; letter-spacing:0.4px;
+      font-family:var(--font-display); font-size:24px; font-weight:400;
+      color:inherit; letter-spacing:0.4px;
       transition: gap 0.35s ease;
     }
     .book-cta__card:hover .book-cta__action { gap:14px; }
     .book-cta__arrow {
-      font-family:var(--font-display); font-size:24px; line-height:1;
-      color:#8a6d4a;
-      transition: color 0.35s ease, transform 0.35s ease;
+      font-family:var(--font-display); font-size:25px; line-height:1;
+      color:inherit;
+      transition: transform 0.35s ease;
     }
-    .book-cta__card:hover .book-cta__arrow { color:#4a3520; transform: translateX(3px); }
+    .book-cta__card:hover .book-cta__arrow { transform:translateX(3px); }
 
     @media (max-width: 600px) {
       .book-cta { margin:56px auto 44px; padding:0 18px; }
-      .book-cta__card { padding:32px 24px; }
-      .book-cta__icon { width:30px; height:30px; }
+      .book-cta__card { padding:34px 28px; border-width:1.5px; }
+      .book-cta__icon { width:32px; height:32px; }
       .book-cta__action { font-size:19px; gap:8px; }
       .book-cta__arrow { font-size:20px; }
     }
@@ -746,7 +747,7 @@
     <!-- ─── Hi Everyone Online Flip Book CTA ─── -->
     <div class="book-cta">
       <a href="javascript:void(0)" class="book-cta__card" id="open-flipbook" role="button" aria-label="Open Hi Everyone flip book">
-        <svg class="book-cta__icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="book-cta__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 4h7a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2z"/>
           <path d="M22 4h-7a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22z"/>
         </svg>
