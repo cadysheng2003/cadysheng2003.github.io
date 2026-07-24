@@ -576,10 +576,11 @@
       .mp-r2 .mp-g img { width:100% !important; height:100% !important; object-fit:cover !important; display:block; }
       @media(max-width:767px) and (pointer:coarse) {
         .mp-r1 { flex-direction:column; height:auto; gap:10px; }
-        .mp-r2 { flex-direction:column; gap:10px; }
+        .mp-r2 { flex-direction:column; height:auto; gap:10px; }
         .mp-r1 .mp-g { flex:none; width:100%; height:auto; }
-        .mp-r2 .mp-g { flex:none; width:100%; }
+        .mp-r2 .mp-g { flex:none; width:100%; height:auto; }
         .mp-r1 .mp-g img { height:auto; object-fit:unset; }
+        .mp-r2 .mp-g img { width:100% !important; height:auto !important; object-fit:unset !important; }
       }
     </style>
     <div class="sub-section__header" style="padding-top:32px;padding-bottom:8px">
