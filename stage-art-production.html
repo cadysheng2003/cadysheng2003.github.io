@@ -190,15 +190,63 @@
 
 
 
-    <div style="line-height:0;position:relative;width:100%;padding-bottom:56.25%;">
-        <iframe
-          src="https://www.youtube.com/embed/t4qgBs5QRgQ?autoplay=1&mute=1&rel=0&vq=hd1080"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"
-          frameborder="0"
-          allow="autoplay; encrypted-media; fullscreen"
-          allowfullscreen>
-        </iframe>
-      </div>
+    <div id="stage-video-wrap" style="line-height:0;position:relative;width:100%;padding-bottom:56.25%;background:#000;"></div>
+    <script>
+    (function () {
+      var wrap = document.getElementById('stage-video-wrap');
+      if (!wrap) return;
+      var YT_ID    = 't4qgBs5QRgQ';
+      var BILI_BV  = 'BV1kyKq6bEMS';
+      var settled  = false;
+
+      function insertIframe(src, allowAttr) {
+        var iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;display:block;border:0;';
+        iframe.setAttribute('frameborder', '0');
+        if (allowAttr) iframe.setAttribute('allow', allowAttr);
+        iframe.setAttribute('allowfullscreen', '');
+        wrap.appendChild(iframe);
+      }
+
+      function loadYouTube() {
+        insertIframe(
+          'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=1&rel=0&vq=hd1080',
+          'autoplay; encrypted-media; fullscreen'
+        );
+      }
+      function loadBilibili() {
+        insertIframe(
+          'https://player.bilibili.com/player.html?bvid=' + BILI_BV + '&page=1&high_quality=1&danmaku=0',
+          'autoplay; fullscreen'
+        );
+      }
+
+      /* Reachability probe: a YouTube-hosted thumbnail loads fine outside
+         mainland China, but is blocked (times out / errors) inside the
+         Great Firewall. Works the same way on desktop and mobile. */
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        loadBilibili();
+      }, 2500);
+
+      var probe = new Image();
+      probe.onload = function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        loadYouTube();
+      };
+      probe.onerror = function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        loadBilibili();
+      };
+      probe.src = 'https://i.ytimg.com/vi/' + YT_ID + '/default.jpg?_=' + Date.now();
+    })();
+    </script>
     <div class="sep-sm" style="height:8px"></div>
 
     <!-- Text block 1: role description — dual language, CSS show/hide -->
